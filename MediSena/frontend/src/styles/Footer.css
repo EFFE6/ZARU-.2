@@ -1,0 +1,16 @@
+.footer-container {
+  background-color: #38a13a; /* Green color from the image */
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.footer-title {
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
