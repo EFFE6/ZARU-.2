@@ -1,0 +1,198 @@
+.sidebar {
+  width: 280px;
+  background-color: #E6EEF5; /* Light blue/grey from screenshot */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  position: relative;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.sidebar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.sidebar-logo img {
+  width: 160px;
+  height: auto;
+}
+
+.nav-container {
+  flex: 1;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #5C768D; /* Grayish blue */
+  font-weight: 600;
+  transition: all 0.2s ease;
+  gap: 15px;
+}
+
+.nav-item:hover {
+  background-color: rgba(45, 106, 159, 0.05);
+  color: #1a365d;
+}
+
+.nav-item.active {
+  background-color: #D6E4F0; /* Soft blue for active state */
+  color: #1C3E57; /* Darker blue from screenshot */
+}
+
+.nav-item-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-item-text {
+  font-size: 0.95rem;
+}
+
+.user-profile-section {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.profile-card {
+  background-color: #D6E4F0;
+  border-radius: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1C3E57;
+}
+
+.logout-button {
+  background-color: #5EABDB; /* Bright blue from screenshot */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #4a90c0;
+}
+
+/* Mobile styles */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  background-color: #1C3E57;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu-close {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    height: 100vh;
+    z-index: 1001;
+    transition: left 0.3s ease;
+    border-radius: 0;
+    width: 280px;
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
+  }
+
+  .mobile-menu-close {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #1C3E57;
+    cursor: pointer;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 30px;
+    padding-top: 20px;
+  }
+}
