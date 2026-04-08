@@ -25,7 +25,7 @@ function App() {
         } 
       />
       <Route path="/dashboard" element={<Navigate to="/" replace />} />
-      <Route path="/maestras" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/gestion" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/datos-basicos" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/movimientos" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/excedentes" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />

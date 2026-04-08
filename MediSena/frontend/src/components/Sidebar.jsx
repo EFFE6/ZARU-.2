@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  Settings, 
-  FileText, 
-  RefreshCcw, 
-  BadgeDollarSign, 
-  Search, 
-  ClipboardList, 
+import {
+  LayoutDashboard,
+  Settings,
+  FileText,
+  RefreshCcw,
+  BadgeDollarSign,
+  Search,
+  ClipboardList,
   Globe,
   ChevronLeft,
   ChevronRight,
@@ -15,7 +15,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import './Sidebar.css';
+import '../styles/Sidebar.css';
 
 // Using the logo from assets/img/Sidebar.png as per user instruction
 import logo from '../assets/img/Sidebar.png';
@@ -28,7 +28,7 @@ const Sidebar = () => {
 
   const navItems = [
     { id: 'Dashboard', icon: LayoutDashboard, label: 'Dashboard', path: '/' },
-    { id: 'Maestras', icon: Settings, label: 'Maestras', path: '/maestras' },
+    { id: 'Maestras', icon: Settings, label: 'Gestión', path: '/gestion' },
     { id: 'Datos básicos', icon: FileText, label: 'Datos básicos', path: '/datos-basicos' },
     { id: 'Movimientos', icon: RefreshCcw, label: 'Movimientos', path: '/movimientos' },
     { id: 'Excedentes', icon: BadgeDollarSign, label: 'Excedentes', path: '/excedentes' },
@@ -63,45 +63,45 @@ const Sidebar = () => {
         <button className="mobile-menu-close" onClick={toggleMobileMenu}>
           <X size={24} />
         </button>
-      <div className="sidebar-logo">
-        <img src={logo} alt="MediSENA Logo" />
-      </div>
+        <div className="sidebar-logo">
+          <img src={logo} alt="MediSENA Logo" />
+        </div>
 
-      <nav className="nav-container">
-        <ul className="nav-list">
-          {navItems.map((item) => (
-            <li 
-              key={item.id} 
-              className={`nav-item ${activeItem === item.id ? 'active' : ''}`}
-              onClick={() => {
-                setActiveItem(item.id);
-                navigate(item.path);
-              }}
-            >
-              <item.icon className="nav-item-icon" />
-              <span className="nav-item-text">{item.label}</span>
-            </li>
-          ))}
-        </ul>
-      </nav>
+        <nav className="nav-container">
+          <ul className="nav-list">
+            {navItems.map((item) => (
+              <li
+                key={item.id}
+                className={`nav-item ${activeItem === item.id ? 'active' : ''}`}
+                onClick={() => {
+                  setActiveItem(item.id);
+                  navigate(item.path);
+                }}
+              >
+                <item.icon className="nav-item-icon" />
+                <span className="nav-item-text">{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      <div className="user-profile-section">
-        <div className="profile-card">
-          <div className="profile-info">
-            <div className="profile-avatar">
-              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Paula" alt="Paula" />
+        <div className="user-profile-section">
+          <div className="profile-card">
+            <div className="profile-info">
+              <div className="profile-avatar">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Paula" alt="Paula" />
+              </div>
+              <div className="profile-text">
+                <span className="profile-name">Paula Chaparro</span>
+              </div>
             </div>
-            <div className="profile-text">
-              <span className="profile-name">Paula Chaparro</span>
-            </div>
+            <button className="logout-button" onClick={handleLogout}>
+              <LogOut size={16} />
+              <span>Cerrar sesión</span>
+            </button>
           </div>
-          <button className="logout-button" onClick={handleLogout}>
-            <LogOut size={16} />
-            <span>Cerrar sesión</span>
-          </button>
         </div>
       </div>
-    </div>
     </>
   );
 };
