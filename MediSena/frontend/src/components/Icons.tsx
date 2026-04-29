@@ -12,16 +12,16 @@ interface IconProps {
 export const GestionIcon: React.FC<IconProps> = ({ size = 28, color = 'currentColor', className }) => (
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="28" height="28" rx="14" fill="url(#paint0_linear_540_15107)" />
-    <path d="M18.2547 11.3334H18.962C19.5353 11.3334 19.9993 11.7974 19.9993 12.3707V18.9634C19.9993 19.536 19.5353 20 18.962 20H11.7033C11.13 20 10.666 19.536 10.666 18.9627V18" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.6674 18H16.2087C16.6547 18 17.0707 17.7773 17.3181 17.406L17.8074 16.6713C18.0994 16.2333 18.2554 15.7186 18.2554 15.192V9.99996C18.2554 9.26329 17.6587 8.66663 16.9221 8.66663H10.2554C9.51873 8.66663 8.92206 9.26329 8.92206 9.99996V14.704C8.92206 15.118 8.8254 15.526 8.64073 15.8966L8.0714 17.0353C7.8494 17.4786 8.17206 18 8.6674 18Z" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M11.5872 8V9.33333" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M15.5872 8V9.33333" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M11.4609 12H15.4609" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M11.4609 14.6667H15.4609" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M18.2547 11.3334H18.962C19.5353 11.3334 19.9993 11.7974 19.9993 12.3707V18.9634C19.9993 19.536 19.5353 20 18.962 20H11.7033C11.13 20 10.666 19.536 10.666 18.9627V18" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M8.6674 18H16.2087C16.6547 18 17.0707 17.7773 17.3181 17.406L17.8074 16.6713C18.0994 16.2333 18.2554 15.7186 18.2554 15.192V9.99996C18.2554 9.26329 17.6587 8.66663 16.9221 8.66663H10.2554C9.51873 8.66663 8.92206 9.26329 8.92206 9.99996V14.704C8.92206 15.118 8.8254 15.526 8.64073 15.8966L8.0714 17.0353C7.8494 17.4786 8.17206 18 8.6674 18Z" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.5872 8V9.33333" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M15.5872 8V9.33333" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.4609 12H15.4609" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.4609 14.6667H15.4609" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
     <defs>
       <linearGradient id="paint0_linear_540_15107" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#0165B0" />
-        <stop offset="1" stop-color="#013156" />
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
       </linearGradient>
     </defs>
   </svg>
@@ -292,10 +292,10 @@ export const ProfesionalesIcon: React.FC<IconProps> = ({ size = 20, className })
 
 export const CargosIcon: React.FC<IconProps> = ({ size = 20, className }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9.33317 3.33301H11.9998C12.7365 3.33301 13.3332 3.92967 13.3332 4.66634V13.333C13.3332 14.0697 12.7365 14.6663 11.9998 14.6663H3.99984C3.26317 14.6663 2.6665 14.0697 2.6665 13.333V4.66634C2.6665 3.92967 3.26317 3.33301 3.99984 3.33301H6.6665" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M9.06066 7.10633C9.64645 7.69212 9.64645 8.64187 9.06066 9.22765C8.47487 9.81344 7.52513 9.81344 6.93934 9.22765C6.35355 8.64187 6.35355 7.69212 6.93934 7.10633C7.52513 6.52055 8.47487 6.52055 9.06066 7.10633" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M10.3968 12.6663C10.2802 12.3737 10.1002 12.111 9.86885 11.897V11.897C9.47752 11.5343 8.96418 11.333 8.43085 11.333H7.56952C7.03618 11.333 6.52285 11.5343 6.13152 11.897V11.897C5.90018 12.111 5.72018 12.3737 5.60352 12.6663" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.6665 4.66634H7.33317C6.96517 4.66634 6.6665 4.36767 6.6665 3.99967V1.99967C6.6665 1.63167 6.96517 1.33301 7.33317 1.33301H8.6665C9.0345 1.33301 9.33317 1.63167 9.33317 1.99967V3.99967C9.33317 4.36767 9.0345 4.66634 8.6665 4.66634Z" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M9.33317 3.33301H11.9998C12.7365 3.33301 13.3332 3.92967 13.3332 4.66634V13.333C13.3332 14.0697 12.7365 14.6663 11.9998 14.6663H3.99984C3.26317 14.6663 2.6665 14.0697 2.6665 13.333V4.66634C2.6665 3.92967 3.26317 3.33301 3.99984 3.33301H6.6665" stroke="#5535A0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9.06066 7.10633C9.64645 7.69212 9.64645 8.64187 9.06066 9.22765C8.47487 9.81344 7.52513 9.81344 6.93934 9.22765C6.35355 8.64187 6.35355 7.69212 6.93934 7.10633C7.52513 6.52055 8.47487 6.52055 9.06066 7.10633" stroke="#5535A0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M10.3968 12.6663C10.2802 12.3737 10.1002 12.111 9.86885 11.897V11.897C9.47752 11.5343 8.96418 11.333 8.43085 11.333H7.56952C7.03618 11.333 6.52285 11.5343 6.13152 11.897V11.897C5.90018 12.111 5.72018 12.3737 5.60352 12.6663" stroke="#5535A0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M8.6665 4.66634H7.33317C6.96517 4.66634 6.6665 4.36767 6.6665 3.99967V1.99967C6.6665 1.63167 6.96517 1.33301 7.33317 1.33301H8.6665C9.0345 1.33301 9.33317 1.63167 9.33317 1.99967V3.99967C9.33317 4.36767 9.0345 4.66634 8.6665 4.66634Z" stroke="#5535A0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 
 );
@@ -303,16 +303,16 @@ export const CargosIcon: React.FC<IconProps> = ({ size = 20, className }) => (
 
 export const EditarFuncionarioIcon: React.FC<IconProps> = ({ size = 20, className }) => (
   <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.9358 7.91722L12.1895 4.1709" stroke="url(#paint0_linear_540_24015)" stroke-width="2.10566" stroke-linecap="round" stroke-linejoin="round" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.38041 19.0538H1.05273V15.7261C1.05273 15.4548 1.16021 15.1938 1.35264 15.0024L15.0011 1.3529C15.4013 0.952679 16.0493 0.952679 16.4485 1.3529L18.7526 3.65699C19.1528 4.05721 19.1528 4.70514 18.7526 5.10434L5.10408 18.7538C4.91267 18.9463 4.65166 19.0538 4.38041 19.0538V19.0538Z" stroke="url(#paint1_linear_540_24015)" stroke-width="2.10566" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M15.9358 7.91722L12.1895 4.1709" stroke="url(#paint0_linear_540_24015)" strokeWidth="2.10566" strokeLinecap="round" strokeLinejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M4.38041 19.0538H1.05273V15.7261C1.05273 15.4548 1.16021 15.1938 1.35264 15.0024L15.0011 1.3529C15.4013 0.952679 16.0493 0.952679 16.4485 1.3529L18.7526 3.65699C19.1528 4.05721 19.1528 4.70514 18.7526 5.10434L5.10408 18.7538C4.91267 18.9463 4.65166 19.0538 4.38041 19.0538V19.0538Z" stroke="url(#paint1_linear_540_24015)" strokeWidth="2.10566" strokeLinecap="round" strokeLinejoin="round" />
     <defs>
       <linearGradient id="paint0_linear_540_24015" x1="19.9162" y1="-0.0827327" x2="8.58939" y2="0.509521" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#0165B0" />
-        <stop offset="1" stop-color="#013156" />
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
       </linearGradient>
       <linearGradient id="paint1_linear_540_24015" x1="38.1777" y1="-19.3859" x2="-16.2446" y2="-16.5405" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#0165B0" />
-        <stop offset="1" stop-color="#013156" />
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
       </linearGradient>
     </defs>
   </svg>
@@ -320,3 +320,63 @@ export const EditarFuncionarioIcon: React.FC<IconProps> = ({ size = 20, classNam
 );
 
 
+export const EditarBeneficiariosIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_540_25399)" stroke-width="1.4" />
+    <path d="M17.3528 12.7829L15.2178 10.6479" stroke="url(#paint1_linear_540_25399)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.7675 19.1293H8.87109V17.2328C8.87109 17.0783 8.93234 16.9295 9.04201 16.8204L16.8202 9.04167C17.0483 8.81358 17.4175 8.81358 17.645 9.04167L18.9581 10.3548C19.1862 10.5828 19.1862 10.9521 18.9581 11.1796L11.1799 18.9583C11.0708 19.068 10.9221 19.1293 10.7675 19.1293V19.1293Z" stroke="url(#paint2_linear_540_25399)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_540_25399" x1="57.75" y1="-31.7916" x2="-26.9069" y2="-27.3651" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+      <linearGradient id="paint1_linear_540_25399" x1="19.6212" y1="8.22384" x2="13.1661" y2="8.56136" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+      <linearGradient id="paint2_linear_540_25399" x1="30.0283" y1="-2.77722" x2="-0.986509" y2="-1.15562" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+export const EliminarBeneficiariosIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_540_25408)" stroke-width="1.4" />
+    <path d="M18 10.167V18.667C18 19.4957 17.3153 20.167 16.4873 20.167H11.4873C10.6587 20.167 10 19.4957 10 18.667V10.167" stroke="url(#paint1_linear_540_25408)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M19 10.1668H9" stroke="url(#paint2_linear_540_25408)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M12.667 8.16683H15.3337" stroke="url(#paint3_linear_540_25408)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M15.3333 12.8335V17.5002" stroke="url(#paint4_linear_540_25408)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M12.6663 17.5002V12.8335" stroke="url(#paint5_linear_540_25408)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_540_25408" x1="57.75" y1="-31.7916" x2="-26.9069" y2="-27.3651" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+      <linearGradient id="paint1_linear_540_25408" x1="26.5" y1="-1.18716" x2="2.28855" y2="-0.174396" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+      <linearGradient id="paint2_linear_540_25408" x1="29.625" y1="9.07655" x2="10.8544" y2="23.7986" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+      <linearGradient id="paint3_linear_540_25408" x1="18.167" y1="7.07655" x2="10.4212" y2="8.69658" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+      <linearGradient id="paint4_linear_540_25408" x1="16.375" y1="7.53489" x2="14.354" y2="7.54999" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+      <linearGradient id="paint5_linear_540_25408" x1="13.708" y1="7.53489" x2="11.687" y2="7.54999" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+
+);
