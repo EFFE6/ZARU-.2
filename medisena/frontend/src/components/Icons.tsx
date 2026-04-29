@@ -166,3 +166,57 @@ export const ProfesionalesIcon: React.FC<IconProps> = ({ size = 20, className })
     </defs>
   </svg>
 );
+
+export const Roles: React.FC<IconProps> = ({ size = 28, className }) => (
+  <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <rect width="28" height="28" rx="14" fill="url(#paint0_linear_480_46032)" />
+    <circle cx="11.2238" cy="11.5773" r="2.422" stroke="white" strokeWidth="1.63333" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="17.4693" cy="12.2643" r="1.73496" stroke="white" strokeWidth="1.63333" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M7.05957 19.551V18.8452C7.05957 17.3184 8.29694 16.0811 9.8237 16.0811H12.6232C14.15 16.0811 15.3874 17.3184 15.3874 18.8452V19.551" stroke="white" strokeWidth="1.63333" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M17.4697 16.0811H18.2345C19.7613 16.0811 20.9986 17.3184 20.9986 18.8452V19.551" stroke="white" strokeWidth="1.63333" strokeLinecap="round" strokeLinejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_480_46032" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+export const Permisos: React.FC<IconProps> = ({ size = 28, className }) => (
+  <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <rect width="27.3514" height="27.3514" rx="13.6757" fill="url(#paint0_linear_480_46532)" />
+    <g clipPath="url(#clip0_480_46532)">
+      <path d="M16.6559 14.9179C18.9869 14.9179 20.8766 13.0283 20.8766 10.6973C20.8766 8.36623 18.9869 6.47656 16.6559 6.47656C14.3249 6.47656 12.4352 8.36623 12.4352 10.6973C12.4352 11.0052 12.4682 11.3055 12.5308 11.5947L6.47656 17.649V20.8766H9.70415L10.449 20.1317V18.3938H12.1869L13.4283 17.1524V15.4145H15.1662L15.7584 14.8223C16.0476 14.885 16.3479 14.9179 16.6559 14.9179Z" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M18.1435 9.70358C18.1435 9.97782 17.9211 10.2001 17.6469 10.2001C17.3727 10.2001 17.1504 9.97782 17.1504 9.70358C17.1504 9.42935 17.3727 9.20703 17.6469 9.20703C17.9211 9.20703 18.1435 9.42935 18.1435 9.70358Z" stroke="white" strokeWidth="1.4" />
+    </g>
+    <defs>
+      <linearGradient id="paint0_linear_480_46532" x1="13.6757" y1="0" x2="13.6757" y2="27.3514" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+      <clipPath id="clip0_480_46532">
+        <rect width="16" height="16" fill="white" transform="translate(5.67578 5.67578)" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+export const Usuarios: React.FC<IconProps> = ({ size = 28, className }) => (
+  <svg width={size} height={size} viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <rect width="47" height="47" rx="12" fill="url(#paint0_linear_538_26385)" />
+    <g clipPath="url(#clip0_538_26385)">
+      <path d="M23.4996 15.8711L15.8693 19.2916C15.8693 19.2916 15.0799 31.1318 23.4996 31.1318C31.9193 31.1318 31.1299 19.2916 31.1299 19.2916L23.4996 15.8711Z" stroke="#EBF6E6" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M21.1328 24.2902L22.4484 25.8689L25.8689 21.1328" stroke="#EBF6E6" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+    <defs>
+      <linearGradient id="paint0_linear_538_26385" x1="96.9375" y1="-53.3645" x2="-45.1651" y2="-45.9343" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+      <clipPath id="clip0_538_26385">
+        <rect width="18" height="18" fill="white" transform="translate(14.5 14.5)" />
+      </clipPath>
+    </defs>
+  </svg>
+);

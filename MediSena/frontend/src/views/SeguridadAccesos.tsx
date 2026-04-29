@@ -16,10 +16,9 @@ import {
   PowerOff,
   Eye
 } from 'lucide-react';
+import { Roles as RolesIcon, Permisos as PermisosIcon, Usuarios as UsuariosIcon } from '../components/Icons';
 import CampanaSvg from '../assets/img/icons/campana.svg';
 import EditarRolSvg from '../assets/img/icons/editar-rol.svg';
-import RolesSvg from '../assets/img/icons/roles.svg';
-import EscudoAzulSvg from '../assets/img/icons/escudo-azul.svg';
 import ArchivarRolSvg from '../assets/img/icons/archivar-rol.svg';
 import AbrirRolSvg from '../assets/img/icons/abrir-rol.svg';
 import '../styles/SeguridadAccesos/SeguridadAccesos.css';
@@ -92,7 +91,7 @@ const SeguridadAccesos: React.FC = () => {
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   const [isModalOpen, setIsModalOpen]       = useState(false);
   const [isEditMode, setIsEditMode]         = useState(false);
@@ -326,7 +325,7 @@ const SeguridadAccesos: React.FC = () => {
           </div>
         </header>
 
-        {/* ── Tabs + Card (same pattern as GestionResoluciones) ── */}
+        {/* ── Tabs + Card (Igual a la de gestion)── */}
         <div className="sa-tabs-card-group">
           <div className="sa-tabs-scroll-area">
             {TABS.map(tab => (
@@ -335,8 +334,11 @@ const SeguridadAccesos: React.FC = () => {
                 className={`sa-tab-pill ${activeTab === tab ? 'active' : ''}`}
                 onClick={() => { setActiveTab(tab); setSearchQuery(''); setCurrentPage(1); }}
               >
-                {tab === 'Roles' && (
-                  <img src={RolesSvg} alt="Roles" className="sa-tab-icon" />
+                {tab === 'Roles' && activeTab === 'Roles' && (
+                  <RolesIcon className="sa-tab-icon" />
+                )}
+                {tab === 'Permisos' && activeTab === 'Permisos' && (
+                  <PermisosIcon className="sa-tab-icon" />
                 )}
                 {tab}
               </div>
@@ -375,11 +377,7 @@ const SeguridadAccesos: React.FC = () => {
                     {pagedRoles.map(role => (
                       <div className={`sa-role-card ${!role.active ? 'inactive' : ''}`} key={role.id}>
                         <div className="sa-role-icon-wrapper">
-                          <img
-                            src={EscudoAzulSvg}
-                            alt="Rol"
-                            style={{ width: 22, height: 22, filter: 'brightness(0) invert(1)' }}
-                          />
+                          <UsuariosIcon size={44} style={{ borderRadius: 10 }} />
                         </div>
                         <div className="sa-role-info">
                           <h3 className="sa-role-name">{role.name}</h3>
@@ -437,7 +435,6 @@ const SeguridadAccesos: React.FC = () => {
                       value={itemsPerPage}
                       onChange={handleItemsPerPageChange}
                     >
-                      <option value={5}>05</option>
                       <option value={6}>06</option>
                       <option value={10}>10</option>
                       <option value={15}>15</option>
