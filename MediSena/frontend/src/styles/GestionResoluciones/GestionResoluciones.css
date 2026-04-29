@@ -2953,13 +2953,10 @@
    ══════════════════════════════════════════════════════════ */
 .parentescos-wrapper {
   padding: 0 24px 24px 24px;
-  /*overflow-y: auto;*/     /* Permite el scroll vertical interno */
-  flex: 1;              /* Ocupa el resto del espacio disponible en su padre */
-  min-height: 0;        /* Previene que rompa el layout de flex en contenedores pequeños */
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
   scrollbar-width: none;
-}
-   .parentescos-wrapper {
-  padding: 0 24px 24px 24px;
 }
 
 .parentescos-list {

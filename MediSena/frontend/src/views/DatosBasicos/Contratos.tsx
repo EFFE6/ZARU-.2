@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Filter, RefreshCw, Plus, X, Search, Save } from 'lucide-react';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
+import { ImgModalEliminarIcon } from '../../components/Icons';
 
 const MOCK_CONTRATOS = [
   {
@@ -260,8 +261,8 @@ const Contratos: React.FC<ContratosProps> = ({ searchQuery }) => {
           </button>
         </div>
         <div style={{ padding: '0 24px 32px', textAlign: 'center' }}>
-          <div style={{ width: '120px', height: '120px', margin: '0 auto 20px', background: 'linear-gradient(135deg, #0165B0, #013156)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <div style={{ width: '120px', height: '120px', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <ImgModalEliminarIcon />
           </div>
           <p style={{ fontSize: '16px', color: '#1a3c5a', fontWeight: '700', marginBottom: '24px' }}>
             ¿Está seguro que desea eliminar el contrato<br/>Nº {selectedContrato?.numero}?
