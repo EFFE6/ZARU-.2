@@ -84,3 +84,11 @@ export const ReportesNacionalesIcon = ({ className }: IconProps) => (
   </svg>
 
 );
+
+export const SeguridadAccesosIcon = ({ className }: IconProps) => (
+  <svg className={className} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 2L2 5V11C2 15.4183 5.58172 19 10 20C14.4183 19 18 15.4183 18 11V5L10 2Z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M7 10.5L9 12.5L13 7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+

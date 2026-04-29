@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './views/Login';
 import Dashboard from './views/Dashboard';
 import GestionResoluciones from './views/GestionResoluciones';
+import SeguridadAccesos from './views/SeguridadAccesos';
 import MainLayout from './components/MainLayout';
 
 import OrdenAtencion from './views/Movimientos/OrdenAtencion';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/consultas" element={<Dashboard />} />
         <Route path="/reportes" element={<Dashboard />} />
         <Route path="/reportes-nacionales" element={<Dashboard />} />
+        <Route path="/seguridad-accesos" element={<SeguridadAccesos />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
