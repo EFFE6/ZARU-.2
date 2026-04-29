@@ -6,8 +6,7 @@ import Filters from '../../components/Filters';
 
 import BotoEditIcon from '../../assets/img/datosbasicos/icons/contratista/botonedit.svg';
 import BotoVerIcon from '../../assets/img/datosbasicos/icons/contratista/botonver.svg';
-import CedulaIcon from '../../assets/img/datosbasicos/icons/contratista/cedula.svg';
-import PrestadorServiciosIcon from '../../assets/img/datosbasicos/icons/contratista/prestadorservicios.svg';
+import { TipoCcContratistasIcon, PrestaServiciosContratistasIcon, EliminarContratistasIcon, ImgModalEliminarIcon } from '../../components/Icons';
 
 const MOCK_CONTRATISTAS = [
   {
@@ -179,7 +178,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
             </td>
             <td>
               <span className="db-cargo-pill amarillo" style={{ background: '#FFF8E6', color: '#D97706', border: 'none', fontWeight: '800' }}>
-                <img src={CedulaIcon} alt="C.C." className="db-cargo-icon" />
+                <TipoCcContratistasIcon className="db-cargo-icon" />
                 {item.tipoDoc}
               </span>
             </td>
@@ -198,7 +197,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
             </td>
             <td>
               <span className="db-cargo-pill amarillo" style={{ background: '#FFF8E6', color: '#D97706', border: 'none', fontWeight: '800' }}>
-                <img src={PrestadorServiciosIcon} alt="Prestación de servicios" className="db-cargo-icon" />
+                <PrestaServiciosContratistasIcon className="db-cargo-icon" />
                 {item.tipoVinculacion}
               </span>
             </td>
@@ -212,8 +211,8 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
                 <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalEditar(true); }}>
                   <img src={BotoEditIcon} alt="Editar" className="db-action-icon" />
                 </button>
-                <button className="db-icon-btn delete" onClick={() => { setSelectedUser(item); setModalEliminar(true); }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <button className="db-icon-btn delete" onClick={() => { setSelectedUser(item); setModalEliminar(true); }} style={{ padding: 0, border: 'none', background: 'transparent' }}>
+                  <EliminarContratistasIcon className="db-action-icon" />
                 </button>
               </div>
             </td>
@@ -257,7 +256,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
             <div style={{ marginBottom: '16px' }}>
               <div style={{ fontSize: '12px', color: '#64748b', fontWeight: '600', marginBottom: '8px' }}>Tipo de vinculación</div>
               <span className="db-cargo-pill azul" style={{ background: '#f3e8ff', color: '#9333ea', border: 'none', fontWeight: '800' }}>
-                <img src={PrestadorServiciosIcon} alt="Prestación de servicios" className="db-cargo-icon" style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(85%) saturate(1636%) hue-rotate(250deg) brightness(97%) contrast(105%)' }}/>
+                <PrestaServiciosContratistasIcon className="db-cargo-icon" style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(85%) saturate(1636%) hue-rotate(250deg) brightness(97%) contrast(105%)' }}/>
                 {selectedUser?.tipoVinculacion}
               </span>
             </div>
@@ -395,8 +394,8 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
           </button>
         </div>
         <div style={{ padding: '0 24px 32px', textAlign: 'center' }}>
-          <div style={{ width: '120px', height: '120px', margin: '0 auto 20px', background: 'linear-gradient(135deg, #0165B0, #013156)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <div style={{ width: '120px', height: '120px', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <ImgModalEliminarIcon />
           </div>
           <p style={{ fontSize: '16px', color: '#1a3c5a', fontWeight: '700', marginBottom: '24px' }}>
             ¿Está seguro que desea eliminar el contratista<br/>.fileName?

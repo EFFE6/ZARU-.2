@@ -159,7 +159,9 @@ export default function Parentescos() {
   return (
     <div className="gestion-content-card">
       <ParentescosToolbar onNew={handleNew} />
-      <ParentescosLista items={items} loading={false} onEdit={handleEdit} onDelete={handleDelete} />
+      <div className="parentescos-wrapper">
+        <ParentescosLista items={items} loading={false} onEdit={handleEdit} onDelete={handleDelete} />
+      </div>
       {isModalOpen && (
         <EditParentescoModal
           isEdit={!!editingId}

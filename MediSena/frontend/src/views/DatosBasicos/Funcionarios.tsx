@@ -6,9 +6,8 @@ import Filters from '../../components/Filters';
 
 import BotoEditIcon from '../../assets/img/datosbasicos/icons/funcionarios/botonedit.svg';
 import BotoVerIcon from '../../assets/img/datosbasicos/icons/funcionarios/botonver.svg';
-import CargoAmarilloIcon from '../../assets/img/datosbasicos/icons/funcionarios/cargoamarillo.svg';
-import CargoAzulIcon from '../../assets/img/datosbasicos/icons/funcionarios/cargoazul.svg';
 import RegionalIcon from '../../assets/img/datosbasicos/icons/funcionarios/regional.svg';
+import { EditarBeneficiariosIcon, EliminarBeneficiariosIcon, CargosIcon } from '../../components/Icons';
 
 const MOCK_FUNCIONARIOS = [
   {
@@ -173,8 +172,8 @@ const Funcionarios: React.FC<FuncionariosProps> = ({ searchQuery }) => {
               </div>
             </td>
             <td>
-              <span className="db-cargo-pill azul" style={{ background: '#f3e8ff', color: '#9333ea', border: 'none' }}>
-                <img src={CargoAzulIcon} alt="cargo" className="db-cargo-icon" style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(85%) saturate(1636%) hue-rotate(250deg) brightness(97%) contrast(105%)' }}/>
+              <span className="db-cargo-pill azul" style={{ background: '#f3e8ff', color: '#9333ea', border: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: '800' }}>
+                <CargosIcon size={16} color="currentColor" />
                 {item.cargo}
               </span>
             </td>
@@ -368,8 +367,8 @@ const Funcionarios: React.FC<FuncionariosProps> = ({ searchQuery }) => {
                   </td>
                   <td>
                     <div className="db-row-actions">
-                      <button className="db-icon-btn edit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
-                      <button className="db-icon-btn delete"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>
+                      <button className="db-icon-btn edit" style={{ padding: 0, border: 'none', background: 'transparent' }}><EditarBeneficiariosIcon className="db-action-icon" /></button>
+                      <button className="db-icon-btn delete" style={{ padding: 0, border: 'none', background: 'transparent' }}><EliminarBeneficiariosIcon className="db-action-icon" /></button>
                     </div>
                   </td>
                 </tr>
