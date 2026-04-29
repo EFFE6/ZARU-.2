@@ -6,10 +6,8 @@ import Filters from '../../components/Filters';
 
 import BotoEditIcon from '../../assets/img/datosbasicos/icons/funcionarios/botonedit.svg';
 import BotoVerIcon from '../../assets/img/datosbasicos/icons/funcionarios/botonver.svg';
-import CargoAmarilloIcon from '../../assets/img/datosbasicos/icons/funcionarios/cargoamarillo.svg';
-import CargoAzulIcon from '../../assets/img/datosbasicos/icons/funcionarios/cargoazul.svg';
 import RegionalIcon from '../../assets/img/datosbasicos/icons/funcionarios/regional.svg';
-import { EditarBeneficiariosIcon, EliminarBeneficiariosIcon } from '../../components/Icons';
+import { EditarBeneficiariosIcon, EliminarBeneficiariosIcon, CargosIcon } from '../../components/Icons';
 
 const MOCK_FUNCIONARIOS = [
   {
@@ -174,8 +172,8 @@ const Funcionarios: React.FC<FuncionariosProps> = ({ searchQuery }) => {
               </div>
             </td>
             <td>
-              <span className="db-cargo-pill azul" style={{ background: '#f3e8ff', color: '#9333ea', border: 'none' }}>
-                <img src={CargoAzulIcon} alt="cargo" className="db-cargo-icon" style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(85%) saturate(1636%) hue-rotate(250deg) brightness(97%) contrast(105%)' }}/>
+              <span className="db-cargo-pill azul" style={{ background: '#f3e8ff', color: '#9333ea', border: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: '800' }}>
+                <CargosIcon size={16} color="currentColor" />
                 {item.cargo}
               </span>
             </td>

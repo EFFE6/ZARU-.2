@@ -632,7 +632,7 @@ export const EliminarTablaContratoIcon: React.FC<IconProps> = ({ size = 24, colo
   </svg>
 );
 
-export const EliminarTablaContratoIcon: React.FC<IconProps> = ({ size = 24, color = 'currentColor', className }) => (
+export const EditarTablaContratoIcon: React.FC<IconProps> = ({ size = 24, color = 'currentColor', className }) => (
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_480_43740)" strokeWidth="1.4" />
     <path d="M17.3528 12.7831L15.2178 10.6481" stroke="url(#paint1_linear_480_43740)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />

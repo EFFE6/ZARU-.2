@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Filter, RefreshCw, Plus, X, Search, Save } from 'lucide-react';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
-import { ImgModalEliminarIcon } from '../../components/Icons';
+import { ImgModalEliminarIcon, ContratoIcon, EditarTablaContratoIcon, EliminarTablaContratoIcon } from '../../components/Icons';
 
 const MOCK_CONTRATOS = [
   {
@@ -156,7 +156,7 @@ const Contratos: React.FC<ContratosProps> = ({ searchQuery }) => {
             <td>{item.crp}</td>
             <td>
               <span className="db-cargo-pill" style={{ background: '#ecfdf5', color: '#059669', border: 'none', fontWeight: '800', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <ContratoIcon />
                 {item.contratista}
               </span>
             </td>
@@ -179,11 +179,11 @@ const Contratos: React.FC<ContratosProps> = ({ searchQuery }) => {
             </td>
             <td>
               <div className="db-row-actions">
-                <button className="db-icon-btn edit" style={{ borderRadius: '20px' }} onClick={() => { setSelectedContrato(item); setModalEditar(true); }}>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                <button className="db-icon-btn edit" style={{ padding: 0, border: 'none', background: 'transparent' }} onClick={() => { setSelectedContrato(item); setModalEditar(true); }}>
+                  <EditarTablaContratoIcon />
                 </button>
-                <button className="db-icon-btn delete" style={{ borderRadius: '20px' }} onClick={() => { setSelectedContrato(item); setModalEliminar(true); }}>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <button className="db-icon-btn delete" style={{ padding: 0, border: 'none', background: 'transparent' }} onClick={() => { setSelectedContrato(item); setModalEliminar(true); }}>
+                  <EliminarTablaContratoIcon />
                 </button>
               </div>
             </td>
