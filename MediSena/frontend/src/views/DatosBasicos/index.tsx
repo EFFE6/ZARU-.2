@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, Home, Search, RefreshCw, Plus, Filter } from 'lucide-react';
 import '../../styles/DatosBasicos/DatosBasicos.css';
+import SearchBar from '../../components/SearchBar';
 
 import CampanaSvg from '../../assets/img/icons/campana.svg';
 import FuncionarioIcon from '../../assets/img/datosbasicos/icons/funcionarios/funcionarios.svg';
@@ -41,17 +42,11 @@ const DatosBasicos: React.FC = () => {
         
         <div className="db-header-bottom">
           <h1 className="db-title">Datos básicos</h1>
-          <div className="db-search-container-header">
-            <input 
-              type="text" 
-              placeholder="Busca el nombre de usuario o radicado" 
-              className="db-search-input-header" 
-              value={searchQuery} 
-              onChange={e => setSearchQuery(e.target.value)} 
+          <div className="db-search-container-header" style={{ background: 'transparent', padding: 0, border: 'none', boxShadow: 'none' }}>
+            <SearchBar 
+              value={searchQuery}
+              onChange={setSearchQuery}
             />
-            <button className="db-search-btn-header">
-              <Search size={18} color="#002c4d" />
-            </button>
           </div>
         </div>
       </header>

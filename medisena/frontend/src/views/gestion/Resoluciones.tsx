@@ -4,6 +4,7 @@ import {
   ChevronLeft, ChevronRight, Search, SlidersHorizontal,
   Paperclip, HelpCircle, X,
 } from 'lucide-react';
+import Filters from '../../components/Filters';
 import api from '../../api/api';
 import {
   Resolucion,
@@ -113,13 +114,20 @@ export const ResolucionesToolbar: React.FC<ResolucionesToolbarProps> = ({
   statusFilter, onStatusChange, onNew,
 }) => (
   <div className="content-toolbar">
-    <div className="stat-filter-container">
-      <select className="stat-select" value={statusFilter} onChange={e => onStatusChange(e.target.value)}>
-        <option>Seleccionar estado</option>
+    <Filters>
+      <select className="stat-select" style={{ minWidth: '150px' }} value={statusFilter} onChange={e => onStatusChange(e.target.value)}>
+        <option value="" disabled hidden>Estado</option>
+        <option value="">Todos</option>
         <option value="Vigente">Vigente</option>
         <option value="Vencido">Vencido</option>
       </select>
-    </div>
+      <select className="stat-select" style={{ minWidth: '150px' }} defaultValue="">
+        <option value="" disabled hidden>Regional</option>
+        <option value="">Todas</option>
+        <option value="Regional 1">Regional 1</option>
+        <option value="Regional 2">Regional 2</option>
+      </select>
+    </Filters>
     <div className="usuarios-toolbar-right">
       <button className="btn-actualizar">
         <RefreshCw size={14} />

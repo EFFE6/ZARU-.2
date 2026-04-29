@@ -17,6 +17,8 @@ import {
 import "../../styles/GestionResoluciones/GestionResoluciones.css";
 import ResolucionesIcon from "../../assets/img/icons/resoluciones-tags.png";
 import CampanaSvg from "../../assets/img/icons/campana.svg";
+import { GestionIcon } from "../../components/Icons";
+import SearchBar from "../../components/SearchBar";
 
 /* ─── Tipos ──────────────────────────────────────────── */
 import { Resolucion } from "./types";
@@ -329,41 +331,10 @@ const Gestion: React.FC = () => {
             <div className="gestion-header-bottom">
               <h1 className="gestion-title">Gestión de {activeTab}</h1>
               <div className="search-wrapper">
-                <div className="search-container">
-                  <input
-                    type="text"
-                    placeholder="Busca el nombre de usuario o radicado"
-                    className="search-input"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-                <button className="search-btn" type="button">
-                  <svg
-                    width="17"
-                    height="17"
-                    viewBox="0 0 17 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="7"
-                      cy="7"
-                      r="4.2"
-                      stroke="#002c4d"
-                      strokeWidth="2"
-                    />
-                    <line
-                      x1="10.2"
-                      y1="10.5"
-                      x2="15.5"
-                      y2="15.8"
-                      stroke="#002c4d"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </button>
+                <SearchBar 
+                  value={searchQuery}
+                  onChange={setSearchQuery}
+                />
               </div>
             </div>
           </header>
@@ -383,13 +354,8 @@ const Gestion: React.FC = () => {
                   }}
                 >
                   {activeTab === tab && (
-                    <div className="active-tab-icon">
-                      <img
-                        src={ResolucionesIcon}
-                        alt="Icon"
-                        width={14}
-                        height={14}
-                      />
+                    <div className="active-tab-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <GestionIcon size={14} />
                     </div>
                   )}
                   {tab}

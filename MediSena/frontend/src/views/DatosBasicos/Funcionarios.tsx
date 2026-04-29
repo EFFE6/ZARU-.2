@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Filter, RefreshCw, Plus, X } from 'lucide-react';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
+import Filters from '../../components/Filters';
 
 import BotoEditIcon from '../../assets/img/datosbasicos/icons/funcionarios/botonedit.svg';
 import BotoVerIcon from '../../assets/img/datosbasicos/icons/funcionarios/botonver.svg';
@@ -98,11 +99,7 @@ const Funcionarios: React.FC<FuncionariosProps> = ({ searchQuery }) => {
   return (
     <>
       <div className="db-toolbar">
-        <div className="db-toolbar-left" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <button className="db-icon-btn-svg" style={{ background: '#002c4d', color: 'white', width: '38px', height: '38px', borderRadius: '8px' }}>
-            <Filter size={20} />
-          </button>
-          
+        <Filters>
           <select 
             className="db-select" 
             style={{ minWidth: '150px' }}
@@ -125,7 +122,7 @@ const Funcionarios: React.FC<FuncionariosProps> = ({ searchQuery }) => {
             <option value="">Todas</option>
             <option value="63">63</option>
           </select>
-        </div>
+        </Filters>
 
         <div className="db-toolbar-right" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
           <button className="db-btn-refresh">

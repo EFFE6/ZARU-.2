@@ -6,6 +6,126 @@ interface IconProps {
   className?: string;
 }
 
+// ICONOS DE LOS TABS EN GENERAL
+
+//iconos de los tabs de gestion
+export const GestionIcon: React.FC<IconProps> = ({ size = 28, color = 'currentColor', className }) => (
+  <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <rect width="28" height="28" rx="14" fill="url(#paint0_linear_540_21173)" />
+    <path d="M18.2547 11.3335H18.962C19.5353 11.3335 19.9993 11.7975 19.9993 12.3708V18.9635C19.9993 19.5362 19.5353 20.0002 18.962 20.0002H11.7033C11.13 20.0002 10.666 19.5362 10.666 18.9628V18.0002" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M8.6674 17.9998H16.2087C16.6547 17.9998 17.0707 17.7772 17.3181 17.4058L17.8074 16.6712C18.0994 16.2332 18.2554 15.7185 18.2554 15.1918V9.99984C18.2554 9.26317 17.6587 8.6665 16.9221 8.6665H10.2554C9.51873 8.6665 8.92206 9.26317 8.92206 9.99984V14.7038C8.92206 15.1178 8.8254 15.5258 8.64073 15.8965L8.0714 17.0352C7.8494 17.4785 8.17206 17.9998 8.6674 17.9998Z" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.5872 8V9.33333" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M15.5872 8V9.33333" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.4609 11.9998H15.4609" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.4609 14.6668H15.4609" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_540_21173" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+
+
+//iconos de los tabs de datos basicos 
+
+//icono del tab funcionarios
+export const FuncionariosIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="28" height="28" rx="14" fill="url(#paint0_linear_480_42534)" />
+    <circle cx="11.2242" cy="11.5773" r="2.422" stroke="white" stroke-width="1.63333" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="17.4703" cy="12.2643" r="1.73496" stroke="white" stroke-width="1.63333" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M7.06055 19.551V18.8452C7.06055 17.3184 8.29792 16.0811 9.82468 16.0811H12.6242C14.151 16.0811 15.3883 17.3184 15.3883 18.8452V19.551" stroke="white" stroke-width="1.63333" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M17.4702 16.0811H18.235C19.7617 16.0811 20.9991 17.3184 20.9991 18.8452V19.551" stroke="white" stroke-width="1.63333" stroke-linecap="round" stroke-linejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_480_42534" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+
+// icono del tab contratistas
+export const ContratistasIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="28" height="28" rx="14" fill="url(#paint0_linear_480_42654)" />
+    <circle cx="18.3044" cy="18.6354" r="2.31757" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M19.0768 18.249L18.1116 19.2147L17.5317 18.6353" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2422 11.3514H16.7583C17.124 11.3514 17.4204 11.055 17.4204 10.6893V10.1365C17.4204 9.22939 17.0601 8.35946 16.4187 7.71805C15.7773 7.07664 14.9073 6.71631 14.0003 6.71631V6.71631C13.0932 6.71631 12.2232 7.07664 11.5818 7.71805C10.9404 8.35946 10.5801 9.22939 10.5801 10.1365V10.6893C10.5801 11.055 10.8765 11.3514 11.2422 11.3514Z" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M10.3584 11.3516H17.6422" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M16.6489 11.3516V12.6756C16.6489 14.1384 15.463 15.3242 14.0002 15.3242V15.3242C12.5374 15.3242 11.3516 14.1384 11.3516 12.6756V11.3516" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M12.6103 14.9307L12.1309 16.8485" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M14.9933 6.86279V7.77604C14.9933 8.32459 14.5486 8.76928 14.0001 8.76928V8.76928C13.4515 8.76928 13.0068 8.32459 13.0068 7.77604V6.86279" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M15.3914 14.9307L15.6555 15.9869" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M14.6621 17.2958C13.7284 17.4709 12.7632 17.2749 11.9716 16.7495H11.9716C11.8394 16.6614 11.6777 16.6294 11.5219 16.6606L9.63742 17.0374C8.70888 17.2232 8.04051 18.0385 8.04053 18.9854V19.2976" stroke="white" stroke-width="0.993243" stroke-linecap="round" stroke-linejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_480_42654" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+);
+
+
+
+
+
+// icono del tab Medicos
+export const MedicosIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="27.3514" height="27.3514" rx="13.6757" fill="url(#paint0_linear_480_43321)" />
+    <path d="M16.3426 10.3424H11.0093" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3426 7.67566H15.0093C15.7457 7.67566 16.3426 8.27261 16.3426 9.00899V11.6757C16.3426 13.1484 15.1487 14.3423 13.6759 14.3423V14.3423C12.2032 14.3423 11.0093 13.1484 11.0093 11.6757V9.00899C11.0093 8.27261 11.6062 7.67566 12.3426 7.67566Z" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11.7811 15.927L9.2837 16.4263C8.34879 16.6132 7.6758 17.434 7.67578 18.3875V19.6757" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11.0091 16.0813V18.3423" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="11.0093" cy="19.3423" r="1" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M17.6756 16.8423V18.509" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M18.509 17.6756H16.8423" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="17.6759" cy="17.6757" r="2.66667" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_480_43321" x1="13.6757" y1="0" x2="13.6757" y2="27.3514" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+);
+
+
+// icono del tab Contratos
+export const ContratosIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="27.3514" height="27.3514" rx="13.6757" fill="url(#paint0_linear_480_43625)" />
+    <path d="M18.3426 15.6757V10.8943C18.3426 10.541 18.2019 10.2017 17.9519 9.95166L16.0666 8.06633C15.8166 7.81633 15.4773 7.67566 15.1239 7.67566H10.3426C9.60594 7.67566 9.00928 8.27233 9.00928 9.00899V18.3423C9.00928 19.079 9.60594 19.6757 10.3426 19.6757H14.3426" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M19.6756 17.6757L17.6756 19.6757L16.3423 18.3423" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11.0093 13.009H15.0093" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11.0093 15.009H15.0093" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11.0093 17.009H13.8959" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M18.3426 11.009H15.6759C15.3079 11.009 15.0093 10.7103 15.0093 10.3423V7.67566" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_480_43625" x1="13.6757" y1="0" x2="13.6757" y2="27.3514" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+);
+
+
+
+
+
+
+
+//iconos de datos basicos
 export const MedicoIcon: React.FC<IconProps> = ({ size = 24, color = 'currentColor', className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path d="M14.102 12.4053L14.5009 14.0009" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -145,6 +265,10 @@ export const OrdenesMedicasIcon: React.FC<IconProps> = ({ size = 20, className }
 
 );
 
+
+
+
+
 export const ProfesionalesIcon: React.FC<IconProps> = ({ size = 20, className }) => (
   <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <rect x="3.33325" y="2.5" width="13.3333" height="15" rx="2" stroke="url(#paint0_linear_profesionales)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -166,3 +290,6 @@ export const ProfesionalesIcon: React.FC<IconProps> = ({ size = 20, className })
     </defs>
   </svg>
 );
+
+
+
