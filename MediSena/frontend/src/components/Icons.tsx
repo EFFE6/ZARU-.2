@@ -10,21 +10,22 @@ interface IconProps {
 
 //iconos de los tabs de gestion
 export const GestionIcon: React.FC<IconProps> = ({ size = 28, color = 'currentColor', className }) => (
-  <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <rect width="28" height="28" rx="14" fill="url(#paint0_linear_540_21173)" />
-    <path d="M18.2547 11.3335H18.962C19.5353 11.3335 19.9993 11.7975 19.9993 12.3708V18.9635C19.9993 19.5362 19.5353 20.0002 18.962 20.0002H11.7033C11.13 20.0002 10.666 19.5362 10.666 18.9628V18.0002" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path fillRule="evenodd" clipRule="evenodd" d="M8.6674 17.9998H16.2087C16.6547 17.9998 17.0707 17.7772 17.3181 17.4058L17.8074 16.6712C18.0994 16.2332 18.2554 15.7185 18.2554 15.1918V9.99984C18.2554 9.26317 17.6587 8.6665 16.9221 8.6665H10.2554C9.51873 8.6665 8.92206 9.26317 8.92206 9.99984V14.7038C8.92206 15.1178 8.8254 15.5258 8.64073 15.8965L8.0714 17.0352C7.8494 17.4785 8.17206 17.9998 8.6674 17.9998Z" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M11.5872 8V9.33333" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M15.5872 8V9.33333" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M11.4609 11.9998H15.4609" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M11.4609 14.6668H15.4609" stroke="#F1F1F1" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="28" height="28" rx="14" fill="url(#paint0_linear_540_15107)" />
+    <path d="M18.2547 11.3334H18.962C19.5353 11.3334 19.9993 11.7974 19.9993 12.3707V18.9634C19.9993 19.536 19.5353 20 18.962 20H11.7033C11.13 20 10.666 19.536 10.666 18.9627V18" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.6674 18H16.2087C16.6547 18 17.0707 17.7773 17.3181 17.406L17.8074 16.6713C18.0994 16.2333 18.2554 15.7186 18.2554 15.192V9.99996C18.2554 9.26329 17.6587 8.66663 16.9221 8.66663H10.2554C9.51873 8.66663 8.92206 9.26329 8.92206 9.99996V14.704C8.92206 15.118 8.8254 15.526 8.64073 15.8966L8.0714 17.0353C7.8494 17.4786 8.17206 18 8.6674 18Z" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11.5872 8V9.33333" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M15.5872 8V9.33333" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11.4609 12H15.4609" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11.4609 14.6667H15.4609" stroke="#F1F1F1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
     <defs>
-      <linearGradient id="paint0_linear_540_21173" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#0165B0" />
-        <stop offset="1" stopColor="#013156" />
+      <linearGradient id="paint0_linear_540_15107" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
       </linearGradient>
     </defs>
   </svg>
+
 );
 
 
@@ -265,10 +266,6 @@ export const OrdenesMedicasIcon: React.FC<IconProps> = ({ size = 20, className }
 
 );
 
-
-
-
-
 export const ProfesionalesIcon: React.FC<IconProps> = ({ size = 20, className }) => (
   <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <rect x="3.33325" y="2.5" width="13.3333" height="15" rx="2" stroke="url(#paint0_linear_profesionales)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -291,5 +288,35 @@ export const ProfesionalesIcon: React.FC<IconProps> = ({ size = 20, className })
   </svg>
 );
 
+
+
+export const CargosIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9.33317 3.33301H11.9998C12.7365 3.33301 13.3332 3.92967 13.3332 4.66634V13.333C13.3332 14.0697 12.7365 14.6663 11.9998 14.6663H3.99984C3.26317 14.6663 2.6665 14.0697 2.6665 13.333V4.66634C2.6665 3.92967 3.26317 3.33301 3.99984 3.33301H6.6665" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M9.06066 7.10633C9.64645 7.69212 9.64645 8.64187 9.06066 9.22765C8.47487 9.81344 7.52513 9.81344 6.93934 9.22765C6.35355 8.64187 6.35355 7.69212 6.93934 7.10633C7.52513 6.52055 8.47487 6.52055 9.06066 7.10633" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M10.3968 12.6663C10.2802 12.3737 10.1002 12.111 9.86885 11.897V11.897C9.47752 11.5343 8.96418 11.333 8.43085 11.333H7.56952C7.03618 11.333 6.52285 11.5343 6.13152 11.897V11.897C5.90018 12.111 5.72018 12.3737 5.60352 12.6663" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.6665 4.66634H7.33317C6.96517 4.66634 6.6665 4.36767 6.6665 3.99967V1.99967C6.6665 1.63167 6.96517 1.33301 7.33317 1.33301H8.6665C9.0345 1.33301 9.33317 1.63167 9.33317 1.99967V3.99967C9.33317 4.36767 9.0345 4.66634 8.6665 4.66634Z" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+
+);
+
+
+export const EditarFuncionarioIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.9358 7.91722L12.1895 4.1709" stroke="url(#paint0_linear_540_24015)" stroke-width="2.10566" stroke-linecap="round" stroke-linejoin="round" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.38041 19.0538H1.05273V15.7261C1.05273 15.4548 1.16021 15.1938 1.35264 15.0024L15.0011 1.3529C15.4013 0.952679 16.0493 0.952679 16.4485 1.3529L18.7526 3.65699C19.1528 4.05721 19.1528 4.70514 18.7526 5.10434L5.10408 18.7538C4.91267 18.9463 4.65166 19.0538 4.38041 19.0538V19.0538Z" stroke="url(#paint1_linear_540_24015)" stroke-width="2.10566" stroke-linecap="round" stroke-linejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_540_24015" x1="19.9162" y1="-0.0827327" x2="8.58939" y2="0.509521" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+      <linearGradient id="paint1_linear_540_24015" x1="38.1777" y1="-19.3859" x2="-16.2446" y2="-16.5405" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0165B0" />
+        <stop offset="1" stop-color="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+);
 
 

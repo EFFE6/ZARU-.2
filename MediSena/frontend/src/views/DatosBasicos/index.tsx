@@ -4,21 +4,18 @@ import '../../styles/DatosBasicos/DatosBasicos.css';
 import SearchBar from '../../components/SearchBar';
 
 import CampanaSvg from '../../assets/img/icons/campana.svg';
-import FuncionarioIcon from '../../assets/img/datosbasicos/icons/funcionarios/funcionarios.svg';
-import ContratistaIcon from '../../assets/img/datosbasicos/icons/contratista/contratista.svg';
-import MedicosIcon from '../../assets/img/datosbasicos/icons/medicos/medicos.svg';
+import { FuncionariosIcon, ContratistasIcon, MedicosIcon, ContratosIcon } from '../../components/Icons';
 
 import Funcionarios from './Funcionarios';
 import Contratistas from './Contratistas';
 import Medicos from './Medicos';
 import Contratos from './Contratos';
-import { FileText } from 'lucide-react';
 
 const TABS = [
-  { id: 'Funcionarios', label: 'Funcionarios', icon: FuncionarioIcon },
-  { id: 'Contratistas', label: 'Contratistas', icon: ContratistaIcon },
+  { id: 'Funcionarios', label: 'Funcionarios', icon: FuncionariosIcon },
+  { id: 'Contratistas', label: 'Contratistas', icon: ContratistasIcon },
   { id: 'Médicos', label: 'Médicos', icon: MedicosIcon },
-  { id: 'Contratos', label: 'Contratos', icon: null },
+  { id: 'Contratos', label: 'Contratos', icon: ContratosIcon },
 ];
 
 const DatosBasicos: React.FC = () => {
@@ -62,11 +59,7 @@ const DatosBasicos: React.FC = () => {
             >
               {activeTab === tab.id && (
                 <div className="db-active-tab-icon">
-                  {tab.icon ? (
-                    <img src={tab.icon} alt="" style={{ width: 22, height: 22, objectFit: 'contain' }} />
-                  ) : (
-                    <FileText size={16} />
-                  )}
+                  <tab.icon size={22} />
                 </div>
               )}
               {tab.label}

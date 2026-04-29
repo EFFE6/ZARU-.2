@@ -45,7 +45,7 @@ import {
   Building2,
 } from 'lucide-react';
 import '../styles/GestionResoluciones/GestionResoluciones.css';
-import ResolucionesIcon from '../assets/img/icons/resoluciones-tags.png';
+import { GestionIcon } from '../components/Icons';
 import CampanaSvg from '../assets/img/icons/campana.svg';
 
 /* ─── Types (mapeados desde API) ─────────────────────────── */
@@ -819,6 +819,11 @@ const GestionResoluciones: React.FC = () => {
                 className={`tab-pill ${activeTab === tab ? 'active' : ''}`}
                 onClick={() => { setActiveTab(tab); setSearchQuery(''); setStatusFilter(''); setCurrentPage(1); }}
               >
+                {activeTab === tab && (
+                  <div className="active-tab-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <GestionIcon size={14} />
+                  </div>
+                )}
                 {tab}
               </div>
             ))}
