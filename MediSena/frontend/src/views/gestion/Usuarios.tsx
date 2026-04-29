@@ -52,11 +52,11 @@ export const UsuariosToolbar: React.FC<UsuariosToolbarProps> = ({
     </div>
     <div className="usuarios-toolbar-right">
       <button className="btn-actualizar">
-        <RefreshCw size={14} />
+        <Plus size={20} strokeWidth={2.5} />
         Actualizar
       </button>
       <button className="btn-new-resolution" onClick={onNew}>
-        <Plus size={16} />
+        <Plus size={20} />
         Nuevo Usuario
       </button>
     </div>
@@ -139,7 +139,7 @@ export const UsuariosTabla: React.FC<UsuariosTablaProps> = ({
               >
                 <Building2 size={13} className="regional-icon" />
                 <span className="regional-text">{isLongRegional ? shortRegional : user.regional}</span>
-                {isLongRegional && <button className="regional-remove" onClick={() => {}}><X size={11} /></button>}
+                {isLongRegional && <button className="regional-remove" onClick={() => { }}><X size={11} /></button>}
                 {tooltip?.id === user.id && (
                   <div className="regional-tooltip">{tooltip.text}</div>
                 )}
