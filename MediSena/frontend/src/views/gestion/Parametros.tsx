@@ -11,7 +11,7 @@ export const ParametrosToolbar: React.FC = () => (
   <div className="content-toolbar">
     <p className="tab-description">
       <span style={{ color: '#5c7a90', fontSize: '13px', fontWeight: 600 }}>
-        Este dato se promediará con el valor del SMLV de la vigencia 2025:{' '}
+        Dato promediado con el valor del SMLV del año 2026:{' '}
         <strong style={{ color: '#002c4d' }}>$ 1.423.500</strong>
       </span>
     </p>

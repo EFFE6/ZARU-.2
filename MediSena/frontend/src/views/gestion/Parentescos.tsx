@@ -14,7 +14,7 @@ export const EMPTY_PARENTESCO_FORM = {
    ══════════════════════════════════════════════════════ */
 export const ParentescosToolbar: React.FC<{ onNew: () => void }> = ({ onNew }) => (
   <div className="content-toolbar">
-    <p className="tab-description">Gestione los parentescos permitidos en el sistema</p>
+    <p className="tab-description">Configura los tipos de parentescos para los beneficiarios.</p>
     <button className="btn-new-resolution" onClick={onNew}>
       <Plus size={16} />
       Nuevo Parentesco
@@ -110,3 +110,65 @@ export const EditParentescoModal: React.FC<EditParentescoModalProps> = ({
     </div>
   </div>
 );
+
+/* ══════════════════════════════════════════════════════
+   COMPONENTE PRINCIPAL (DEFAULT EXPORT)
+   ══════════════════════════════════════════════════════ */
+export default function Parentescos() {
+  const [items, setItems] = React.useState<Parentesco[]>([
+    { id: 1, orden: 1, nombre: 'Madre-Padre', tipo: 'Nacional', activo: true },
+    { id: 2, orden: 2, nombre: 'Cónyuge', tipo: 'Nacional', activo: true },
+    { id: 3, orden: 3, nombre: 'Hijo', tipo: 'Nacional', activo: true },
+    { id: 4, orden: 4, nombre: 'Hermano', tipo: 'Nacional', activo: true },
+    { id: 5, orden: 5, nombre: 'Hijos entenados', tipo: 'Nacional', activo: true },
+    { id: 6, orden: 6, nombre: 'Otros', tipo: 'Nacional', activo: true },
+  ]);
+
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [form, setForm] = React.useState(EMPTY_PARENTESCO_FORM);
+  const [editingId, setEditingId] = React.useState<number | null>(null);
+
+  const handleNew = () => {
+    setForm(EMPTY_PARENTESCO_FORM);
+    setEditingId(null);
+    setIsModalOpen(true);
+  };
+
+  const handleEdit = (p: Parentesco) => {
+    setForm({ nombre: p.nombre, descripcion: p.nombre, ambito: p.tipo });
+    setEditingId(p.id);
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = (p: Parentesco) => {
+    if (confirm(`¿Eliminar parentesco ${p.nombre}?`)) {
+      setItems(prev => prev.filter(item => item.id !== p.id));
+    }
+  };
+
+  const handleSave = () => {
+    if (editingId) {
+      setItems(prev => prev.map(item => item.id === editingId ? { ...item, nombre: form.nombre, tipo: form.ambito || 'Nacional' } : item));
+    } else {
+      const newId = items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1;
+      setItems(prev => [...prev, { id: newId, orden: newId, nombre: form.nombre, tipo: form.ambito || 'Nacional', activo: true }]);
+    }
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="gestion-content-card">
+      <ParentescosToolbar onNew={handleNew} />
+      <ParentescosLista items={items} loading={false} onEdit={handleEdit} onDelete={handleDelete} />
+      {isModalOpen && (
+        <EditParentescoModal
+          isEdit={!!editingId}
+          form={form}
+          onFormChange={(field, value) => setForm(prev => ({ ...prev, [field]: value }))}
+          onClose={() => setIsModalOpen(false)}
+          onSave={handleSave}
+        />
+      )}
+    </div>
+  );
+}

@@ -27,7 +27,7 @@ export const SubEspecialidadesToolbar: React.FC<{ onNew: () => void }> = ({ onNe
       <select className="stat-select" style={{ minWidth: '160px' }}>
         <option>Seleccionar estado</option>
       </select>
-      <button className="btn-new-resolution" style={{ background: '#004B85' }}>
+      <button className="btn-actualizar" style={{ background: "#fff" }}>
         <RefreshCw size={14} />
         Actualizar
       </button>
