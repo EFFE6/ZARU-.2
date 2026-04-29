@@ -594,3 +594,81 @@ export const RelojIcon: React.FC<IconProps> = ({ size = 24, color = 'currentColo
 
 
 //contrato 
+export const EliminarTablaContratoIcon: React.FC<IconProps> = ({ size = 24, color = 'currentColor', className }) => (
+
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_480_43741)" strokeWidth="1.4" />
+    <path d="M17.5 10.5V17.9375C17.5 18.6626 16.9009 19.25 16.1764 19.25H11.8014C11.0763 19.25 10.5 18.6626 10.5 17.9375V10.5" stroke="url(#paint1_linear_480_43741)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M18.375 10.5H9.625" stroke="url(#paint2_linear_480_43741)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12.833 8.75004H15.1663" stroke="url(#paint3_linear_480_43741)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M15.1667 12.8334V16.9167" stroke="url(#paint4_linear_480_43741)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12.8337 16.9167V12.8334" stroke="url(#paint5_linear_480_43741)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_480_43741" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#D21F1F" />
+        <stop offset="1" stopColor="#AA0808" />
+      </linearGradient>
+      <linearGradient id="paint1_linear_480_43741" x1="14" y1="10.5" x2="14" y2="19.25" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#D21F1F" />
+        <stop offset="1" stopColor="#AA0808" />
+      </linearGradient>
+      <linearGradient id="paint2_linear_480_43741" x1="14" y1="10.2084" x2="14" y2="10.7917" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#D21F1F" />
+        <stop offset="1" stopColor="#AA0808" />
+      </linearGradient>
+      <linearGradient id="paint3_linear_480_43741" x1="13.9997" y1="8.45837" x2="13.9997" y2="9.04171" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#D21F1F" />
+        <stop offset="1" stopColor="#AA0808" />
+      </linearGradient>
+      <linearGradient id="paint4_linear_480_43741" x1="15.1667" y1="12.8334" x2="15.1667" y2="16.9167" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#D21F1F" />
+        <stop offset="1" stopColor="#AA0808" />
+      </linearGradient>
+      <linearGradient id="paint5_linear_480_43741" x1="12.8337" y1="12.8334" x2="12.8337" y2="16.9167" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#D21F1F" />
+        <stop offset="1" stopColor="#AA0808" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+export const EliminarTablaContratoIcon: React.FC<IconProps> = ({ size = 24, color = 'currentColor', className }) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_480_43740)" strokeWidth="1.4" />
+    <path d="M17.3528 12.7831L15.2178 10.6481" stroke="url(#paint1_linear_480_43740)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M10.7675 19.1294H8.87109V17.233C8.87109 17.0784 8.93234 16.9296 9.04201 16.8205L16.8202 9.04179C17.0483 8.81371 17.4175 8.81371 17.645 9.04179L18.9581 10.3549C19.1862 10.583 19.1862 10.9522 18.9581 11.1797L11.1799 18.9585C11.0708 19.0681 10.9221 19.1294 10.7675 19.1294V19.1294Z" stroke="url(#paint2_linear_480_43740)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_480_43740" x1="57.75" y1="-31.7916" x2="-26.9069" y2="-27.3651" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+      <linearGradient id="paint1_linear_480_43740" x1="19.6212" y1="8.22396" x2="13.1661" y2="8.56148" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+      <linearGradient id="paint2_linear_480_43740" x1="30.0283" y1="-2.7771" x2="-0.986509" y2="-1.1555" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+
+);
+
+
+export const ContratoIcon: React.FC<IconProps> = ({ size = 24, color = 'currentColor', className }) => (
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12.3333" cy="12.6667" r="2.33333" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M13.1112 12.2778L12.1395 13.25L11.5557 12.6667" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+<path fillRule="evenodd" clipRule="evenodd" d="M5.22331 5.33329H10.7769C11.145 5.33329 11.4435 5.03482 11.4435 4.66663V4.11006C11.4435 3.1968 11.0807 2.32095 10.435 1.67518C9.78919 1.02941 8.91334 0.666624 8.00008 0.666626V0.666626C7.08682 0.666624 6.21097 1.02941 5.5652 1.67518C4.91943 2.32095 4.55664 3.1968 4.55664 4.11006V4.66663C4.55664 5.03482 4.85512 5.33329 5.22331 5.33329Z" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M4.3335 5.33333H11.6668" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M10.6668 5.33337V6.66638C10.6668 8.13914 9.47292 9.33305 8.00016 9.33305V9.33305C6.5274 9.33305 5.3335 8.13914 5.3335 6.66638V5.33337" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M6.60105 8.93665L6.11835 10.8676" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M9 0.814209V1.73367C9 2.28595 8.55228 2.73367 8 2.73367V2.73367C7.44772 2.73367 7 2.28595 7 1.73367V0.814209" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M9.40062 8.93665L9.66644 10" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M8.66667 11.3179C7.72656 11.4942 6.75475 11.2969 5.95785 10.7679H5.95781C5.82475 10.6792 5.6619 10.647 5.50509 10.6783L3.60775 11.0578C2.6729 11.2448 1.99999 12.0656 2 13.019V13.3333" stroke="#02633A" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+
+);
