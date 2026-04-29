@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 
 export interface ModalProps {
@@ -46,7 +47,7 @@ const Modal: React.FC<ModalProps> = ({
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div 
       className="modal-overlay" 
       onClick={(e) => {
@@ -69,7 +70,8 @@ const Modal: React.FC<ModalProps> = ({
         {children}
         
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

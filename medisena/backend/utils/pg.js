@@ -83,19 +83,30 @@ function toUpperCaseFormat(rows) {
 }
 
 async function getConnection() {
-  const client = await pool.connect();
-  return {
-    execute: async (sql, binds = {}, options = {}) => {
-      const pgSql = translateSql(sql, binds);
-      const values = bindsToArray(binds);
-      const res = await client.query(pgSql, values);
-      const rows = options.outFormat === 1 ? toUpperCaseFormat(res.rows) : res.rows;
-      return { rows: rows || [], rowsAffected: res.rowCount };
-    },
-    commit: async () => { /* pg auto-commit por query */ },
-    rollback: async () => { /* no-op para compat */ },
-    close: () => client.release()
-  };
+  if (process.env.USE_MOCK_DB === 'true') {
+    return require('./mockDb').getMockConnection();
+  }
+  try {
+    const client = await pool.connect();
+    return {
+      execute: async (sql, binds = {}, options = {}) => {
+        const pgSql = translateSql(sql, binds);
+        const values = bindsToArray(binds);
+        const res = await client.query(pgSql, values);
+        const rows = options.outFormat === 1 ? toUpperCaseFormat(res.rows) : res.rows;
+        return { rows: rows || [], rowsAffected: res.rowCount };
+      },
+      commit: async () => { /* pg auto-commit por query */ },
+      rollback: async () => { /* no-op para compat */ },
+      close: () => client.release()
+    };
+  } catch (err) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('⚠️ DB Connection failed, using mock data fallback...');
+      return require('./mockDb').getMockConnection();
+    }
+    throw err;
+  }
 }
 
 function getTableName(tableName) {

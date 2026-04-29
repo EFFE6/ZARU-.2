@@ -271,8 +271,8 @@
 
 /* Ícono del tab activo */
 .db-active-tab-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   background: linear-gradient(135deg, #0165B0, #013156);
   border-radius: 50%;
   display: flex;
@@ -329,21 +329,63 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #f8fafc;
-  border: 1.5px solid #dde8f0;
-  color: #5c7a90;
-  border-radius: 10px;
+  background: #ffffff;
+  border: 1.5px solid #0165B0;
+  color: #0165B0;
+  border-radius: 8px;
   padding: 9px 16px;
   font-size: 13.5px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.18s;
 }
 
 .db-btn-refresh:hover {
-  background: #eef2f6;
-  border-color: #b0c4d4;
-  color: #1e3a52;
+  background: #f0f6fc;
+  border-color: #014380;
+  color: #014380;
+}
+
+.db-select {
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201.5L6%206.5L11%201.5%22%20stroke%3D%22%231E3A52%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.db-active-filter-tag {
+  background-color: #002c4d;
+  color: white;
+  border-radius: 0 8px 8px 0;
+  padding: 0 12px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  gap: 8px;
+  margin-left: -8px; /* overlap border-radius */
+  position: relative;
+  z-index: 1;
+}
+
+.db-filter-tag-x {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.db-filter-tag-x:hover {
+  opacity: 1;
 }
 
 .db-btn-new {
@@ -1687,6 +1729,9 @@
   padding: 3px;
   cursor: pointer;
   transition: all 0.2s;
+  border: none;
+  display: flex;
+  align-items: center;
 }
 
 .db-toggle-switch.active {
