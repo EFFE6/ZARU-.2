@@ -1,0 +1,77 @@
+:root {
+  --primary-blue: #1C3E57;
+  --secondary-blue: #5EABDB;
+  --sidebar-bg: #d6e8f5;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --text-main: #1C3E57;
+  --text-muted: #5C768D;
+  --accent-green: #1EAD28;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+/* El fondo cónico va en un pseudoelemento fijo para que cubra
+   toda la pantalla sin importar el scroll ni el tamaño del contenido */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: conic-gradient(from 185.42deg at 79.82% -6.56%,
+      #ABB9E6 -86.54deg,
+      #EDF0F8 16.53deg,
+      #C2D3F3 76.25deg,
+      #ABB9E6 273.46deg,
+      #EDF0F8 376.53deg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: transparent;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Spin animation para loading */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+}
