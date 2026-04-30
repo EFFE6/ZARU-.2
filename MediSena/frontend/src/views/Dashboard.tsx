@@ -9,7 +9,7 @@ import {
   MinusCircle
 } from 'lucide-react';
 import {
-  MedicoIcon,
+  MedicosIcon,
   BeneficiarioCitaIcon,
   RelojIcon,
   BeneficiariosActivosIcon,
@@ -285,49 +285,49 @@ const Dashboard: React.FC = () => {
 };
 
 const StatCard: React.FC<StatCardProps> = ({ title, value, subtitle, icon }) => (
-        <div className="stat-card">
-          <div className="stat-card-content">
-            <div className="stat-header">
-              <div className="stat-icon">{icon}</div>
-              <span className="stat-title">{title}</span>
-            </div>
-            <span className="stat-value">{value}</span>
-            <span className="stat-subtitle">{subtitle}</span>
-          </div>
-          <div className="stat-decoration"></div>
+  <div className="stat-card">
+    <div className="stat-card-content">
+      <div className="stat-header">
+        <div className="stat-icon">{icon}</div>
+        <span className="stat-title">{title}</span>
+      </div>
+      <span className="stat-value">{value}</span>
+      <span className="stat-subtitle">{subtitle}</span>
+    </div>
+    <div className="stat-decoration"></div>
+  </div>
+);
+
+const CitaCard: React.FC<CitaCardProps> = ({ cita }) => (
+  <div className="cita-card">
+    <div className="cita-content">
+      <div className="cita-top">
+        <h3 className="cita-type">Consulta médica</h3>
+        <span className="active-badge">
+          <MinusCircle size={12} strokeWidth={2.5} />
+          Activo
+        </span>
+      </div>
+      <div className="cita-details">
+        <div className="detail-item">
+          <MedicosIcon size={16} color="#002C4D" />
+          <span className="detail-label">Médico:</span>
+          <span className="detail-value">{cita.medico}</span>
         </div>
-        );
+        <div className="detail-item">
+          <BeneficiarioCitaIcon size={16} color="#002C4D" />
+          <span className="detail-label">Beneficiario:</span>
+          <span className="detail-value">{cita.beneficiario}</span>
+        </div>
+        <div className="detail-item">
+          <RelojIcon size={16} color="#002C4D" />
+          <span className="detail-label">Hora de la consulta:</span>
+          <span className="detail-value">{cita.hora}</span>
+        </div>
+      </div>
+    </div>
+    <div className="cita-decoration"></div>
+  </div>
+);
 
-        const CitaCard: React.FC<CitaCardProps> = ({cita}) => (
-          <div className="cita-card">
-            <div className="cita-content">
-              <div className="cita-top">
-                <h3 className="cita-type">Consulta médica</h3>
-                <span className="active-badge">
-                  <MinusCircle size={12} strokeWidth={2.5} />
-                  Activo
-                </span>
-              </div>
-              <div className="cita-details">
-                <div className="detail-item">
-                  <MedicoIcon size={16} color="#002C4D" />
-                  <span className="detail-label">Médico:</span>
-                  <span className="detail-value">{cita.medico}</span>
-                </div>
-                <div className="detail-item">
-                  <BeneficiarioCitaIcon size={16} color="#002C4D" />
-                  <span className="detail-label">Beneficiario:</span>
-                  <span className="detail-value">{cita.beneficiario}</span>
-                </div>
-                <div className="detail-item">
-                  <RelojIcon size={16} color="#002C4D" />
-                  <span className="detail-label">Hora de la consulta:</span>
-                  <span className="detail-value">{cita.hora}</span>
-                </div>
-              </div>
-            </div>
-            <div className="cita-decoration"></div>
-          </div>
-          );
-
-          export default Dashboard;
+export default Dashboard;
