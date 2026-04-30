@@ -4,12 +4,12 @@
 
 /* Ocultar barras de scroll globalmente pero permitir desplazamiento */
 *::-webkit-scrollbar {
-  display: none !important;
+  display: none;
 }
 
 * {
-  -ms-overflow-style: none !important;
-  scrollbar-width: none !important;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .main-layout {
@@ -375,7 +375,7 @@
 }
 
 .resoluciones-table tbody tr:nth-child(even) {
-  background-color: #FFFFFF;
+  background-color: #F6F6F6;
 }
 
 .resoluciones-table tbody tr:nth-child(odd) {

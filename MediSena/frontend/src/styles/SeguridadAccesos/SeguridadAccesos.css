@@ -1,0 +1,1283 @@
+/* =============================================
+   SEGURIDAD Y ACCESOS - MediSENA
+   Prefijo "sa-" en todas las clases para evitar
+   conflictos globales con GestionResoluciones.css
+   ============================================= */
+
+/* ── Override: mostrar scrollbar en la lista de roles ──────── */
+/* GestionResoluciones.css oculta TODOS los scrollbars con !important.
+   Usamos mayor especificidad para reactivar el nuestro. */
+.sa-container .sa-roles-scroll::-webkit-scrollbar {
+  display: block !important;
+  width: 6px !important;
+}
+
+.sa-container .sa-roles-scroll::-webkit-scrollbar-track {
+  background: #e8eef4 !important;
+  border-radius: 3px !important;
+}
+
+.sa-container .sa-roles-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0165B0 0%, #013156 100%) !important;
+  border-radius: 3px !important;
+}
+
+.sa-container .sa-roles-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #014d87 0%, #011f3a 100%) !important;
+}
+
+/* ── Override: scrollbar del modal body ─────────────────────── */
+.sa-modal .sa-modal-body::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+}
+
+.sa-modal .sa-modal-body::-webkit-scrollbar-track {
+  background: #e8eef4;
+  border-radius: 3px;
+}
+
+.sa-modal .sa-modal-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
+  border-radius: 3px;
+}
+
+
+.sa-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px 28px 28px;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: transparent;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ─── BREADCRUMB ──────────────────────────────── */
+.sa-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.sa-breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.sa-breadcrumb-sep {
+  display: flex;
+  align-items: center;
+  color: #94a3b8;
+  margin: 0 2px;
+}
+
+.sa-breadcrumb-item.active {
+  color: #1e3a52;
+  font-weight: 600;
+}
+
+/* ─── HEADER ─────────────────────────────────── */
+.sa-header {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex-shrink: 0;
+}
+
+.sa-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sa-header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sa-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #1e3a52;
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.sa-bell {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ─── SEARCH ─────────────────────────────────── */
+.sa-search-wrapper {
+  display: flex;
+  align-items: center;
+  background: #F4F6F8;
+  border: 1.5px solid #dde8f0;
+  border-radius: 12px;
+  padding: 5px;
+  height: 46px;
+  box-sizing: border-box;
+}
+
+.sa-search-container {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 0 16px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.sa-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: #1e3a52;
+}
+
+.sa-search-input::placeholder {
+  color: #3f607d;
+  font-weight: 500;
+}
+
+.sa-search-btn {
+  background: #ffffff;
+  border: 1.5px solid #002c4d;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-right: 2px;
+  transition: all 0.18s ease;
+}
+
+.sa-search-btn:hover {
+  background: #eef2f6;
+  transform: scale(1.02);
+}
+
+/* ─── GRUPO TABS + CARD ──────────────────────── */
+.sa-tabs-card-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ─── TABS ───────────────────────────────────── */
+.sa-tabs-scroll-area {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 0;
+  align-items: flex-end;
+  scrollbar-width: none;
+  position: relative;
+  z-index: 2;
+}
+
+.sa-tabs-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tab inactivo: pill flotante */
+.sa-tab-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+  transition: all 0.18s ease;
+  background: #ffffff;
+  color: #5c7a90;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  margin-bottom: 6px;
+}
+
+.sa-tab-pill:hover:not(.active) {
+  color: #1e3a52;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+/* Tab activo: se fusiona con la card */
+.sa-tab-pill.active {
+  background: #ffffff;
+  color: #002c4d;
+  font-weight: 800;
+  border: none;
+  border-radius: 20px 20px 0 0;
+  padding-bottom: 14px;
+  margin-bottom: 0px;
+  position: relative;
+  z-index: 3;
+  box-shadow: none;
+}
+
+/* Curvatura inversa derecha */
+.sa-tab-pill.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -20px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 100% 0%, transparent 20px, #ffffff 20.5px);
+}
+
+/* Curvatura inversa izquierda */
+.sa-tab-pill.active::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 0% 0%, transparent 20px, #ffffff 20.5px);
+}
+
+.sa-tab-pill.active:first-child::before {
+  display: none;
+}
+
+.sa-tab-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ─── CONTENT CARD ───────────────────────────── */
+.sa-content-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(28, 62, 87, 0.08);
+  border: none;
+  position: relative;
+  z-index: 1;
+  padding: 24px 28px 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Primer tab activo: esquina sup-izq recta */
+.sa-content-card.roles-active {
+  border-radius: 0 20px 20px 20px;
+}
+
+/* ─── TOOLBAR ────────────────────────────────── */
+.sa-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sa-subtitle {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.sa-toolbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ─── BUTTONS ────────────────────────────────── */
+.sa-btn-outline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: white;
+  border: 1.5px solid #002c4d;
+  color: #002c4d;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sa-btn-outline:hover {
+  background: #f0f6ff;
+}
+
+.sa-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #0165B0, #013156);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  box-shadow: 0 4px 14px rgba(30, 58, 82, 0.28);
+}
+
+.sa-btn-primary:hover {
+  opacity: 0.88;
+}
+
+.sa-btn-danger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: #b91c1c;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sa-btn-cancel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: white;
+  border: 1.5px solid #cbd5e1;
+  color: #64748b;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sa-btn-icon-white {
+  filter: brightness(0) invert(1);
+}
+
+/* ─── ROLES SCROLL + ROW (Figma layout) ──────── */
+.sa-roles-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 10px;
+  /* Scrollbar personalizado visible */
+  scrollbar-width: thin;
+  scrollbar-color: #0165B0 #e8eef4;
+}
+
+/* Scrollbar webkit: gradiente azul del Figma */
+.sa-roles-scroll::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 3px;
+}
+
+.sa-roles-scroll::-webkit-scrollbar-track {
+  background: #e8eef4;
+  border-radius: 3px;
+}
+
+.sa-roles-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
+  border-radius: 3px;
+}
+
+.sa-roles-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #014d87 0%, #011f3a 100%);
+}
+
+.sa-roles-empty {
+  padding: 32px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Cada rol: card con bordes redondeados en las 4 esquinas */
+.sa-role-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid #e8eef4;
+  border-radius: 12px;
+  gap: 16px;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  background: #ffffff;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.sa-role-row:hover {
+  border-color: #c5d6e8;
+  box-shadow: 0 2px 8px rgba(1, 101, 176, 0.08);
+  z-index: 2;
+}
+
+/* Eleva la fila que tiene el dropdown abierto por encima de todas las demás */
+.sa-role-row--active-menu {
+  z-index: 100;
+}
+
+.sa-role-row--inactive {
+  opacity: 0.6;
+}
+
+/* Celda izquierda: ícono + nombre + descripción */
+.sa-role-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sa-role-cell-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.sa-role-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sa-role-desc-inline {
+  font-size: 12px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Columna derecha: permisos + fecha apilados */
+.sa-role-meta-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.sa-created-date-inline {
+  font-size: 11px;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.sa-permissions-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sa-role-row--inactive .sa-permissions-badge {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.sa-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #166534;
+  flex-shrink: 0;
+}
+
+.sa-role-row--inactive .sa-badge-dot {
+  background: #94a3b8;
+}
+
+.sa-created-date {
+  font-size: 12px;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+/* ─── DROPDOWN ────────────────────────────────── */
+.sa-more-options {
+  position: relative;
+}
+
+.sa-icon-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s;
+}
+
+.sa-icon-btn:hover {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.sa-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+  z-index: 200;
+  min-width: 155px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sa-dropdown-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.sa-dropdown-menu button:hover {
+  background: #f8fafc;
+}
+
+/* ─── PAGINACIÓN PROPIA (Figma) ───────────────── */
+.sa-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  flex-shrink: 0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sa-pagination-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.sa-items-select-wrap {
+  position: relative;
+}
+
+.sa-items-select {
+  padding: 4px 24px 4px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  color: #64748b;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 12px;
+}
+
+.sa-pagination-center {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sa-pg-nav {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  border-radius: 50%;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.sa-pg-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.sa-pg-nav:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.sa-pg-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  border-radius: 50%;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.sa-pg-btn:hover {
+  background: #f1f5f9;
+}
+
+.sa-pg-btn.active {
+  background: #a1a1a1;
+  color: white;
+}
+
+.sa-pagination-right {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* ─── PAGINACIÓN ANTIGUA (sin uso) ──────────────── */
+.sa-pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  color: #94a3b8;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.sa-items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sa-select-page {
+  padding: 3px 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  color: #64748b;
+  outline: none;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sa-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.sa-page-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  border-radius: 50%;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.sa-page-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.sa-page-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.sa-page-btn.active {
+  background: #002c4d;
+  color: white;
+}
+
+.sa-dots {
+  color: #94a3b8;
+  padding: 0 4px;
+}
+
+.sa-page-info {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* ─── PERMISOS VIEW ───────────────────────────── */
+.sa-permisos-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.sa-permisos-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sa-permisos-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── ACCORDION ───────────────────────────────── */
+.sa-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: none;
+}
+
+.sa-accordion-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+}
+
+.sa-accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: white;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+  color: #1e3a52;
+}
+
+.sa-accordion-header:hover:not(.expanded) {
+  background: #f8fafc;
+}
+
+.sa-accordion-header.expanded {
+  background: #2B506B;
+  color: white;
+}
+
+.sa-accordion-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.sa-accordion-body {
+  padding: 16px 20px;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sa-sub-accordion-item {
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sa-sub-accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sa-sub-accordion-header.expanded {
+  background: #C7E7FF;
+  border-color: #C7E7FF;
+}
+
+.sa-sub-accordion-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 12px;
+  color: #2B506B;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.sa-sub-accordion-body {
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Clean permission rows (Permisos tab, sin checkbox) */
+.sa-perm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sa-perm-row {
+  padding: 12px 18px;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 500;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+/* Permission items con checkbox (modal) */
+.sa-permission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sa-permission-item {
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.sa-permission-item.checked {
+  background: #C8E6C9;
+  border-color: #A5D6A7;
+}
+
+.sa-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #2B506B;
+  font-weight: 600;
+  user-select: none;
+  width: 100%;
+}
+
+.sa-checkbox-label input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sa-checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  background: #00A650;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+.sa-checkbox-label input:not(:checked)~.sa-checkmark {
+  background: white;
+  border: 1.5px solid #cbd5e1;
+}
+
+/* ─── MODAL ───────────────────────────────────── */
+.sa-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.38);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 32px;
+}
+
+.sa-modal {
+  background: white;
+  width: 100%;
+  max-width: 610px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.sa-modal-header {
+  padding: 22px 28px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sa-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.sa-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.sa-close-btn:hover {
+  color: #1e293b;
+  background: #f1f5f9;
+}
+
+.sa-modal-body {
+  padding: 0 24px 0;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #0165B0 #e8eef4;
+}
+
+.sa-modal-body::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+}
+
+.sa-modal-body::-webkit-scrollbar-track {
+  background: #e8eef4;
+  border-radius: 3px;
+}
+
+.sa-modal-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
+  border-radius: 3px;
+}
+
+.sa-form-group {
+  margin-bottom: 12px;
+  padding: 0 0;
+}
+
+.sa-form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #1e293b;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+}
+
+.sa-form-control:focus {
+  border-color: #93c5fd;
+}
+
+.sa-form-control[readonly] {
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.sa-permissions-summary {
+  font-size: 13px;
+  color: #64748b;
+  margin: 12px 0 20px;
+  line-height: 1.6;
+}
+
+.sa-badge-green {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sa-badge-purple {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #f3e8ff;
+  color: #7e22ce;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sa-section-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+  padding: 16px 0 0 0;
+}
+
+/* Zona de permisos: fondo azul claro contenedor (Figma) */
+.sa-permissions-zone {
+  background: #EEF6FF;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 0;
+}
+
+.sa-permissions-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.sa-modal-search {
+  display: flex;
+  align-items: center;
+  background: #F1F1F1;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 6px 6px 12px;
+  height: 40px;
+  gap: 4px;
+  box-sizing: border-box;
+  flex: 1;
+  max-width: 359px;
+}
+
+.sa-modal-search input {
+  border: none;
+  outline: none;
+  font-size: 13px;
+  color: #1e3a52;
+  background: transparent;
+  flex: 1;
+  min-width: 0;
+}
+
+.sa-modal-search input::placeholder {
+  color: #94a3b8;
+}
+
+.sa-modal-search-btn {
+  background: white;
+  border: 1.5px solid #002c4d;
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #002c4d;
+  flex-shrink: 0;
+}
+
+.sa-selection-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sa-selected-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #0165B0;
+  font-size: 13px;
+}
+
+.sa-btn-view-selected {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #0165B0;
+  color: #0165B0;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  padding-bottom: 2px;
+}
+
+/* ─── MODAL FOOTER ────────────────────────────── */
+.sa-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px 18px;
+  border-top: 1px solid #e8eef4;
+  flex-shrink: 0;
+  background: white;
+}
+
+.sa-footer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Botón Cancelar: outline limpio */
+.sa-btn-cancel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 22px;
+  background: white;
+  border: 1.5px solid #cbd5e1;
+  color: #475569;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.sa-btn-cancel:hover {
+  border-color: #94a3b8;
+}
+
+/* Botón Aceptar: azul sólido */
+.sa-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 22px;
+  background: linear-gradient(135deg, #0165B0, #013156);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  box-shadow: 0 4px 14px rgba(1, 49, 86, 0.28);
+}
+
+.sa-btn-primary:hover {
+  opacity: 0.88;
+}
+
+/* Botón Desactivar: rojo pill */
+.sa-btn-danger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sa-btn-danger:hover {
+  background: #b91c1c;
+}
