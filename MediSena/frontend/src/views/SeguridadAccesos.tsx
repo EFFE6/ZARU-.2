@@ -13,15 +13,16 @@ import {
   Check,
   ChevronDown,
   ChevronUp,
+  Settings,
+  FileText,
   PowerOff,
   Eye
 } from 'lucide-react';
-import { Roles as RolesIcon, Permisos as PermisosIcon, Usuarios as UsuariosIcon } from '../components/Icons';
+import { Roles as RolesIcon, Permisos as PermisosIcon, Usuarios as UsuariosIcon, AbrirRol, EditarRol, ArchivarRol, DashboardPermisos, FuncionariosPermisos, ContratistaPermisos, DesactivarRol, OjoIcon, EquisIcon, Filtrar } from '../components/Icons';
 import CampanaSvg from '../assets/img/icons/campana.svg';
-import EditarRolSvg from '../assets/img/icons/editar-rol.svg';
-import ArchivarRolSvg from '../assets/img/icons/archivar-rol.svg';
-import AbrirRolSvg from '../assets/img/icons/abrir-rol.svg';
 import '../styles/SeguridadAccesos/SeguridadAccesos.css';
+
+import { navItems } from '../components/Sidebar';
 
 // ── Mock data ──────────────────────────────────────────────────────────────
 const INITIAL_ROLES = [
@@ -42,40 +43,51 @@ const INACTIVE_ROLES = [
   { id: 8, name: 'Administrador',       description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: false },
 ];
 
-const MODULES = [
-  {
-    id: 'dashboard', name: 'DASHBOARD', items: [
-      { id: 'archivar_pub',   name: 'Archivar publicaciones',   checked: true  },
-      { id: 'agregar_man',    name: 'Agregar nuevos manuales',  checked: true  },
-      { id: 'responder_tick', name: 'Responder tickets activos', checked: true },
-    ],
-  },
-  {
-    id: 'gestion', name: 'GESTIÓN', submodules: [
-      {
-        id: 'funcionarios', name: 'FUNCIONARIOS', items: [
-          { id: 'edit_func',     name: 'Editar funcionarios',   checked: false },
-          { id: 'eliminar_func', name: 'Eliminar funcionarios', checked: false },
-          { id: 'mover_func',    name: 'Mover funcionarios',    checked: true  },
-        ],
-      },
-      {
-        id: 'contratista', name: 'CONTRATISTA', items: [
-          { id: 'edit_cont',     name: 'Editar Contratista',    checked: false },
-          { id: 'eliminar_cont', name: 'Eliminar funcionarios', checked: false },
-          { id: 'mover_cont',    name: 'Mover funcionarios',    checked: true  },
-        ],
-      },
-    ],
-  },
-  { id: 'datos_basicos', name: 'DATOS BÁSICOS',      items: [] },
-  { id: 'movimientos',   name: 'MOVIMIENTOS',         items: [] },
-  { id: 'excedentes',    name: 'EXCEDENTES',          items: [] },
-  { id: 'consultas',     name: 'CONSULTAS',           items: [] },
-  { id: 'reportes',      name: 'REPORTES',            items: [] },
-  { id: 'reportes_nac',  name: 'REPORTES NACIONALES', items: [] },
-  { id: 'seguridad_acc', name: 'SEGURIDAD Y ACCESOS', items: [] },
-];
+const DefaultIconWrap = ({ children }: { children: React.ReactNode }) => (
+  <div style={{ width: 26, height: 26, background: '#F4F6F8', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#002C4D' }}>
+    {children}
+  </div>
+);
+
+// Dynamic MODULES array generated from navItems in Sidebar
+const MODULES = navItems.map(nav => {
+  if (nav.id === 'Dashboard') {
+    return {
+      id: nav.id.toLowerCase(),
+      name: nav.label.toUpperCase(),
+      Icon: DashboardPermisos,
+      submodules: [
+        {
+          id: 'funcionarios', name: 'FUNCIONARIOS', Icon: FuncionariosPermisos, items: [
+            { id: 'edit_func',     name: 'Editar funcionarios',   checked: false },
+            { id: 'eliminar_func', name: 'Eliminar funcionarios', checked: false },
+            { id: 'mover_func',    name: 'Mover funcionarios',    checked: true  },
+          ],
+        },
+        {
+          id: 'contratista', name: 'CONTRATISTA', Icon: ContratistaPermisos, items: [
+            { id: 'edit_cont',     name: 'Editar contratista',    checked: false },
+            { id: 'eliminar_cont', name: 'Eliminar contratista',  checked: false },
+            { id: 'mover_cont',    name: 'Mover contratista',     checked: true  },
+          ],
+        },
+      ],
+      items: [
+        { id: 'archivar_pub',   name: 'Archivar publicaciones',   checked: true  },
+        { id: 'agregar_man',    name: 'Agregar nuevos manuales',  checked: true  },
+        { id: 'responder_tick', name: 'Responder tickets activos', checked: true },
+      ]
+    };
+  }
+
+  // Fallback map items to generate standard permissions for other dynamic modules
+  return {
+    id: nav.id.toLowerCase(),
+    name: nav.label.toUpperCase(),
+    Icon: () => <DefaultIconWrap><nav.icon className="sidebar-icon-inherited" /></DefaultIconWrap>,
+    items: []
+  };
+});
 
 const TABS = ['Roles', 'Permisos'] as const;
 type TabType = typeof TABS[number];
@@ -177,7 +189,7 @@ const SeguridadAccesos: React.FC = () => {
             onClick={() => toggleModule(module.id)}
           >
             <div className="sa-accordion-title">
-              <Shield size={16} />
+              {module.Icon && <module.Icon />}
               {module.name}
             </div>
             {expandedModules.includes(module.id) ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
@@ -192,7 +204,7 @@ const SeguridadAccesos: React.FC = () => {
                     onClick={() => toggleModule(sub.id)}
                   >
                     <div className="sa-sub-accordion-title">
-                      <Shield size={13} />
+                      {sub.Icon && <sub.Icon />}
                       {sub.name}
                     </div>
                     {expandedModules.includes(sub.id) ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
@@ -232,7 +244,7 @@ const SeguridadAccesos: React.FC = () => {
             onClick={() => toggleModule(module.id)}
           >
             <div className="sa-accordion-title">
-              <Shield size={16} />
+              {module.Icon && <module.Icon />}
               {module.name}
             </div>
             {expandedModules.includes(module.id) ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
@@ -247,7 +259,7 @@ const SeguridadAccesos: React.FC = () => {
                     onClick={() => toggleModule(sub.id)}
                   >
                     <div className="sa-sub-accordion-title">
-                      <Shield size={13} />
+                      {sub.Icon && <sub.Icon />}
                       {sub.name}
                     </div>
                     {expandedModules.includes(sub.id) ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
@@ -398,22 +410,22 @@ const SeguridadAccesos: React.FC = () => {
                                 {role.active ? (
                                   <>
                                     <button onClick={() => openModal(role, false)}>
-                                      <img src={AbrirRolSvg} alt="" style={{ width: 14 }} /> Abrir rol
+                                      <AbrirRol /> Abrir rol
                                     </button>
                                     <button onClick={() => openModal(role, true)}>
-                                      <img src={EditarRolSvg} alt="" style={{ width: 14 }} /> Editar rol
+                                      <EditarRol /> Editar rol
                                     </button>
                                     <button onClick={() => handleArchive(role)}>
-                                      <img src={ArchivarRolSvg} alt="" style={{ width: 14 }} /> Archivar rol
+                                      <ArchivarRol /> Archivar rol
                                     </button>
                                   </>
                                 ) : (
                                   <>
                                     <button onClick={() => handleRestore(role)}>
-                                      <img src={AbrirRolSvg} alt="" style={{ width: 14 }} /> Restaurar rol
+                                      <AbrirRol /> Restaurar rol
                                     </button>
                                     <button onClick={() => openModal(role, true)}>
-                                      <img src={EditarRolSvg} alt="" style={{ width: 14 }} /> Editar rol
+                                      <EditarRol /> Editar rol
                                     </button>
                                   </>
                                 )}
@@ -539,7 +551,7 @@ const SeguridadAccesos: React.FC = () => {
 
               <div className="sa-permissions-toolbar">
                 <button className="sa-btn-primary" style={{ padding: '7px 16px', fontSize: 13 }}>
-                  <Filter size={13} /> Filtrar
+                  <Filtrar style={{ marginRight: 6 }} /> Filtrar
                 </button>
                 <div className="sa-modal-search">
                   <input type="text" placeholder="Busca" />
@@ -550,10 +562,10 @@ const SeguridadAccesos: React.FC = () => {
               {isEditMode && (
                 <div className="sa-selection-info">
                   <span className="sa-selected-count">
-                    3 elemento(s) seleccionado(s) <X size={12} style={{ cursor: 'pointer' }} />
+                    3 elemento(s) seleccionado(s) <EquisIcon style={{ cursor: 'pointer', marginLeft: 8 }} />
                   </span>
                   <button className="sa-btn-view-selected">
-                    <Check size={12} /> Ver seleccionados
+                    <OjoIcon style={{ marginRight: 6 }} /> Ver seleccionados
                   </button>
                 </div>
               )}
@@ -564,12 +576,12 @@ const SeguridadAccesos: React.FC = () => {
             <div className="sa-modal-footer">
               {selectedRole?.active && (
                 <button className="sa-btn-danger" onClick={() => handleArchive(selectedRole)}>
-                  <PowerOff size={15} /> Desactivar Rol
+                  <DesactivarRol style={{ marginRight: 6 }} /> Desactivar Rol
                 </button>
               )}
               {selectedRole && !selectedRole.active && (
                 <button className="sa-btn-outline" onClick={() => handleRestore(selectedRole)}>
-                  <img src={AbrirRolSvg} alt="" style={{ width: 15 }} /> Restaurar Rol
+                  <AbrirRol /> Restaurar Rol
                 </button>
               )}
               {!selectedRole && <div />}
@@ -582,7 +594,7 @@ const SeguridadAccesos: React.FC = () => {
                   </>
                 ) : (
                   <button className="sa-btn-primary" onClick={() => setIsEditMode(true)}>
-                    <img src={EditarRolSvg} alt="" style={{ width: 15 }} className="sa-btn-icon-white" /> Editar Rol
+                    <EditarRol className="sa-btn-icon-white" /> Editar Rol
                   </button>
                 )}
               </div>

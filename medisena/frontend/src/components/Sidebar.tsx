@@ -23,24 +23,25 @@ import avatar from '../icon/Group_1000004703.svg';
 import logo from '../assets/img/Sidebar/Sidebar.svg';
 import salir from '../assets/img/icons/Button.svg';
 import logoCollapsed from '../assets/img/icons/Sidebar-colapsado.svg';
+export const navItems = [
+  { id: 'Dashboard', icon: DashboardIcon, label: 'Dashboard', path: '/' },
+  { id: 'Gestion', icon: MaestrasIcon, label: 'Gestión', path: '/gestion' },
+  { id: 'Datos básicos', icon: DatosBasicosIcon, label: 'Datos básicos', path: '/datos-basicos' },
+  { id: 'Movimientos', icon: MovimientosIcon, label: 'Movimientos', path: '/movimientos' },
+  { id: 'Excedentes', icon: ExcedentesIcon, label: 'Excedentes', path: '/excedentes' },
+  { id: 'Consultas', icon: ConsultasIcon, label: 'Consultas', path: '/consultas' },
+  { id: 'Reportes', icon: ReportesIcon, label: 'Reportes', path: '/reportes' },
+  { id: 'Reportes nacionales', icon: ReportesNacionalesIcon, label: 'Reportes nacionales', path: '/reportes-nacionales' },
+  { id: 'Seguridad y accesos', icon: SeguridadAccesosIcon, label: 'Seguridad y accesos', path: '/seguridad-accesos' },
+];
+
 const Sidebar = () => {
+
   const [activeItem, setActiveItem] = useState('Dashboard');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
-  const navItems = [
-    { id: 'Dashboard', icon: DashboardIcon, label: 'Dashboard', path: '/' },
-    { id: 'Gestion', icon: MaestrasIcon, label: 'Gestión', path: '/gestion' },
-    { id: 'Datos básicos', icon: DatosBasicosIcon, label: 'Datos básicos', path: '/datos-basicos' },
-    { id: 'Movimientos', icon: MovimientosIcon, label: 'Movimientos', path: '/movimientos' },
-    { id: 'Excedentes', icon: ExcedentesIcon, label: 'Excedentes', path: '/excedentes' },
-    { id: 'Consultas', icon: ConsultasIcon, label: 'Consultas', path: '/consultas' },
-    { id: 'Reportes', icon: ReportesIcon, label: 'Reportes', path: '/reportes' },
-    { id: 'Reportes nacionales', icon: ReportesNacionalesIcon, label: 'Reportes nacionales', path: '/reportes-nacionales' },
-    { id: 'Seguridad y accesos', icon: SeguridadAccesosIcon, label: 'Seguridad y accesos', path: '/seguridad-accesos' },
-  ];
 
   useEffect(() => {
     const currentItem = navItems.find(item => item.path === location.pathname);

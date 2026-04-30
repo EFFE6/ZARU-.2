@@ -627,28 +627,30 @@
 
 /* ─── ACCORDION ───────────────────────────────── */
 .sa-accordion {
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: none;
 }
 
 .sa-accordion-item {
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.sa-accordion-item:last-child {
-  border-bottom: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  overflow: hidden;
 }
 
 .sa-accordion-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 18px;
+  padding: 16px 20px;
   background: white;
   cursor: pointer;
   user-select: none;
-  transition: background 0.15s;
+  transition: all 0.2s;
+  color: #1e3a52;
 }
 
 .sa-accordion-header:hover:not(.expanded) {
@@ -656,90 +658,100 @@
 }
 
 .sa-accordion-header.expanded {
-  background: #1e3a8a;
+  background: #2B506B;
   color: white;
 }
 
 .sa-accordion-title {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .sa-accordion-body {
-  padding: 12px 16px;
-  background: #f8fafc;
+  padding: 16px 20px;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .sa-sub-accordion-item {
-  margin-bottom: 10px;
-  border: 1px solid #e2e8f0;
+  border: none;
   border-radius: 8px;
   overflow: hidden;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .sa-sub-accordion-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 14px;
-  background: #e0f2fe;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: all 0.2s;
 }
 
 .sa-sub-accordion-header.expanded {
-  background: #bae6fd;
+  background: #CBE6FA;
+  border-color: #CBE6FA;
 }
 
 .sa-sub-accordion-title {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-weight: 700;
   font-size: 12px;
-  color: #0369a1;
+  color: #2B506B;
   letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .sa-sub-accordion-body {
-  padding: 10px 14px;
-  background: white;
+  padding: 0;
+  background: transparent;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 /* Clean permission rows (Permisos tab, sin checkbox) */
 .sa-perm-list {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .sa-perm-row {
   padding: 12px 18px;
   font-size: 13px;
-  color: #334155;
-  border-bottom: 1px solid #f1f5f9;
+  color: #475569;
+  font-weight: 500;
   background: #ffffff;
-}
-
-.sa-perm-row:last-child {
-  border-bottom: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
 }
 
 /* Permission items con checkbox (modal) */
 .sa-permission-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .sa-permission-item {
-  padding: 10px 14px;
+  padding: 12px 16px;
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
@@ -747,18 +759,18 @@
 }
 
 .sa-permission-item.checked {
-  background: #dcfce7;
-  border-color: #bbf7d0;
+  background: #C8E6C9;
+  border-color: #A5D6A7;
 }
 
 .sa-checkbox-label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
   font-size: 13px;
-  color: #334155;
-  font-weight: 500;
+  color: #2B506B;
+  font-weight: 600;
   user-select: none;
   width: 100%;
 }
@@ -774,18 +786,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 18px;
-  width: 18px;
-  min-width: 18px;
-  background: white;
-  border: 1.5px solid #cbd5e1;
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  background: #00A650;
+  border: none;
   border-radius: 4px;
+  color: white;
 }
 
-.sa-checkbox-label input:checked ~ .sa-checkmark {
-  background: #22c55e;
-  border-color: #22c55e;
-  color: white;
+.sa-checkbox-label input:not(:checked) ~ .sa-checkmark {
+  background: white;
+  border: 1.5px solid #cbd5e1;
 }
 
 /* ─── MODAL ───────────────────────────────────── */

@@ -220,3 +220,109 @@ export const Usuarios: React.FC<IconProps> = ({ size = 28, className }) => (
     </defs>
   </svg>
 );
+
+export const AbrirRol: React.FC<IconProps> = ({ size = 14, className }) => (
+  <svg width={size} height={size} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M9.36621 0.700195H12.6995V4.03353" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8.03418 5.36686L12.7008 0.700195" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.3669 8.03223V11.3656C11.3669 12.1022 10.7702 12.6989 10.0335 12.6989H2.03353C1.29686 12.6989 0.700195 12.1022 0.700195 11.3656V3.36556C0.700195 2.62889 1.29686 2.03223 2.03353 2.03223H5.36686" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const EditarRol: React.FC<IconProps> = ({ size = 16, className }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M0.75 14.5383L4.98543 13.5418L14.2465 4.28075C14.6356 3.89156 14.6356 3.26057 14.2465 2.87138L12.417 1.04189C12.0278 0.652702 11.3968 0.652702 11.0076 1.04189L1.74657 10.3029L0.75 14.5383Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M15.1999 14.5381H9.71875" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const ArchivarRol: React.FC<IconProps> = ({ size = 17, className }) => (
+  <svg width={size} height={size} viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M2.64551 3.96582L3.53307 14.1728C3.62789 15.2633 4.54083 16.1003 5.63548 16.1003H10.7349C11.8295 16.1003 12.7425 15.2633 12.8372 14.1728L13.7248 3.96582" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M5.81152 3.70153V2.91015C5.81152 1.74464 6.75632 0.799805 7.92187 0.799805H8.44945C9.615 0.799805 10.5598 1.74464 10.5598 2.91015V3.70153" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M0.799805 3.96582H15.5722" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const DashboardPermisos: React.FC<IconProps> = ({ size = 26, className }) => (
+  <svg width={size} height={size} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <rect width="26" height="26" rx="6" fill="white" />
+    <path d="M14.5761 13.3042L14.8753 14.5009" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13.7502 16.0493C12.6921 16.2593 11.594 16.0363 10.7017 15.4302C10.5519 15.3305 10.3686 15.2943 10.1922 15.3296L8.05682 15.7565C7.00451 15.9669 6.24707 16.8908 6.24707 17.964V18.2521" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M16.0015 9.24869H9.99902" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M11.4996 6.24707H14.5009C15.3297 6.24707 16.0015 6.91892 16.0015 7.7477V10.7489C16.0015 12.4065 14.6578 13.7502 13.0003 13.7502V13.7502C11.3427 13.7502 9.99902 12.4065 9.99902 10.7489V7.7477C9.99902 6.91892 10.6709 6.24707 11.4996 6.24707Z" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.4254 13.3042L10.8679 15.5341" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="17.8771" cy="17.5021" r="2.62609" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M18.7527 17.0645L17.6591 18.1586L17.002 17.5021" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9.99918 15.3687V18.2524" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="9.99852" cy="19.3779" r="1.12547" stroke="#002C4D" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const FuncionariosPermisos: React.FC<IconProps> = ({ size = 24, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <rect width="24" height="24" rx="6" fill="#EEF7FF" />
+    <g clipPath="url(#clip0_581_26280)">
+      <path d="M5.2002 7.07606C5.2002 6.04005 6.04005 5.2002 7.07606 5.2002H16.9243C17.9604 5.2002 18.8002 6.04005 18.8002 7.07606V16.9243C18.8002 17.9604 17.9604 18.8002 16.9243 18.8002H7.07606C6.04005 18.8002 5.2002 17.9604 5.2002 16.9243V7.07606Z" stroke="#2B506B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9.88965 8.95166V18.5655" stroke="#2B506B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.43457 8.48291H18.5656" stroke="#2B506B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+    <defs>
+      <clipPath id="clip0_581_26280">
+        <rect width="16" height="16" fill="white" transform="translate(4 4)" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+export const ContratistaPermisos: React.FC<IconProps> = ({ size = 16, className }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <g clipPath="url(#clip0_581_16325)">
+      <path d="M1.2002 3.07606C1.2002 2.04005 2.04005 1.2002 3.07606 1.2002H12.9243C13.9604 1.2002 14.8002 2.04005 14.8002 3.07606V12.9243C14.8002 13.9604 13.9604 14.8002 12.9243 14.8002H3.07606C2.04005 14.8002 1.2002 13.9604 1.2002 12.9243V3.07606Z" stroke="#2B506B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.88965 4.95166V14.5655" stroke="#2B506B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M1.43457 4.48291H14.5656" stroke="#2B506B" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+    <defs>
+      <clipPath id="clip0_581_16325">
+        <rect width="16" height="16" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+export const DesactivarRol: React.FC<IconProps> = ({ size = 24, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M11.9987 3V12.001" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M18.3631 5.63867C21.8771 9.15268 21.8771 14.8503 18.3631 18.3643C14.8491 21.8784 9.15147 21.8784 5.63746 18.3643C2.12345 14.8503 2.12345 9.15268 5.63746 5.63867" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const OjoIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M18.5 9.99995C18.5 11.1724 16.4483 17.3275 10 17.3275C3.55172 17.3275 1.5 11.1724 1.5 9.99995C1.5 8.82754 3.55172 2.67236 10 2.67236C16.4483 2.67236 18.5 8.82754 18.5 9.99995Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9.99926 12.6377C11.4561 12.6377 12.6372 11.4566 12.6372 9.99975C12.6372 8.54286 11.4561 7.36182 9.99926 7.36182C8.54237 7.36182 7.36133 8.54286 7.36133 9.99975C7.36133 11.4566 8.54237 12.6377 9.99926 12.6377Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const EquisIcon: React.FC<IconProps> = ({ size = 20, className }) => (
+  <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M1.5 10C1.5 5.30559 5.30559 1.5 10 1.5C14.6945 1.5 18.5 5.30559 18.5 10C18.5 14.6945 14.6945 18.5 10 18.5C5.30559 18.5 1.5 14.6945 1.5 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M7.36133 7.36328L12.6372 12.6391" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12.6372 7.36328L7.36133 12.6391" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+
+export const Filtrar: React.FC<IconProps> = ({ size = 16, className }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <g clipPath="url(#clip0_480_46409)">
+      <path d="M14.8402 1.16016H1.16016L5.46392 6.53989C5.73158 6.87443 5.8774 7.29012 5.8774 7.71863V13.8967C5.8774 14.4178 6.29978 14.8402 6.82085 14.8402H9.17947C9.70053 14.8402 10.1229 14.4178 10.1229 13.8967V7.71863C10.1229 7.29012 10.2688 6.87443 10.5364 6.53989L14.8402 1.16016Z" stroke="currentColor" strokeWidth="1.14" strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+    <defs>
+      <clipPath id="clip0_480_46409">
+        <rect width="16" height="16" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
