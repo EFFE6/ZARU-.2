@@ -77,11 +77,11 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
   const [estadoFilter, setEstadoFilter] = useState('');
   const [tipoDocFilter, setTipoDocFilter] = useState('');
   const [data, setData] = useState(MOCK_CONTRATISTAS);
-  
+
   const [modalVer, setModalVer] = useState(false);
   const [modalEditar, setModalEditar] = useState(false);
   const [modalEliminar, setModalEliminar] = useState(false);
-  
+
   const [selectedUser, setSelectedUser] = useState<any>(null);
 
   const toggleEstado = (index: number) => {
@@ -105,10 +105,10 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
     <>
       <div className="db-toolbar">
         <Filters>
-          <select 
-            className="db-select" 
+          <select
+            className="db-select"
             style={{ minWidth: '150px' }}
-            value={estadoFilter} 
+            value={estadoFilter}
             onChange={(e) => setEstadoFilter(e.target.value)}
           >
             <option value="" disabled hidden>Estado</option>
@@ -117,10 +117,10 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
             <option value="inactivo">Inactivo</option>
           </select>
 
-          <select 
-            className="db-select" 
+          <select
+            className="db-select"
             style={{ minWidth: '170px' }}
-            value={tipoDocFilter} 
+            value={tipoDocFilter}
             onChange={(e) => setTipoDocFilter(e.target.value)}
           >
             <option value="" disabled hidden>Tipo de documento</option>
@@ -141,7 +141,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
         </div>
       </div>
 
-      <DataTable 
+      <DataTable
         headers={
           <tr>
             <th>ID</th>
@@ -188,7 +188,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
                 onClick={() => toggleEstado(idx)}
               >
                 <span className="db-toggle-thumb">
-                  {item.estado 
+                  {item.estado
                     ? <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     : <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                   }
@@ -211,7 +211,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
                 <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalEditar(true); }}>
                   <img src={BotoEditIcon} alt="Editar" className="db-action-icon" />
                 </button>
-                <button className="db-icon-btn delete" onClick={() => { setSelectedUser(item); setModalEliminar(true); }} style={{ padding: 0, border: 'none', background: 'transparent' }}>
+                <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalEliminar(true); }}>
                   <EliminarContratistasIcon className="db-action-icon" />
                 </button>
               </div>
@@ -252,11 +252,11 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
                 </span>
               </div>
             </div>
-            
+
             <div style={{ marginBottom: '16px' }}>
               <div style={{ fontSize: '12px', color: '#64748b', fontWeight: '600', marginBottom: '8px' }}>Tipo de vinculación</div>
               <span className="db-cargo-pill azul" style={{ background: '#f3e8ff', color: '#9333ea', border: 'none', fontWeight: '800' }}>
-                <PrestaServiciosContratistasIcon className="db-cargo-icon" style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(85%) saturate(1636%) hue-rotate(250deg) brightness(97%) contrast(105%)' }}/>
+                <PrestaServiciosContratistasIcon className="db-cargo-icon" style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(85%) saturate(1636%) hue-rotate(250deg) brightness(97%) contrast(105%)' }} />
                 {selectedUser?.tipoVinculacion}
               </span>
             </div>
@@ -282,7 +282,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
           </div>
 
           <h4 style={{ fontSize: '13px', color: '#1a3c5a', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase' }}>INFORMACIÓN DE CONTACTO</h4>
-          
+
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
             <div style={{ border: '1px solid #E5E7EB', borderRadius: '12px', padding: '16px', background: '#F8FAFC', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <div style={{ marginTop: '2px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0165B0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
@@ -291,7 +291,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
                 <div style={{ fontSize: '13px', color: '#1a3c5a', fontWeight: '800' }}>3208700268</div>
               </div>
             </div>
-            
+
             <div style={{ border: '1px solid #E5E7EB', borderRadius: '12px', padding: '16px', background: '#F8FAFC', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <div style={{ marginTop: '2px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0165B0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
               <div>
@@ -323,7 +323,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
         </div>
         <div style={{ padding: '0 24px 24px' }}>
           <h4 style={{ fontSize: '13px', color: '#64748b', fontWeight: '800', marginBottom: '16px', textTransform: 'uppercase' }}>INFORMACIÓN PERSONAL</h4>
-          
+
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Tipo de documento*</label>
@@ -377,10 +377,10 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
               <input type="email" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.email || ''} placeholder="Ej: correo@mail.com" />
             </div>
           </div>
-          
+
           <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '12px' }}>
             <button className="db-btn-refresh" style={{ border: '1px solid #64748b', color: '#1a3c5a' }} onClick={() => setModalEditar(false)}>Cancelar</button>
-            <button className="db-btn-new" onClick={() => setModalEditar(false)}><RefreshCw size={16}/> Actualizar</button>
+            <button className="db-btn-new" onClick={() => setModalEditar(false)}><RefreshCw size={16} /> Actualizar</button>
           </div>
         </div>
       </Modal>
@@ -398,7 +398,8 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
             <ImgModalEliminarIcon />
           </div>
           <p style={{ fontSize: '16px', color: '#1a3c5a', fontWeight: '700', marginBottom: '24px' }}>
-            ¿Está seguro que desea eliminar el contratista<br/>.fileName?
+            ¿Está seguro que desea eliminar el contratista<br />
+            <span style={{ color: '#0165B0' }}>{selectedUser?.nombres} {selectedUser?.apellidos}</span>?
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '12px' }}>
             <button className="db-btn-refresh" style={{ border: '1px solid #0165B0', color: '#0165B0', fontWeight: '700' }} onClick={() => setModalEliminar(false)}>

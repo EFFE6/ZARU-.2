@@ -5,7 +5,7 @@ import Dashboard from './views/Dashboard';
 import GestionResoluciones from './views/GestionResoluciones';
 import DatosBasicos from './views/DatosBasicos';
 import MainLayout from './components/MainLayout';
-
+import SeguridadAccesos from './views/SeguridadAccesos';
 import OrdenAtencion from './views/Movimientos/OrdenAtencion';
 import CuentaCobro from './views/Movimientos/CuentaCobro';
 import RelacionPagos from './views/Movimientos/RelacionPagos';
@@ -39,6 +39,7 @@ function App() {
         <Route path="/consultas" element={<Dashboard />} />
         <Route path="/reportes" element={<Dashboard />} />
         <Route path="/reportes-nacionales" element={<Dashboard />} />
+        <Route path="/seguridad-accesos" element={<SeguridadAccesos />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
