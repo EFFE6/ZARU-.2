@@ -91,4 +91,7 @@ export const SeguridadAccesosIcon = ({ className }: IconProps) => (
     <path d="M7 10.5L9 12.5L13 7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1

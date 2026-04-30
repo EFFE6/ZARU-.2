@@ -16,7 +16,11 @@ import {
   ConsultasIcon,
   ReportesIcon,
   ReportesNacionalesIcon,
+<<<<<<< HEAD
   SeguridadAccesosIcon
+=======
+  SeguridadAccesosIcon,
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
 } from './SidebarIcons';
 import '../styles/Sidebar/Sidebar.css';
 import avatar from '../icon/Group_1000004703.svg';
@@ -43,6 +47,10 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
   useEffect(() => {
     const currentItem = navItems.find(item => item.path === location.pathname);
     if (currentItem) setActiveItem(currentItem.id);
@@ -74,7 +82,7 @@ const Sidebar = () => {
 
         {/* Logo */}
         <div className="sidebar-logo">
-          {!isCollapsed && <img src={logo} alt="MediSENA Logo" className="sidebar-logo-expanded"  />}
+          {!isCollapsed && <img src={logo} alt="MediSENA Logo" className="sidebar-logo-expanded" />}
           {isCollapsed && <img src={logoCollapsed} alt="MediSENA Logo" className="sidebar-logo-collapsed" />}
         </div>
 
@@ -98,7 +106,7 @@ const Sidebar = () => {
         </nav>
 
         {/* Perfil */}
-          {/* Sección perfil */}
+        {/* Sección perfil */}
         <div className="user-profile-section">
           <div className={`profile-card ${isCollapsed ? 'profile-card--collapsed' : ''}`}>
             {isCollapsed ? (

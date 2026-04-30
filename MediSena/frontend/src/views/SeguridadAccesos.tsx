@@ -2,11 +2,15 @@ import React, { useState, useMemo } from 'react';
 import {
   Home,
   ChevronRight,
+<<<<<<< HEAD
   ChevronLeft,
+=======
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
   Search,
   RefreshCw,
   Plus,
   MoreVertical,
+<<<<<<< HEAD
   Shield,
   X,
   Filter,
@@ -19,6 +23,31 @@ import {
   Eye
 } from 'lucide-react';
 import { Roles as RolesIcon, Permisos as PermisosIcon, Usuarios as UsuariosIcon, AbrirRol, EditarRol, ArchivarRol, DashboardPermisos, FuncionariosPermisos, ContratistaPermisos, DesactivarRol, OjoIcon, EquisIcon, Filtrar } from '../components/Icons';
+=======
+  X,
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Eye
+} from 'lucide-react';
+import {
+  Roles as RolesIcon,
+  Permisos as PermisosIcon,
+  Usuarios as UsuariosIcon,
+  AbrirRol,
+  EditarRol,
+  ArchivarRol,
+  DashboardPermisos,
+  FuncionariosPermisos,
+  ContratistaPermisos,
+  DesactivarRol,
+  OjoIcon,
+  EquisIcon,
+  Filtrar,
+} from '../components/Icons';
+import DataTable from '../components/DataTable';
+import Modal from '../components/Modal';
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
 import CampanaSvg from '../assets/img/icons/campana.svg';
 import '../styles/SeguridadAccesos/SeguridadAccesos.css';
 
@@ -80,7 +109,10 @@ const MODULES = navItems.map(nav => {
     };
   }
 
+<<<<<<< HEAD
   // Fallback map items to generate standard permissions for other dynamic modules
+=======
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
   return {
     id: nav.id.toLowerCase(),
     name: nav.label.toUpperCase(),
@@ -124,6 +156,7 @@ const SeguridadAccesos: React.FC = () => {
   const totalPages = Math.max(1, Math.ceil(filteredRoles.length / itemsPerPage));
   const pagedRoles = filteredRoles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
+<<<<<<< HEAD
   const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(Number(e.target.value));
     setCurrentPage(1);
@@ -147,6 +180,14 @@ const SeguridadAccesos: React.FC = () => {
     }
     return pages;
   }, [totalPages, currentPage]);
+=======
+  // Visible page numbers for DataTable
+  const visiblePages = useMemo(() => {
+    const pages: number[] = [];
+    for (let i = 1; i <= totalPages; i++) pages.push(i);
+    return pages;
+  }, [totalPages]);
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
 
   const toggleModule = (id: string) =>
     setExpandedModules(prev => prev.includes(id) ? prev.filter(m => m !== id) : [...prev, id]);
@@ -337,7 +378,11 @@ const SeguridadAccesos: React.FC = () => {
           </div>
         </header>
 
+<<<<<<< HEAD
         {/* ── Tabs + Card (Igual a la de gestion)── */}
+=======
+        {/* ── Tabs + Card ── */}
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
         <div className="sa-tabs-card-group">
           <div className="sa-tabs-scroll-area">
             {TABS.map(tab => (
@@ -383,6 +428,7 @@ const SeguridadAccesos: React.FC = () => {
                   </div>
                 </div>
 
+<<<<<<< HEAD
                 {/* Roles list — paginated */}
                 <div className="sa-roles-list-container">
                   <div className="sa-roles-list">
@@ -396,10 +442,31 @@ const SeguridadAccesos: React.FC = () => {
                           <p className="sa-role-desc">{role.description}</p>
                         </div>
                         <div className="sa-role-meta">
+=======
+                {/* ── Lista de roles (Figma: filas separadas, sin tabla HTML) ── */}
+                <div className="sa-roles-scroll">
+                  {pagedRoles.length === 0 ? (
+                    <div className="sa-roles-empty">No se encontraron roles.</div>
+                  ) : (
+                    pagedRoles.map(role => (
+                      <div key={role.id} className={`sa-role-row ${!role.active ? 'sa-role-row--inactive' : ''} ${activeDropdown === role.id ? 'sa-role-row--active-menu' : ''}`}>
+                        {/* Ícono + Nombre + Descripción */}
+                        <div className="sa-role-cell">
+                          <UsuariosIcon size={36} style={{ borderRadius: 10, flexShrink: 0 }} />
+                          <div className="sa-role-cell-info">
+                            <span className="sa-role-name">{role.name}</span>
+                            <span className="sa-role-desc-inline">{role.description}</span>
+                          </div>
+                        </div>
+
+                        {/* Permisos + Fecha */}
+                        <div className="sa-role-meta-col">
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
                           <span className="sa-permissions-badge">
                             <span className="sa-badge-dot" />
                             {role.assignedPermissions} permisos asignados
                           </span>
+<<<<<<< HEAD
                           <span className="sa-created-date">Creado el {role.createdAt}</span>
                           <div className="sa-more-options">
                             <button className="sa-icon-btn" onClick={() => toggleDropdown(role.id)}>
@@ -487,6 +554,74 @@ const SeguridadAccesos: React.FC = () => {
 
                   <div className="sa-page-info">
                     {(currentPage - 1) * itemsPerPage + 1}–{Math.min(currentPage * itemsPerPage, filteredRoles.length)} de {filteredRoles.length}
+=======
+                          <span className="sa-created-date-inline">Creado el {role.createdAt}</span>
+                        </div>
+
+                        {/* Menú tres puntos */}
+                        <div className="sa-more-options">
+                          <button className="sa-icon-btn" onClick={() => toggleDropdown(role.id)}>
+                            <MoreVertical size={18} />
+                          </button>
+                          {activeDropdown === role.id && (
+                            <div className="sa-dropdown-menu">
+                              {role.active ? (
+                                <>
+                                  <button onClick={() => openModal(role, false)}>
+                                    <AbrirRol /> Abrir rol
+                                  </button>
+                                  <button onClick={() => openModal(role, true)}>
+                                    <EditarRol /> Editar rol
+                                  </button>
+                                  <button onClick={() => handleArchive(role)}>
+                                    <ArchivarRol /> Archivar rol
+                                  </button>
+                                </>
+                              ) : (
+                                <>
+                                  <button onClick={() => handleRestore(role)}>
+                                    <AbrirRol /> Restaurar rol
+                                  </button>
+                                  <button onClick={() => openModal(role, true)}>
+                                    <EditarRol /> Editar rol
+                                  </button>
+                                </>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                {/* ── Paginación ── */}
+                <div className="sa-pagination">
+                  <div className="sa-pagination-left">
+                    <span>Elementos por página</span>
+                    <div className="sa-items-select-wrap">
+                      <select
+                        className="sa-items-select"
+                        value={itemsPerPage}
+                        onChange={e => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}
+                      >
+                        <option value={5}>05</option>
+                        <option value={6}>06</option>
+                        <option value={10}>10</option>
+                        <option value={20}>20</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="sa-pagination-center">
+                    <button className="sa-pg-nav" onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1}>‹</button>
+                    {visiblePages.map(n => (
+                      <button key={n} className={`sa-pg-btn ${currentPage === n ? 'active' : ''}`} onClick={() => setCurrentPage(n)}>{n}</button>
+                    ))}
+                    <button className="sa-pg-nav" onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages}>›</button>
+                  </div>
+                  <div className="sa-pagination-right">
+                    {currentPage} - de {totalPages} páginas
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
                   </div>
                 </div>
               </>
@@ -507,6 +642,7 @@ const SeguridadAccesos: React.FC = () => {
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* ══ MODAL ══ */}
       {isModalOpen && (
         <div className="sa-modal-overlay" onClick={e => { if (e.target === e.currentTarget) closeModal(); }}>
@@ -602,6 +738,101 @@ const SeguridadAccesos: React.FC = () => {
           </div>
         </div>
       )}
+=======
+      {/* ══ MODAL (usando componente compartido) ══ */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Información del rol"
+        className="sa-modal"
+      >
+        <div className="sa-modal-body">
+          <div className="sa-form-group">
+            <input
+              type="text"
+              className="sa-form-control"
+              placeholder="Coordinador _DAF_GII"
+              defaultValue={selectedRole?.name}
+              readOnly={!isEditMode && !!selectedRole}
+            />
+          </div>
+          <div className="sa-form-group">
+            <textarea
+              className="sa-form-control"
+              placeholder="Coordinador de las Dependencias de Risaralda"
+              defaultValue={selectedRole?.description}
+              readOnly={!isEditMode && !!selectedRole}
+              rows={3}
+            />
+          </div>
+
+          {selectedRole && !isEditMode && (
+            <p className="sa-permissions-summary">
+              Este rol cuenta con{' '}
+              <span className="sa-badge-green">30 permisos asignados</span>{' '}
+              de un total de{' '}
+              <span className="sa-badge-purple">100 permisos disponibles</span>
+            </p>
+          )}
+
+          <h3 className="sa-section-title">
+            {isEditMode ? 'Administrador de permisos del rol' : 'Permisos del rol'}
+          </h3>
+
+          <div className="sa-permissions-toolbar">
+            <button className="sa-btn-primary" style={{ padding: '7px 16px', fontSize: 13 }}>
+              <Filtrar style={{ marginRight: 6 }} /> Filtrar
+            </button>
+            <div className="sa-modal-search">
+              <input type="text" placeholder="Busca" />
+              <button className="sa-modal-search-btn"><Search size={13} /></button>
+            </div>
+          </div>
+
+          <div className="sa-permissions-zone">
+            {isEditMode && (
+              <div className="sa-selection-info">
+                <span className="sa-selected-count">
+                  3 elemento(s) seleccionado(s) <EquisIcon style={{ cursor: 'pointer', marginLeft: 8 }} />
+                </span>
+                <button className="sa-btn-view-selected">
+                  <OjoIcon style={{ marginRight: 6 }} /> Ver seleccionados
+                </button>
+              </div>
+            )}
+
+            {renderModalAccordion()}
+          </div>
+        </div>
+
+        <div className="sa-modal-footer">
+          {selectedRole?.active && (
+            <button className="sa-btn-danger" onClick={() => handleArchive(selectedRole)}>
+              <DesactivarRol style={{ marginRight: 6 }} /> Desactivar Rol
+            </button>
+          )}
+          {selectedRole && !selectedRole.active && (
+            <button className="sa-btn-outline" onClick={() => handleRestore(selectedRole)}>
+              <AbrirRol /> Restaurar Rol
+            </button>
+          )}
+          {!selectedRole && <div />}
+
+          <div className="sa-footer-actions">
+            {isEditMode ? (
+              <>
+                <button className="sa-btn-cancel" onClick={closeModal}>Cancelar</button>
+                <button className="sa-btn-primary" onClick={handleSave}>Aceptar</button>
+              </>
+            ) : (
+              <button className="sa-btn-primary" onClick={() => setIsEditMode(true)}>
+                <EditarRol className="sa-btn-icon-white" /> Editar Rol
+              </button>
+            )}
+          </div>
+        </div>
+      </Modal>
+>>>>>>> 711a2081ad5e348ae2ce1e0ecda1b6e694c138f1
     </>
   );
 };

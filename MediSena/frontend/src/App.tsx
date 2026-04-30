@@ -9,7 +9,7 @@ import SeguridadAccesos from './views/SeguridadAccesos';
 import DatosBasicos from './views/DatosBasicos';
 >>>>>>> e27edc83daa757fdac5b489a99c65ea7f37da2ad:MediSena/frontend/src/App.tsx
 import MainLayout from './components/MainLayout';
-
+import SeguridadAccesos from './views/SeguridadAccesos';
 import OrdenAtencion from './views/Movimientos/OrdenAtencion';
 import CuentaCobro from './views/Movimientos/CuentaCobro';
 import RelacionPagos from './views/Movimientos/RelacionPagos';

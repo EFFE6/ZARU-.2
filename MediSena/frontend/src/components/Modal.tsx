@@ -18,6 +18,9 @@ export interface ModalProps {
   /** Ocultar por completo la cabecera estándar (título y X), útil para modales de confirmación/eliminación */
   hideHeader?: boolean;
   
+  /** Estilos inline adicionales para el contenedor del modal */
+  style?: React.CSSProperties;
+
   /** Contenido interno del modal */
   children: React.ReactNode;
 }
@@ -28,6 +31,7 @@ const Modal: React.FC<ModalProps> = ({
   title,
   className = 'resolucion-modal',
   hideHeader = false,
+  style,
   children
 }) => {
   // Cierre con la tecla ESC
@@ -57,7 +61,7 @@ const Modal: React.FC<ModalProps> = ({
         }
       }}
     >
-      <div className={className}>
+      <div className={className} style={style}>
         {!hideHeader && (
           <div className="resolucion-modal-header">
             {title && <h2 className="resolucion-modal-title">{title}</h2>}
