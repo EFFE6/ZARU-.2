@@ -590,7 +590,7 @@
 
 /* ─── COL ID ──────────────────────────────────────────────── */
 .db-col-id {
-  font-weight: 800;
+  font-weight: 400;
   color: #002c4d;
   font-size: 13px;
 }
@@ -1807,4 +1807,15 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-
+.db-modal-small {
+  background: white;
+  border-radius: 20px;
+  width: 450px;
+  max-width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+  animation: dbSlideUp 0.3s ease;
+  overflow: hidden;
+}
