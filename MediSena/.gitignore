@@ -1,0 +1,10 @@
+node_modules/
+deploy/env/backend.env
+.env
+dist/
+deploy/env/backend.env
+deploy/env/*.local.env
+
+backend/coverage/
+*.zip
+ 

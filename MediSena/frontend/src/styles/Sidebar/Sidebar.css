@@ -1,0 +1,470 @@
+/* =============================================
+   SIDEBAR - MediSENA  |  Fiel a Figma
+   ============================================= */
+
+/* ── Contenedor principal ── */
+.sidebar {
+  width: 217px;
+  min-width: 217px;
+  background: #EDF0F9;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 12px 20px 12px;
+  position: relative;
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
+  box-shadow: 6px 0 24px rgba(28, 62, 87, 0.10);
+  z-index: 100;
+  flex-shrink: 0;
+  transition: width 0.3s ease, min-width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+  min-width: 80px;
+}
+
+/* ── Botón colapso ── */
+.desktop-collapse-toggle {
+  position: absolute;
+  bottom: 18vh;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #013156;
+  color: white;
+  border: none;
+  border-radius: 24px 0 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 102;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease, width 0.2s ease;
+}
+
+.desktop-collapse-toggle:hover {
+  background-color: #01223e;
+  width: 28px;
+}
+
+/* ── Logo expandido: 247 × 149 (Figma) ── */
+.sidebar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 28px;
+  padding: 0 4px;
+}
+
+.sidebar-logo-expanded {
+  width: 128px;
+  height: 138px;
+  object-fit: contain;
+}
+
+/* ── Logo colapsado: 67 × 65 (Figma — icono SENA solo) ── */
+.sidebar-logo-collapsed {
+  width: 52px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ── Nav ── */
+.nav-container {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.nav-container::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #102F4B;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.nav-item:hover {
+  background-color: rgba(28, 62, 87, 0.08);
+  color: #1C3E57;
+}
+
+.nav-item.active {
+  background: linear-gradient(to right, #0165B0 0%, #013156 100%);
+  color: #ffffff;
+}
+
+.nav-item.active .nav-item-icon {
+  color: #ffffff;
+}
+
+.nav-item-icon {
+  width: clamp(16px, 2.2vh, 18px);
+  height: clamp(16px, 2.2vh, 18px);
+  flex-shrink: 0;
+}
+
+.nav-item-text {
+  font-size: 14px;
+  line-height: 1.2;
+  transition: opacity 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Colapso: ocultar texto */
+.sidebar.collapsed .nav-item-text {
+  opacity: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 10px;
+}
+
+/* ── Chevron desplegable ── */
+.nav-chevron {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: #7a9bb5;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+/* ── Ítem padre activo (con hijos abiertos) ── */
+.nav-item.parent-active {
+  background: rgba(1, 101, 176, 0.10);
+  color: #0165B0;
+}
+
+.nav-item.parent-active .nav-item-icon {
+  color: #0165B0;
+}
+
+/* ── Sub-lista ── */
+.nav-item-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.nav-sub-list {
+  list-style: none;
+  padding: 4px 0 4px 14px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 2px solid rgba(1, 101, 176, 0.18);
+  margin-left: 24px;
+  margin-top: 4px;
+}
+
+.nav-sub-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #4a6a82;
+  font-size: 0.78rem;
+  font-weight: 500;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nav-sub-item:hover {
+  background: rgba(28, 62, 87, 0.07);
+  color: #1C3E57;
+}
+
+.nav-sub-item.active {
+  background: linear-gradient(to right, #0165B0, #013156);
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav-sub-item.active .nav-sub-dot {
+  background: #fff;
+}
+
+.nav-sub-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #94a3b8;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.nav-sub-text {
+  font-size: 0.79rem;
+  line-height: 1.2;
+  transition: opacity 0.2s;
+}
+
+/* ════════════════════════════════════════
+   SECCIÓN PERFIL
+   ════════════════════════════════════════ */
+.user-profile-section {
+  margin-top: auto;
+  padding-top: 14px;
+  flex-shrink: 0;
+}
+
+/* Card expandida */
+.profile-card {
+  background-color: #b8d0e8;
+  border-radius: 18px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Card colapsada: centrada con solo avatar + icono */
+.profile-card--collapsed {
+  align-items: center;
+  padding: 10px 6px;
+  gap: 10px;
+  background: none;
+}
+
+/* Fila interna expandida: avatar+nombre a la izquierda, icono a la derecha */
+.profile-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Avatar con imagen SVG de perfil */
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #B8D0E8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #B8D0E8;
+  flex-shrink: 0;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  /* Ocupa el espacio restante del contenedor padre */
+}
+
+.profile-name {
+  font-weight: 700;
+  font-size: clamp(0.8rem, 2vh, 0.95rem);
+  /* Texto responsivo */
+  color: #1C3E57;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkitline-clamp: 2;
+  /* Máximo 2 líneas */
+  -webkit-box-orient: vertical;
+}
+
+/* Botón de salir — solo icono SVG */
+.logout-icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.logout-icon-btn:hover {
+  opacity: 0.75;
+  transform: scale(1.08);
+}
+
+.logout-icon-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* ── Mobile toggle ── */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 999;
+  background-color: #1a365d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-menu-close {
+  display: none;
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    height: 100vh;
+    z-index: 2000;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 24px 24px 0;
+    width: 280px;
+    min-width: 280px;
+    background: #EDF0F9;
+    padding-top: 60px;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(280px);
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.4);
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .mobile-menu-close {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #DEE4F4;
+    border: none;
+    color: #1C3E57;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .sidebar-logo-expanded {
+    width: 200px;
+    height: auto;
+  }
+
+  .nav-item-text {
+    font-size: 0.95rem;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .desktop-collapse-toggle {
+    display: none;
+  }
+}
+
+/* ── Pantallas bajas ── */
+@media (max-height: 750px) {
+  .sidebar {
+    padding: 14px 10px 12px 10px;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 14px;
+  }
+
+  .sidebar-logo-expanded {
+    width: 140px;
+    height: auto;
+  }
+
+  .nav-list {
+    gap: 8px;
+  }
+
+  .nav-item {
+    padding: 10px 14px;
+  }
+
+  /* Excepción: mostrar solo el avatar */
+  .profile-card--collapsed .logout-icon-btn {
+    display: none;
+    background-color: #EDF0F9;
+  }
+
+  /* Centra el avatar cuando está solo */
+
+  .profile-card--collapsed .profile-inner,
+  .profile-card--collapsed .profile-avatar,
+  .profile-card--collapsed .profile-info,
+  .profile-card--collapsed .profile-card {
+    justify-content: center;
+    background-color: #EDF0F9;
+    border: none;
+  }
+}

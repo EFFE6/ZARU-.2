@@ -1,0 +1,109 @@
+# ============================================
+# MediSENA - Configuración Podman Compose
+# FE host 8080 → contenedor 80, BE host 8081 → contenedor 8081
+# ============================================
+# Archivo compatible con podman-compose
+# Uso: podman compose -f podman-compose.yml up -d --build
+#
+# Postgres y Redis usan volúmenes nombrados: en Windows, bind mount a D: hace fallar
+# initdb con "Operation not permitted" (permisos). Backups y sincronización sí van a D: (scripts).
+# Ver docs/ALMACENAMIENTO-DISCO-D.md.
+
+version: '3.8'
+
+services:
+  # Backend Node.js MediSENA
+  medisena-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: medisena-backend
+    ports:
+      - "8081:8081"
+    environment:
+      NODE_ENV: production
+      PORT: "8081"
+      # PostgreSQL - Base de datos principal
+      POSTGRES_HOST: ${POSTGRES_HOST:-medisena-postgres}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_USER: ${POSTGRES_USER:-medisena}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-medisena_local}
+      POSTGRES_DB: ${POSTGRES_DB:-medisena}
+      MEDISENA_DB: ${MEDISENA_DB:-medisena}
+      # JWT (desarrollo local; en producción usar .env con valores seguros)
+      JWT_SECRET: ${JWT_SECRET:-MEDISENA_JWT_SECRET_KEY_2025_SENA_MEDICINA_ASISTENCIAL_LOCAL}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-MEDISENA_JWT_REFRESH_SECRET_2025_SENA_LOCAL}
+    networks:
+      - medisena-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8081/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend React MediSENA
+  medisena-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Mismo origen (puerto FE); nginx.conf hace proxy a medisena-backend
+        VITE_API_URL: /api
+    container_name: medisena-frontend
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      - medisena-backend
+    networks:
+      - medisena-network
+    extra_hosts:
+      - "host.containers.internal:host-gateway"
+    restart: unless-stopped
+
+  # Redis (volumen nombrado; bind a D: en Windows da problemas de permisos)
+  medisena-redis:
+    image: docker.io/redis:6.2-alpine
+    container_name: medisena-redis
+    ports:
+      - "${REDIS_HOST_PORT:-6380}:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - medisena_redis_data:/data
+    networks:
+      - medisena-network
+    restart: unless-stopped
+
+  # PostgreSQL (volumen nombrado; bind a D: en Windows hace fallar initdb: Operation not permitted)
+  medisena-postgres:
+    image: docker.io/postgres:16-alpine
+    container_name: medisena-postgres
+    ports:
+      - "${POSTGRES_HOST_PORT:-5433}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-medisena}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-medisena_local}
+      POSTGRES_DB: ${POSTGRES_DB:-medisena}
+    volumes:
+      - medisena_postgres_data:/var/lib/postgresql/data
+      - ./backend/sql/docker-init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - medisena-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medisena -d medisena"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  medisena-network:
+    driver: bridge
+
+volumes:
+  medisena_postgres_data:
+    driver: local
+  medisena_redis_data:
+    driver: local
+

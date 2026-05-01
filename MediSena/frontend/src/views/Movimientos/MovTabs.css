@@ -1,0 +1,6 @@
+/*
+  MovTabs.css — vacío intencional.
+  Los tabs de Movimientos reutilizan las clases del sistema de diseño:
+    .tabs-scroll-area, .tab-pill, .tab-pill.active, .active-tab-icon
+  definidas en GestionResoluciones.css (ya importado en cada vista).
+*/
