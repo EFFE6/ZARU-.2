@@ -171,125 +171,85 @@ const SeguridadAccesos: React.FC = () => {
 
   const handleSave = () => closeModal();
 
-  // ── Accordion for Permisos tab (read-only, no checkboxes) ─────────────
-  const renderPermisosAccordion = () => (
+  // ── Unified Accordion (Works for both Permisos tab and Modal) ───────────
+  const renderAccordion = (isModalMode = false) => (
     <div className="sa-accordion">
-      {MODULES.map(module => (
-        <div className="sa-accordion-item" key={module.id}>
-          <div
-            className={`sa-accordion-header ${expandedModules.includes(module.id) ? 'expanded' : ''}`}
-            onClick={() => toggleModule(module.id)}
-          >
-            <div className="sa-accordion-title">
-              {module.Icon && <module.Icon />}
-              {module.name}
-            </div>
-            {expandedModules.includes(module.id) ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-          </div>
-
-          {expandedModules.includes(module.id) && (
-            <div className="sa-accordion-body">
-              {module.submodules?.map(sub => (
-                <div className="sa-sub-accordion-item" key={sub.id}>
-                  <div
-                    className={`sa-sub-accordion-header ${expandedModules.includes(sub.id) ? 'expanded' : ''}`}
-                    onClick={() => toggleModule(sub.id)}
-                  >
-                    <div className="sa-sub-accordion-title">
-                      {sub.Icon && <sub.Icon />}
-                      {sub.name}
-                    </div>
-                    {expandedModules.includes(sub.id) ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-                  </div>
-
-                  {expandedModules.includes(sub.id) && (
-                    <div className="sa-perm-list">
-                      {sub.items?.map(item => (
-                        <div className="sa-perm-row" key={item.id}>
-                          {item.name}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-
-              {module.items?.map(item => (
-                <div className="sa-perm-row" key={item.id}>
-                  {item.name}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-
-  // ── Accordion for Modal (with checkboxes) ─────────────────────────────
-  const renderModalAccordion = () => (
-    <div className="sa-accordion">
-      {MODULES.map(module => (
-        <div className="sa-accordion-item" key={module.id}>
-          <div
-            className={`sa-accordion-header ${expandedModules.includes(module.id) ? 'expanded' : ''}`}
-            onClick={() => toggleModule(module.id)}
-          >
-            <div className="sa-accordion-title">
-              {module.Icon && <module.Icon />}
-              {module.name}
-            </div>
-            {expandedModules.includes(module.id) ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-          </div>
-
-          {expandedModules.includes(module.id) && (
-            <div className="sa-accordion-body">
-              {module.submodules?.map(sub => (
-                <div className="sa-sub-accordion-item" key={sub.id}>
-                  <div
-                    className={`sa-sub-accordion-header ${expandedModules.includes(sub.id) ? 'expanded' : ''}`}
-                    onClick={() => toggleModule(sub.id)}
-                  >
-                    <div className="sa-sub-accordion-title">
-                      {sub.Icon && <sub.Icon />}
-                      {sub.name}
-                    </div>
-                    {expandedModules.includes(sub.id) ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-                  </div>
-
-                  {expandedModules.includes(sub.id) && (
-                    <div className="sa-sub-accordion-body">
-                      {sub.items?.map(item => (
-                        <div className={`sa-permission-item ${item.checked ? 'checked' : ''}`} key={item.id}>
-                          <label className="sa-checkbox-label">
-                            <input type="checkbox" defaultChecked={item.checked} disabled={!isEditMode} />
-                            <span className="sa-checkmark">{item.checked && <Check size={11} />}</span>
-                            {item.name}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-
-              <div className="sa-permission-list">
-                {module.items?.map(item => (
-                  <div className={`sa-permission-item ${item.checked ? 'checked' : ''}`} key={item.id}>
-                    <label className="sa-checkbox-label">
-                      <input type="checkbox" defaultChecked={item.checked} disabled={!isEditMode} />
-                      <span className="sa-checkmark">{item.checked && <Check size={11} />}</span>
-                      {item.name}
-                    </label>
-                  </div>
-                ))}
+      {MODULES.map(module => {
+        const isExpanded = expandedModules.includes(module.id);
+        return (
+          <div className="sa-accordion-item" key={module.id}>
+            <div
+              className={`sa-accordion-header ${isExpanded ? 'expanded' : ''}`}
+              onClick={() => toggleModule(module.id)}
+            >
+              <div className="sa-accordion-title">
+                {module.Icon && <module.Icon />}
+                {module.name}
               </div>
+              {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
             </div>
-          )}
-        </div>
-      ))}
+
+            {isExpanded && (
+              <div className="sa-accordion-body">
+                {module.submodules?.map(sub => {
+                  const isSubExpanded = expandedModules.includes(sub.id);
+                  return (
+                    <div className="sa-sub-accordion-item" key={sub.id}>
+                      <div
+                        className={`sa-sub-accordion-header ${isSubExpanded ? 'expanded' : ''}`}
+                        onClick={() => toggleModule(sub.id)}
+                      >
+                        <div className="sa-sub-accordion-title">
+                          {sub.Icon && <sub.Icon />}
+                          {sub.name}
+                        </div>
+                        {isSubExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+                      </div>
+
+                      {isSubExpanded && (
+                        <div className={isModalMode ? "sa-sub-accordion-body" : "sa-perm-list"}>
+                          {sub.items?.map(item => (
+                            isModalMode ? (
+                              <div className={`sa-permission-item ${item.checked ? 'checked' : ''}`} key={item.id}>
+                                <label className="sa-checkbox-label">
+                                  <input type="checkbox" defaultChecked={item.checked} disabled={!isEditMode} />
+                                  <span className="sa-checkmark">{item.checked && <Check size={11} />}</span>
+                                  {item.name}
+                                </label>
+                              </div>
+                            ) : (
+                              <div className="sa-perm-row" key={item.id}>{item.name}</div>
+                            )
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
+                <div className={isModalMode ? "sa-permission-list" : "sa-perm-list"}>
+                  {module.items?.map(item => (
+                    isModalMode ? (
+                      <div className={`sa-permission-item ${item.checked ? 'checked' : ''}`} key={item.id}>
+                        <label className="sa-checkbox-label">
+                          <input type="checkbox" defaultChecked={item.checked} disabled={!isEditMode} />
+                          <span className="sa-checkmark">{item.checked && <Check size={11} />}</span>
+                          {item.name}
+                        </label>
+                      </div>
+                    ) : (
+                      <div className="sa-perm-row" key={item.id}>{item.name}</div>
+                    )
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
+
 
   // ── Render ─────────────────────────────────────────────────────────────
   return (
@@ -350,7 +310,7 @@ const SeguridadAccesos: React.FC = () => {
           </div>
 
           {/* Content Card */}
-          <div className={`sa-content-card ${activeTab === 'Roles' ? 'roles-active' : 'permisos-active'}`}>
+          <div className={`sa-content-card ${activeTab === 'Roles' ? 'roles-active' : 'permisos-active'} ${viewInactive ? 'sa-mode-inactive' : ''}`}>
 
             {/* ══ ROLES TAB ══ */}
             {activeTab === 'Roles' && (
@@ -475,7 +435,27 @@ const SeguridadAccesos: React.FC = () => {
                   De click en alguno de los módulos para conocer sus permisos.
                 </p>
                 <div className="sa-permisos-scroll">
-                  {renderPermisosAccordion()}
+                  {renderAccordion(false)}
+                </div>
+                
+                {/* Pagination for consistency as requested */}
+                <div className="sa-pagination">
+                  <div className="sa-pagination-left">
+                    <span>Elementos por página</span>
+                    <div className="sa-items-select-wrap">
+                      <select className="sa-items-select" disabled>
+                        <option>10</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="sa-pagination-center">
+                    <button className="sa-pg-nav" disabled>‹</button>
+                    <button className="sa-pg-btn active">1</button>
+                    <button className="sa-pg-nav" disabled>›</button>
+                  </div>
+                  <div className="sa-pagination-right">
+                    1 - de 1 páginas
+                  </div>
                 </div>
               </div>
             )}
@@ -545,7 +525,9 @@ const SeguridadAccesos: React.FC = () => {
               </div>
             )}
 
-            {renderModalAccordion()}
+            <div className="sa-permissions-scroll-area">
+              {renderAccordion(true)}
+            </div>
           </div>
         </div>
 

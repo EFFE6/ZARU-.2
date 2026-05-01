@@ -11,6 +11,12 @@
   gap: 18px;
 }
 
+/* Evitar scroll externo cuando estamos en Seguridad y Accesos */
+.main-content:has(.sa-container) {
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
 /* ── Header ── */
 .dashboard-header {
   display: flex;
