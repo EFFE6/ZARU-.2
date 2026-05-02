@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Filter, RefreshCw, Plus, X, Search, Save } from 'lucide-react';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
-import { ImgModalEliminarIcon, ContratoIcon, EditarTablaContratoIcon, EliminarTablaContratoIcon } from '../../components/Icons';
+import { ImgModalEliminarIcon, ContratoIcon, EditIcon, DeleteIcon } from '../../components/Icons';
 
 const MOCK_CONTRATOS = [
   {
@@ -180,10 +180,10 @@ const Contratos: React.FC<ContratosProps> = ({ searchQuery }) => {
             <td>
               <div className="db-row-actions">
                 <button className="db-icon-btn edit" style={{ padding: 0, border: 'none', background: 'transparent' }} onClick={() => { setSelectedContrato(item); setModalEditar(true); }}>
-                  <EditarTablaContratoIcon />
+                  <EditIcon />
                 </button>
                 <button className="db-icon-btn delete" style={{ padding: 0, border: 'none', background: 'transparent' }} onClick={() => { setSelectedContrato(item); setModalEliminar(true); }}>
-                  <EliminarTablaContratoIcon />
+                  <DeleteIcon />
                 </button>
               </div>
             </td>

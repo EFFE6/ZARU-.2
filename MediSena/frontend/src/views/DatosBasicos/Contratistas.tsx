@@ -6,7 +6,7 @@ import Filters from '../../components/Filters';
 
 import BotoEditIcon from '../../assets/img/datosbasicos/icons/contratista/botonedit.svg';
 import BotoVerIcon from '../../assets/img/datosbasicos/icons/contratista/botonver.svg';
-import { TipoCcContratistasIcon, PrestaServiciosContratistasIcon, EliminarContratistasIcon, ImgModalEliminarIcon } from '../../components/Icons';
+import { TipoCcContratistasIcon, PrestaServiciosContratistasIcon, DeleteIcon, ImgModalEliminarIcon } from '../../components/Icons';
 
 const MOCK_CONTRATISTAS = [
   {
@@ -212,7 +212,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
                   <img src={BotoEditIcon} alt="Editar" className="db-action-icon" />
                 </button>
                 <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalEliminar(true); }}>
-                  <EliminarContratistasIcon className="db-action-icon" />
+                  <DeleteIcon className="db-action-icon" />
                 </button>
               </div>
             </td>

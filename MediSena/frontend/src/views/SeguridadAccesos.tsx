@@ -16,15 +16,15 @@ import {
   Roles as RolesIcon,
   Permisos as PermisosIcon,
   Usuarios as UsuariosIcon,
-  AbrirRol,
-  EditarRol,
-  ArchivarRol,
+  OpenIcon,
+  EditPencilIcon,
+  ArchiveIcon,
   DashboardPermisos,
   FuncionariosPermisos,
   ContratistaPermisos,
-  DesactivarRol,
-  OjoIcon,
-  EquisIcon,
+  DeactivateIcon,
+  ViewIcon,
+  CloseXIcon,
   Filtrar,
 } from '../components/Icons';
 import DataTable from '../components/DataTable';
@@ -370,22 +370,22 @@ const SeguridadAccesos: React.FC = () => {
                               {role.active ? (
                                 <>
                                   <button onClick={() => openModal(role, false)}>
-                                    <AbrirRol /> Abrir rol
+                                    <OpenIcon /> Abrir rol
                                   </button>
                                   <button onClick={() => openModal(role, true)}>
-                                    <EditarRol /> Editar rol
+                                    <EditPencilIcon /> Editar rol
                                   </button>
                                   <button onClick={() => handleArchive(role)}>
-                                    <ArchivarRol /> Archivar rol
+                                    <ArchiveIcon /> Archivar rol
                                   </button>
                                 </>
                               ) : (
                                 <>
                                   <button onClick={() => handleRestore(role)}>
-                                    <AbrirRol /> Restaurar rol
+                                    <OpenIcon /> Restaurar rol
                                   </button>
                                   <button onClick={() => openModal(role, true)}>
-                                    <EditarRol /> Editar rol
+                                    <EditPencilIcon /> Editar rol
                                   </button>
                                 </>
                               )}
@@ -517,10 +517,10 @@ const SeguridadAccesos: React.FC = () => {
             {isEditMode && (
               <div className="sa-selection-info">
                 <span className="sa-selected-count">
-                  3 elemento(s) seleccionado(s) <EquisIcon style={{ cursor: 'pointer', marginLeft: 8 }} />
+                  3 elemento(s) seleccionado(s) <CloseXIcon style={{ cursor: 'pointer', marginLeft: 8 }} />
                 </span>
                 <button className="sa-btn-view-selected">
-                  <OjoIcon style={{ marginRight: 6 }} /> Ver seleccionados
+                  <ViewIcon style={{ marginRight: 6 }} /> Ver seleccionados
                 </button>
               </div>
             )}
@@ -534,12 +534,12 @@ const SeguridadAccesos: React.FC = () => {
         <div className="sa-modal-footer">
           {selectedRole?.active && (
             <button className="sa-btn-danger" onClick={() => handleArchive(selectedRole)}>
-              <DesactivarRol style={{ marginRight: 6 }} /> Desactivar Rol
+              <DeactivateIcon style={{ marginRight: 6 }} /> Desactivar Rol
             </button>
           )}
           {selectedRole && !selectedRole.active && (
             <button className="sa-btn-outline" onClick={() => handleRestore(selectedRole)}>
-              <AbrirRol /> Restaurar Rol
+              <OpenIcon /> Restaurar Rol
             </button>
           )}
           {!selectedRole && <div />}
@@ -552,7 +552,7 @@ const SeguridadAccesos: React.FC = () => {
               </>
             ) : (
               <button className="sa-btn-primary" onClick={() => setIsEditMode(true)}>
-                <EditarRol className="sa-btn-icon-white" /> Editar Rol
+                <EditPencilIcon className="sa-btn-icon-white" /> Editar Rol
               </button>
             )}
           </div>

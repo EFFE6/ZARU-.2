@@ -7,7 +7,7 @@ import Filters from '../../components/Filters';
 import BotoEditIcon from '../../assets/img/datosbasicos/icons/funcionarios/botonedit.svg';
 import BotoVerIcon from '../../assets/img/datosbasicos/icons/funcionarios/botonver.svg';
 import RegionalIcon from '../../assets/img/datosbasicos/icons/funcionarios/regional.svg';
-import { EditarBeneficiariosIcon, EliminarBeneficiariosIcon, CargosIcon } from '../../components/Icons';
+import { EditIcon, DeleteIcon, CargosIcon } from '../../components/Icons';
 
 const MOCK_FUNCIONARIOS = [
   {
@@ -367,8 +367,8 @@ const Funcionarios: React.FC<FuncionariosProps> = ({ searchQuery }) => {
                   </td>
                   <td>
                     <div className="db-row-actions">
-                      <button className="db-icon-btn edit" style={{ padding: 0, border: 'none', background: 'transparent' }}><EditarBeneficiariosIcon className="db-action-icon" /></button>
-                      <button className="db-icon-btn delete" style={{ padding: 0, border: 'none', background: 'transparent' }}><EliminarBeneficiariosIcon className="db-action-icon" /></button>
+                      <button className="db-icon-btn edit" style={{ padding: 0, border: 'none', background: 'transparent' }}><EditIcon className="db-action-icon" /></button>
+                      <button className="db-icon-btn delete" style={{ padding: 0, border: 'none', background: 'transparent' }}><DeleteIcon className="db-action-icon" /></button>
                     </div>
                   </td>
                 </tr>
