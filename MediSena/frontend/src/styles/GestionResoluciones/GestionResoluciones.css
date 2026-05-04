@@ -89,60 +89,7 @@
   line-height: 1.1;
 }
 
-.search-wrapper {
-  display: flex;
-  align-items: center;
-  background: #F4F6F8;
-  border: 1.5px solid #dde8f0;
-  border-radius: 12px;
-  padding: 5px;
-  height: 46px;
-  box-sizing: border-box;
-}
 
-.search-container {
-  display: flex;
-  align-items: center;
-  background: transparent;
-  border: none;
-  padding: 0 16px;
-  width: 100%;
-  max-width: 400px;
-}
-
-.search-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
-  color: #1e3a52;
-}
-
-.search-input::placeholder {
-  color: #3f607d;
-  font-weight: 500;
-}
-
-.search-btn {
-  background: #ffffff;
-  border: 1.5px solid #002c4d;
-  border-radius: 8px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  margin-right: 2px;
-  transition: all 0.18s ease;
-}
-
-.search-btn:hover {
-  background: #eef2f6;
-  transform: scale(1.02);
-}
 
 /* ─── GRUPO TABS + CARD (sin gap entre ellos) ────────────── */
 .tabs-card-group {
@@ -152,98 +99,7 @@
   min-height: 0;
 }
 
-/* ─── TABS ────────────────────────────────────────────────── */
-.tabs-scroll-area {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  padding: 0;
-  align-items: flex-end;
-  scrollbar-width: none;
-  position: relative;
-  z-index: 2;
-}
 
-.tabs-scroll-area::-webkit-scrollbar {
-  display: none;
-}
-
-/* Inactivo: float like a pill */
-.tab-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border-radius: 20px;
-  font-size: 13.5px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  border: none;
-  transition: all 0.18s ease;
-  background: #ffffff;
-  color: #5c7a90;
-  user-select: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-  margin-bottom: 6px;
-}
-
-.tab-pill:hover:not(.active) {
-  color: #1e3a52;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  transform: translateY(-1px);
-}
-
-/* Activo: se fusiona con el card */
-.tab-pill.active {
-  background: #ffffff;
-  color: #002c4d;
-  font-weight: 800;
-  border: none;
-  border-radius: 20px 20px 0 0;
-  padding-bottom: 14px;
-  margin-bottom: 0px;
-  position: relative;
-  z-index: 3;
-  box-shadow: none;
-}
-
-/* Curvaturas inversas para dar ese efecto de solapa unida */
-.tab-pill.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: -20px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 100% 0%, transparent 20px, #ffffff 20.5px);
-}
-
-.tab-pill.active::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -20px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 0% 0%, transparent 20px, #ffffff 20.5px);
-}
-
-.tab-pill.active:first-child::before {
-  display: none;
-}
-
-.active-tab-icon {
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(135deg, #0165B0, #013156);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  flex-shrink: 0;
-}
 
 /* ─── CARD PRINCIPAL ──────────────────────────────────────── */
 .gestion-content-card {

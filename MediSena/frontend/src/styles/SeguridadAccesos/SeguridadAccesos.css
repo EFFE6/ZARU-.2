@@ -76,7 +76,7 @@
   box-sizing: border-box;
   overflow: hidden;
   background-color: transparent;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   color: var(--sa-text-main);
 }
 
@@ -209,91 +209,7 @@
   min-height: 0;
 }
 
-/* ─── TABS ───────────────────────────────────── */
-.sa-tabs-scroll-area {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  padding: 0;
-  align-items: flex-end;
-  scrollbar-width: none;
-  position: relative;
-  z-index: 2;
-}
 
-.sa-tabs-scroll-area::-webkit-scrollbar {
-  display: none;
-}
-
-/* Tab inactivo: pill flotante */
-.sa-tab-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border-radius: var(--sa-radius-lg);
-  font-size: 13.5px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  border: none;
-  transition: all 0.18s ease;
-  background: #ffffff;
-  color: #5c7a90;
-  user-select: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-  margin-bottom: 6px;
-}
-
-.sa-tab-pill:hover:not(.active) {
-  color: var(--sa-text-main);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  transform: translateY(-1px);
-}
-
-/* Tab activo: se fusiona con la card */
-.sa-tab-pill.active {
-  background: #ffffff;
-  color: #002c4d;
-  font-weight: 800;
-  border-radius: var(--sa-radius-lg) var(--sa-radius-lg) 0 0;
-  padding-bottom: 14px;
-  margin-bottom: 0px;
-  position: relative;
-  z-index: 3;
-}
-
-
-/* Curvatura inversa derecha */
-.sa-tab-pill.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: -20px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 100% 0%, transparent 20px, #ffffff 20.5px);
-}
-
-/* Curvatura inversa izquierda */
-.sa-tab-pill.active::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -20px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 0% 0%, transparent 20px, #ffffff 20.5px);
-}
-
-.sa-tab-pill.active:first-child::before {
-  display: none;
-}
-
-.sa-tab-icon {
-  width: 18px;
-  height: 18px;
-}
 
 /* ─── CONTENT CARD ───────────────────────────── */
 .sa-content-card {

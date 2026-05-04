@@ -16,7 +16,7 @@
 .db-header {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 32px;
 }
 
 .db-header-top {
@@ -34,38 +34,7 @@
   width: 100%;
 }
 
-.db-search-container-header {
-  display: flex;
-  align-items: center;
-  background: white;
-  border-radius: 20px;
-  padding: 8px 16px;
-  min-width: 320px;
-  box-shadow: 0 2px 8px rgba(28, 62, 87, 0.05);
-}
 
-.db-search-input-header {
-  border: none;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
-  color: #1e3a52;
-}
-
-.db-search-input-header::placeholder {
-  color: #94a3b8;
-}
-
-.db-search-btn-header {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px;
-}
 
 /* ─── TAG DE FILTRO ACTIVO ────────────────────────────────── */
 .db-active-filter-tag {
@@ -96,6 +65,7 @@
   gap: 4px;
   font-size: 13px;
   color: #64748b;
+  margin-bottom: 6px;
 }
 
 .db-breadcrumb-item {
@@ -189,98 +159,7 @@
 }
 
 /* ─── TABS ────────────────────────────────────────────────── */
-.db-tabs-scroll-area {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  padding: 0;
-  align-items: flex-end;
-  scrollbar-width: none;
-  position: relative;
-  z-index: 2;
-}
 
-.db-tabs-scroll-area::-webkit-scrollbar {
-  display: none;
-}
-
-/* Tab inactivo */
-.db-tab-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border-radius: 20px;
-  font-size: 13.5px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  border: none;
-  transition: all 0.18s ease;
-  background: #ffffff;
-  color: #5c7a90;
-  user-select: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-  margin-bottom: 6px;
-}
-
-.db-tab-pill:hover:not(.active) {
-  color: #1e3a52;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  transform: translateY(-1px);
-}
-
-/* Tab activo — se fusiona con el card */
-.db-tab-pill.active {
-  background: #ffffff;
-  color: #002c4d;
-  font-weight: 800;
-  border: none;
-  border-radius: 20px 20px 0 0;
-  padding-bottom: 14px;
-  margin-bottom: 0px;
-  position: relative;
-  z-index: 3;
-  box-shadow: none;
-}
-
-/* Curvaturas inversas */
-.db-tab-pill.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: -20px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 100% 0%, transparent 20px, #ffffff 20.5px);
-}
-
-.db-tab-pill.active::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -20px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 0% 0%, transparent 20px, #ffffff 20.5px);
-}
-
-.db-tab-pill.active:first-child::before {
-  display: none;
-}
-
-/* Ícono del tab activo */
-.db-active-tab-icon {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg, #0165B0, #013156);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  flex-shrink: 0;
-}
 
 /* ─── CARD PRINCIPAL ──────────────────────────────────────── */
 .db-content-card {

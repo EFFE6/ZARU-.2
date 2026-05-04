@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 interface IconProps {
   size?: number;
@@ -28,6 +28,25 @@ export const GestionIcon: React.FC<IconProps> = ({ size = 28, color = 'currentCo
     </defs>
   </svg>
 
+);
+ 
+ 
+// Icono de búsqueda personalizado (Figma)
+export const SearchIcon: React.FC<IconProps> = ({ size = 14, className }) => (
+  <svg width={size} height={size} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M8.27949 3.2565C9.63972 4.61673 9.63972 6.8221 8.27949 8.18232C6.91926 9.54255 4.7139 9.54255 3.35367 8.18232C1.99344 6.8221 1.99344 4.61673 3.35367 3.2565C4.7139 1.89627 6.91926 1.89627 8.27949 3.2565" stroke="url(#paint0_linear_search)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8.25439 8.20215L11.6669 11.6613" stroke="url(#paint1_linear_search)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <defs>
+      <linearGradient id="paint0_linear_search" x1="16.7012" y1="-5.67317" x2="-4.36072" y2="-4.57189" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+      <linearGradient id="paint1_linear_search" x1="15.2927" y1="4.27456" x2="4.97436" y2="4.8068" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
+      </linearGradient>
+    </defs>
+  </svg>
 );
 
 

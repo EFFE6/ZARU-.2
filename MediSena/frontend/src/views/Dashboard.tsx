@@ -182,7 +182,7 @@ const Dashboard: React.FC = () => {
           <img
             src={CampanaSvg}
             alt="Notificaciones"
-            style={{ width: 64, height: 64, cursor: 'pointer', flexShrink: 0 }}
+            style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }}
           />
         </div>
       </header>

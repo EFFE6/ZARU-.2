@@ -29,6 +29,7 @@ import {
 } from '../components/Icons';
 import DataTable from '../components/DataTable';
 import Modal from '../components/Modal';
+import TabGroup from '../components/TabGroup';
 import CampanaSvg from '../assets/img/icons/campana.svg';
 import '../styles/SeguridadAccesos/SeguridadAccesos.css';
 
@@ -98,8 +99,11 @@ const MODULES = navItems.map(nav => {
   };
 });
 
-const TABS = ['Roles', 'Permisos'] as const;
-type TabType = typeof TABS[number];
+const TABS = [
+  { id: 'Roles', label: 'Roles', icon: RolesIcon },
+  { id: 'Permisos', label: 'Permisos', icon: PermisosIcon }
+] as const;
+type TabType = 'Roles' | 'Permisos';
 
 // ── Component ─────────────────────────────────────────────────────────────
 const SeguridadAccesos: React.FC = () => {
@@ -291,23 +295,12 @@ const SeguridadAccesos: React.FC = () => {
 
         {/* ── Tabs + Card ── */}
         <div className="sa-tabs-card-group">
-          <div className="sa-tabs-scroll-area">
-            {TABS.map(tab => (
-              <div
-                key={tab}
-                className={`sa-tab-pill ${activeTab === tab ? 'active' : ''}`}
-                onClick={() => { setActiveTab(tab); setSearchQuery(''); setCurrentPage(1); }}
-              >
-                {tab === 'Roles' && activeTab === 'Roles' && (
-                  <RolesIcon className="sa-tab-icon" />
-                )}
-                {tab === 'Permisos' && activeTab === 'Permisos' && (
-                  <PermisosIcon className="sa-tab-icon" />
-                )}
-                {tab}
-              </div>
-            ))}
-          </div>
+          <TabGroup
+            tabs={TABS as any}
+            activeTab={activeTab}
+            onTabChange={(id) => { setActiveTab(id as TabType); setSearchQuery(''); setCurrentPage(1); }}
+            iconSize={18}
+          />
 
           {/* Content Card */}
           <div className={`sa-content-card ${activeTab === 'Roles' ? 'roles-active' : 'permisos-active'} ${viewInactive ? 'sa-mode-inactive' : ''}`}>
