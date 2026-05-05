@@ -37,21 +37,21 @@ import { navItems } from '../components/Sidebar';
 
 // ── Mock data ──────────────────────────────────────────────────────────────
 const INITIAL_ROLES = [
-  { id: 1,  name: 'Super-Administrador', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
-  { id: 2,  name: 'Administrador',       description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
-  { id: 3,  name: 'Supervisor',          description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
-  { id: 4,  name: 'Funcionario',         description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
-  { id: 5,  name: 'Empleado',            description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
-  { id: 6,  name: 'Contratista',         description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
-  { id: 9,  name: 'Auditor',             description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 15, createdAt: '24 de nov, 2025', active: true },
-  { id: 10, name: 'Consultor',           description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 10, createdAt: '24 de nov, 2025', active: true },
-  { id: 11, name: 'Analista',            description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 20, createdAt: '24 de nov, 2025', active: true },
-  { id: 12, name: 'Gestor',              description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 25, createdAt: '24 de nov, 2025', active: true },
+  { id: 1, name: 'Super-Administrador', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
+  { id: 2, name: 'Administrador', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
+  { id: 3, name: 'Supervisor', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
+  { id: 4, name: 'Funcionario', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
+  { id: 5, name: 'Empleado', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
+  { id: 6, name: 'Contratista', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: true },
+  { id: 9, name: 'Auditor', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 15, createdAt: '24 de nov, 2025', active: true },
+  { id: 10, name: 'Consultor', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 10, createdAt: '24 de nov, 2025', active: true },
+  { id: 11, name: 'Analista', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 20, createdAt: '24 de nov, 2025', active: true },
+  { id: 12, name: 'Gestor', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 25, createdAt: '24 de nov, 2025', active: true },
 ];
 
 const INACTIVE_ROLES = [
   { id: 7, name: 'Super-Administrador', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: false },
-  { id: 8, name: 'Administrador',       description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: false },
+  { id: 8, name: 'Administrador', description: 'Coordinador de las Dependencias de Risaralda', assignedPermissions: 30, createdAt: '24 de nov, 2025', active: false },
 ];
 
 const DefaultIconWrap = ({ children }: { children: React.ReactNode }) => (
@@ -70,22 +70,22 @@ const MODULES = navItems.map(nav => {
       submodules: [
         {
           id: 'funcionarios', name: 'FUNCIONARIOS', Icon: FuncionariosPermisos, items: [
-            { id: 'edit_func',     name: 'Editar funcionarios',   checked: false },
+            { id: 'edit_func', name: 'Editar funcionarios', checked: false },
             { id: 'eliminar_func', name: 'Eliminar funcionarios', checked: false },
-            { id: 'mover_func',    name: 'Mover funcionarios',    checked: true  },
+            { id: 'mover_func', name: 'Mover funcionarios', checked: true },
           ],
         },
         {
           id: 'contratista', name: 'CONTRATISTA', Icon: ContratistaPermisos, items: [
-            { id: 'edit_cont',     name: 'Editar contratista',    checked: false },
-            { id: 'eliminar_cont', name: 'Eliminar contratista',  checked: false },
-            { id: 'mover_cont',    name: 'Mover contratista',     checked: true  },
+            { id: 'edit_cont', name: 'Editar contratista', checked: false },
+            { id: 'eliminar_cont', name: 'Eliminar contratista', checked: false },
+            { id: 'mover_cont', name: 'Mover contratista', checked: true },
           ],
         },
       ],
       items: [
-        { id: 'archivar_pub',   name: 'Archivar publicaciones',   checked: true  },
-        { id: 'agregar_man',    name: 'Agregar nuevos manuales',  checked: true  },
+        { id: 'archivar_pub', name: 'Archivar publicaciones', checked: true },
+        { id: 'agregar_man', name: 'Agregar nuevos manuales', checked: true },
         { id: 'responder_tick', name: 'Responder tickets activos', checked: true },
       ]
     };
@@ -122,11 +122,24 @@ const SeguridadAccesos: React.FC = () => {
   const [permCurrentPage, setPermCurrentPage] = useState(1);
   const [permItemsPerPage, setPermItemsPerPage] = useState(5);
 
-  const [isModalOpen, setIsModalOpen]       = useState(false);
-  const [isEditMode, setIsEditMode]         = useState(false);
-  const [selectedRole, setSelectedRole]     = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [selectedRole, setSelectedRole] = useState<any>(null);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [expandedModules, setExpandedModules] = useState<string[]>(['dashboard', 'gestion', 'funcionarios', 'contratista']);
+
+  // Permissions selection state
+  const [selectedPermissions, setSelectedPermissions] = useState<Set<string>>(() => {
+    const initial = new Set<string>();
+    MODULES.forEach(m => {
+      m.items?.forEach(i => { if (i.checked) initial.add(i.id); });
+      m.submodules?.forEach(s => {
+        s.items?.forEach(i => { if (i.checked) initial.add(i.id); });
+      });
+    });
+    return initial;
+  });
+  const [showSelectedOnly, setShowSelectedOnly] = useState(false);
 
   const allRoles = viewInactive ? inactiveRoles : roles;
 
@@ -183,84 +196,119 @@ const SeguridadAccesos: React.FC = () => {
     return MODULES.slice((permCurrentPage - 1) * permItemsPerPage, permCurrentPage * permItemsPerPage);
   }, [permCurrentPage, permItemsPerPage]);
 
+  const handlePermissionChange = (id: string) => {
+    setSelectedPermissions(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
   // ── Unified Accordion (Works for both Permisos tab and Modal) ───────────
-  const renderAccordion = (isModalMode = false, items = MODULES) => (
-    <div className="sa-accordion">
-      {items.map(module => {
-        const isExpanded = expandedModules.includes(module.id);
-        return (
-          <div className="sa-accordion-item" key={module.id}>
-            <div
-              className={`sa-accordion-header ${isExpanded ? 'expanded' : ''}`}
-              onClick={() => toggleModule(module.id)}
-            >
-              <div className="sa-accordion-title">
-                {module.Icon && <module.Icon />}
-                {module.name}
-              </div>
-              {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-            </div>
+  const renderAccordion = (isModalMode = false, items = MODULES) => {
+    // If showSelectedOnly is active (only for modal mode), filter the items
+    const filteredModules = items.map(module => {
+      const filteredItems = (module.items || []).filter(item =>
+        !showSelectedOnly || (isModalMode && selectedPermissions.has(item.id))
+      );
 
-            {isExpanded && (
-              <div className="sa-accordion-body">
-                {module.submodules?.map(sub => {
-                  const isSubExpanded = expandedModules.includes(sub.id);
-                  return (
-                    <div className="sa-sub-accordion-item" key={sub.id}>
-                      <div
-                        className={`sa-sub-accordion-header ${isSubExpanded ? 'expanded' : ''}`}
-                        onClick={() => toggleModule(sub.id)}
-                      >
-                        <div className="sa-sub-accordion-title">
-                          {sub.Icon && <sub.Icon />}
-                          {sub.name}
-                        </div>
-                        {isSubExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-                      </div>
-
-                      {isSubExpanded && (
-                        <div className={isModalMode ? "sa-sub-accordion-body" : "sa-perm-list"}>
-                          {sub.items?.map(item => (
-                            isModalMode ? (
-                              <div className="sa-permission-item" key={item.id}>
-                                <label className="sa-checkbox-label">
-                                  <input type="checkbox" defaultChecked={item.checked} />
-                                  <span className="sa-checkmark"><Check size={11} className="sa-check-icon" /></span>
-                                  {item.name}
-                                </label>
-                              </div>
-                            ) : (
-                              <div className="sa-perm-row" key={item.id}>{item.name}</div>
-                            )
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-
-                <div className={isModalMode ? "sa-permission-list" : "sa-perm-list"}>
-                  {module.items?.map(item => (
-                    isModalMode ? (
-                      <div className="sa-permission-item" key={item.id}>
-                        <label className="sa-checkbox-label">
-                          <input type="checkbox" defaultChecked={item.checked} />
-                          <span className="sa-checkmark"><Check size={11} className="sa-check-icon" /></span>
-                          {item.name}
-                        </label>
-                      </div>
-                    ) : (
-                      <div className="sa-perm-row" key={item.id}>{item.name}</div>
-                    )
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+      const filteredSubmodules = (module.submodules || []).map(sub => {
+        const filteredSubItems = (sub.items || []).filter(item =>
+          !showSelectedOnly || (isModalMode && selectedPermissions.has(item.id))
         );
-      })}
-    </div>
-  );
+        return { ...sub, items: filteredSubItems };
+      }).filter(sub => sub.items.length > 0 || !showSelectedOnly);
+
+      return { ...module, items: filteredItems, submodules: filteredSubmodules };
+    }).filter(module => module.items.length > 0 || module.submodules.length > 0 || !showSelectedOnly);
+
+    return (
+      <div className="sa-accordion">
+        {filteredModules.map(module => {
+          const isExpanded = expandedModules.includes(module.id);
+          return (
+            <div className="sa-accordion-item" key={module.id}>
+              <div
+                className={`sa-accordion-header ${isExpanded ? 'expanded' : ''}`}
+                onClick={() => toggleModule(module.id)}
+              >
+                <div className="sa-accordion-title">
+                  {module.Icon && <module.Icon />}
+                  {module.name}
+                </div>
+                {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </div>
+
+              {isExpanded && (
+                <div className="sa-accordion-body">
+                  {module.submodules?.map(sub => {
+                    const isSubExpanded = expandedModules.includes(sub.id);
+                    return (
+                      <div className="sa-sub-accordion-item" key={sub.id}>
+                        <div
+                          className={`sa-sub-accordion-header ${isSubExpanded ? 'expanded' : ''}`}
+                          onClick={() => toggleModule(sub.id)}
+                        >
+                          <div className="sa-sub-accordion-title">
+                            {sub.Icon && <sub.Icon />}
+                            {sub.name}
+                          </div>
+                          {isSubExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+                        </div>
+
+                        {isSubExpanded && (
+                          <div className={isModalMode ? "sa-sub-accordion-body" : "sa-perm-list"}>
+                            {sub.items?.map(item => (
+                              isModalMode ? (
+                                <div className="sa-permission-item" key={item.id}>
+                                  <label className="sa-checkbox-label">
+                                    <input
+                                      type="checkbox"
+                                      checked={selectedPermissions.has(item.id)}
+                                      onChange={() => handlePermissionChange(item.id)}
+                                    />
+                                    <span className="sa-checkmark"><Check size={11} className="sa-check-icon" /></span>
+                                    {item.name}
+                                  </label>
+                                </div>
+                              ) : (
+                                <div className="sa-perm-row" key={item.id}>{item.name}</div>
+                              )
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+
+                  <div className={isModalMode ? "sa-permission-list" : "sa-perm-list"}>
+                    {module.items?.map(item => (
+                      isModalMode ? (
+                        <div className="sa-permission-item" key={item.id}>
+                          <label className="sa-checkbox-label">
+                            <input
+                              type="checkbox"
+                              checked={selectedPermissions.has(item.id)}
+                              onChange={() => handlePermissionChange(item.id)}
+                            />
+                            <span className="sa-checkmark"><Check size={11} className="sa-check-icon" /></span>
+                            {item.name}
+                          </label>
+                        </div>
+                      ) : (
+                        <div className="sa-perm-row" key={item.id}>{item.name}</div>
+                      )
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
 
   // ── Render ─────────────────────────────────────────────────────────────
@@ -281,7 +329,7 @@ const SeguridadAccesos: React.FC = () => {
 
           <div className="sa-header-bottom">
             <h1 className="sa-title">Seguridad y accesos</h1>
-            <SearchBar 
+            <SearchBar
               value={searchQuery}
               onChange={val => { setSearchQuery(val); setCurrentPage(1); }}
               placeholder="Busca"
@@ -318,7 +366,7 @@ const SeguridadAccesos: React.FC = () => {
                     </button>
                     {!viewInactive && (
                       <button className="sa-btn-primary" onClick={() => openModal(null, true)}>
-                        <Plus size={15} /> Nuevo Rol
+                        <Plus size={15} strokeWidth={3} /> Nuevo Rol
                       </button>
                     )}
                   </div>
@@ -425,12 +473,12 @@ const SeguridadAccesos: React.FC = () => {
                 <div className="sa-permisos-scroll">
                   {renderAccordion(false, pagedModules)}
                 </div>
-                
+
                 {/* Pagination for Permisos */}
                 {(() => {
                   const totalPermPages = Math.ceil(MODULES.length / permItemsPerPage);
                   const visiblePermPages = Array.from({ length: totalPermPages }, (_, i) => i + 1);
-                  
+
                   return (
                     <div className="sa-pagination">
                       <div className="sa-pagination-left">
@@ -448,25 +496,25 @@ const SeguridadAccesos: React.FC = () => {
                         </div>
                       </div>
                       <div className="sa-pagination-center">
-                        <button 
-                          className="sa-pg-nav" 
-                          onClick={() => setPermCurrentPage(p => Math.max(1, p - 1))} 
+                        <button
+                          className="sa-pg-nav"
+                          onClick={() => setPermCurrentPage(p => Math.max(1, p - 1))}
                           disabled={permCurrentPage === 1}
                         >
                           ‹
                         </button>
                         {visiblePermPages.map(n => (
-                          <button 
-                            key={n} 
-                            className={`sa-pg-btn ${permCurrentPage === n ? 'active' : ''}`} 
+                          <button
+                            key={n}
+                            className={`sa-pg-btn ${permCurrentPage === n ? 'active' : ''}`}
                             onClick={() => setPermCurrentPage(n)}
                           >
                             {n}
                           </button>
                         ))}
-                        <button 
-                          className="sa-pg-nav" 
-                          onClick={() => setPermCurrentPage(p => Math.min(totalPermPages, p + 1))} 
+                        <button
+                          className="sa-pg-nav"
+                          onClick={() => setPermCurrentPage(p => Math.min(totalPermPages, p + 1))}
                           disabled={permCurrentPage === totalPermPages}
                         >
                           ›
@@ -528,9 +576,9 @@ const SeguridadAccesos: React.FC = () => {
             <button className="sa-btn-primary" style={{ padding: '7px 16px', fontSize: 13 }}>
               <Filtrar style={{ marginRight: 6 }} /> Filtrar
             </button>
-            <SearchBar 
-              value="" 
-              onChange={() => {}} 
+            <SearchBar
+              value=""
+              onChange={() => { }}
               placeholder="Busca"
               className="sa-modal-search-bar"
             />
@@ -540,9 +588,16 @@ const SeguridadAccesos: React.FC = () => {
             {isEditMode && (
               <div className="sa-selection-info">
                 <span className="sa-selected-count">
-                  3 elemento(s) seleccionado(s) <EquisIcon style={{ cursor: 'pointer', marginLeft: 8 }} />
+                  {selectedPermissions.size} elemento(s) seleccionado(s)
+                  <EquisIcon
+                    style={{ cursor: 'pointer', marginLeft: 8 }}
+                    onClick={() => setSelectedPermissions(new Set())}
+                  />
                 </span>
-                <button className="sa-btn-view-selected">
+                <button
+                  className={`sa-btn-view-selected ${showSelectedOnly ? 'active' : ''}`}
+                  onClick={() => setShowSelectedOnly(!showSelectedOnly)}
+                >
                   <OjoIcon style={{ marginRight: 6 }} /> Ver seleccionados
                 </button>
               </div>

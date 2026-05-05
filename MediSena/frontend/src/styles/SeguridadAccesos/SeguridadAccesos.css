@@ -17,7 +17,7 @@
   --sa-bg-expanded: #2B506B;
   --sa-bg-sub-expanded: #C7E7FF;
   --sa-inactive-gray: #BFBFBF;
-  
+
   /* Shadows & Radius */
   --sa-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
   --sa-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -110,7 +110,7 @@
 
 .sa-title {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #1e3a52;
   margin: 0;
   letter-spacing: -0.03em;
@@ -187,7 +187,7 @@
   background: white;
   border: 1.5px solid #002c4d;
   color: #002c4d;
-  border-radius: 20px;
+  border-radius: 9px;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
@@ -208,7 +208,7 @@
   background: linear-gradient(135deg, var(--sa-brand-blue), var(--sa-brand-dark));
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 9px;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
@@ -229,7 +229,7 @@
   background: #dc2626;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 12px;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
@@ -248,7 +248,7 @@
   background: white;
   border: 1.5px solid #cbd5e1;
   color: #475569;
-  border-radius: 20px;
+  border-radius: 12px;
   font-weight: 600;
   font-size: 13px;
   cursor: pointer;
@@ -262,6 +262,8 @@
 .sa-btn-icon-white {
   filter: brightness(0) invert(1);
 }
+
+
 
 /* ─── ROLES SCROLL + ROW (Figma layout) ──────── */
 .sa-roles-scroll {
@@ -511,7 +513,8 @@ body .sa-container .sa-roles-scroll::-webkit-scrollbar-thumb {
 
 .sa-permisos-scroll {
   flex: 1;
-  overflow-y: scroll !important; /* Kept for global override */
+  overflow-y: scroll !important;
+  /* Kept for global override */
   min-height: 0;
   padding-right: 19px;
 }
@@ -717,12 +720,12 @@ body .sa-container .sa-permisos-scroll::-webkit-scrollbar-thumb {
   display: block;
 }
 
-.sa-checkbox-label input:not(:checked) ~ .sa-checkmark {
+.sa-checkbox-label input:not(:checked)~.sa-checkmark {
   background: white;
   border: 1.5px solid #cbd5e1;
 }
 
-.sa-checkbox-label input:not(:checked) ~ .sa-checkmark .sa-check-icon {
+.sa-checkbox-label input:not(:checked)~.sa-checkmark .sa-check-icon {
   display: none;
 }
 
@@ -971,14 +974,7 @@ body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb:hover {
 }
 
 
-.sa-selection-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-  font-size: 13px;
-  font-weight: 600;
-}
+
 
 .sa-selected-count {
   display: flex;
@@ -994,12 +990,37 @@ body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb:hover {
   gap: 5px;
   background: none;
   border: none;
-  border-bottom: 2px solid #0165B0;
+  border-bottom: 2px solid transparent;
   color: #0165B0;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
   padding-bottom: 2px;
+  transition: border-bottom-color 0.2s;
+}
+
+.sa-modal-footer .sa-btn-danger {
+  width: 178px;
+  height: 48px;
+  border-radius: 10px !important;
+  justify-content: center;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+
+.sa-modal-footer .sa-btn-primary {
+  min-width: 178px;
+  height: 48px;
+  border-radius: 10px !important;
+  justify-content: center;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+
+.sa-btn-view-selected.active {
+  border-bottom-color: #0165B0;
 }
 
 /* ─── MODAL FOOTER ────────────────────────────── */

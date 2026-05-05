@@ -54,6 +54,7 @@
   cursor: pointer;
   opacity: 0.8;
 }
+
 .db-filter-tag-x:hover {
   opacity: 1;
 }
@@ -88,7 +89,7 @@
 /* ─── TÍTULO ──────────────────────────────────────────────── */
 .db-title {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #1e3a52;
   margin: 0;
   letter-spacing: -0.03em;
@@ -253,7 +254,8 @@
   font-size: 13px;
   font-weight: 600;
   gap: 8px;
-  margin-left: -8px; /* overlap border-radius */
+  margin-left: -8px;
+  /* overlap border-radius */
   position: relative;
   z-index: 1;
 }
@@ -439,7 +441,8 @@
 }
 
 .db-cargo-icon {
-  width: 1.125rem; /* ~18px */
+  width: 1.125rem;
+  /* ~18px */
   height: 1.125rem;
   object-fit: contain;
   flex-shrink: 0;
@@ -462,7 +465,8 @@
 }
 
 .db-action-icon {
-  width: 2rem;  /* ~32px */
+  width: 2rem;
+  /* ~32px */
   height: 2rem;
   object-fit: contain;
 }
@@ -677,13 +681,25 @@
 }
 
 @keyframes dbFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes dbSlideUp {
-  from { transform: translateY(24px); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ─── MODAL FORMULARIO FULL (FUNCIONARIOS) ─────────────────── */
@@ -796,7 +812,8 @@
   margin-left: 2px;
 }
 
-.db-field-input, .db-field-select {
+.db-field-input,
+.db-field-select {
   padding: 10px 14px;
   border: 1.5px solid #e2e8f0;
   border-radius: 10px;
@@ -808,13 +825,15 @@
   outline: none;
 }
 
-.db-field-input:focus, .db-field-select:focus {
+.db-field-input:focus,
+.db-field-select:focus {
   border-color: #0165B0;
   background: white;
   box-shadow: 0 0 0 3px rgba(1, 101, 176, 0.1);
 }
 
-.db-field-input:disabled, .db-field-select:disabled {
+.db-field-input:disabled,
+.db-field-select:disabled {
   background: #f8fafc;
   color: #64748b;
   cursor: not-allowed;
@@ -995,8 +1014,13 @@
   color: #1e3a52;
 }
 
-.db-view-stat-item.activos { color: #166534; }
-.db-view-stat-item.inactivos { color: #64748b; }
+.db-view-stat-item.activos {
+  color: #166534;
+}
+
+.db-view-stat-item.inactivos {
+  color: #64748b;
+}
 
 .db-view-divider {
   height: 1px;
@@ -1328,12 +1352,25 @@
   font-weight: 700;
 }
 
-.db-stat-check { color: #059669; }
-.db-stat-x { color: #e11d48; }
+.db-stat-check {
+  color: #059669;
+}
 
-.db-icon-eye { color: #3b82f6; }
-.db-icon-pencil { color: #1e3a52; }
-.db-icon-ban { color: #e11d48; }
+.db-stat-x {
+  color: #e11d48;
+}
+
+.db-icon-eye {
+  color: #3b82f6;
+}
+
+.db-icon-pencil {
+  color: #1e3a52;
+}
+
+.db-icon-ban {
+  color: #e11d48;
+}
 
 .db-toolbar-filters {
   display: flex;
@@ -1682,8 +1719,15 @@
 }
 
 @keyframes dbSlideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .db-modal-small {

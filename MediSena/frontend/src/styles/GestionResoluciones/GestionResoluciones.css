@@ -82,7 +82,7 @@
 
 .gestion-title {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #1e3a52;
   margin: 0;
   letter-spacing: -0.03em;
@@ -180,12 +180,15 @@
   flex: 1;
   min-height: 0;
   /* Ocultar barra de scroll */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE y Edge */
 }
 
 .table-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome, Safari y Opera */
+  display: none;
+  /* Chrome, Safari y Opera */
 }
 
 .resoluciones-table {
@@ -389,7 +392,9 @@
   font-weight: 800;
 }
 
-.ti-n4 { color: #f97316; }
+.ti-n4 {
+  color: #f97316;
+}
 
 .ti-badge-history {
   background: #d1fae5;
@@ -414,8 +419,14 @@
   color: white;
 }
 
-.ts-blue { background: #0165b0; }
-.ts-yellow { background: #fde68a; color: #92400e; }
+.ts-blue {
+  background: #0165b0;
+}
+
+.ts-yellow {
+  background: #fde68a;
+  color: #92400e;
+}
 
 .ts-row {
   display: flex;
@@ -426,9 +437,14 @@
   color: #475569;
 }
 
-.ts-row:last-child { border-bottom: none; }
+.ts-row:last-child {
+  border-bottom: none;
+}
 
-.ts-row strong { color: #1e293b; font-weight: 800; }
+.ts-row strong {
+  color: #1e293b;
+  font-weight: 800;
+}
 
 /* ─── VISTA FORMULARIOS (USUARIOS/SUB-ESP) ────────────────── */
 .ue-row {
@@ -511,12 +527,35 @@
 }
 
 /* ─── ESTILOS DE COLUMNAS ─────────────────────────────────── */
-.col-codigo { font-weight: 800; color: #1e293b; }
-.col-grupo { font-weight: 700; color: #0f172a; }
-.col-tipo-benef { font-weight: 500; font-size: 13.5px; }
-.col-tope { font-weight: 800; color: #0165b0; }
-.col-desc-nivel { font-size: 13px; max-width: 200px; }
-.col-periodo { font-weight: 600; font-size: 13px; }
+.col-codigo {
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.col-grupo {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.col-tipo-benef {
+  font-weight: 500;
+  font-size: 13.5px;
+}
+
+.col-tope {
+  font-weight: 800;
+  color: #0165b0;
+}
+
+.col-desc-nivel {
+  font-size: 13px;
+  max-width: 200px;
+}
+
+.col-periodo {
+  font-weight: 600;
+  font-size: 13px;
+}
 
 .vigencia-orange {
   color: #f97316;
@@ -2944,12 +2983,12 @@
   .abr-vigencia-container {
     padding: 0 16px 16px 16px;
   }
-  
+
   .vigencia-card-content {
     padding: 24px;
     gap: 20px;
   }
-  
+
   .vigencia-sections {
     gap: 24px;
   }
@@ -3084,7 +3123,9 @@
   gap: 16px;
 }
 
-.alert-icon { flex-shrink: 0; }
+.alert-icon {
+  flex-shrink: 0;
+}
 
 .alert-content h4 {
   margin: 0 0 4px;
@@ -3130,7 +3171,9 @@
   font-weight: 800;
 }
 
-.ti-n4 { color: #f97316; }
+.ti-n4 {
+  color: #f97316;
+}
 
 .ti-badge-history {
   background: #d1fae5;
@@ -3141,7 +3184,10 @@
   font-weight: 700;
 }
 
-.ts-row strong { color: #1e293b; font-weight: 800; }
+.ts-row strong {
+  color: #1e293b;
+  font-weight: 800;
+}
 
 /* ─── AJUSTES ESPECÍFICOS VISTA TOPES ─────────────────────── */
 .tope-view-header {
@@ -3176,8 +3222,14 @@
   color: white;
 }
 
-.ts-blue { background: #0165b0; }
-.ts-yellow { background: #fde68a; color: #92400e; }
+.ts-blue {
+  background: #0165b0;
+}
+
+.ts-yellow {
+  background: #fde68a;
+  color: #92400e;
+}
 
 .ts-row {
   display: flex !important;
@@ -3191,7 +3243,9 @@
   align-items: center;
 }
 
-.ts-row:last-child { border-bottom: none; }
+.ts-row:last-child {
+  border-bottom: none;
+}
 
 /* ─── VISTA FORMULARIOS (USUARIOS/SUB-ESP) ────────────────── */
 .ue-row {
@@ -3256,12 +3310,35 @@
 }
 
 /* ─── ESTILOS DE COLUMNAS ─────────────────────────────────── */
-.col-codigo { font-weight: 800; color: #1e293b; }
-.col-grupo { font-weight: 700; color: #0f172a; }
-.col-tipo-benef { font-weight: 500; font-size: 13.5px; }
-.col-tope { font-weight: 800; color: #0165b0; }
-.col-desc-nivel { font-size: 13px; max-width: 200px; }
-.col-periodo { font-weight: 600; font-size: 13px; }
+.col-codigo {
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.col-grupo {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.col-tipo-benef {
+  font-weight: 500;
+  font-size: 13.5px;
+}
+
+.col-tope {
+  font-weight: 800;
+  color: #0165b0;
+}
+
+.col-desc-nivel {
+  font-size: 13px;
+  max-width: 200px;
+}
+
+.col-periodo {
+  font-weight: 600;
+  font-size: 13px;
+}
 
 .vigencia-orange {
   color: #f97316;
@@ -3300,7 +3377,7 @@
   .tope-info-box {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .form-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3319,7 +3396,8 @@
     min-height: 100vh;
     overflow: visible;
     padding: 16px;
-    padding-top: 70px; /* Espacio para el botón de menú móvil */
+    padding-top: 70px;
+    /* Espacio para el botón de menú móvil */
   }
 
   /* Header */
@@ -3418,7 +3496,7 @@
   .gestion-title {
     font-size: 1.3rem;
   }
-  
+
   .breadcrumb {
     display: none;
   }
@@ -3438,4 +3516,3 @@
     align-items: center;
   }
 }
-
