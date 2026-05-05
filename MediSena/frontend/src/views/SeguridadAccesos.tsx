@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import {
   Home,
   ChevronRight,
-  Search,
   RefreshCw,
   Plus,
   MoreVertical,
@@ -30,6 +29,7 @@ import {
 import DataTable from '../components/DataTable';
 import Modal from '../components/Modal';
 import TabGroup from '../components/TabGroup';
+import SearchBar from '../components/SearchBar';
 import CampanaSvg from '../assets/img/icons/campana.svg';
 import '../styles/SeguridadAccesos/SeguridadAccesos.css';
 
@@ -114,9 +114,13 @@ const SeguridadAccesos: React.FC = () => {
   const [roles, setRoles] = useState(INITIAL_ROLES);
   const [inactiveRoles, setInactiveRoles] = useState(INACTIVE_ROLES);
 
-  // Pagination state
+  // Pagination state (Roles)
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  // Pagination state (Permissions)
+  const [permCurrentPage, setPermCurrentPage] = useState(1);
+  const [permItemsPerPage, setPermItemsPerPage] = useState(5);
 
   const [isModalOpen, setIsModalOpen]       = useState(false);
   const [isEditMode, setIsEditMode]         = useState(false);
@@ -175,10 +179,14 @@ const SeguridadAccesos: React.FC = () => {
 
   const handleSave = () => closeModal();
 
+  const pagedModules = useMemo(() => {
+    return MODULES.slice((permCurrentPage - 1) * permItemsPerPage, permCurrentPage * permItemsPerPage);
+  }, [permCurrentPage, permItemsPerPage]);
+
   // ── Unified Accordion (Works for both Permisos tab and Modal) ───────────
-  const renderAccordion = (isModalMode = false) => (
+  const renderAccordion = (isModalMode = false, items = MODULES) => (
     <div className="sa-accordion">
-      {MODULES.map(module => {
+      {items.map(module => {
         const isExpanded = expandedModules.includes(module.id);
         return (
           <div className="sa-accordion-item" key={module.id}>
@@ -214,10 +222,10 @@ const SeguridadAccesos: React.FC = () => {
                         <div className={isModalMode ? "sa-sub-accordion-body" : "sa-perm-list"}>
                           {sub.items?.map(item => (
                             isModalMode ? (
-                              <div className={`sa-permission-item ${item.checked ? 'checked' : ''}`} key={item.id}>
+                              <div className="sa-permission-item" key={item.id}>
                                 <label className="sa-checkbox-label">
-                                  <input type="checkbox" defaultChecked={item.checked} disabled={!isEditMode} />
-                                  <span className="sa-checkmark">{item.checked && <Check size={11} />}</span>
+                                  <input type="checkbox" defaultChecked={item.checked} />
+                                  <span className="sa-checkmark"><Check size={11} className="sa-check-icon" /></span>
                                   {item.name}
                                 </label>
                               </div>
@@ -234,10 +242,10 @@ const SeguridadAccesos: React.FC = () => {
                 <div className={isModalMode ? "sa-permission-list" : "sa-perm-list"}>
                   {module.items?.map(item => (
                     isModalMode ? (
-                      <div className={`sa-permission-item ${item.checked ? 'checked' : ''}`} key={item.id}>
+                      <div className="sa-permission-item" key={item.id}>
                         <label className="sa-checkbox-label">
-                          <input type="checkbox" defaultChecked={item.checked} disabled={!isEditMode} />
-                          <span className="sa-checkmark">{item.checked && <Check size={11} />}</span>
+                          <input type="checkbox" defaultChecked={item.checked} />
+                          <span className="sa-checkmark"><Check size={11} className="sa-check-icon" /></span>
                           {item.name}
                         </label>
                       </div>
@@ -273,23 +281,11 @@ const SeguridadAccesos: React.FC = () => {
 
           <div className="sa-header-bottom">
             <h1 className="sa-title">Seguridad y accesos</h1>
-            <div className="sa-search-wrapper">
-              <div className="sa-search-container">
-                <input
-                  type="text"
-                  placeholder="Busca"
-                  className="sa-search-input"
-                  value={searchQuery}
-                  onChange={e => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                />
-              </div>
-              <button className="sa-search-btn" type="button">
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="7" cy="7" r="4.2" stroke="#002c4d" strokeWidth="2" />
-                  <line x1="10.2" y1="10.5" x2="15.5" y2="15.8" stroke="#002c4d" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </button>
-            </div>
+            <SearchBar 
+              value={searchQuery}
+              onChange={val => { setSearchQuery(val); setCurrentPage(1); }}
+              placeholder="Busca"
+            />
           </div>
         </header>
 
@@ -400,8 +396,7 @@ const SeguridadAccesos: React.FC = () => {
                         value={itemsPerPage}
                         onChange={e => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}
                       >
-                        <option value={5}>05</option>
-                        <option value={6}>06</option>
+                        <option value={5}>5</option>
                         <option value={10}>10</option>
                         <option value={20}>20</option>
                       </select>
@@ -428,28 +423,61 @@ const SeguridadAccesos: React.FC = () => {
                   De click en alguno de los módulos para conocer sus permisos.
                 </p>
                 <div className="sa-permisos-scroll">
-                  {renderAccordion(false)}
+                  {renderAccordion(false, pagedModules)}
                 </div>
                 
-                {/* Pagination for consistency as requested */}
-                <div className="sa-pagination">
-                  <div className="sa-pagination-left">
-                    <span>Elementos por página</span>
-                    <div className="sa-items-select-wrap">
-                      <select className="sa-items-select" disabled>
-                        <option>10</option>
-                      </select>
+                {/* Pagination for Permisos */}
+                {(() => {
+                  const totalPermPages = Math.ceil(MODULES.length / permItemsPerPage);
+                  const visiblePermPages = Array.from({ length: totalPermPages }, (_, i) => i + 1);
+                  
+                  return (
+                    <div className="sa-pagination">
+                      <div className="sa-pagination-left">
+                        <span>Elementos por página</span>
+                        <div className="sa-items-select-wrap">
+                          <select
+                            className="sa-items-select"
+                            value={permItemsPerPage}
+                            onChange={e => { setPermItemsPerPage(Number(e.target.value)); setPermCurrentPage(1); }}
+                          >
+                            <option value={5}>5</option>
+                            <option value={10}>10</option>
+                            <option value={20}>20</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="sa-pagination-center">
+                        <button 
+                          className="sa-pg-nav" 
+                          onClick={() => setPermCurrentPage(p => Math.max(1, p - 1))} 
+                          disabled={permCurrentPage === 1}
+                        >
+                          ‹
+                        </button>
+                        {visiblePermPages.map(n => (
+                          <button 
+                            key={n} 
+                            className={`sa-pg-btn ${permCurrentPage === n ? 'active' : ''}`} 
+                            onClick={() => setPermCurrentPage(n)}
+                          >
+                            {n}
+                          </button>
+                        ))}
+                        <button 
+                          className="sa-pg-nav" 
+                          onClick={() => setPermCurrentPage(p => Math.min(totalPermPages, p + 1))} 
+                          disabled={permCurrentPage === totalPermPages}
+                        >
+                          ›
+                        </button>
+                      </div>
+                      <div className="sa-pagination-right">
+                        {permCurrentPage} - de {totalPermPages} páginas
+                      </div>
                     </div>
-                  </div>
-                  <div className="sa-pagination-center">
-                    <button className="sa-pg-nav" disabled>‹</button>
-                    <button className="sa-pg-btn active">1</button>
-                    <button className="sa-pg-nav" disabled>›</button>
-                  </div>
-                  <div className="sa-pagination-right">
-                    1 - de 1 páginas
-                  </div>
-                </div>
+                  );
+                })()}
               </div>
             )}
           </div>
@@ -500,10 +528,12 @@ const SeguridadAccesos: React.FC = () => {
             <button className="sa-btn-primary" style={{ padding: '7px 16px', fontSize: 13 }}>
               <Filtrar style={{ marginRight: 6 }} /> Filtrar
             </button>
-            <div className="sa-modal-search">
-              <input type="text" placeholder="Busca" />
-              <button className="sa-modal-search-btn"><Search size={13} /></button>
-            </div>
+            <SearchBar 
+              value="" 
+              onChange={() => {}} 
+              placeholder="Busca"
+              className="sa-modal-search-bar"
+            />
           </div>
 
           <div className="sa-permissions-zone">
