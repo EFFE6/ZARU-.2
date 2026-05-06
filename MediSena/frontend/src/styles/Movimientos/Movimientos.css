@@ -1,0 +1,238 @@
+/* =============================================
+   Movimientos.css — Layout y estilos compartidos
+   para todas las vistas de Movimientos
+   ============================================= */
+
+/* ── Página contenedora ── */
+.mov-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 32px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  background: #f0f4f8;
+}
+
+.mov-breadcrumb {
+  margin-bottom: 4px;
+}
+
+/* ── Card blanca base ── */
+.mov-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(16, 47, 75, 0.08);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Card header (título + acciones) ── */
+.mov-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.mov-card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mov-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mov-card-icon {
+  color: #0165B0;
+  flex-shrink: 0;
+}
+
+.mov-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #102F4B;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.mov-subtitle {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.mov-count-badge {
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  align-self: center;
+}
+
+/* ── Botones de acción del header ── */
+.mov-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.mov-btn-outline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.80rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.mov-btn-outline:hover { background: #f1f5f9; border-color: #94a3b8; }
+
+.mov-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #0165B0, #013156);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 0.80rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.18s;
+  white-space: nowrap;
+}
+.mov-btn-primary:hover { opacity: 0.9; }
+
+/* ── Barra de advertencia ── */
+.mov-warning-bar {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.80rem;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Toolbar de filtros ── */
+.mov-toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mov-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  flex: 1;
+  min-width: 200px;
+  transition: border-color 0.18s;
+}
+.mov-search-wrap:focus-within { border-color: #0165B0; }
+
+.mov-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.83rem;
+  color: #334155;
+  width: 100%;
+}
+.mov-search-input::placeholder { color: #94a3b8; }
+
+.mov-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mov-filter-label {
+  font-size: 0.70rem;
+  color: #64748b;
+  font-weight: 600;
+  padding-left: 2px;
+}
+
+.mov-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 130px;
+}
+
+.mov-select {
+  appearance: none;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 30px 8px 10px;
+  font-size: 0.82rem;
+  color: #334155;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.18s;
+}
+.mov-select:focus { border-color: #0165B0; background: #fff; }
+
+.mov-select-icon {
+  position: absolute;
+  right: 8px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+/* ── Tabla con scroll ── */
+.mov-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 420px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.mov-table-wrap thead th {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  z-index: 2;
+}
+
+/* ── Paginación (reutiliza clases de GestionResoluciones) ── */
+
+/* ── Separador ── */
+.mov-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0 -28px;
+}

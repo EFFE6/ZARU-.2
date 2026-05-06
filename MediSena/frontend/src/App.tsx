@@ -9,6 +9,12 @@ import SeguridadAccesos from './views/SeguridadAccesos';
 import OrdenAtencion from './views/Movimientos/OrdenAtencion';
 import CuentaCobro from './views/Movimientos/CuentaCobro';
 import RelacionPagos from './views/Movimientos/RelacionPagos';
+import ProgramarAgenda from './views/Movimientos/ProgramarAgenda';
+import Agendas from './views/Movimientos/Agendas';
+import CancelarOrdenes from './views/Movimientos/CancelarOrdenes';
+import ConsultarOrdenes from './views/Movimientos/ConsultarOrdenes';
+import Consultas from './views/Consultas/Consultas';
+import Excedentes from './views/Excedentes/Excedentes';
 import './App.css';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -34,9 +40,16 @@ function App() {
         <Route path="/dashboard" element={<Navigate to="/" replace />} />
         <Route path="/gestion" element={<GestionResoluciones />} />
         <Route path="/datos-basicos/*" element={<DatosBasicos />} />
-        <Route path="/movimientos" element={<Dashboard />} />
-        <Route path="/excedentes" element={<Dashboard />} />
-        <Route path="/consultas" element={<Dashboard />} />
+        <Route path="/movimientos" element={<Navigate to="/movimientos/orden-atencion" replace />} />
+        <Route path="/movimientos/orden-atencion" element={<OrdenAtencion />} />
+        <Route path="/movimientos/cuenta-cobro" element={<CuentaCobro />} />
+        <Route path="/movimientos/relacion-pagos" element={<RelacionPagos />} />
+        <Route path="/movimientos/programar-agenda" element={<ProgramarAgenda />} />
+        <Route path="/movimientos/agendas" element={<Agendas />} />
+        <Route path="/movimientos/cancelar-ordenes" element={<CancelarOrdenes />} />
+        <Route path="/movimientos/consultar-ordenes" element={<ConsultarOrdenes />} />
+        <Route path="/excedentes" element={<Excedentes />} />
+        <Route path="/consultas" element={<Consultas />} />
         <Route path="/reportes" element={<Dashboard />} />
         <Route path="/reportes-nacionales" element={<Dashboard />} />
         <Route path="/seguridad-accesos" element={<SeguridadAccesos />} />

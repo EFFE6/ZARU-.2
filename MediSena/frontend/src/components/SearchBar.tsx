@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchIcon } from './Icons';
+import { Search } from 'lucide-react';
 import '../styles/SearchBar.css';
 
 interface SearchBarProps {
@@ -27,7 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         />
       </div>
       <button className="search-btn" type="button">
-        <SearchIcon size={18} className="search-btn-icon" />
+        <Search size={18} className="search-btn-icon" />
       </button>
     </div>
   );

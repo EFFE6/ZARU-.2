@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Filter, RefreshCw, Plus, X, Search, Save } from 'lucide-react';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
-import { ImgModalEliminarIcon, ContratoIcon, EditarTablaContratoIcon, EliminarTablaContratoIcon } from '../../components/Icons';
+import { ImgModalEliminarIcon, ContratoIcon, EditIcon, DeleteIcon } from '../../components/Icons';
+import '../../styles/DatosBasicos/Contratos.css';
 
 const MOCK_CONTRATOS = [
   {
@@ -179,11 +180,11 @@ const Contratos: React.FC<ContratosProps> = ({ searchQuery }) => {
             </td>
             <td>
               <div className="db-row-actions">
-                <button className="db-icon-btn edit" style={{ padding: 0, border: 'none', background: 'transparent' }} onClick={() => { setSelectedContrato(item); setModalEditar(true); }}>
-                  <EditarTablaContratoIcon />
+                <button className="db-icon-btn-svg" onClick={() => { setSelectedContrato(item); setModalEditar(true); }}>
+                  <EditIcon className="db-action-icon" />
                 </button>
-                <button className="db-icon-btn delete" style={{ padding: 0, border: 'none', background: 'transparent' }} onClick={() => { setSelectedContrato(item); setModalEliminar(true); }}>
-                  <EliminarTablaContratoIcon />
+                <button className="db-icon-btn-svg" onClick={() => { setSelectedContrato(item); setModalEliminar(true); }}>
+                  <DeleteIcon className="db-action-icon" />
                 </button>
               </div>
             </td>
