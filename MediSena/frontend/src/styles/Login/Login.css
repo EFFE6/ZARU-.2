@@ -20,11 +20,8 @@
 
 .govco-header-img {
   height: 0.63vw;
-  /* 12px @ 1920px viewport */
-  /* Ajusta la altura de la imagen dentro de la barra azul */
   object-fit: contain;
   opacity: 0.95;
-
 }
 
 /* Reset & Base */
@@ -38,8 +35,6 @@
   position: relative;
 }
 
-
-
 .login-main-content {
   flex: 1;
   display: flex;
@@ -48,7 +43,7 @@
   margin-top: -10px;
 }
 
-/* Background Lines (PNG images) */
+/* Background Lines */
 .login-bg-line {
   position: absolute;
   z-index: 0;
@@ -56,7 +51,6 @@
   object-fit: contain;
 }
 
-/* Línea 1 - Borde izquierdo, corre verticalmente por todo el lado izquierdo */
 .login-line1 {
   top: -38%;
   height: 100%;
@@ -65,7 +59,6 @@
   pointer-events: none;
 }
 
-/* Línea 2 - Zona inferior izquierda, debajo y alrededor del logo SENA */
 .login-line2 {
   bottom: -5%;
   height: 34.5%;
@@ -74,12 +67,12 @@
   pointer-events: none;
 }
 
-/* Línea 3 - Zona central-derecha, corre verticalmente de arriba abajo al 43% del ancho */
 .login-line3 {
-  top: 0;
-  left: 42%;
-  height: 100%;
-  width: auto;
+  top: clamp(-10%, -5vw, 0%);
+  left: clamp(45%, 48vw, 55%);
+  height: auto;
+  max-height: 100%;
+  width: clamp(200px, 35vw, 500px);
   opacity: 0.9;
   pointer-events: none;
 }
@@ -91,12 +84,16 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  position: relative;
   z-index: 10;
+  isolation: isolate;
 }
 
+/* Figma: ancho del form = 408.84px ≈ 409px */
 .login-form-container {
   width: 100%;
-  max-width: 420px;
+  max-width: clamp(280px, 85%, 409px);
+  /* ← 409px exacto del Figma */
   background: transparent;
   display: flex;
   flex-direction: column;
@@ -104,19 +101,22 @@
   padding-top: 10px;
 }
 
-/* Logo & Headers */
+/* Logo Zarú — Figma: 247×149px, ratio 1.658:1 */
 .login-logo-img {
-  width: 259px;
-  height: 201px;
+  width: clamp(160px, 17vw, 247px);
+  height: auto;
+  aspect-ratio: 247 / 149;
   margin-bottom: 0.2rem;
   object-fit: contain;
 }
 
+/* Figma: gap de 20px entre título e inputs */
 .login-title-text {
   font-size: 1.4rem;
   font-weight: 700;
   color: #1e3a5f;
-  margin-bottom: 0.5rem;
+  margin-bottom: 20px;
+  /* ← 20px exacto del Figma */
   align-self: flex-start;
   width: 100%;
 }
@@ -124,27 +124,29 @@
 /* Form Styles */
 .login-form {
   width: 100%;
-  max-width: 408.84px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
+/* Figma: input wrapper = 408.84 × 76px */
 .login-input-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   text-align: left;
   width: 100%;
-  max-width: 408.84px;
-  height: 65px;
+  height: clamp(65px, 5.5vw, 76px);
+  /* ← 76px exacto del Figma */
 }
 
 .login-input-wrapper label {
   font-size: 0.85rem;
   font-weight: 700;
   color: #000000;
-  /* Red label color to match image */
+  line-height: 1;
+  margin-bottom: 6px;
+  /* espacio entre label e input */
 }
 
 .login-input-group {
@@ -152,14 +154,13 @@
   display: flex;
   align-items: center;
   flex: 1;
-  margin-top: 0.3rem;
+  /* ocupa el espacio restante del wrapper */
 }
 
 .login-icon {
   position: absolute;
   left: 14px;
   color: #000000;
-  /* Red icon color to match image */
 }
 
 .login-input {
@@ -168,7 +169,6 @@
   padding: 0 3rem;
   border-radius: 8px;
   border: 1.5px solid #000000;
-  /* Red border from image */
   font-size: 1rem;
   color: #000000;
   font-weight: 600;
@@ -233,7 +233,6 @@
 
 .login-link-reset {
   color: #38a13a;
-  /* Green focus link */
   text-decoration: underline;
   font-weight: 700;
 }
@@ -243,13 +242,12 @@
   color: white;
   border-radius: 8px;
   border: none;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   width: 100%;
-  max-width: 408.84px;
-  height: 39px;
+  height: clamp(35px, 4vh, 39px);
   padding: 0;
   display: flex;
   align-items: center;
@@ -276,6 +274,7 @@
   text-align: center;
 }
 
+/* Logo SENA — Figma: 67.36×65px, ratio ~1.036:1 */
 .login-sena-logo-container {
   margin-top: 0.5rem;
   display: flex;
@@ -284,12 +283,11 @@
 }
 
 .sena-logo-img {
-  width: 3.51vw;
-  /* 67.36px @ 1920px viewport */
+  width: clamp(40px, 3.51vw, 67px);
   height: auto;
+  aspect-ratio: 67.36 / 65;
   object-fit: contain;
 }
-
 
 /* Right Side: Images */
 .login-right {
@@ -305,7 +303,6 @@
   right: 0;
   height: 100%;
   width: 32vw;
-  /* Muy arrinconado a la derecha, para que no pase del hombro del médico */
   max-width: 550px;
   object-fit: cover;
   object-position: top right;
@@ -317,11 +314,8 @@
   top: 15%;
   right: -1%;
   width: 19.79vw;
-  /* 380px @ 1920px viewport */
   opacity: 2.65;
-  /* Súper visible */
   z-index: 2;
-  /* Sobre la forma azul */
   pointer-events: none;
 }
 
@@ -337,12 +331,19 @@
   pointer-events: none;
 }
 
+/* ── Media Queries ── */
 
-
-/* Tablet & Mobile Responsiveness */
 @media screen and (max-width: 1200px) {
   .login-left {
     flex: 0 0 45%;
+  }
+
+  .login-logo-img {
+    width: clamp(150px, 15vw, 220px);
+  }
+
+  .sena-logo-img {
+    width: clamp(38px, 3.2vw, 60px);
   }
 
   .login-bg-shape {
@@ -351,7 +352,6 @@
 
   .login-watermark {
     width: 26.67vw;
-    /* 320px @ 1200px viewport */
     right: 5%;
   }
 }
@@ -360,22 +360,35 @@
   .login-left {
     flex: 0 0 50%;
     padding: 1rem 1rem;
+    isolation: isolate;
   }
 
   .login-logo-img {
-    width: 180px;
-    height: auto;
+    width: clamp(140px, 14vw, 200px);
   }
 
   .sena-logo-img {
-    width: 50px;
-    height: auto;
+    width: clamp(36px, 3vw, 55px);
+  }
+
+  .login-title-text {
+    margin-bottom: 16px;
+    /* reduce un poco en tablet */
+  }
+
+  .login-input-wrapper {
+    height: clamp(62px, 5vw, 72px);
   }
 
   .login-watermark {
     width: 24.41vw;
-    /* 250px @ 1024px viewport */
     top: 20%;
+  }
+
+  .login-bg-shape {
+    width: 50%;
+    right: 0;
+    left: auto;
   }
 
   .login-doc {
@@ -385,15 +398,39 @@
 
 @media screen and (max-width: 850px) {
   .login-left {
-    flex: 0 0 55%;
+    isolation: isolate;
+  }
+
+  .login-logo-img {
+    width: clamp(130px, 18vw, 180px);
+  }
+
+  .sena-logo-img {
+    width: clamp(34px, 4vw, 50px);
+  }
+
+  .login-title-text {
+    margin-bottom: 14px;
+  }
+
+  .login-input-wrapper {
+    height: clamp(60px, 5vw, 68px);
+  }
+
+  .login-form-container {
+    max-width: 320px;
   }
 
   .login-bg-shape {
-    width: 45vw;
+    width: 55%;
+    right: 0;
+    left: auto;
+    object-position: top right;
   }
 
   .login-doc {
-    height: 75%;
+    height: 70%;
+    right: 0;
   }
 }
 
@@ -411,16 +448,33 @@
     display: flex;
     justify-content: center;
     background: white;
-    /* Asegurar fondo sólido */
     min-height: 100vh;
-    /* Que ocupe toda la pantalla al hacer scroll si es necesario */
+  }
+
+  .login-logo-img {
+    width: clamp(160px, 40vw, 247px);
+  }
+
+  .sena-logo-img {
+    width: clamp(48px, 8vw, 67px);
+  }
+
+  .login-title-text {
+    margin-bottom: 20px;
+    /* restaurar 20px en móvil, tiene espacio */
   }
 
   .login-form-container {
     padding-top: 20px;
+    max-width: 409px;
+    /* restaurar máximo Figma en móvil */
   }
 
-  /* Ocultar elementos gráficos complejos en móviles para limpieza */
+  .login-input-wrapper {
+    height: clamp(65px, 5.5vw, 76px);
+    /* restaurar altura Figma */
+  }
+
   .login-right {
     display: none;
   }
@@ -436,13 +490,21 @@
   }
 
   .login-logo-img {
-    width: 140px;
-    height: auto;
+    width: clamp(140px, 50vw, 200px);
+  }
+
+  .sena-logo-img {
+    width: clamp(44px, 10vw, 60px);
   }
 
   .login-title-text {
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 14px;
+  }
+
+  .login-form-container {
+    max-width: 100%;
+    /* ocupa todo el ancho disponible en móvil pequeño */
   }
 
   .login-form {
@@ -450,17 +512,12 @@
   }
 
   .login-input-wrapper {
-    height: 60px;
+    height: clamp(58px, 10vh, 70px);
   }
 
   .login-input {
     padding: 0.5rem 2.5rem;
     font-size: 0.9rem;
-  }
-
-  .sena-logo-img {
-    width: 40px;
-    height: auto;
   }
 
   .login-sena-logo-container {

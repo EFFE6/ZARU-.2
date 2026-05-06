@@ -29,7 +29,6 @@ const Login = () => {
   React.useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) return;
-    // Verificar si el token sigue siendo válido en el backend
     api.get('/auth/verify')
       .then(() => navigate('/'))
       .catch(() => {
@@ -42,13 +41,11 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
     try {
       const response = await api.post('/auth/login', {
         nombreUsuario: username,
         password: password,
       });
-
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         navigate('/');
@@ -70,23 +67,22 @@ const Login = () => {
         </div>
       </div>
 
-
       <div className="login-main-content">
 
-        {/* Background Lines - PNG images from Figma */}
+        {/* Background Lines */}
         <img src={linea1} alt="" className="login-bg-line login-line1" />
         <img src={linea2} alt="" className="login-bg-line login-line2" />
         <img src={linea3} alt="" className="login-bg-line login-line3" />
 
         {/* Left Side: Form */}
         <div className="login-left">
+
+          {/* ── FORMULARIO — z-index alto, nunca se solapa ── */}
           <div className="login-form-container">
             <img src={logoMedisena} alt="MediSena" className="login-logo-img" />
-
             <h1 className="login-title-text">Iniciar sesión</h1>
 
             <form onSubmit={handleLogin} className="login-form">
-
               <div className={`login-input-wrapper ${error ? 'has-error' : ''}`}>
                 <label>Número de documento</label>
                 <div className="login-input-group">
@@ -119,7 +115,9 @@ const Login = () => {
                     className="password-toggle"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <EyeOff size={20} className="login-icon-toggle" /> : <Eye size={20} className="login-icon-toggle" />}
+                    {showPassword
+                      ? <EyeOff size={20} className="login-icon-toggle" />
+                      : <Eye size={20} className="login-icon-toggle" />}
                   </button>
                 </div>
               </div>
@@ -147,11 +145,10 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Right Side: Images */}
+        {/* Right Side: solo el médico y el fondo azul */}
         <div className="login-right">
-          <img src={azulBg} alt="Background Shape" className="login-bg-shape" />
-          <img src={marcaAgua} alt="Watermark" className="login-watermark" />
-
+          <img src={azulBg} alt="" className="login-bg-shape" />
+          <img src={marcaAgua} alt="" className="login-watermark" />
           <img src={docImg} alt="Doctor" className="login-doc" />
         </div>
 
