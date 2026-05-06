@@ -1,0 +1,327 @@
+﻿diff --git a/MediSena/frontend/src/styles/DatosBasicos/DatosBasicos.css b/MediSena/frontend/src/styles/DatosBasicos/DatosBasicos.css
+index 033dc8b3..d804260b 100644
+--- a/MediSena/frontend/src/styles/DatosBasicos/DatosBasicos.css
++++ b/MediSena/frontend/src/styles/DatosBasicos/DatosBasicos.css
+@@ -1297,125 +1297,6 @@
+   transform: translateY(-1px);
+ }
+ 
+-/* ÔöÇÔöÇÔöÇ REDISE├æO FUNCIONARIOS ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+-.db-avatar-container {
+-  display: flex;
+-  align-items: center;
+-  gap: 12px;
+-}
+-
+-.db-avatar-circle {
+-  width: 32px;
+-  height: 32px;
+-  background: #002c4d;
+-  color: white;
+-  border-radius: 50%;
+-  display: flex;
+-  align-items: center;
+-  justify-content: center;
+-  font-size: 13px;
+-  font-weight: 700;
+-  flex-shrink: 0;
+-}
+-
+-.db-name-text {
+-  font-size: 13px;
+-  font-weight: 700;
+-  color: #1e3a52;
+-  text-transform: uppercase;
+-}
+-
+-.db-cargo-text {
+-  color: #f97316;
+-  font-weight: 700;
+-  font-size: 12px;
+-  text-transform: uppercase;
+-}
+-
+-.db-beneficiarios-td {
+-  display: flex;
+-  align-items: center;
+-  gap: 10px;
+-}
+-
+-.db-beneficiarios-grid {
+-  display: flex;
+-  flex-direction: column;
+-  gap: 2px;
+-}
+-
+-.db-beneficiario-stat {
+-  display: flex;
+-  align-items: center;
+-  gap: 4px;
+-  font-size: 11px;
+-  font-weight: 700;
+-}
+-
+-.db-stat-check {
+-  color: #059669;
+-}
+-
+-.db-stat-x {
+-  color: #e11d48;
+-}
+-
+-.db-icon-eye {
+-  color: #3b82f6;
+-}
+-
+-.db-icon-pencil {
+-  color: #1e3a52;
+-}
+-
+-.db-icon-ban {
+-  color: #e11d48;
+-}
+-
+-.db-toolbar-filters {
+-  display: flex;
+-  align-items: center;
+-  gap: 16px;
+-  flex: 1;
+-}
+-
+-.db-filter-group {
+-  position: relative;
+-  min-width: 180px;
+-}
+-
+-.db-filter-label {
+-  position: absolute;
+-  top: -8px;
+-  left: 10px;
+-  background: white;
+-  padding: 0 4px;
+-  font-size: 10px;
+-  font-weight: 700;
+-  color: #94a3b8;
+-  z-index: 5;
+-  text-transform: uppercase;
+-}
+-
+-.db-filter-select {
+-  width: 100%;
+-  padding: 8px 12px;
+-  border: 1.5px solid #dde8f0;
+-  border-radius: 8px;
+-  font-size: 13.5px;
+-  font-weight: 600;
+-  color: #1e3a52;
+-  background: white;
+-  outline: none;
+-}
+-
+-.db-subtitle {
+-  font-size: 14px;
+-  color: #64748b;
+-  margin-top: 4px;
+-  font-weight: 500;
+-}
+-
+ /* ÔöÇÔöÇÔöÇ PAGINACI├ôN ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+ .db-pagination {
+   display: flex;
+@@ -1498,145 +1379,6 @@
+   font-weight: 500;
+ }
+ 
+-/* ÔöÇÔöÇÔöÇ MODAL BENEFICIARIOS (SCREENSHOT) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ */
+-.db-modal-beneficiarios {
+-  background: white;
+-  border-radius: 24px;
+-  width: 1100px;
+-  max-width: 95%;
+-  max-height: 90vh;
+-  display: flex;
+-  flex-direction: column;
+-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+-  animation: dbSlideUp 0.3s ease;
+-  overflow: hidden;
+-}
+-
+-.db-bene-header {
+-  padding: 20px 32px;
+-  display: flex;
+-  justify-content: space-between;
+-  align-items: center;
+-  border-bottom: 1px solid #f1f5f9;
+-}
+-
+-.db-bene-title-wrap {
+-  display: flex;
+-  align-items: center;
+-  gap: 12px;
+-}
+-
+-.db-bene-icon {
+-  color: #1e3a52;
+-}
+-
+-.db-bene-title {
+-  font-size: 20px;
+-  font-weight: 800;
+-  color: #1e3a52;
+-  margin: 0;
+-}
+-
+-.db-official-tag {
+-  background: #f1f5f9;
+-  border: 1px solid #e2e8f0;
+-  border-radius: 20px;
+-  padding: 4px 14px;
+-  font-size: 13px;
+-  font-weight: 600;
+-  color: #475569;
+-  margin-left: 10px;
+-}
+-
+-.db-bene-body {
+-  padding: 24px 32px;
+-  flex: 1;
+-  overflow-y: auto;
+-  display: flex;
+-  flex-direction: column;
+-  gap: 16px;
+-}
+-
+-.db-info-banner {
+-  background: #f0f9ff;
+-  border: 1px solid #bae6fd;
+-  border-radius: 10px;
+-  padding: 12px 18px;
+-  display: flex;
+-  align-items: center;
+-  gap: 10px;
+-  color: #0369a1;
+-  font-size: 14px;
+-  font-weight: 500;
+-}
+-
+-.db-info-icon {
+-  color: #0ea5e9;
+-}
+-
+-.db-bene-table-wrapper {
+-  border: 1px solid #e2e8f0;
+-  border-radius: 12px;
+-  overflow-x: auto;
+-}
+-
+-.db-bene-table {
+-  width: 100%;
+-  border-collapse: collapse;
+-}
+-
+-.db-bene-table th {
+-  background: #f8fafc;
+-  text-align: left;
+-  padding: 14px 16px;
+-  font-size: 12px;
+-  font-weight: 700;
+-  color: #64748b;
+-  border-bottom: 1px solid #e2e8f0;
+-}
+-
+-.db-bene-table td {
+-  padding: 14px 16px;
+-  font-size: 13.5px;
+-  color: #334155;
+-  border-bottom: 1px solid #f1f5f9;
+-  vertical-align: middle;
+-}
+-
+-.db-letra-circle {
+-  width: 28px;
+-  height: 28px;
+-  background: #002c4d;
+-  border-radius: 50%;
+-  display: flex;
+-  align-items: center;
+-  justify-content: center;
+-  color: white;
+-  font-size: 11px;
+-  font-weight: 700;
+-}
+-
+-.db-clasif-pill {
+-  width: 14px;
+-  height: 24px;
+-  background: #f59e0b;
+-  border-radius: 5px;
+-}
+-
+-.db-estado-circle {
+-  width: 24px;
+-  height: 24px;
+-  background: #f1f5f9;
+-  border: 1px solid #e2e8f0;
+-  border-radius: 50%;
+-  display: flex;
+-  align-items: center;
+-  justify-content: center;
+-  font-size: 11px;
+-  font-weight: 700;
+-  color: #94a3b8;
+-}
+-
+ .db-toggle-switch {
+   width: 44px;
+   height: 22px;
+@@ -1674,50 +1416,6 @@
+   color: #22c55e;
+ }
+ 
+-.db-bene-footer {
+-  padding: 20px 32px;
+-  display: flex;
+-  justify-content: flex-end;
+-  gap: 12px;
+-  border-top: 1px solid #f1f5f9;
+-}
+-
+-.db-btn-new-bene {
+-  background: #002c4d;
+-  color: white;
+-  border: none;
+-  border-radius: 10px;
+-  padding: 10px 20px;
+-  font-size: 14px;
+-  font-weight: 700;
+-  display: flex;
+-  align-items: center;
+-  gap: 8px;
+-  cursor: pointer;
+-}
+-
+-.db-btn-close-bene {
+-  background: white;
+-  border: 1px solid #e2e8f0;
+-  color: #64748b;
+-  border-radius: 10px;
+-  padding: 10px 20px;
+-  font-size: 14px;
+-  font-weight: 600;
+-  cursor: pointer;
+-}
+-
+-.db-btn-close-bene:hover {
+-  background: #f8fafc;
+-  color: #1e3a52;
+-}
+-
+-.db-row-actions .db-icon-btn.small {
+-  width: 30px;
+-  height: 30px;
+-  border-radius: 8px;
+-}
+-
+ @keyframes dbSlideUp {
+   from {
+     opacity: 0;

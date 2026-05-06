@@ -11,10 +11,8 @@ const tabs = [
 
 const GestionLayout = () => {
   return (
-    <div className="layout">
-      <Sidebar />
-
-      <div className="main-content">
+    <>
+      <div className="gestion-container">
         {/* Tabs reales con rutas */}
         <div className="tabs">
           {tabs.map(tab => (
@@ -33,7 +31,7 @@ const GestionLayout = () => {
         {/* Aquí se renderiza cada página */}
         <Outlet />
       </div>
-    </div>
+    </>
   );
 };
 

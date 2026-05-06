@@ -1,0 +1,94 @@
+/* =============================================
+   CuentaCobro.css
+   ============================================= */
+
+.cc-btn-nueva {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, #0165B0, #013156);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.18s;
+  white-space: nowrap;
+}
+.cc-btn-nueva:hover { opacity: 0.9; }
+
+.cc-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cc-search-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cc-search-large {
+  flex: 1;
+  min-width: 200px;
+}
+
+.cc-btn-limpiar {
+  background: #fff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.80rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s;
+  height: 38px;
+}
+.cc-btn-limpiar:hover { background: #f1f5f9; }
+
+.cc-fechas-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cc-date-input {
+  min-width: 160px;
+  color-scheme: light;
+}
+
+.cc-no-fecha {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  align-self: center;
+  margin-left: 4px;
+}
+
+/* ── Badges de estado ── */
+.cc-estado-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.cc-badge-pendiente { background: #ff8c00; color: #fff; }
+.cc-badge-aprobada  { background: #22c55e; color: #fff; }
+.cc-badge-rechazada { background: #ef4444; color: #fff; }
+
+/* ── Acción aprobar ── */
+.cc-action-approve {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.cc-action-approve:hover { background: #bbf7d0; }
