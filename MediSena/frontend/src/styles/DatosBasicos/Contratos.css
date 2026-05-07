@@ -1,0 +1,14 @@
+/* ─── MODAL EDITAR CONTRATO (W1112 H436) ─────────────────── */
+.db-modal-editar-contrato {
+  background: white;
+  border-radius: 20px;
+  width: 1112px;
+  height: 436px;
+  max-width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+  animation: dbSlideUp 0.3s ease;
+  overflow: hidden;
+}

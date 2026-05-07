@@ -4,27 +4,29 @@
    conflictos globales con GestionResoluciones.css
    ============================================= */
 
-/* ── Override: mostrar scrollbar en la lista de roles ──────── */
-/* GestionResoluciones.css oculta TODOS los scrollbars con !important.
-   Usamos mayor especificidad para reactivar el nuestro. */
-.sa-container .sa-roles-scroll::-webkit-scrollbar {
-  display: block !important;
-  width: 6px !important;
+:root {
+  /* Colors */
+  --sa-brand-blue: #0165B0;
+  --sa-brand-dark: #013156;
+  --sa-text-main: #1e3a52;
+  --sa-text-muted: #64748b;
+  --sa-text-light: #94a3b8;
+  --sa-border-color: #e2e8f0;
+  --sa-bg-soft: #F8FAFC;
+  --sa-bg-brand-light: #EEF6FF;
+  --sa-bg-expanded: #2B506B;
+  --sa-bg-sub-expanded: #C7E7FF;
+  --sa-inactive-gray: #BFBFBF;
+
+  /* Shadows & Radius */
+  --sa-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --sa-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --sa-shadow-lg: 0 4px 30px rgba(28, 62, 87, 0.08);
+  --sa-radius-lg: 20px;
+  --sa-radius-md: 12px;
+  --sa-radius-sm: 8px;
 }
 
-.sa-container .sa-roles-scroll::-webkit-scrollbar-track {
-  background: #e8eef4 !important;
-  border-radius: 3px !important;
-}
-
-.sa-container .sa-roles-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #0165B0 0%, #013156 100%) !important;
-  border-radius: 3px !important;
-}
-
-.sa-container .sa-roles-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #014d87 0%, #011f3a 100%) !important;
-}
 
 /* ── Override: scrollbar del modal body ─────────────────────── */
 .sa-modal .sa-modal-body::-webkit-scrollbar {
@@ -53,7 +55,8 @@
   box-sizing: border-box;
   overflow: hidden;
   background-color: transparent;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
+  color: var(--sa-text-main);
 }
 
 /* ─── BREADCRUMB ──────────────────────────────── */
@@ -107,7 +110,7 @@
 
 .sa-title {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #1e3a52;
   margin: 0;
   letter-spacing: -0.03em;
@@ -121,61 +124,6 @@
   flex-shrink: 0;
 }
 
-/* ─── SEARCH ─────────────────────────────────── */
-.sa-search-wrapper {
-  display: flex;
-  align-items: center;
-  background: #F4F6F8;
-  border: 1.5px solid #dde8f0;
-  border-radius: 12px;
-  padding: 5px;
-  height: 46px;
-  box-sizing: border-box;
-}
-
-.sa-search-container {
-  display: flex;
-  align-items: center;
-  background: transparent;
-  border: none;
-  padding: 0 16px;
-  width: 100%;
-  max-width: 280px;
-}
-
-.sa-search-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
-  color: #1e3a52;
-}
-
-.sa-search-input::placeholder {
-  color: #3f607d;
-  font-weight: 500;
-}
-
-.sa-search-btn {
-  background: #ffffff;
-  border: 1.5px solid #002c4d;
-  border-radius: 8px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  margin-right: 2px;
-  transition: all 0.18s ease;
-}
-
-.sa-search-btn:hover {
-  background: #eef2f6;
-  transform: scale(1.02);
-}
 
 /* ─── GRUPO TABS + CARD ──────────────────────── */
 .sa-tabs-card-group {
@@ -185,108 +133,24 @@
   min-height: 0;
 }
 
-/* ─── TABS ───────────────────────────────────── */
-.sa-tabs-scroll-area {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  padding: 0;
-  align-items: flex-end;
-  scrollbar-width: none;
-  position: relative;
-  z-index: 2;
-}
 
-.sa-tabs-scroll-area::-webkit-scrollbar {
-  display: none;
-}
-
-/* Tab inactivo: pill flotante */
-.sa-tab-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border-radius: 20px;
-  font-size: 13.5px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  border: none;
-  transition: all 0.18s ease;
-  background: #ffffff;
-  color: #5c7a90;
-  user-select: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-  margin-bottom: 6px;
-}
-
-.sa-tab-pill:hover:not(.active) {
-  color: #1e3a52;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  transform: translateY(-1px);
-}
-
-/* Tab activo: se fusiona con la card */
-.sa-tab-pill.active {
-  background: #ffffff;
-  color: #002c4d;
-  font-weight: 800;
-  border: none;
-  border-radius: 20px 20px 0 0;
-  padding-bottom: 14px;
-  margin-bottom: 0px;
-  position: relative;
-  z-index: 3;
-  box-shadow: none;
-}
-
-/* Curvatura inversa derecha */
-.sa-tab-pill.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: -20px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 100% 0%, transparent 20px, #ffffff 20.5px);
-}
-
-/* Curvatura inversa izquierda */
-.sa-tab-pill.active::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -20px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 0% 0%, transparent 20px, #ffffff 20.5px);
-}
-
-.sa-tab-pill.active:first-child::before {
-  display: none;
-}
-
-.sa-tab-icon {
-  width: 18px;
-  height: 18px;
-}
 
 /* ─── CONTENT CARD ───────────────────────────── */
 .sa-content-card {
   background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 4px 30px rgba(28, 62, 87, 0.08);
+  border-radius: var(--sa-radius-lg);
+  box-shadow: var(--sa-shadow-lg);
   border: none;
   position: relative;
   z-index: 1;
-  padding: 24px 28px 28px;
+  padding: 24px 28px 28px 28px;
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
 }
+
 
 /* Primer tab activo: esquina sup-izq recta */
 .sa-content-card.roles-active {
@@ -323,68 +187,83 @@
   background: white;
   border: 1.5px solid #002c4d;
   color: #002c4d;
-  border-radius: 20px;
+  border-radius: 9px;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .sa-btn-outline:hover {
   background: #f0f6ff;
+  border-color: #0165B0;
+  color: #0165B0;
 }
 
 .sa-btn-primary {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
-  background: linear-gradient(135deg, #0165B0, #013156);
+  padding: 8px 22px;
+  background: linear-gradient(135deg, var(--sa-brand-blue), var(--sa-brand-dark));
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 9px;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
-  transition: opacity 0.2s;
-  box-shadow: 0 4px 14px rgba(30, 58, 82, 0.28);
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(1, 49, 86, 0.28);
 }
 
 .sa-btn-primary:hover {
   opacity: 0.88;
+  transform: translateY(-1px);
 }
 
 .sa-btn-danger {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
-  background: #b91c1c;
+  padding: 9px 18px;
+  background: #dc2626;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 12px;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sa-btn-danger:hover {
+  background: #b91c1c;
 }
 
 .sa-btn-cancel {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
+  padding: 9px 22px;
   background: white;
   border: 1.5px solid #cbd5e1;
-  color: #64748b;
-  border-radius: 20px;
-  font-weight: 700;
+  color: #475569;
+  border-radius: 12px;
+  font-weight: 600;
   font-size: 13px;
   cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.sa-btn-cancel:hover {
+  border-color: #94a3b8;
 }
 
 .sa-btn-icon-white {
   filter: brightness(0) invert(1);
 }
+
+
 
 /* ─── ROLES SCROLL + ROW (Figma layout) ──────── */
 .sa-roles-scroll {
@@ -394,26 +273,26 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-right: 10px;
+  padding-right: 19px;
+  /* Small gap to the scrollbar itself */
   /* Scrollbar personalizado visible */
   scrollbar-width: thin;
   scrollbar-color: #0165B0 #e8eef4;
 }
 
-/* Scrollbar webkit: gradiente azul del Figma */
-.sa-roles-scroll::-webkit-scrollbar {
-  width: 6px;
-  border-radius: 3px;
+body .sa-container .sa-roles-scroll::-webkit-scrollbar {
+  display: block !important;
+  width: 8px !important;
 }
 
-.sa-roles-scroll::-webkit-scrollbar-track {
-  background: #e8eef4;
-  border-radius: 3px;
+body .sa-container .sa-roles-scroll::-webkit-scrollbar-track {
+  background: rgba(1, 101, 176, 0.05) !important;
+  border-radius: 4px !important;
 }
 
-.sa-roles-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
-  border-radius: 3px;
+body .sa-container .sa-roles-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0165B0 0%, #013156 100%) !important;
+  border-radius: 4px !important;
 }
 
 .sa-roles-scroll::-webkit-scrollbar-thumb:hover {
@@ -455,6 +334,29 @@
 
 .sa-role-row--inactive {
   opacity: 0.6;
+}
+
+/* Gray mode for archived roles */
+.sa-mode-inactive .sa-role-row--inactive {
+  opacity: 1;
+}
+
+.sa-mode-inactive .sa-pg-btn.active {
+  background: var(--sa-inactive-gray) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sa-mode-inactive .sa-role-cell svg {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.sa-mode-inactive .sa-role-name {
+  color: #717171 !important;
+}
+
+.sa-mode-inactive .sa-role-desc-inline {
+  color: #9c9c9c !important;
 }
 
 /* Celda izquierda: ícono + nombre + descripción */
@@ -593,187 +495,12 @@
   cursor: pointer;
   width: 100%;
   text-align: left;
+  transition: background 0.2s;
 }
 
 .sa-dropdown-menu button:hover {
   background: #f8fafc;
-}
-
-/* ─── PAGINACIÓN PROPIA (Figma) ───────────────── */
-.sa-pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 14px;
-  border-top: 1px solid #f1f5f9;
-  flex-shrink: 0;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.sa-pagination-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: #94a3b8;
-}
-
-.sa-items-select-wrap {
-  position: relative;
-}
-
-.sa-items-select {
-  padding: 4px 24px 4px 10px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  background: white;
-  color: #64748b;
-  font-size: 13px;
-  cursor: pointer;
-  outline: none;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 6px center;
-  background-size: 12px;
-}
-
-.sa-pagination-center {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.sa-pg-nav {
-  width: 28px;
-  height: 28px;
-  border: none;
-  background: none;
-  border-radius: 50%;
-  color: #94a3b8;
-  cursor: pointer;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s;
-  line-height: 1;
-}
-
-.sa-pg-nav:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.sa-pg-nav:hover:not(:disabled) {
-  background: #f1f5f9;
-}
-
-.sa-pg-btn {
-  width: 36px;
-  height: 36px;
-  border: none;
-  background: none;
-  border-radius: 50%;
-  color: #94a3b8;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s;
-}
-
-.sa-pg-btn:hover {
-  background: #f1f5f9;
-}
-
-.sa-pg-btn.active {
-  background: #a1a1a1;
-  color: white;
-}
-
-.sa-pagination-right {
-  font-size: 12px;
-  color: #94a3b8;
-}
-
-/* ─── PAGINACIÓN ANTIGUA (sin uso) ──────────────── */
-.sa-pagination-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid #f1f5f9;
-  color: #94a3b8;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-
-.sa-items-per-page {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.sa-select-page {
-  padding: 3px 8px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  background: white;
-  color: #64748b;
-  outline: none;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.sa-pagination-controls {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.sa-page-btn {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background: none;
-  border-radius: 50%;
-  color: #94a3b8;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s;
-}
-
-.sa-page-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.sa-page-btn:hover:not(:disabled) {
-  background: #f1f5f9;
-}
-
-.sa-page-btn.active {
-  background: #002c4d;
-  color: white;
-}
-
-.sa-dots {
-  color: #94a3b8;
-  padding: 0 4px;
-}
-
-.sa-page-info {
-  font-size: 12px;
-  color: #94a3b8;
+  color: #0165B0;
 }
 
 /* ─── PERMISOS VIEW ───────────────────────────── */
@@ -786,15 +513,37 @@
 
 .sa-permisos-scroll {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: scroll !important;
+  /* Kept for global override */
   min-height: 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  padding-right: 19px;
 }
 
-.sa-permisos-scroll::-webkit-scrollbar {
-  display: none;
+
+body .sa-container .sa-permisos-scroll::-webkit-scrollbar {
+  display: block !important;
+  width: 8px !important;
 }
+
+body .sa-container .sa-permisos-scroll::-webkit-scrollbar-track {
+  background: rgba(1, 101, 176, 0.08) !important;
+  /* Slightly darker to see it */
+  border-radius: 4px !important;
+}
+
+body .sa-container .sa-permisos-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0165B0 0%, #013156 100%) !important;
+  border-radius: 4px !important;
+}
+
+/* Also for Firefox visibility */
+.sa-permisos-scroll {
+  scrollbar-width: thin !important;
+  scrollbar-color: #0165B0 rgba(1, 101, 176, 0.08) !important;
+}
+
+/* Accordion Body styling unified below */
+
 
 /* ─── ACCORDION ───────────────────────────────── */
 .sa-accordion {
@@ -805,10 +554,13 @@
 }
 
 .sa-accordion-item {
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  border-top: 1px solid var(--sa-border-color);
+  border-bottom: 1px solid var(--sa-border-color);
+  border-left: none;
+  border-right: none;
+  border-radius: var(--sa-radius-md);
   background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  box-shadow: var(--sa-shadow-md);
   overflow: hidden;
 }
 
@@ -816,20 +568,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
+  padding: 0 20px;
+  height: 60px;
   background: white;
   cursor: pointer;
   user-select: none;
   transition: all 0.2s;
-  color: #1e3a52;
+  color: var(--sa-text-main);
 }
 
 .sa-accordion-header:hover:not(.expanded) {
-  background: #f8fafc;
+  background: var(--sa-bg-soft);
 }
 
 .sa-accordion-header.expanded {
-  background: #2B506B;
+  background: var(--sa-bg-expanded);
   color: white;
 }
 
@@ -844,12 +597,14 @@
 }
 
 .sa-accordion-body {
-  padding: 16px 20px;
-  background: #F8FAFC;
+  padding: 16px 20px 16px 40px;
+  background: var(--sa-bg-soft);
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+
+
 
 .sa-sub-accordion-item {
   border: none;
@@ -898,7 +653,9 @@
 }
 
 /* Clean permission rows (Permisos tab, sin checkbox) */
-.sa-perm-list {
+/* Listas de permisos (usadas en tab y modal) */
+.sa-perm-list,
+.sa-permission-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -914,13 +671,6 @@
   border-radius: 8px;
 }
 
-/* Permission items con checkbox (modal) */
-.sa-permission-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .sa-permission-item {
   padding: 12px 16px;
   background: white;
@@ -929,7 +679,7 @@
   transition: all 0.15s;
 }
 
-.sa-permission-item.checked {
+.sa-permission-item:has(input:checked) {
   background: #C8E6C9;
   border-color: #A5D6A7;
 }
@@ -966,9 +716,17 @@
   color: white;
 }
 
+.sa-checkmark .sa-check-icon {
+  display: block;
+}
+
 .sa-checkbox-label input:not(:checked)~.sa-checkmark {
   background: white;
   border: 1.5px solid #cbd5e1;
+}
+
+.sa-checkbox-label input:not(:checked)~.sa-checkmark .sa-check-icon {
+  display: none;
 }
 
 /* ─── MODAL ───────────────────────────────────── */
@@ -988,14 +746,41 @@
 
 .sa-modal {
   background: white;
-  width: 100%;
-  max-width: 610px;
+  width: 95vw;
+  /* Takes 95% of screen width on small screens */
+  max-width: 840px;
+  /* Never exceeds 840px on large screens */
+  height: 92vh;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  max-height: 90vh;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* On very wide screens, we can let it be a bit wider if desired, 
+   but 840px is usually the 'sweet spot' for readability. */
+
+@media (max-height: 800px) {
+  .sa-modal {
+    height: 96vh;
+    /* Use more space on short screens */
+  }
+
+  .sa-modal-header {
+    padding: 16px 24px 10px;
+    /* Compact header */
+  }
+
+  .sa-form-group {
+    margin-bottom: 8px;
+    /* Compact form */
+  }
+
+  .sa-section-title {
+    padding-top: 8px;
+  }
 }
 
 .sa-modal-header {
@@ -1031,27 +816,17 @@
 
 .sa-modal-body {
   padding: 0 24px 0;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   flex: 1;
   min-height: 0;
+  overflow: hidden;
+  /* Body no longer scrolls */
   scrollbar-width: thin;
   scrollbar-color: #0165B0 #e8eef4;
 }
 
-.sa-modal-body::-webkit-scrollbar {
-  display: block;
-  width: 6px;
-}
-
-.sa-modal-body::-webkit-scrollbar-track {
-  background: #e8eef4;
-  border-radius: 3px;
-}
-
-.sa-modal-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
-  border-radius: 3px;
-}
+/* Scrollbar moved to permissions zone */
 
 .sa-form-group {
   margin-bottom: 12px;
@@ -1121,7 +896,73 @@
   background: #EEF6FF;
   border-radius: 12px;
   padding: 16px;
-  margin-bottom: 0;
+  margin-bottom: 12px;
+  flex: 1;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Prevent zone from scrolling, only the area inside will */
+}
+
+.sa-permissions-scroll-area {
+  flex: 1;
+  overflow-y: scroll !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 12px;
+  /* Gap from the right edge as seen in Figma */
+}
+
+.sa-selection-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+  /* Don't let it shrink or scroll */
+}
+
+/* Ensure the accordion items take up the full width of the container */
+.sa-accordion {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* High visibility scrollbar - Extremely specific to override global styles */
+body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar {
+  display: block !important;
+  width: 8px !important;
+  /* Thinner as per close-up */
+}
+
+body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-track {
+  background: rgba(1, 101, 176, 0.1) !important;
+  border-radius: 4px !important;
+}
+
+body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0165B0 0%, #013156 100%) !important;
+  border-radius: 4px !important;
+  min-height: 40px !important;
+}
+
+body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #014d87 !important;
+}
+
+/* Also for Firefox */
+.sa-permissions-scroll-area {
+  scrollbar-width: thin !important;
+  scrollbar-color: #0165B0 rgba(1, 101, 176, 0.1) !important;
+}
+
+.sa-container .sa-permissions-zone::-webkit-scrollbar-thumb:hover,
+.sa-modal .sa-permissions-zone::-webkit-scrollbar-thumb:hover {
+  background: #014d87 !important;
 }
 
 .sa-permissions-toolbar {
@@ -1132,56 +973,8 @@
   gap: 8px;
 }
 
-.sa-modal-search {
-  display: flex;
-  align-items: center;
-  background: #F1F1F1;
-  border: none;
-  border-radius: 8px;
-  padding: 6px 6px 6px 12px;
-  height: 40px;
-  gap: 4px;
-  box-sizing: border-box;
-  flex: 1;
-  max-width: 359px;
-}
 
-.sa-modal-search input {
-  border: none;
-  outline: none;
-  font-size: 13px;
-  color: #1e3a52;
-  background: transparent;
-  flex: 1;
-  min-width: 0;
-}
 
-.sa-modal-search input::placeholder {
-  color: #94a3b8;
-}
-
-.sa-modal-search-btn {
-  background: white;
-  border: 1.5px solid #002c4d;
-  border-radius: 8px;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #002c4d;
-  flex-shrink: 0;
-}
-
-.sa-selection-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-  font-size: 13px;
-  font-weight: 600;
-}
 
 .sa-selected-count {
   display: flex;
@@ -1197,12 +990,37 @@
   gap: 5px;
   background: none;
   border: none;
-  border-bottom: 2px solid #0165B0;
+  border-bottom: 2px solid transparent;
   color: #0165B0;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
   padding-bottom: 2px;
+  transition: border-bottom-color 0.2s;
+}
+
+.sa-modal-footer .sa-btn-danger {
+  width: 178px;
+  height: 48px;
+  border-radius: 10px !important;
+  justify-content: center;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+
+.sa-modal-footer .sa-btn-primary {
+  min-width: 178px;
+  height: 48px;
+  border-radius: 10px !important;
+  justify-content: center;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+
+.sa-btn-view-selected.active {
+  border-bottom-color: #0165B0;
 }
 
 /* ─── MODAL FOOTER ────────────────────────────── */
@@ -1221,63 +1039,103 @@
   gap: 10px;
 }
 
-/* Botón Cancelar: outline limpio */
-.sa-btn-cancel {
+
+/* ─── PAGINATION ────────────────────────────── */
+.sa-pagination-left,
+.sa-pagination-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+}
+
+.sa-pagination-center {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 22px;
+}
+
+.sa-items-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ─── PAGINATION (FIGMA STYLE) ───────────────── */
+.sa-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 28px;
   background: white;
-  border: 1.5px solid #cbd5e1;
-  color: #475569;
-  border-radius: 20px;
+  border-top: none;
+  flex-shrink: 0;
+}
+
+.sa-pg-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--sa-text-muted);
+  border-radius: 50%;
+  cursor: pointer;
   font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  transition: border-color 0.2s;
+  font-size: 14px;
+  transition: all 0.2s;
+  margin: 0 2px;
 }
 
-.sa-btn-cancel:hover {
-  border-color: #94a3b8;
+.sa-pg-btn:hover:not(.active) {
+  background: #f1f5f9;
+  color: var(--sa-brand-blue);
 }
 
-/* Botón Aceptar: azul sólido */
-.sa-btn-primary {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 22px;
-  background: linear-gradient(135deg, #0165B0, #013156);
+.sa-pg-btn.active {
+  background: var(--sa-text-main);
   color: white;
-  border: none;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  box-shadow: 0 4px 14px rgba(1, 49, 86, 0.28);
+  box-shadow: 0 4px 10px rgba(1, 101, 176, 0.3);
 }
 
-.sa-btn-primary:hover {
-  opacity: 0.88;
+body .sa-container .sa-pg-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  background: transparent !important;
+  color: #94a3b8 !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  font-size: 20px !important;
+  transition: all 0.2s !important;
 }
 
-/* Botón Desactivar: rojo pill */
-.sa-btn-danger {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 18px;
-  background: #dc2626;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-  transition: background 0.2s;
+body .sa-container .sa-pg-nav:hover:not(:disabled) {
+  background: #f1f5f9 !important;
+  color: #0165B0 !important;
 }
 
-.sa-btn-danger:hover {
-  background: #b91c1c;
+body .sa-container .sa-pg-nav:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
+body .sa-container .sa-items-select {
+  border: 1.5px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  padding: 4px 10px !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+  outline: none !important;
+  cursor: pointer !important;
+  background: white !important;
+}
+
+body .sa-container .sa-items-select:focus {
+  border-color: #0165B0 !important;
 }

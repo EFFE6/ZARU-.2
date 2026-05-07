@@ -8,7 +8,13 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
+}
+
+/* Evitar scroll externo cuando estamos en Seguridad y Accesos */
+.main-content:has(.sa-container) {
+  overflow: hidden !important;
+  padding: 0 !important;
 }
 
 /* ── Header ── */
@@ -16,6 +22,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .header-title-container {
@@ -407,7 +414,7 @@
   .stat-card {
     min-height: 140px;
   }
-  
+
   .stat-card-content {
     padding: 14px 20px 14px 16px;
   }

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Filter, RefreshCw, Plus, X } from 'lucide-react';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
+import '../../styles/DatosBasicos/Medicos.css';
 
-import BotoEditIcon from '../../assets/img/datosbasicos/icons/medicos/botonedit.svg';
-import BotoVerIcon from '../../assets/img/datosbasicos/icons/medicos/botonver.svg';
 import EspecialidadIcon from '../../assets/img/datosbasicos/icons/medicos/espacialidad.svg';
+import { ViewIcon, EditIcon } from '../../components/Icons';
 
 const MOCK_MEDICOS = [
   {
@@ -187,10 +187,10 @@ const Medicos: React.FC<MedicosProps> = ({ searchQuery }) => {
             <td>
               <div className="db-row-actions">
                 <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalVer(true); }}>
-                  <img src={BotoVerIcon} alt="Ver" className="db-action-icon" />
+                  <ViewIcon className="db-action-icon" />
                 </button>
                 <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalEditar(true); }}>
-                  <img src={BotoEditIcon} alt="Editar" className="db-action-icon" />
+                  <EditIcon className="db-action-icon" />
                 </button>
               </div>
             </td>
@@ -204,7 +204,7 @@ const Medicos: React.FC<MedicosProps> = ({ searchQuery }) => {
           <h2 style={{ fontSize: '18px', color: '#1e3a52', fontWeight: '800', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
             Detalles del médico
             <button className="db-icon-btn-svg" style={{ marginLeft: '8px' }} onClick={() => { setModalVer(false); setModalEditar(true); }}>
-              <img src={BotoEditIcon} alt="Editar" style={{ width: '24px', height: '24px' }} />
+              <EditIcon size={24} />
             </button>
           </h2>
           <button style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#64748b' }} onClick={() => setModalVer(false)}>

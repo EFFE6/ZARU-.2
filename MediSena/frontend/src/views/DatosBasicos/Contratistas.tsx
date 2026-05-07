@@ -3,10 +3,9 @@ import { Filter, RefreshCw, Plus, X } from 'lucide-react';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
 import Filters from '../../components/Filters';
+import '../../styles/DatosBasicos/Contratistas.css';
 
-import BotoEditIcon from '../../assets/img/datosbasicos/icons/contratista/botonedit.svg';
-import BotoVerIcon from '../../assets/img/datosbasicos/icons/contratista/botonver.svg';
-import { TipoCcContratistasIcon, PrestaServiciosContratistasIcon, EliminarContratistasIcon, ImgModalEliminarIcon } from '../../components/Icons';
+import { TipoCcContratistasIcon, PrestaServiciosContratistasIcon, ImgModalEliminarIcon, ViewIcon, EditIcon, DeleteIcon, EditarDetallesIcon } from '../../components/Icons';
 
 const MOCK_CONTRATISTAS = [
   {
@@ -106,8 +105,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
       <div className="db-toolbar">
         <Filters>
           <select
-            className="db-select"
-            style={{ minWidth: '150px' }}
+            className="db-select db-min-w-150"
             value={estadoFilter}
             onChange={(e) => setEstadoFilter(e.target.value)}
           >
@@ -118,8 +116,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
           </select>
 
           <select
-            className="db-select"
-            style={{ minWidth: '170px' }}
+            className="db-select db-min-w-170"
             value={tipoDocFilter}
             onChange={(e) => setTipoDocFilter(e.target.value)}
           >
@@ -129,7 +126,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
           </select>
         </Filters>
 
-        <div className="db-toolbar-right" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <div className="db-toolbar-right db-toolbar-actions">
           <button className="db-btn-refresh">
             <RefreshCw size={16} />
             Actualizar
@@ -166,18 +163,18 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
             <td className="db-col-id">{item.id}</td>
             <td>
               <div className="db-user-cell">
-                <div className="db-user-avatar" style={{ background: 'transparent' }}>
+                <div className="db-user-avatar db-bg-transparent">
                   <img src={item.avatar} alt="avatar" />
                 </div>
                 <div className="db-user-info">
-                  <div className="db-user-name" style={{ textTransform: 'uppercase' }}>
+                  <div className="db-user-name db-uppercase">
                     {item.nombres}
                   </div>
                 </div>
               </div>
             </td>
             <td>
-              <span className="db-cargo-pill amarillo" style={{ background: '#FFF8E6', color: '#D97706', border: 'none', fontWeight: '800' }}>
+              <span className="db-cargo-pill amarillo db-badge-amarillo-solid">
                 <TipoCcContratistasIcon className="db-cargo-icon" />
                 {item.tipoDoc}
               </span>
@@ -196,23 +193,23 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
               </button>
             </td>
             <td>
-              <span className="db-cargo-pill amarillo" style={{ background: '#FFF8E6', color: '#D97706', border: 'none', fontWeight: '800' }}>
+              <span className="db-cargo-pill amarillo db-badge-amarillo-solid">
                 <PrestaServiciosContratistasIcon className="db-cargo-icon" />
                 {item.tipoVinculacion}
               </span>
             </td>
-            <td style={{ lineHeight: '1.2' }}>{item.cargo}</td>
+            <td className="db-lh-12">{item.cargo}</td>
             <td>{item.ingreso}</td>
             <td>
               <div className="db-row-actions">
                 <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalVer(true); }}>
-                  <img src={BotoVerIcon} alt="Ver" className="db-action-icon" />
+                  <ViewIcon className="db-action-icon" />
                 </button>
                 <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalEditar(true); }}>
-                  <img src={BotoEditIcon} alt="Editar" className="db-action-icon" />
+                  <EditIcon className="db-action-icon" />
                 </button>
                 <button className="db-icon-btn-svg" onClick={() => { setSelectedUser(item); setModalEliminar(true); }}>
-                  <EliminarContratistasIcon className="db-action-icon" />
+                  <DeleteIcon className="db-action-icon" />
                 </button>
               </div>
             </td>
@@ -221,89 +218,105 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
       </DataTable>
 
       {/* MODAL VER DETALLES CONTRATISTA */}
-      <Modal isOpen={modalVer} onClose={() => setModalVer(false)} hideHeader className="db-modal-official-full" >
-        <div style={{ padding: '24px 24px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ fontSize: '18px', color: '#1e3a52', fontWeight: '800', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-            Detalles del contratista
-            <button className="db-icon-btn-svg" style={{ marginLeft: '8px' }} onClick={() => { setModalVer(false); setModalEditar(true); }}>
-              <img src={BotoEditIcon} alt="Editar" style={{ width: '24px', height: '24px' }} />
+      <Modal isOpen={modalVer} onClose={() => setModalVer(false)} hideHeader className="db-modal-detalles-contratista" >
+        <div className="db-ver-header-bar">
+          <h2 className="db-ver-title">Detalles del contratista</h2>
+          <div className="db-modal-flex-group">
+            <button className="db-icon-btn-svg" onClick={() => { setModalVer(false); setModalEditar(true); }}>
+              <EditIcon size={18} className="db-action-icon" />
             </button>
-          </h2>
-          <button style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#64748b' }} onClick={() => setModalVer(false)}>
-            <X size={20} />
-          </button>
+            <button className="db-modal-form-close" onClick={() => setModalVer(false)}>
+              <X size={20} />
+            </button>
+          </div>
         </div>
-        <div style={{ padding: '0 24px 24px' }}>
-          <div style={{ border: '1px solid #E5E7EB', borderRadius: '12px', padding: '16px', marginBottom: '20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <img src={selectedUser?.avatar} alt="avatar" style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
-                <strong style={{ color: '#1a3c5a', fontSize: '15px', textTransform: 'uppercase' }}>{selectedUser?.nombres}</strong>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ background: '#EEF6FF', color: '#0165B0', padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '700' }}>CC {selectedUser?.id}</span>
-                <span className={`db-status-badge ${selectedUser?.estado ? 'activo' : 'inactivo'}`} style={{ gap: '4px', border: '1px solid #E5E7EB', background: selectedUser?.estado ? '#ecfdf5' : '#ffffff', color: selectedUser?.estado ? '#059669' : '#1e3a52' }}>
-                  {selectedUser?.estado ? (
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  ) : (
-                    <X size={12} strokeWidth={3} />
-                  )}
-                  {selectedUser?.estado ? 'Activo' : 'Inactivo'}
-                </span>
-              </div>
-            </div>
 
-            <div style={{ marginBottom: '16px' }}>
-              <div style={{ fontSize: '12px', color: '#64748b', fontWeight: '600', marginBottom: '8px' }}>Tipo de vinculación</div>
-              <span className="db-cargo-pill azul" style={{ background: '#f3e8ff', color: '#9333ea', border: 'none', fontWeight: '800' }}>
-                <PrestaServiciosContratistasIcon className="db-cargo-icon" style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(85%) saturate(1636%) hue-rotate(250deg) brightness(97%) contrast(105%)' }} />
-                {selectedUser?.tipoVinculacion}
+        <div className="db-ver-body">
+          <div className="db-ver-identity-row">
+            <div className="db-ver-identity-left">
+              <img src={selectedUser?.avatar} alt="avatar" className="db-ver-avatar" />
+              <strong className="db-ver-fullname">{selectedUser?.nombres}</strong>
+            </div>
+            <div className="db-ver-identity-right">
+              <span className="db-ver-cc-badge">
+                <span className="db-ver-cc-label">C.C.</span>
+                <span className="db-ver-cc-number db-badge-cc">{selectedUser?.id}</span>
+              </span>
+              <span className={`db-status-badge ${selectedUser?.estado ? 'activo' : 'inactivo'}`}>
+                {selectedUser?.estado ? (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                ) : (
+                  <X size={12} strokeWidth={3} />
+                )}
+                {selectedUser?.estado ? 'Activo' : 'Inactivo'}
               </span>
             </div>
+          </div>
 
-            <div style={{ background: '#E0F2FE', borderRadius: '8px', padding: '16px', border: '1px solid #bae6fd', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-              <div>
-                <div style={{ fontSize: '12px', color: '#0165B0', fontWeight: '700', marginBottom: '4px' }}>Cargo</div>
-                <div style={{ fontSize: '14px', color: '#0165B0', fontWeight: '800' }}>{selectedUser?.cargo}</div>
+          <div className="db-mt-4">
+            <div className="db-form-label-small">Tipo de vinculación</div>
+            <span className="db-cargo-pill azul db-badge-azul-solid">
+              <PrestaServiciosContratistasIcon className="db-cargo-icon db-icon-purple-filter" />
+              {selectedUser?.tipoVinculacion}
+            </span>
+          </div>
+
+          <div className="db-ver-data-block">
+            <div className="db-ver-data-field">
+              <span className="db-ver-data-label">Cargo</span>
+              <span className="db-ver-data-value">{selectedUser?.cargo}</span>
+            </div>
+            <div className="db-ver-data-field">
+              <span className="db-ver-data-label">Dependencia</span>
+              <span className="db-ver-data-value">{selectedUser?.dependencia}</span>
+            </div>
+            <div className="db-ver-data-field">
+              <span className="db-ver-data-label">Regional</span>
+              <span className="db-ver-data-value">{selectedUser?.regional}</span>
+            </div>
+            <div className="db-ver-data-field">
+              <span className="db-ver-data-label">Fecha de ingreso</span>
+              <span className="db-ver-data-value">{selectedUser?.ingreso}</span>
+            </div>
+          </div>
+
+          <h4 className="db-ver-section-title db-mt-8">INFORMACIÓN DE CONTACTO</h4>
+
+          <div className="db-ver-contact-grid">
+            <div className="db-ver-contact-card">
+              <div className="db-contact-card-flex">
+                <div className="db-ver-contact-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div>
+                  <div className="db-ver-contact-label">Teléfono #1</div>
+                  <div className="db-ver-contact-value">3208700268</div>
+                </div>
               </div>
-              <div>
-                <div style={{ fontSize: '12px', color: '#0165B0', fontWeight: '700', marginBottom: '4px' }}>Dependencia</div>
-                <div style={{ fontSize: '14px', color: '#0165B0', fontWeight: '800' }}>{selectedUser?.dependencia}</div>
+              <div className="db-ver-contact-ghost">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </div>
-              <div>
-                <div style={{ fontSize: '12px', color: '#0165B0', fontWeight: '700', marginBottom: '4px' }}>Regional</div>
-                <div style={{ fontSize: '14px', color: '#0165B0', fontWeight: '800' }}>{selectedUser?.regional}</div>
+            </div>
+
+            <div className="db-ver-contact-card">
+              <div className="db-contact-card-flex">
+                <div className="db-ver-contact-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div>
+                  <div className="db-ver-contact-label">Teléfono #2</div>
+                  <div className="db-ver-contact-value">3208700268</div>
+                </div>
               </div>
-              <div>
-                <div style={{ fontSize: '12px', color: '#0165B0', fontWeight: '700', marginBottom: '4px' }}>Fecha de ingreso</div>
-                <div style={{ fontSize: '14px', color: '#0165B0', fontWeight: '800' }}>{selectedUser?.ingreso}</div>
+              <div className="db-ver-contact-ghost">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </div>
             </div>
           </div>
 
-          <h4 style={{ fontSize: '13px', color: '#1a3c5a', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase' }}>INFORMACIÓN DE CONTACTO</h4>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
-            <div style={{ border: '1px solid #E5E7EB', borderRadius: '12px', padding: '16px', background: '#F8FAFC', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <div style={{ marginTop: '2px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0165B0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
-              <div>
-                <div style={{ fontSize: '12px', color: '#0165B0', fontWeight: '700', marginBottom: '4px' }}>Teléfono #1</div>
-                <div style={{ fontSize: '13px', color: '#1a3c5a', fontWeight: '800' }}>3208700268</div>
-              </div>
-            </div>
-
-            <div style={{ border: '1px solid #E5E7EB', borderRadius: '12px', padding: '16px', background: '#F8FAFC', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <div style={{ marginTop: '2px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0165B0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
-              <div>
-                <div style={{ fontSize: '12px', color: '#0165B0', fontWeight: '700', marginBottom: '4px' }}>Teléfono #2</div>
-                <div style={{ fontSize: '13px', color: '#1a3c5a', fontWeight: '800' }}>3208700268</div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <button className="db-btn-refresh" style={{ fontWeight: '600' }} onClick={() => { setModalVer(false); setModalEditar(true); }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          <div className="db-ver-footer">
+            <button className="db-btn-refresh db-ver-btn-edit db-font-600" onClick={() => { setModalVer(false); setModalEditar(true); }}>
+              <EditarDetallesIcon size={16} />
               Editar
             </button>
             <button className="db-btn-new" onClick={() => setModalVer(false)}>Cerrar</button>
@@ -313,73 +326,73 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
 
       {/* MODAL EDITAR / NUEVO CONTRATISTA */}
       <Modal isOpen={modalEditar} onClose={() => setModalEditar(false)} hideHeader className="db-modal-official-full">
-        <div style={{ padding: '24px 24px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ fontSize: '18px', color: '#1e3a52', fontWeight: '800', margin: 0 }}>
+        <div className="db-modal-form-header">
+          <h2 className="db-modal-form-title">
             {selectedUser ? 'Editar contratista' : 'Nuevo contratista'}
           </h2>
-          <button style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#64748b' }} onClick={() => setModalEditar(false)}>
+          <button className="db-modal-form-close" onClick={() => setModalEditar(false)}>
             <X size={20} />
           </button>
         </div>
-        <div style={{ padding: '0 24px 24px' }}>
-          <h4 style={{ fontSize: '13px', color: '#64748b', fontWeight: '800', marginBottom: '16px', textTransform: 'uppercase' }}>INFORMACIÓN PERSONAL</h4>
+        <div className="db-modal-form-body">
+          <h4 className="db-modal-section-title">INFORMACIÓN PERSONAL</h4>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
+          <div className="db-modal-grid-2">
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Tipo de documento*</label>
-              <select className="db-select" style={{ width: '100%', height: '42px' }}>
+              <label className="db-form-label">Tipo de documento*</label>
+              <select className="db-select db-form-select">
                 <option>CÉDULA DE CIUDADANÍA</option>
               </select>
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Nº de identificación*</label>
-              <input type="text" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.id || ''} placeholder="Ej: 900236063" />
+              <label className="db-form-label">Nº de identificación*</label>
+              <input type="text" className="db-search-input-header db-form-input" defaultValue={selectedUser?.id || ''} placeholder="Ej: 900236063" />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Nombres*</label>
-              <input type="text" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.nombres || ''} />
+              <label className="db-form-label">Nombres*</label>
+              <input type="text" className="db-search-input-header db-form-input" defaultValue={selectedUser?.nombres || ''} />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Apellidos*</label>
-              <input type="text" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.apellidos || ''} placeholder="Ej: INTEGRAL FAMI" />
+              <label className="db-form-label">Apellidos*</label>
+              <input type="text" className="db-search-input-header db-form-input" defaultValue={selectedUser?.apellidos || ''} placeholder="Ej: INTEGRAL FAMI" />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Tipo de vinculación*</label>
-              <select className="db-select" style={{ width: '100%', height: '42px' }}>
+              <label className="db-form-label">Tipo de vinculación*</label>
+              <select className="db-select db-form-select">
                 <option>Prestación de servicios</option>
               </select>
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Fecha de ingreso*</label>
+              <label className="db-form-label">Fecha de ingreso*</label>
               <div style={{ position: 'relative' }}>
-                <input type="text" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.ingreso || ''} placeholder="01/01/2026" />
+                <input type="text" className="db-search-input-header db-form-input" defaultValue={selectedUser?.ingreso || ''} placeholder="01/01/2026" />
                 <svg style={{ position: 'absolute', right: '12px', top: '10px', color: '#94a3b8' }} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               </div>
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Cargo*</label>
-              <input type="text" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.cargo || ''} placeholder="Prestador de servicios" />
+              <label className="db-form-label">Cargo*</label>
+              <input type="text" className="db-search-input-header db-form-input" defaultValue={selectedUser?.cargo || ''} placeholder="Prestador de servicios" />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Dependencia*</label>
-              <input type="text" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.dependencia || ''} placeholder="Ej: 6060 - Dirección de formación profesional" />
+              <label className="db-form-label">Dependencia*</label>
+              <input type="text" className="db-search-input-header db-form-input" defaultValue={selectedUser?.dependencia || ''} placeholder="Ej: 6060 - Dirección de formación profesional" />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Regional*</label>
-              <input type="text" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.regional || ''} />
+              <label className="db-form-label">Regional*</label>
+              <input type="text" className="db-search-input-header db-form-input" defaultValue={selectedUser?.regional || ''} />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Teléfono*</label>
-              <input type="text" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} placeholder="Ej: 435149" />
+              <label className="db-form-label">Teléfono*</label>
+              <input type="text" className="db-search-input-header db-form-input" placeholder="Ej: 435149" />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '800', color: '#1a3c5a', marginBottom: '8px' }}>Email corporativo*</label>
-              <input type="email" className="db-search-input-header" style={{ width: '100%', border: '1px solid #E5E7EB', borderRadius: '8px', padding: '0 12px', height: '42px' }} defaultValue={selectedUser?.email || ''} placeholder="Ej: correo@mail.com" />
+              <label className="db-form-label">Email corporativo*</label>
+              <input type="email" className="db-search-input-header db-form-input" defaultValue={selectedUser?.email || ''} placeholder="Ej: correo@mail.com" />
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '12px' }}>
-            <button className="db-btn-refresh" style={{ border: '1px solid #64748b', color: '#1a3c5a' }} onClick={() => setModalEditar(false)}>Cancelar</button>
+          <div className="db-form-actions">
+            <button className="db-btn-refresh db-btn-cancel" onClick={() => setModalEditar(false)}>Cancelar</button>
             <button className="db-btn-new" onClick={() => setModalEditar(false)}><RefreshCw size={16} /> Actualizar</button>
           </div>
         </div>
@@ -389,7 +402,7 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
       <Modal isOpen={modalEliminar} onClose={() => setModalEliminar(false)} hideHeader className="db-modal-official-full" style={{ width: '400px', maxWidth: '90%' }}>
         <div style={{ padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ fontSize: '16px', color: '#1e3a52', fontWeight: '800', margin: 0 }}>Eliminar contratista</h2>
-          <button style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#64748b' }} onClick={() => setModalEliminar(false)}>
+          <button className="db-modal-form-close" onClick={() => setModalEliminar(false)}>
             <X size={20} />
           </button>
         </div>
