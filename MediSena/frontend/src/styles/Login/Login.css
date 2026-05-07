@@ -293,7 +293,10 @@
 .login-right {
   flex: 1;
   position: relative;
-  z-index: 3;
+  /* z-index inferior al sidebar para no tapar el menú */
+  z-index: 2;
+  /* Recorta la imagen para que no desborde sobre el formulario */
+  overflow: hidden;
 }
 
 .login-bg-shape {
@@ -523,4 +526,14 @@
   .login-sena-logo-container {
     margin-top: 1rem;
   }
+}
+
+/* ── Slideshow crossfade ── */
+.login-slide {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.login-slide--active {
+  opacity: 1;
 }

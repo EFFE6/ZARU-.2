@@ -11,6 +11,7 @@ import senaLogo from '../assets/img/login/sena-logo.svg';
 import azulBg from '../assets/img/login/azul.svg';
 import marcaAgua from '../assets/img/login/medicina-marca-agua.svg';
 import docImg from '../assets/img/login/doc.svg';
+import medImg from '../assets/img/login/med.svg';
 import linea1 from '../assets/img/login/linea1.svg';
 import linea2 from '../assets/img/login/linea2.svg';
 import linea3 from '../assets/img/login/linea3.svg';
@@ -18,14 +19,26 @@ import headerImg from '../assets/img/login/header-login.svg';
 
 import '../styles/Login/Login.css';
 
+const SLIDE_INTERVAL_MS = 6000;
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
   const navigate = useNavigate();
 
+  // Slideshow: alterna entre doc y med con crossfade CSS
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev === 0 ? 1 : 0));
+    }, SLIDE_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Verificar token al montar
   React.useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) return;
@@ -76,13 +89,13 @@ const Login = () => {
 
         {/* Left Side: Form */}
         <div className="login-left">
-
-          {/* ── FORMULARIO — z-index alto, nunca se solapa ── */}
           <div className="login-form-container">
             <img src={logoMedisena} alt="MediSena" className="login-logo-img" />
+
             <h1 className="login-title-text">Iniciar sesión</h1>
 
             <form onSubmit={handleLogin} className="login-form">
+
               <div className={`login-input-wrapper ${error ? 'has-error' : ''}`}>
                 <label>Número de documento</label>
                 <div className="login-input-group">
@@ -145,11 +158,22 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Right Side: solo el médico y el fondo azul */}
+        {/* Right Side: Images */}
         <div className="login-right">
           <img src={azulBg} alt="" className="login-bg-shape" />
           <img src={marcaAgua} alt="" className="login-watermark" />
-          <img src={docImg} alt="Doctor" className="login-doc" />
+
+          {/* Imagen alternante: doc y med con crossfade CSS */}
+          <img
+            src={docImg}
+            alt="Doctor"
+            className={`login-doc login-slide ${activeSlide === 0 ? 'login-slide--active' : ''}`}
+          />
+          <img
+            src={medImg}
+            alt="Médico"
+            className={`login-doc login-slide ${activeSlide === 1 ? 'login-slide--active' : ''}`}
+          />
         </div>
 
       </div>

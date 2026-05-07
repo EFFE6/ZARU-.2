@@ -420,7 +420,7 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: #FFFFFF;
+  background: #e7f2ff;
   color: #0165B0;
   border: 1px solid none;
   border-radius: 20px;
@@ -539,43 +539,33 @@
 
 .db-beneficiarios-grid {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
 .db-beneficiario-stat {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   font-size: 10px;
   font-weight: 500;
 }
 
-.db-beneficiario-stat.bene-check {
-  color: #059669;
-}
-
+.db-beneficiario-stat.bene-check,
 .db-beneficiario-stat.bene-x {
-  color: #e11d48;
+  color: #0165B0;
 }
 
 .db-bene-count {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 6px;
-  background: #EEF6FF;
   color: #0165B0;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 12px;
   cursor: pointer;
-  border: 1px solid none ;
-}
-
-.db-bene-count:hover {
-  background: #dceffe;
 }
 
 /* ─── STATUS BADGES ───────────────────────────────────────── */
@@ -1902,13 +1892,35 @@
 }
 
 /* ─── UTILIDADES (Layout) ────────────────────────────────── */
-.db-min-w-150 { min-width: 150px; }
-.db-min-w-170 { min-width: 170px; }
-.db-bg-transparent { background: transparent; }
-.db-uppercase { text-transform: uppercase; }
-.db-lh-12 { line-height: 1.2; }
-.db-font-600 { font-weight: 600; }
-.db-toolbar-actions { display: flex; gap: 12px; align-items: center; }
+.db-min-w-150 {
+  min-width: 150px;
+}
+
+.db-min-w-170 {
+  min-width: 170px;
+}
+
+.db-bg-transparent {
+  background: transparent;
+}
+
+.db-uppercase {
+  text-transform: uppercase;
+}
+
+.db-lh-12 {
+  line-height: 1.2;
+}
+
+.db-font-600 {
+  font-weight: 600;
+}
+
+.db-toolbar-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
 
 /* ─── UTILIDADES (Colores/Badges) ────────────────────────── */
 .db-badge-amarillo-solid {
@@ -1939,57 +1951,279 @@
 /* ─── ESTILOS FALTANTES (MODALES Y FORMULARIOS) ────────────── */
 
 /* Utilities */
-.db-modal-flex-group { display: flex; gap: 12px; }
-.db-modal-form-close { background: transparent; border: none; cursor: pointer; color: #64748b; }
-.db-badge-cc { background: #EEF6FF; padding: 2px 8px; border-radius: 12px; }
-.db-mt-4 { margin-top: 4px; }
-.db-mt-8 { margin-top: 8px; }
-.db-mt-16 { margin-top: 16px; }
-.db-contact-card-flex { display: flex; align-items: center; gap: 10px; }
-.db-col-span-full { grid-column: 1 / -1; }
-.db-gap-4 { gap: 4px; }
-.db-ml-auto { margin-left: auto; }
+.db-modal-flex-group {
+  display: flex;
+  gap: 12px;
+}
+
+.db-modal-form-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.db-badge-cc {
+  background: #EEF6FF;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.db-mt-4 {
+  margin-top: 4px;
+}
+
+.db-mt-8 {
+  margin-top: 8px;
+}
+
+.db-mt-16 {
+  margin-top: 16px;
+}
+
+.db-contact-card-flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.db-col-span-full {
+  grid-column: 1 / -1;
+}
+
+.db-gap-4 {
+  gap: 4px;
+}
+
+.db-ml-auto {
+  margin-left: auto;
+}
 
 /* Modal Edit Header & Body */
-.db-modal-form-header { padding: 24px 24px 16px; display: flex; justify-content: space-between; align-items: center; }
-.db-modal-form-title { font-size: 18px; color: #1e3a52; font-weight: 800; margin: 0; }
-.db-modal-form-body { padding: 0 24px 24px; }
-.db-modal-section-title { font-size: 13px; color: #64748b; font-weight: 800; margin-bottom: 16px; text-transform: uppercase; }
+.db-modal-form-header {
+  padding: 24px 24px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.db-modal-form-title {
+  font-size: 18px;
+  color: #1e3a52;
+  font-weight: 800;
+  margin: 0;
+}
+
+.db-modal-form-body {
+  padding: 0 24px 24px;
+}
+
+.db-modal-section-title {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 800;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
 
 /* Modal Profile (Beneficiarios) */
-.db-modal-profile-card { border: 1px solid #E5E7EB; border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
-.db-modal-profile-avatar { width: 36px; height: 36px; border-radius: 50%; }
-.db-modal-profile-name { color: #1a3c5a; font-size: 14px; }
-.db-modal-flex-group-small { display: flex; align-items: center; gap: 8px; }
+.db-modal-profile-card {
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.db-modal-profile-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.db-modal-profile-name {
+  color: #1a3c5a;
+  font-size: 14px;
+}
+
+.db-modal-flex-group-small {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 /* Forms & Inputs */
-.db-form-label { display: block; font-size: 13px; font-weight: 800; color: #1a3c5a; margin-bottom: 8px; }
-.db-form-select { width: 100%; height: 42px; border: 1px solid #E5E7EB; border-radius: 8px; padding: 0 12px; background: white; outline: none; }
-.db-form-input { width: 100%; border: 1px solid #E5E7EB; border-radius: 8px; padding: 0 12px; height: 42px; background: white; outline: none; }
-.db-form-actions { display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
-.db-form-actions-between { display: flex; justify-content: space-between; align-items: center; }
+.db-form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1a3c5a;
+  margin-bottom: 8px;
+}
+
+.db-form-select {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 0 12px;
+  background: white;
+  outline: none;
+}
+
+.db-form-input {
+  width: 100%;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 42px;
+  background: white;
+  outline: none;
+}
+
+.db-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.db-form-actions-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 /* Buttons */
-.db-btn-cancel { border: 1px solid #64748b; color: #1a3c5a; background: white; border-radius: 8px; padding: 10px 24px; font-weight: 600; display: flex; align-items: center; cursor: pointer; }
-.db-btn-danger { background: #DC2626; gap: 6px; color: white; border: none; border-radius: 8px; padding: 10px 24px; font-weight: 600; display: flex; align-items: center; cursor: pointer; }
-.db-btn-disabled { border: none; background: #e2e8f0; color: #64748b; border-radius: 8px; padding: 10px 24px; font-weight: 600; display: flex; align-items: center; cursor: not-allowed; }
+.db-btn-cancel {
+  border: 1px solid #64748b;
+  color: #1a3c5a;
+  background: white;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.db-btn-danger {
+  background: #DC2626;
+  gap: 6px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.db-btn-disabled {
+  border: none;
+  background: #e2e8f0;
+  color: #64748b;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  cursor: not-allowed;
+}
 
 /* Modal Tabs */
-.db-modal-tabs-header { display: flex; border-bottom: 1px solid #E5E7EB; padding: 0 16px; padding-top: 16px; }
-.db-modal-tab { padding: 12px 16px; color: #64748b; font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer; border-bottom: 2px solid transparent; }
-.db-modal-tab.active { border-bottom-color: #0165B0; color: #1a3c5a; font-weight: 800; }
+.db-modal-tabs-header {
+  display: flex;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 0 16px;
+  padding-top: 16px;
+}
+
+.db-modal-tab {
+  padding: 12px 16px;
+  color: #64748b;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.db-modal-tab.active {
+  border-bottom-color: #0165B0;
+  color: #1a3c5a;
+  font-weight: 800;
+}
 
 /* Warning Banner */
-.db-warning-banner { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 16px; display: flex; gap: 12px; margin-bottom: 24px; }
-.db-warning-icon { color: #D97706; margin-top: 2px; }
-.db-warning-title { font-size: 13px; font-weight: 800; color: #92400E; margin-bottom: 4px; }
-.db-warning-text { font-size: 12px; color: #92400E; }
+.db-warning-banner {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.db-warning-icon {
+  color: #D97706;
+  margin-top: 2px;
+}
+
+.db-warning-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #92400E;
+  margin-bottom: 4px;
+}
+
+.db-warning-text {
+  font-size: 12px;
+  color: #92400E;
+}
 
 /* Table specific */
-.db-table-full { min-width: 100%; }
-.db-cell-bold { font-weight: 700; color: #1a3c5a; font-size: 12px; }
-.db-text-13 { font-size: 13px; }
-.db-text-11 { font-size: 11px; }
-.db-badge-clasificacion { color: #3b82f6; background: #eff6ff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-.db-inline-mr-4 { display: inline; margin-right: 4px; }
-.db-icon-btn-naked { padding: 0; border: none; background: transparent; cursor: pointer; }
+.db-table-full {
+  min-width: 100%;
+}
+
+.db-cell-bold {
+  font-weight: 700;
+  color: #1a3c5a;
+  font-size: 12px;
+}
+
+.db-text-13 {
+  font-size: 13px;
+}
+
+.db-text-11 {
+  font-size: 11px;
+}
+
+.db-badge-clasificacion {
+  color: #3b82f6;
+  background: #eff6ff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.db-inline-mr-4 {
+  display: inline;
+  margin-right: 4px;
+}
+
+.db-icon-btn-naked {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}

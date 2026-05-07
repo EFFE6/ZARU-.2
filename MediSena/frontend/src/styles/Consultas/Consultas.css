@@ -82,7 +82,7 @@
 
 .gestion-title {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #1e3a52;
   margin: 0;
   letter-spacing: -0.03em;
@@ -324,12 +324,15 @@
   flex: 1;
   min-height: 0;
   /* Ocultar barra de scroll */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE y Edge */
 }
 
 .table-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome, Safari y Opera */
+  display: none;
+  /* Chrome, Safari y Opera */
 }
 
 .resoluciones-table {
@@ -641,12 +644,15 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
-  align-items: flex-start; /* Cambio: permitir que el modal empiece arriba si es largo */
+  align-items: flex-start;
+  /* Cambio: permitir que el modal empiece arriba si es largo */
   justify-content: center;
   z-index: 9999;
   animation: fadeIn 0.18s ease;
-  padding: 40px 20px; /* Mas padding vertical */
-  overflow-y: auto; /* Permitir scroll en el overlay */
+  padding: 40px 20px;
+  /* Mas padding vertical */
+  overflow-y: auto;
+  /* Permitir scroll en el overlay */
 }
 
 .modal-content-delete {
@@ -1657,7 +1663,7 @@
   width: 480px;
   max-width: 95vw;
   /* max-height: 92vh; <-- Comentado para que el overlay maneje el scroll si es necesario, o usar calc */
-  max-height: calc(100vh - 80px); 
+  max-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   box-shadow: 0 24px 64px rgba(0, 30, 60, 0.18);
@@ -1713,7 +1719,8 @@
   gap: 16px;
   scrollbar-width: thin;
   scrollbar-color: #dde8f0 transparent;
-  min-height: 0; /* Asegura que flex-scroll funcione correctamente */
+  min-height: 0;
+  /* Asegura que flex-scroll funcione correctamente */
 }
 
 .resolucion-modal-body::-webkit-scrollbar {
@@ -2531,19 +2538,19 @@
     width: 98vw;
     max-height: 98vh;
   }
-  
+
   .tope-info-box {
     grid-template-columns: 1fr 1fr !important;
     padding: 16px;
   }
-  
+
   .ts-row {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 6px !important;
     padding: 12px 16px !important;
   }
-  
+
   .ts-row strong {
     text-align: left !important;
     width: 100%;
@@ -2651,15 +2658,17 @@
 }
 
 .ts-row {
-  display: flex !important; /* Forzar visibilidad */
+  display: flex !important;
+  /* Forzar visibilidad */
   justify-content: space-between;
   align-items: center;
   padding: 14px 16px;
   border-top: 1px solid #e2e8f0;
   background-color: #ffffff !important;
   gap: 12px;
-  flex-wrap: wrap; 
-  min-height: 48px; /* Altura mínima para asegurar visibilidad */
+  flex-wrap: wrap;
+  min-height: 48px;
+  /* Altura mínima para asegurar visibilidad */
   visibility: visible !important;
   opacity: 1 !important;
 }
@@ -2814,12 +2823,12 @@
   .abr-vigencia-container {
     padding: 0 16px 16px 16px;
   }
-  
+
   .vigencia-card-content {
     padding: 24px;
     gap: 20px;
   }
-  
+
   .vigencia-sections {
     gap: 24px;
   }
@@ -3256,7 +3265,7 @@
   flex: 1;
 }
 
-.mov-panel-header svg:first-child + .mov-panel-title {
+.mov-panel-header svg:first-child+.mov-panel-title {
   text-align: left;
 }
 
@@ -4205,10 +4214,25 @@
   justify-content: center;
 }
 
-.cons-kpi-blue { background: #0ea5e9; }
-.cons-kpi-green { background: #10b981; }
-.cons-kpi-dark { background: #1e3a52; align-items: center; text-align: center; }
-.cons-kpi-teal { background: #14b8a6; align-items: center; text-align: center; }
+.cons-kpi-blue {
+  background: #0ea5e9;
+}
+
+.cons-kpi-green {
+  background: #10b981;
+}
+
+.cons-kpi-dark {
+  background: #1e3a52;
+  align-items: center;
+  text-align: center;
+}
+
+.cons-kpi-teal {
+  background: #14b8a6;
+  align-items: center;
+  text-align: center;
+}
 
 .cons-kpi-label {
   font-size: 12px;
@@ -4342,8 +4366,8 @@
 }
 
 /* Los iconos dentro de KPI oscuro/teal van arriba */
-.cons-kpi-dark > svg,
-.cons-kpi-teal > svg {
+.cons-kpi-dark>svg,
+.cons-kpi-teal>svg {
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 4px;
 }
@@ -4387,8 +4411,15 @@
 }
 
 @keyframes consExpandFade {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Refuerzo estado abierto de secciones colapsables ──── */
