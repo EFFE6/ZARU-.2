@@ -4,12 +4,14 @@ import MovTabs from './MovTabs';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
 import api from '../../api/api';
+import SearchBar from '../../components/SearchBar';
 import {
   ChevronRight, ChevronLeft, Home, Eye, Printer, Pencil,
   RefreshCw, ChevronDown, X,
 } from 'lucide-react';
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
 import '../../styles/Movimientos/OrdenAtencion.css';
+import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 /* ─── Tipos ─────────────────────────────────────────────── */
 interface OrdenAtencion {
@@ -404,33 +406,18 @@ const OrdenAtencionView: React.FC = () => {
                 <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
                 <div className="breadcrumb-item">Movimientos</div>
                 <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item active">Orden de atención</div>
+                <div className="breadcrumb-item active">Orden de Atención</div>
               </nav>
+              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
             </div>
             <div className="gestion-header-bottom">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-                <h1 className="gestion-title" style={{ margin: 0 }}>Órdenes de Atención</h1>
-                {/* Badge: filtradas de total — sólo visible con datos cargados */}
-                {!loading && (
-                  <span className="oa-count-badge">
-                    {filtered.length} de {ordenes.length}
-                  </span>
-                )}
-              </div>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                <button
-                  className="oa-btn-nueva-orden"
-                  disabled
-                  title="Próximamente disponible"
-                >
-                  + Nueva Orden
-                </button>
-                <button className="oa-btn-refresh" onClick={fetchOrdenes}>
-                  <RefreshCw size={14} /> Actualizar
-                </button>
-              </div>
+              <h1 className="gestion-title">Orden de Atención</h1>
+              <SearchBar
+                value={search}
+                onChange={(val) => { setSearch(val); setCurrentPage(1); }}
+                placeholder="Busca por número, beneficiario o contratista"
+              />
             </div>
-            <p className="oa-subtitle">Gestionar órdenes médicas para beneficiarios</p>
           </header>
 
           {/* ── Tabs + Card ── */}

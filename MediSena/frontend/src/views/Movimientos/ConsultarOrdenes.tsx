@@ -3,10 +3,12 @@ import Sidebar from '../../components/Sidebar';
 import MovTabs from './MovTabs';
 import DataTable from '../../components/DataTable';
 import api from '../../api/api';
+import SearchBar from '../../components/SearchBar';
 import { Home, ChevronRight, Clock, Download, RefreshCw, Search } from 'lucide-react';
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/ConsultarOrdenes.css';
+import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 interface OrdenConsulta {
   id: number;
@@ -102,7 +104,7 @@ const ConsultarOrdenes: React.FC = () => {
     <>
       <div className="gestion-container">
 
-          {/* Header degradado */}
+          {/* Header */}
           <header className="gestion-header">
             <div className="gestion-header-top">
               <nav className="breadcrumb">
@@ -112,20 +114,15 @@ const ConsultarOrdenes: React.FC = () => {
                 <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
                 <div className="breadcrumb-item active">Consultar Órdenes</div>
               </nav>
+              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
             </div>
             <div className="gestion-header-bottom">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <Clock size={24} color="#1e3a52" />
-                <h1 className="gestion-title" style={{ margin: 0 }}>Consultar Órdenes de Atención</h1>
-              </div>
-              <div style={{ display: 'flex', gap: 10 }}>
-                <button className="oa-btn-refresh">
-                  <Download size={14} style={{ opacity: 0.6 }} /> Exportar
-                </button>
-                <button className="oa-btn-refresh" onClick={fetchData}>
-                  <RefreshCw size={14} /> Actualizar
-                </button>
-              </div>
+              <h1 className="gestion-title">Consultar Órdenes</h1>
+              <SearchBar
+                value={search}
+                onChange={(val) => { setSearch(val); setCurrentPage(1); }}
+                placeholder="Busca por número de orden, paciente o servicio"
+              />
             </div>
           </header>
 

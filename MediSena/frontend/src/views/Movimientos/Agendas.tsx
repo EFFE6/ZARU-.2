@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import { Home, ChevronRight } from 'lucide-react';
 import TabGroup from '../../components/TabGroup';
+import SearchBar from '../../components/SearchBar';
 import ProgramarAgenda from './tabs/ProgramarAgenda';
 import GestionAgendas from './tabs/GestionAgendas';
 import '../../styles/Movimientos/Agendas.css';
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
+import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 const Agendas: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Programar Agenda');
+  const [searchQuery, setSearchQuery] = useState('');
   const tabs = ['Programar Agenda', 'Gestión de Agendas'];
 
   return (
@@ -25,15 +28,16 @@ const Agendas: React.FC = () => {
                 <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
                 <div className="breadcrumb-item active">{activeTab}</div>
               </nav>
+              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
             </div>
             <div className="gestion-header-bottom">
-              <h1 className="gestion-title" style={{ margin: 0 }}>{activeTab}</h1>
+              <h1 className="gestion-title">{activeTab}</h1>
+              <SearchBar
+                value={searchQuery}
+                onChange={setSearchQuery}
+                placeholder="Busca por médico o fecha"
+              />
             </div>
-            <p className="oa-subtitle">
-              {activeTab === 'Programar Agenda'
-                ? 'Complete los datos para programar una nueva cita médica'
-                : 'Visualice y administre las agendas médicas programadas'}
-            </p>
           </header>
 
           {/* Tabs + Content */}
@@ -54,3 +58,4 @@ const Agendas: React.FC = () => {
 };
 
 export default Agendas;
+

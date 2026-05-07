@@ -6,6 +6,7 @@ import { Home, ChevronRight, Trash2, RefreshCw } from 'lucide-react';
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/Agendas.css';
+import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 interface AgendaProgramada {
   id: number;
@@ -88,7 +89,7 @@ const ProgramarAgendaView: React.FC = () => {
     <>
       <div className="gestion-container">
 
-          {/* Header — fondo degradado con breadcrumb y título */}
+          {/* Header */}
           <header className="gestion-header">
             <div className="gestion-header-top">
               <nav className="breadcrumb">
@@ -98,12 +99,10 @@ const ProgramarAgendaView: React.FC = () => {
                 <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
                 <div className="breadcrumb-item active">Programar Agenda</div>
               </nav>
+              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
             </div>
             <div className="gestion-header-bottom">
-              <h1 className="gestion-title" style={{ margin: 0 }}>Programar Agenda</h1>
-              <button className="oa-btn-refresh" onClick={() => setAgendas(mockAgendas)}>
-                <RefreshCw size={14} /> Actualizar
-              </button>
+              <h1 className="gestion-title">Programar Agenda</h1>
             </div>
           </header>
 

@@ -2,10 +2,12 @@ import React, { useState, useMemo } from 'react';
 import Sidebar from '../../components/Sidebar';
 import MovTabs from './MovTabs';
 import DataTable from '../../components/DataTable';
+import SearchBar from '../../components/SearchBar';
 import { Home, ChevronRight, Eye, Pencil, RefreshCw, ChevronDown } from 'lucide-react';
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/Agendas.css';
+import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 interface AgendaGestion {
   id: number;
@@ -76,7 +78,7 @@ const GestionAgendasView: React.FC = () => {
     <>
       <div className="gestion-container">
 
-          {/* Header degradado */}
+          {/* Header */}
           <header className="gestion-header">
             <div className="gestion-header-top">
               <nav className="breadcrumb">
@@ -84,14 +86,17 @@ const GestionAgendasView: React.FC = () => {
                 <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
                 <div className="breadcrumb-item">Movimientos</div>
                 <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item active">Agendas</div>
+                <div className="breadcrumb-item active">Gestión de Agendas</div>
               </nav>
+              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
             </div>
             <div className="gestion-header-bottom">
-              <h1 className="gestion-title" style={{ margin: 0 }}>Gestión de Agendas</h1>
-              <button className="oa-btn-refresh">
-                <RefreshCw size={14} /> Actualizar
-              </button>
+              <h1 className="gestion-title">Gestión de Agendas</h1>
+              <SearchBar
+                value={search}
+                onChange={setSearch}
+                placeholder="Busca por médico o especialidad"
+              />
             </div>
           </header>
 

@@ -3,6 +3,7 @@ import Sidebar from '../../components/Sidebar';
 import MovTabs from './MovTabs';
 import DataTable from '../../components/DataTable';
 import api from '../../api/api';
+import SearchBar from '../../components/SearchBar';
 import {
   ChevronRight, ChevronLeft, Home, RefreshCw,
   Download, Printer, ChevronDown,
@@ -10,6 +11,7 @@ import {
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/RelacionPagos.css';
+import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 interface RelacionPago {
   id: number;
@@ -92,20 +94,15 @@ const RelacionPagosView: React.FC = () => {
                 <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
                 <div className="breadcrumb-item active">Relación de Pagos</div>
               </nav>
+              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
             </div>
             <div className="gestion-header-bottom">
-              <h1 className="gestion-title" style={{ margin: 0 }}>Relación de Pagos</h1>
-              <div style={{ display: 'flex', gap: 10 }}>
-                <button className="oa-btn-refresh" onClick={fetchPagos}>
-                  <Download size={14} style={{ opacity: 0.6 }} /> Exportar
-                </button>
-                <button className="oa-btn-refresh" onClick={() => window.print()}>
-                  <Printer size={14} style={{ opacity: 0.6 }} /> Imprimir
-                </button>
-                <button className="oa-btn-refresh" onClick={fetchPagos}>
-                  <RefreshCw size={14} /> Actualizar
-                </button>
-              </div>
+              <h1 className="gestion-title">Relación de Pagos</h1>
+              <SearchBar
+                value={search}
+                onChange={(val) => { setSearch(val); setCurrentPage(1); }}
+                placeholder="Busca por número o contratista"
+              />
             </div>
           </header>
 
