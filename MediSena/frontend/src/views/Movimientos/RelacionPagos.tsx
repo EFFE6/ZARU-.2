@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Sidebar from '../../components/Sidebar';
 import MovTabs from './MovTabs';
+import DataTable from '../../components/DataTable';
 import api from '../../api/api';
 import {
   ChevronRight, ChevronLeft, Home, RefreshCw,
@@ -27,7 +28,7 @@ const RelacionPagosView: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [firstActive, setFirstActive] = useState(false);
 
   const fetchPagos = async () => {
@@ -55,16 +56,27 @@ const RelacionPagosView: React.FC = () => {
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
   const current = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-
-  const totalValor = filtered.reduce((sum, p) => {
-    const v = parseFloat(p.valor?.replace(/[^0-9.-]/g, '') || '0');
-    return sum + v;
-  }, 0);
+  const visiblePages = useMemo(() => {
+    const delta = 2, start = Math.max(1, currentPage - delta), end = Math.min(totalPages, currentPage + delta);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }, [currentPage, totalPages]);
 
   const paginaValor = current.reduce((sum, p) => {
     const v = parseFloat(p.valor?.replace(/[^0-9.-]/g, '') || '0');
     return sum + v;
   }, 0);
+
+  const tableHeaders = (
+    <tr>
+      <th>Número</th>
+      <th>Contratista</th>
+      <th>Cuenta Cobro</th>
+      <th>Fecha Pago</th>
+      <th>Valor</th>
+      <th>Forma Pago</th>
+      <th>Estado</th>
+    </tr>
+  );
 
   return (
     <>
@@ -120,62 +132,34 @@ const RelacionPagosView: React.FC = () => {
                 </button>
               </div>
 
-              {/* Tabla */}
-              <div className="oa-table-scroll">
-                <table className="resoluciones-table">
-                  <thead>
-                    <tr>
-                      <th>Número</th>
-                      <th>Contratista</th>
-                      <th>Cuenta Cobro</th>
-                      <th>Fecha Pago</th>
-                      <th>Valor</th>
-                      <th>Forma Pago</th>
-                      <th>Estado</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {loading ? (
-                      <tr><td colSpan={7} className="table-empty">Cargando datos...</td></tr>
-                    ) : error ? (
-                      <tr><td colSpan={7} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
-                    ) : current.length === 0 ? (
-                      <tr><td colSpan={7} className="table-empty">No hay pagos registrados</td></tr>
-                    ) : current.map(p => (
-                      <tr key={p.id}>
-                        <td>{p.numero}</td>
-                        <td>{p.contratista}</td>
-                        <td>{p.cuentaCobro}</td>
-                        <td>{p.fechaPago}</td>
-                        <td>{p.valor}</td>
-                        <td>{p.formaPago}</td>
-                        <td>{p.estado}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Info filas */}
-              <div className="rp-footer-info">
-                <span className="rp-info-label">Filas por página:</span>
-                <div className="oa-select-wrap" style={{ minWidth: 70 }}>
-                  <select className="oa-filter-select rp-page-select" defaultValue={10}>
-                    <option value={10}>10</option>
-                    <option value={20}>20</option>
-                  </select>
-                  <ChevronDown size={11} className="oa-select-icon" />
-                </div>
-                <span className="rp-info-count">
-                  {current.length === 0 ? '0-0' : `${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, filtered.length)}`} de {filtered.length}
-                </span>
-                <button className="rp-nav-btn" onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1}>
-                  <ChevronLeft size={15} />
-                </button>
-                <button className="rp-nav-btn" onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages || filtered.length === 0}>
-                  <ChevronRight size={15} />
-                </button>
-              </div>
+              {/* Tabla con DataTable */}
+              <DataTable
+                headers={tableHeaders}
+                itemsPerPage={itemsPerPage}
+                setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalPages={totalPages}
+                visiblePages={visiblePages}
+              >
+                {loading ? (
+                  <tr><td colSpan={7} className="table-empty">Cargando datos...</td></tr>
+                ) : error ? (
+                  <tr><td colSpan={7} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
+                ) : current.length === 0 ? (
+                  <tr><td colSpan={7} className="table-empty">No hay pagos registrados</td></tr>
+                ) : current.map(p => (
+                  <tr key={p.id}>
+                    <td>{p.numero}</td>
+                    <td>{p.contratista}</td>
+                    <td>{p.cuentaCobro}</td>
+                    <td>{p.fechaPago}</td>
+                    <td>{p.valor}</td>
+                    <td>{p.formaPago}</td>
+                    <td>{p.estado}</td>
+                  </tr>
+                ))}
+              </DataTable>
 
               {/* Totales */}
               <div className="rp-totales">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Sidebar from '../../components/Sidebar';
 import MovTabs from './MovTabs';
+import DataTable from '../../components/DataTable';
 import api from '../../api/api';
 import {
   ChevronRight, ChevronLeft, Home, Eye, RefreshCw,
@@ -84,6 +85,18 @@ const CuentaCobroView: React.FC = () => {
     const delta = 2, start = Math.max(1, currentPage - delta), end = Math.min(totalPages, currentPage + delta);
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   }, [currentPage, totalPages]);
+
+  const tableHeaders = (
+    <tr>
+      <th>Número</th>
+      <th>Contratista</th>
+      <th>Período</th>
+      <th>Fecha</th>
+      <th>Valor</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  );
 
   return (
     <>
@@ -172,79 +185,44 @@ const CuentaCobroView: React.FC = () => {
                 </div>
               </div>
 
-              {/* Tabla */}
-              <div className="oa-table-scroll">
-                <table className="resoluciones-table">
-                  <thead>
-                    <tr>
-                      <th>Número</th>
-                      <th>Contratista</th>
-                      <th>Período</th>
-                      <th>Fecha</th>
-                      <th>Valor</th>
-                      <th>Estado</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {loading ? (
-                      <tr><td colSpan={7} className="table-empty">Cargando datos...</td></tr>
-                    ) : error ? (
-                      <tr><td colSpan={7} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
-                    ) : current.length === 0 ? (
-                      <tr><td colSpan={7} className="table-empty">No se encontraron cuentas.</td></tr>
-                    ) : current.map(c => (
-                      <tr key={c.id}>
-                        <td><strong>{c.numero}</strong></td>
-                        <td>{c.contratista}</td>
-                        <td>{formatPeriodo(c.periodo)}</td>
-                        <td>{c.fecha}</td>
-                        <td>{c.valor}</td>
-                        <td><EstadoCCBadge estado={c.estado} /></td>
-                        <td>
-                          <div className="oa-actions-cell">
-                            <button className="oa-action-btn oa-action-eye" title="Ver">
-                              <Eye size={15} />
-                            </button>
-                            <button className="oa-action-btn cc-action-approve" title="Aprobar">
-                              <Check size={15} />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              {/* Tabla con DataTable */}
+              <DataTable
+                headers={tableHeaders}
+                itemsPerPage={itemsPerPage}
+                setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalPages={totalPages}
+                visiblePages={visiblePages}
+              >
+                {loading ? (
+                  <tr><td colSpan={7} className="table-empty">Cargando datos...</td></tr>
+                ) : error ? (
+                  <tr><td colSpan={7} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
+                ) : current.length === 0 ? (
+                  <tr><td colSpan={7} className="table-empty">No se encontraron cuentas.</td></tr>
+                ) : current.map(c => (
+                  <tr key={c.id}>
+                    <td><strong>{c.numero}</strong></td>
+                    <td>{c.contratista}</td>
+                    <td>{formatPeriodo(c.periodo)}</td>
+                    <td>{c.fecha}</td>
+                    <td>{c.valor}</td>
+                    <td><EstadoCCBadge estado={c.estado} /></td>
+                    <td>
+                      <div className="oa-actions-cell">
+                        <button className="oa-action-btn oa-action-eye" title="Ver">
+                          <Eye size={15} />
+                        </button>
+                        <button className="oa-action-btn cc-action-approve" title="Aprobar">
+                          <Check size={15} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </DataTable>
 
-              {/* Paginación */}
-              <div className="pagination-footer">
-                <div className="items-per-page">
-                  <span>Elementos por página</span>
-                  <div className="items-select-wrapper">
-                    <select className="items-select" value={itemsPerPage}
-                      onChange={e => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}>
-                      <option value={5}>5</option>
-                      <option value={10}>10</option>
-                      <option value={20}>20</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="page-controls">
-                  <button className="page-nav-btn" onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1}>
-                    <ChevronLeft size={18} />
-                  </button>
-                  {visiblePages.map(n => (
-                    <button key={n} className={`page-num-btn ${currentPage === n ? 'active' : ''}`} onClick={() => setCurrentPage(n)}>{n}</button>
-                  ))}
-                  <button className="page-nav-btn" onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages}>
-                    <ChevronRight size={18} />
-                  </button>
-                </div>
-                <div className="page-info-total">
-                  {filtered.length === 0 ? '0 - de 0 páginas' : `${currentPage} - de ${totalPages} páginas`}
-                </div>
-              </div>
             </div>
           </div>
         </div>

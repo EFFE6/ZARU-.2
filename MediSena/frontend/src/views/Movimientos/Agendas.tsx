@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import { Home, ChevronRight } from 'lucide-react';
+import TabGroup from '../../components/TabGroup';
 import ProgramarAgenda from './tabs/ProgramarAgenda';
 import GestionAgendas from './tabs/GestionAgendas';
 import '../../styles/Movimientos/Agendas.css';
@@ -37,31 +38,11 @@ const Agendas: React.FC = () => {
 
           {/* Tabs + Content */}
           <div className="tabs-card-group">
-
-            {/* Pills de pestañas */}
-            <div style={{ display: 'flex', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
-              {tabs.map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  style={{
-                    padding: '8px 18px',
-                    borderRadius: 10,
-                    border: 'none',
-                    fontSize: '0.82rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    transition: 'all 0.18s',
-                    background: activeTab === tab
-                      ? 'linear-gradient(135deg, #0165B0, #013156)'
-                      : '#f1f5f9',
-                    color: activeTab === tab ? '#fff' : '#334155',
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
+            <TabGroup
+              tabs={tabs}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+            />
 
             {activeTab === 'Programar Agenda' && <ProgramarAgenda />}
             {activeTab === 'Gestión de Agendas' && <GestionAgendas />}

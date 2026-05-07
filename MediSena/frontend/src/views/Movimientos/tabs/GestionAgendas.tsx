@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Eye, Pencil, RefreshCw, ChevronDown } from 'lucide-react';
+import DataTable from '../../../components/DataTable';
 
 interface AgendaGestion {
   id: number;
@@ -35,6 +36,8 @@ const GestionAgendas: React.FC = () => {
   const [fecha, setFecha] = useState('');
   const [estadoFilter, setEstadoFilter] = useState('Todos');
   const [data, setData] = useState<AgendaGestion[]>(mockData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const filtered = data.filter(a => {
     const q = search.toLowerCase();
@@ -43,6 +46,25 @@ const GestionAgendas: React.FC = () => {
     const matchFecha = !fecha || a.fecha === fecha.split('-').reverse().join('/');
     return matchSearch && matchEstado && matchFecha;
   });
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
+  const current = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const visiblePages = useMemo(() => {
+    const delta = 2, start = Math.max(1, currentPage - delta), end = Math.min(totalPages, currentPage + delta);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }, [currentPage, totalPages]);
+
+  const tableHeaders = (
+    <tr>
+      <th>Fecha</th>
+      <th>Médico</th>
+      <th>Especialidad</th>
+      <th>Horario</th>
+      <th>Cupos</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  );
 
   return (
     <div className="gag-card">
@@ -102,48 +124,41 @@ const GestionAgendas: React.FC = () => {
         </div>
       </div>
 
-      {/* Tabla */}
-      <div className="gag-table-scroll">
-        <table className="gag-table">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Médico</th>
-              <th>Especialidad</th>
-              <th>Horario</th>
-              <th>Cupos</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.length === 0 ? (
-              <tr><td colSpan={7} className="gag-empty">No se encontraron agendas.</td></tr>
-            ) : filtered.map(a => (
-              <tr key={a.id}>
-                <td style={{ color: '#0165B0', fontWeight: 600 }}>{a.fecha}</td>
-                <td>{a.medico}</td>
-                <td>{a.especialidad}</td>
-                <td>{a.horario}</td>
-                <td>
-                  <span className="gag-cupos-badge">{a.cuposUsados}/{a.cuposTotal}</span>
-                </td>
-                <td>
-                  <span className="gag-estado-pill" style={estadoBadgeStyle[a.estado]}>
-                    {a.estado}
-                  </span>
-                </td>
-                <td>
-                  <div className="gag-actions">
-                    <button className="gag-btn-eye" title="Ver"><Eye size={14} /></button>
-                    <button className="gag-btn-edit" title="Editar"><Pencil size={13} /></button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {/* Tabla con DataTable */}
+      <DataTable
+        headers={tableHeaders}
+        itemsPerPage={itemsPerPage}
+        setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+        visiblePages={visiblePages}
+      >
+        {current.length === 0 ? (
+          <tr><td colSpan={7} className="table-empty">No se encontraron agendas.</td></tr>
+        ) : current.map(a => (
+          <tr key={a.id}>
+            <td style={{ color: '#0165B0', fontWeight: 600 }}>{a.fecha}</td>
+            <td>{a.medico}</td>
+            <td>{a.especialidad}</td>
+            <td>{a.horario}</td>
+            <td>
+              <span className="gag-cupos-badge">{a.cuposUsados}/{a.cuposTotal}</span>
+            </td>
+            <td>
+              <span className="gag-estado-pill" style={estadoBadgeStyle[a.estado]}>
+                {a.estado}
+              </span>
+            </td>
+            <td>
+              <div className="gag-actions">
+                <button className="gag-btn-eye" title="Ver"><Eye size={14} /></button>
+                <button className="gag-btn-edit" title="Editar"><Pencil size={13} /></button>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </DataTable>
 
       <div className="gag-footer">
         <span className="gag-count">{filtered.length} agenda(s) encontrada(s)</span>

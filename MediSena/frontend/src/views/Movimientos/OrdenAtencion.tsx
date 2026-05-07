@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Sidebar from '../../components/Sidebar';
 import MovTabs from './MovTabs';
+import DataTable from '../../components/DataTable';
+import Modal from '../../components/Modal';
 import api from '../../api/api';
 import {
   ChevronRight, ChevronLeft, Home, Eye, Printer, Pencil,
@@ -88,70 +90,64 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ value, options, placeholder
    MODAL: Detalles de la Orden
    ═══════════════════════════════════════════════════════════ */
 const DetallesModal: React.FC<{ orden: OrdenAtencion; onClose: () => void }> = ({ orden, onClose }) => (
-  <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
-    <div className="oa-modal-detalles">
-      <div className="oa-modal-detalles-header">
-        <Eye size={16} style={{ color: '#0165B0' }} />
-        <h2 className="oa-modal-detalles-title">Detalles de la Orden</h2>
+  <Modal isOpen={true} onClose={onClose} title="Detalles de la Orden" className="oa-modal-detalles">
+    <div className="oa-modal-detalles-body">
+      <div className="oa-det-field">
+        <span className="oa-det-label">Número de Orden</span>
+        <span className="oa-det-value bold">{orden.numero}</span>
       </div>
-      <div className="oa-modal-detalles-body">
+      <div className="oa-det-divider" />
+      <div className="oa-det-row">
         <div className="oa-det-field">
-          <span className="oa-det-label">Número de Orden</span>
-          <span className="oa-det-value bold">{orden.numero}</span>
-        </div>
-        <div className="oa-det-divider" />
-        <div className="oa-det-row">
-          <div className="oa-det-field">
-            <span className="oa-det-label">Estado</span>
-            <EstadoBadge estado={orden.estado} />
-          </div>
-          <div className="oa-det-field">
-            <span className="oa-det-label">Tipo de Atención</span>
-            <span className="oa-det-value">{orden.tipoAtencion || '—'}</span>
-          </div>
-        </div>
-        <div className="oa-det-divider" />
-        <div className="oa-det-field">
-          <span className="oa-det-label">Beneficiario</span>
-          <span className="oa-det-value bold">{orden.beneficiario}</span>
+          <span className="oa-det-label">Estado</span>
+          <EstadoBadge estado={orden.estado} />
         </div>
         <div className="oa-det-field">
-          <span className="oa-det-label">Funcionario Solicitante</span>
-          <span className="oa-det-value">{orden.funcionarioSolicitante || '—'}</span>
+          <span className="oa-det-label">Tipo de Atención</span>
+          <span className="oa-det-value">{orden.tipoAtencion || '—'}</span>
         </div>
-        <div className="oa-det-row">
-          <div className="oa-det-field">
-            <span className="oa-det-label">Médico Tratante</span>
-            <span className="oa-det-value">{orden.medicoTratante || '—'}</span>
-          </div>
-          <div className="oa-det-field">
-            <span className="oa-det-label">Especialidad</span>
-            <span className="oa-det-value">{orden.especialidad}</span>
-          </div>
-        </div>
-        <div className="oa-det-divider" />
-        <div className="oa-det-field">
-          <span className="oa-det-label">Fecha</span>
-          <span className="oa-det-value">{orden.fecha}</span>
-        </div>
-        {orden.observaciones && (
-          <>
-            <div className="oa-det-divider" />
-            <div className="oa-det-field">
-              <span className="oa-det-label">Observaciones</span>
-              <span className="oa-det-value">{orden.observaciones}</span>
-            </div>
-          </>
-        )}
       </div>
-      <div className="oa-modal-detalles-footer">
-        <button className="oa-btn-print" onClick={() => window.print()}>
-          <Printer size={14} /> Imprimir
-        </button>
-        <button className="oa-btn-cerrar" onClick={onClose}>Cerrar</button>
+      <div className="oa-det-divider" />
+      <div className="oa-det-field">
+        <span className="oa-det-label">Beneficiario</span>
+        <span className="oa-det-value bold">{orden.beneficiario}</span>
       </div>
+      <div className="oa-det-field">
+        <span className="oa-det-label">Funcionario Solicitante</span>
+        <span className="oa-det-value">{orden.funcionarioSolicitante || '—'}</span>
+      </div>
+      <div className="oa-det-row">
+        <div className="oa-det-field">
+          <span className="oa-det-label">Médico Tratante</span>
+          <span className="oa-det-value">{orden.medicoTratante || '—'}</span>
+        </div>
+        <div className="oa-det-field">
+          <span className="oa-det-label">Especialidad</span>
+          <span className="oa-det-value">{orden.especialidad}</span>
+        </div>
+      </div>
+      <div className="oa-det-divider" />
+      <div className="oa-det-field">
+        <span className="oa-det-label">Fecha</span>
+        <span className="oa-det-value">{orden.fecha}</span>
+      </div>
+      {orden.observaciones && (
+        <>
+          <div className="oa-det-divider" />
+          <div className="oa-det-field">
+            <span className="oa-det-label">Observaciones</span>
+            <span className="oa-det-value">{orden.observaciones}</span>
+          </div>
+        </>
+      )}
     </div>
-  </div>
+    <div className="oa-modal-detalles-footer">
+      <button className="oa-btn-print" onClick={() => window.print()}>
+        <Printer size={14} /> Imprimir
+      </button>
+      <button className="oa-btn-cerrar" onClick={onClose}>Cerrar</button>
+    </div>
+  </Modal>
 );
 
 /* ═══════════════════════════════════════════════════════════
@@ -202,128 +198,126 @@ const EditarOrdenModal: React.FC<{
   };
 
   return (
-    <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
-      <div className="oa-modal-edit">
-        {/* ── Header con steps ── */}
-        <div className="oa-modal-edit-header">
-          <div className="oa-edit-title-row">
-            <Pencil size={14} color="#fff" />
-            <span className="oa-modal-edit-title">Editar Orden de Atención</span>
-          </div>
-          <div className="oa-steps-row">
-            {STEPS.map((s, i) => (
-              <React.Fragment key={s}>
-                <div className={`oa-step ${step === i ? 'active' : step > i ? 'done' : ''}`}>
-                  <div className="oa-step-circle">
-                    {step > i ? '✓' : i + 1}
-                  </div>
-                  <span className="oa-step-label">{s}</span>
+    <Modal isOpen={true} onClose={onClose} hideHeader className="oa-modal-edit">
+      {/* ── Header con steps ── */}
+      <div className="oa-modal-edit-header">
+        <div className="oa-edit-title-row">
+          <Pencil size={14} color="#fff" />
+          <span className="oa-modal-edit-title">Editar Orden de Atención</span>
+        </div>
+        <div className="oa-steps-row">
+          {STEPS.map((s, i) => (
+            <React.Fragment key={s}>
+              <div className={`oa-step ${step === i ? 'active' : step > i ? 'done' : ''}`}>
+                <div className="oa-step-circle">
+                  {step > i ? '✓' : i + 1}
                 </div>
-                {i < STEPS.length - 1 && (
-                  <div className={`oa-step-line ${step > i ? 'done' : ''}`} />
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-
-        {/* ── Body ── */}
-        <div className="oa-modal-edit-body">
-
-          {/* Paso 0 */}
-          {step === 0 && (
-            <div className="oa-form-grid">
-              <div className="oa-form-field oa-field-full">
-                <CustomSelect
-                  label="Tipo de Atención *"
-                  value={form.tipoAtencion}
-                  options={TIPOS_ATENCION}
-                  placeholder="Seleccionar tipo"
-                  onChange={v => change('tipoAtencion', v)}
-                />
+                <span className="oa-step-label">{s}</span>
               </div>
-              <div className="oa-form-field">
-                <label className="oa-form-label">Fecha de la Orden *</label>
-                <input
-                  type="date"
-                  className="oa-input"
-                  value={toInputDate(form.fecha)}
-                  onChange={e => change('fecha', fromInputDate(e.target.value))}
-                />
-              </div>
-              <div className="oa-form-field oa-field-full">
-                <label className="oa-form-label">Observaciones</label>
-                <textarea
-                  className="oa-textarea"
-                  rows={4}
-                  value={form.observaciones}
-                  onChange={e => change('observaciones', e.target.value)}
-                />
-              </div>
-            </div>
-          )}
-
-          {/* Paso 1 */}
-          {step === 1 && (
-            <div className="oa-form-grid">
-              <div className="oa-form-field oa-field-full">
-                <label className="oa-form-label">Beneficiario *</label>
-                <input className="oa-input" value={form.beneficiario} onChange={e => change('beneficiario', e.target.value)} />
-              </div>
-              <div className="oa-form-field oa-field-full">
-                <label className="oa-form-label">Funcionario Solicitante *</label>
-                <input className="oa-input" placeholder="Funcionario Solicitante" value={form.funcionarioSolicitante} onChange={e => change('funcionarioSolicitante', e.target.value)} />
-              </div>
-            </div>
-          )}
-
-          {/* Paso 2 */}
-          {step === 2 && (
-            <div className="oa-form-grid">
-              <div className="oa-form-field oa-field-full">
-                <label className="oa-form-label">Médico Tratante *</label>
-                <input className="oa-input" placeholder="Médico Tratante" value={form.medicoTratante} onChange={e => change('medicoTratante', e.target.value)} />
-              </div>
-              <div className="oa-form-field oa-field-full">
-                <label className="oa-form-label">Especialidad *</label>
-                <input className="oa-input" value={form.especialidad} onChange={e => change('especialidad', e.target.value)} />
-              </div>
-              <div className="oa-form-field oa-field-full">
-                <label className="oa-form-label">Diagnóstico (Opcional)</label>
-                <input className="oa-input" value={form.diagnostico} onChange={e => change('diagnostico', e.target.value)} />
-              </div>
-              <div className="oa-form-field">
-                <label className="oa-form-label">Valor Total Estimado</label>
-                <input className="oa-input" placeholder="$" value={form.valorEstimado} onChange={e => change('valorEstimado', e.target.value)} />
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* ── Footer ── */}
-        <div className="oa-modal-edit-footer">
-          <button className="oa-btn-cancel-edit" onClick={onClose}>
-            <X size={14} /> Cancelar
-          </button>
-          <div className="oa-footer-nav">
-            {step > 0 && (
-              <button className="oa-btn-prev" onClick={() => setStep(s => (s - 1) as EditStep)}>
-                <ChevronLeft size={14} /> Anterior
-              </button>
-            )}
-            {step < 2 ? (
-              <button className="oa-btn-next" onClick={() => setStep(s => (s + 1) as EditStep)}>
-                Siguiente <ChevronRight size={14} />
-              </button>
-            ) : (
-              <button className="oa-btn-save" onClick={handleSave}>
-                Actualizar Orden
-              </button>
-            )}
-          </div>
+              {i < STEPS.length - 1 && (
+                <div className={`oa-step-line ${step > i ? 'done' : ''}`} />
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </div>
-    </div>
+
+      {/* ── Body ── */}
+      <div className="oa-modal-edit-body">
+
+        {/* Paso 0 */}
+        {step === 0 && (
+          <div className="oa-form-grid">
+            <div className="oa-form-field oa-field-full">
+              <CustomSelect
+                label="Tipo de Atención *"
+                value={form.tipoAtencion}
+                options={TIPOS_ATENCION}
+                placeholder="Seleccionar tipo"
+                onChange={v => change('tipoAtencion', v)}
+              />
+            </div>
+            <div className="oa-form-field">
+              <label className="oa-form-label">Fecha de la Orden *</label>
+              <input
+                type="date"
+                className="oa-input"
+                value={toInputDate(form.fecha)}
+                onChange={e => change('fecha', fromInputDate(e.target.value))}
+              />
+            </div>
+            <div className="oa-form-field oa-field-full">
+              <label className="oa-form-label">Observaciones</label>
+              <textarea
+                className="oa-textarea"
+                rows={4}
+                value={form.observaciones}
+                onChange={e => change('observaciones', e.target.value)}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Paso 1 */}
+        {step === 1 && (
+          <div className="oa-form-grid">
+            <div className="oa-form-field oa-field-full">
+              <label className="oa-form-label">Beneficiario *</label>
+              <input className="oa-input" value={form.beneficiario} onChange={e => change('beneficiario', e.target.value)} />
+            </div>
+            <div className="oa-form-field oa-field-full">
+              <label className="oa-form-label">Funcionario Solicitante *</label>
+              <input className="oa-input" placeholder="Funcionario Solicitante" value={form.funcionarioSolicitante} onChange={e => change('funcionarioSolicitante', e.target.value)} />
+            </div>
+          </div>
+        )}
+
+        {/* Paso 2 */}
+        {step === 2 && (
+          <div className="oa-form-grid">
+            <div className="oa-form-field oa-field-full">
+              <label className="oa-form-label">Médico Tratante *</label>
+              <input className="oa-input" placeholder="Médico Tratante" value={form.medicoTratante} onChange={e => change('medicoTratante', e.target.value)} />
+            </div>
+            <div className="oa-form-field oa-field-full">
+              <label className="oa-form-label">Especialidad *</label>
+              <input className="oa-input" value={form.especialidad} onChange={e => change('especialidad', e.target.value)} />
+            </div>
+            <div className="oa-form-field oa-field-full">
+              <label className="oa-form-label">Diagnóstico (Opcional)</label>
+              <input className="oa-input" value={form.diagnostico} onChange={e => change('diagnostico', e.target.value)} />
+            </div>
+            <div className="oa-form-field">
+              <label className="oa-form-label">Valor Total Estimado</label>
+              <input className="oa-input" placeholder="$" value={form.valorEstimado} onChange={e => change('valorEstimado', e.target.value)} />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ── Footer ── */}
+      <div className="oa-modal-edit-footer">
+        <button className="oa-btn-cancel-edit" onClick={onClose}>
+          <X size={14} /> Cancelar
+        </button>
+        <div className="oa-footer-nav">
+          {step > 0 && (
+            <button className="oa-btn-prev" onClick={() => setStep(s => (s - 1) as EditStep)}>
+              <ChevronLeft size={14} /> Anterior
+            </button>
+          )}
+          {step < 2 ? (
+            <button className="oa-btn-next" onClick={() => setStep(s => (s + 1) as EditStep)}>
+              Siguiente <ChevronRight size={14} />
+            </button>
+          ) : (
+            <button className="oa-btn-save" onClick={handleSave}>
+              Actualizar Orden
+            </button>
+          )}
+        </div>
+      </div>
+    </Modal>
   );
 };
 
@@ -383,6 +377,20 @@ const OrdenAtencionView: React.FC = () => {
   const handleSaveEdit = (updated: OrdenAtencion) => {
     setOrdenes(p => p.map(o => o.id === updated.id ? updated : o));
   };
+
+  /* ── Headers de la tabla ── */
+  const tableHeaders = (
+    <tr>
+      <th>Número</th>
+      <th>Vigencia</th>
+      <th>Beneficiario</th>
+      <th>Contratista</th>
+      <th>Especialidad</th>
+      <th>Fecha</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  );
 
   return (
     <>
@@ -480,87 +488,53 @@ const OrdenAtencionView: React.FC = () => {
                 </div>
               </div>
 
-              {/* Tabla con scroll */}
-              <div className="oa-table-scroll">
-                <table className="resoluciones-table">
-                  <thead>
-                    <tr>
-                      <th>Número</th>
-                      <th>Vigencia</th>
-                      <th>Beneficiario</th>
-                      <th>Contratista</th>
-                      <th>Especialidad</th>
-                      <th>Fecha</th>
-                      <th>Estado</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {loading ? (
-                      <tr><td colSpan={8} className="table-empty">Cargando datos...</td></tr>
-                    ) : error ? (
-                      <tr><td colSpan={8} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
-                    ) : current.length === 0 ? (
-                      <tr><td colSpan={8} className="table-empty">No se encontraron resultados.</td></tr>
-                    ) : current.map(o => (
-                      <tr key={o.id}>
-                        <td><strong>{o.numero}</strong></td>
-                        <td>{o.vigencia}</td>
-                        <td>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <span>{o.beneficiario}</span>
-                            <span className="oa-ben-badge">C</span>
-                          </div>
-                        </td>
-                        <td>{o.contratista}</td>
-                        <td>{o.especialidad}</td>
-                        <td>{o.fecha}</td>
-                        <td><EstadoBadge estado={o.estado} /></td>
-                        <td>
-                          <div className="oa-actions-cell">
-                            <button className="oa-action-btn oa-action-eye" title="Ver" onClick={() => setDetallesOrden(o)}>
-                              <Eye size={15} />
-                            </button>
-                            <button className="oa-action-btn oa-action-print" title="Imprimir" onClick={() => window.print()}>
-                              <Printer size={15} />
-                            </button>
-                            <button className="oa-action-btn oa-action-edit" title="Editar" onClick={() => setEditOrden(o)}>
-                              <Pencil size={14} />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              {/* Tabla con DataTable */}
+              <DataTable
+                headers={tableHeaders}
+                itemsPerPage={itemsPerPage}
+                setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalPages={totalPages}
+                visiblePages={visiblePages}
+              >
+                {loading ? (
+                  <tr><td colSpan={8} className="table-empty">Cargando datos...</td></tr>
+                ) : error ? (
+                  <tr><td colSpan={8} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
+                ) : current.length === 0 ? (
+                  <tr><td colSpan={8} className="table-empty">No se encontraron resultados.</td></tr>
+                ) : current.map(o => (
+                  <tr key={o.id}>
+                    <td><strong>{o.numero}</strong></td>
+                    <td>{o.vigencia}</td>
+                    <td>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <span>{o.beneficiario}</span>
+                        <span className="oa-ben-badge">C</span>
+                      </div>
+                    </td>
+                    <td>{o.contratista}</td>
+                    <td>{o.especialidad}</td>
+                    <td>{o.fecha}</td>
+                    <td><EstadoBadge estado={o.estado} /></td>
+                    <td>
+                      <div className="oa-actions-cell">
+                        <button className="oa-action-btn oa-action-eye" title="Ver" onClick={() => setDetallesOrden(o)}>
+                          <Eye size={15} />
+                        </button>
+                        <button className="oa-action-btn oa-action-print" title="Imprimir" onClick={() => window.print()}>
+                          <Printer size={15} />
+                        </button>
+                        <button className="oa-action-btn oa-action-edit" title="Editar" onClick={() => setEditOrden(o)}>
+                          <Pencil size={14} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </DataTable>
 
-              {/* Paginación */}
-              <div className="pagination-footer">
-                <div className="items-per-page">
-                  <span>Elementos por página</span>
-                  <div className="items-select-wrapper">
-                    <select className="items-select" value={itemsPerPage}
-                      onChange={e => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}>
-                      <option value={5}>5</option>
-                      <option value={10}>10</option>
-                      <option value={20}>20</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="page-controls">
-                  <button className="page-nav-btn" onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1}>
-                    <ChevronLeft size={18} />
-                  </button>
-                  {visiblePages.map(n => (
-                    <button key={n} className={`page-num-btn ${currentPage === n ? 'active' : ''}`} onClick={() => setCurrentPage(n)}>{n}</button>
-                  ))}
-                  <button className="page-nav-btn" onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages}>
-                    <ChevronRight size={18} />
-                  </button>
-                </div>
-                <div className="page-info-total">{currentPage} - de {totalPages} páginas</div>
-              </div>
             </div>
           </div>
         </div>

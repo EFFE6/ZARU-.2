@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Sidebar from '../../components/Sidebar';
 import MovTabs from './MovTabs';
+import DataTable from '../../components/DataTable';
 import { Home, ChevronRight, Trash2, RefreshCw } from 'lucide-react';
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
 import '../../styles/Movimientos/OrdenAtencion.css';
@@ -39,9 +40,9 @@ const mockAgendas: AgendaProgramada[] = [
 const ProgramarAgendaView: React.FC = () => {
   const [agendas, setAgendas] = useState<AgendaProgramada[]>(mockAgendas);
   const [form, setForm] = useState({ medico: '', fecha: '', horaInicio: '', horaFin: '', cupos: '' });
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [firstActive, setFirstActive] = useState(false);
-  const PER_PAGE = 10;
 
   const change = (field: string, value: string) => setForm(p => ({ ...p, [field]: value }));
 
@@ -66,8 +67,22 @@ const ProgramarAgendaView: React.FC = () => {
 
   const handleEliminar = (id: number) => setAgendas(p => p.filter(a => a.id !== id));
 
-  const totalPages = Math.max(1, Math.ceil(agendas.length / PER_PAGE));
-  const current = agendas.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+  const totalPages = Math.max(1, Math.ceil(agendas.length / itemsPerPage));
+  const current = agendas.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const visiblePages = useMemo(() => {
+    const delta = 2, start = Math.max(1, currentPage - delta), end = Math.min(totalPages, currentPage + delta);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }, [currentPage, totalPages]);
+
+  const tableHeaders = (
+    <tr>
+      <th>Médico</th>
+      <th>Fecha</th>
+      <th>Horario</th>
+      <th>Cupos</th>
+      <th>Acciones</th>
+    </tr>
+  );
 
   return (
     <>
@@ -158,43 +173,31 @@ const ProgramarAgendaView: React.FC = () => {
                     <span className="pag-count-badge">{agendas.length}</span>
                   </div>
 
-                  <div className="oa-table-scroll">
-                    <table className="resoluciones-table">
-                      <thead>
-                        <tr>
-                          <th>Médico</th>
-                          <th>Fecha</th>
-                          <th>Horario</th>
-                          <th>Cupos</th>
-                          <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {current.length === 0 ? (
-                          <tr><td colSpan={5} className="table-empty">No hay agendas programadas.</td></tr>
-                        ) : current.map(a => (
-                          <tr key={a.id}>
-                            <td style={{ color: '#0165B0', fontWeight: 600 }}>{a.medico}</td>
-                            <td>{a.fecha}</td>
-                            <td>{a.horarioInicio} - {a.horarioFin}</td>
-                            <td><span className="pag-cupos-badge">{a.cupos}/{a.cupos}</span></td>
-                            <td>
-                              <button className="oa-btn-delete" onClick={() => handleEliminar(a.id)} title="Eliminar">
-                                <Trash2 size={14} />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <div className="rp-footer-info">
-                    <span className="rp-info-label">Filas por página: <strong>{PER_PAGE}</strong></span>
-                    <span className="rp-info-count">{(page-1)*PER_PAGE+1}-{Math.min(page*PER_PAGE, agendas.length)} de {agendas.length}</span>
-                    <button className="rp-nav-btn" disabled={page === 1} onClick={() => setPage(p => p - 1)}>‹</button>
-                    <button className="rp-nav-btn" disabled={page === totalPages} onClick={() => setPage(p => p + 1)}>›</button>
-                  </div>
+                  <DataTable
+                    headers={tableHeaders}
+                    itemsPerPage={itemsPerPage}
+                    setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    totalPages={totalPages}
+                    visiblePages={visiblePages}
+                  >
+                    {current.length === 0 ? (
+                      <tr><td colSpan={5} className="table-empty">No hay agendas programadas.</td></tr>
+                    ) : current.map(a => (
+                      <tr key={a.id}>
+                        <td style={{ color: '#0165B0', fontWeight: 600 }}>{a.medico}</td>
+                        <td>{a.fecha}</td>
+                        <td>{a.horarioInicio} - {a.horarioFin}</td>
+                        <td><span className="pag-cupos-badge">{a.cupos}/{a.cupos}</span></td>
+                        <td>
+                          <button className="oa-btn-delete" onClick={() => handleEliminar(a.id)} title="Eliminar">
+                            <Trash2 size={14} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </DataTable>
                 </div>
 
               </div>

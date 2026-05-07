@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Sidebar from '../../components/Sidebar';
 import MovTabs from './MovTabs';
+import DataTable from '../../components/DataTable';
 import api from '../../api/api';
 import { Home, ChevronRight, Clock, Download, RefreshCw, Search } from 'lucide-react';
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
@@ -28,6 +29,8 @@ const ConsultarOrdenes: React.FC = () => {
   const [estado, setEstado] = useState('Todos');
   const [search, setSearch] = useState('');
   const [firstActive, setFirstActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const fetchData = async () => {
     setLoading(true);
@@ -45,6 +48,7 @@ const ConsultarOrdenes: React.FC = () => {
       ]);
     } finally {
       setLoading(false);
+      setCurrentPage(1);
     }
   };
 
@@ -73,7 +77,26 @@ const ConsultarOrdenes: React.FC = () => {
   const pendientes  = filtered.filter(o => o.estado === 'P').length;
   const valorTotal  = filtered.reduce((acc, o) => acc + (o.valor || 0), 0);
 
+  const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
+  const current = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const visiblePages = useMemo(() => {
+    const delta = 2, start = Math.max(1, currentPage - delta), end = Math.min(totalPages, currentPage + delta);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }, [currentPage, totalPages]);
+
   const estadoLabel: Record<string, string> = { A: 'A', C: 'C', P: 'P', X: 'X' };
+
+  const tableHeaders = (
+    <tr>
+      <th>Número Orden</th>
+      <th>Fecha</th>
+      <th>Paciente</th>
+      <th>Servicio</th>
+      <th>Contratista</th>
+      <th>Valor</th>
+      <th>Estado</th>
+    </tr>
+  );
 
   return (
     <>
@@ -151,49 +174,42 @@ const ConsultarOrdenes: React.FC = () => {
                 <span className="co-stat-pill teal">Valor Total: ${valorTotal.toLocaleString()}</span>
               </div>
 
-              {/* Tabla */}
-              <div className="co-table-wrapper">
-                <table className="co-table">
-                  <thead>
-                    <tr>
-                      <th>Número Orden</th>
-                      <th>Fecha</th>
-                      <th>Paciente</th>
-                      <th>Servicio</th>
-                      <th>Contratista</th>
-                      <th>Valor</th>
-                      <th>Estado</th>
+              {/* Tabla con DataTable */}
+              <DataTable
+                headers={tableHeaders}
+                itemsPerPage={itemsPerPage}
+                setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalPages={totalPages}
+                visiblePages={visiblePages}
+              >
+                {loading ? (
+                  <tr><td colSpan={7} className="table-empty">Cargando...</td></tr>
+                ) : current.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="table-empty">
+                      No hay órdenes para el año {año} con los filtros seleccionados
+                    </td>
+                  </tr>
+                ) : (
+                  current.map(o => (
+                    <tr key={o.id}>
+                      <td className="co-col-num">{o.numero}</td>
+                      <td>{o.fecha}</td>
+                      <td className="co-col-paciente">{o.paciente}</td>
+                      <td>{o.servicio}</td>
+                      <td>{o.contratista}</td>
+                      <td>${o.valor.toLocaleString()}</td>
+                      <td>
+                        <span className={`co-estado-pill ${o.estado === 'C' ? 'green' : o.estado === 'P' ? 'orange' : o.estado === 'X' ? 'red' : 'gray'}`}>
+                          {estadoLabel[o.estado] || o.estado}
+                        </span>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {loading ? (
-                      <tr><td colSpan={7} className="co-table-empty">Cargando...</td></tr>
-                    ) : filtered.length === 0 ? (
-                      <tr>
-                        <td colSpan={7} className="co-table-empty">
-                          No hay órdenes para el año {año} con los filtros seleccionados
-                        </td>
-                      </tr>
-                    ) : (
-                      filtered.map(o => (
-                        <tr key={o.id}>
-                          <td className="co-col-num">{o.numero}</td>
-                          <td>{o.fecha}</td>
-                          <td className="co-col-paciente">{o.paciente}</td>
-                          <td>{o.servicio}</td>
-                          <td>{o.contratista}</td>
-                          <td>${o.valor.toLocaleString()}</td>
-                          <td>
-                            <span className={`co-estado-pill ${o.estado === 'C' ? 'green' : o.estado === 'P' ? 'orange' : o.estado === 'X' ? 'red' : 'gray'}`}>
-                              {estadoLabel[o.estado] || o.estado}
-                            </span>
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
+                  ))
+                )}
+              </DataTable>
 
             </div>
           </div>

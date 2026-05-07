@@ -3,16 +3,17 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
   ClipboardList, Receipt, CreditCard, CalendarPlus, CalendarCheck, XCircle, Search,
 } from 'lucide-react';
+import TabGroup, { TabItem } from '../../components/TabGroup';
 
 /* Orden exacto del Sidebar */
-const TABS = [
-  { label: 'Orden de Atención',  path: '/movimientos/orden-atencion',   icon: ClipboardList },
-  { label: 'Cuenta de Cobro',    path: '/movimientos/cuenta-cobro',      icon: Receipt       },
-  { label: 'Relación de Pagos',  path: '/movimientos/relacion-pagos',    icon: CreditCard    },
-  { label: 'Programar Agenda',   path: '/movimientos/programar-agenda',  icon: CalendarPlus  },
-  { label: 'Agendas',            path: '/movimientos/agendas',           icon: CalendarCheck },
-  { label: 'Cancelar Órdenes',   path: '/movimientos/cancelar-ordenes',  icon: XCircle       },
-  { label: 'Consultar Órdenes',  path: '/movimientos/consultar-ordenes', icon: Search        },
+const TABS: (TabItem & { path: string })[] = [
+  { id: 'orden-atencion',    label: 'Orden de Atención',  path: '/movimientos/orden-atencion',   icon: ClipboardList },
+  { id: 'cuenta-cobro',      label: 'Cuenta de Cobro',    path: '/movimientos/cuenta-cobro',      icon: Receipt       },
+  { id: 'relacion-pagos',    label: 'Relación de Pagos',  path: '/movimientos/relacion-pagos',    icon: CreditCard    },
+  { id: 'programar-agenda',  label: 'Programar Agenda',   path: '/movimientos/programar-agenda',  icon: CalendarPlus  },
+  { id: 'agendas',           label: 'Agendas',            path: '/movimientos/agendas',           icon: CalendarCheck },
+  { id: 'cancelar-ordenes',  label: 'Cancelar Órdenes',   path: '/movimientos/cancelar-ordenes',  icon: XCircle       },
+  { id: 'consultar-ordenes', label: 'Consultar Órdenes',  path: '/movimientos/consultar-ordenes', icon: Search        },
 ];
 
 interface MovTabsProps {
@@ -24,33 +25,25 @@ const MovTabs: React.FC<MovTabsProps> = ({ onFirstActive }) => {
   const navigate      = useNavigate();
   const { pathname }  = useLocation();
 
-  const activeIdx = TABS.findIndex(t => t.path === pathname);
+  const activeId = TABS.find(t => t.path === pathname)?.id ?? TABS[0].id;
 
   /* Notificar al padre si el primero está activo */
   React.useEffect(() => {
-    onFirstActive?.(activeIdx === 0);
-  }, [activeIdx]);
+    onFirstActive?.(activeId === TABS[0].id);
+  }, [activeId]);
+
+  const handleTabChange = (id: string) => {
+    const tab = TABS.find(t => t.id === id);
+    if (tab) navigate(tab.path);
+  };
 
   return (
-    <div className="tabs-scroll-area">
-      {TABS.map(({ label, path, icon: Icon }, idx) => {
-        const active = idx === activeIdx;
-        return (
-          <div
-            key={path}
-            className={`tab-pill${active ? ' active' : ''}`}
-            onClick={() => navigate(path)}
-          >
-            {active && (
-              <div className="active-tab-icon">
-                <Icon size={13} />
-              </div>
-            )}
-            {label}
-          </div>
-        );
-      })}
-    </div>
+    <TabGroup
+      tabs={TABS}
+      activeTab={activeId}
+      onTabChange={handleTabChange}
+      iconSize={13}
+    />
   );
 };
 

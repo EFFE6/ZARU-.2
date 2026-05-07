@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Trash2, RefreshCw } from 'lucide-react';
+import DataTable from '../../../components/DataTable';
 
 interface AgendaProgramada {
   id: number;
@@ -34,8 +35,8 @@ const mockAgendas: AgendaProgramada[] = [
 const ProgramarAgenda: React.FC = () => {
   const [agendas, setAgendas] = useState<AgendaProgramada[]>(mockAgendas);
   const [form, setForm] = useState({ medico: '', fecha: '', horaInicio: '', horaFin: '', cupos: '' });
-  const [page, setPage] = useState(1);
-  const PER_PAGE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const change = (field: string, value: string) => setForm(p => ({ ...p, [field]: value }));
 
@@ -55,8 +56,22 @@ const ProgramarAgenda: React.FC = () => {
 
   const handleEliminar = (id: number) => setAgendas(p => p.filter(a => a.id !== id));
 
-  const totalPages = Math.max(1, Math.ceil(agendas.length / PER_PAGE));
-  const current = agendas.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+  const totalPages = Math.max(1, Math.ceil(agendas.length / itemsPerPage));
+  const current = agendas.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const visiblePages = useMemo(() => {
+    const delta = 2, start = Math.max(1, currentPage - delta), end = Math.min(totalPages, currentPage + delta);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }, [currentPage, totalPages]);
+
+  const tableHeaders = (
+    <tr>
+      <th>Médico</th>
+      <th>Fecha</th>
+      <th>Horario</th>
+      <th>Cupos</th>
+      <th>Acciones</th>
+    </tr>
+  );
 
   return (
     <div className="pag-layout">
@@ -125,52 +140,33 @@ const ProgramarAgenda: React.FC = () => {
           </button>
         </div>
 
-        <div className="pag-table-scroll">
-          <table className="pag-table">
-            <thead>
-              <tr>
-                <th>Médico</th>
-                <th>Fecha</th>
-                <th>Horario</th>
-                <th>Cupos</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {current.length === 0 ? (
-                <tr><td colSpan={5} className="pag-empty">No hay agendas programadas.</td></tr>
-              ) : current.map(a => (
-                <tr key={a.id}>
-                  <td className="pag-td-medico">{a.medico}</td>
-                  <td>{a.fecha}</td>
-                  <td className="pag-td-horario">{a.horarioInicio} - {a.horarioFin}</td>
-                  <td>
-                    <span className="pag-cupos-badge">{a.cupos}/{a.cupos}</span>
-                  </td>
-                  <td>
-                    <button className="pag-btn-del" onClick={() => handleEliminar(a.id)} title="Eliminar">
-                      <Trash2 size={14} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Paginación */}
-        <div className="pag-pagination">
-          <span className="pag-page-label">
-            Filas por página: <strong>{PER_PAGE}</strong>
-          </span>
-          <span className="pag-page-info">
-            {(page - 1) * PER_PAGE + 1}-{Math.min(page * PER_PAGE, agendas.length)} de {agendas.length}
-          </span>
-          <div className="pag-page-btns">
-            <button className="pag-page-btn" disabled={page === 1} onClick={() => setPage(p => p - 1)}>‹</button>
-            <button className="pag-page-btn" disabled={page === totalPages} onClick={() => setPage(p => p + 1)}>›</button>
-          </div>
-        </div>
+        <DataTable
+          headers={tableHeaders}
+          itemsPerPage={itemsPerPage}
+          setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+          visiblePages={visiblePages}
+        >
+          {current.length === 0 ? (
+            <tr><td colSpan={5} className="table-empty">No hay agendas programadas.</td></tr>
+          ) : current.map(a => (
+            <tr key={a.id}>
+              <td className="pag-td-medico">{a.medico}</td>
+              <td>{a.fecha}</td>
+              <td className="pag-td-horario">{a.horarioInicio} - {a.horarioFin}</td>
+              <td>
+                <span className="pag-cupos-badge">{a.cupos}/{a.cupos}</span>
+              </td>
+              <td>
+                <button className="pag-btn-del" onClick={() => handleEliminar(a.id)} title="Eliminar">
+                  <Trash2 size={14} />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </DataTable>
       </div>
     </div>
   );
