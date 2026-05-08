@@ -55,7 +55,6 @@ function App() {
         <Route path="/excedentes" element={<Excedentes />} />
         <Route path="/consultas" element={<Consultas />} />
         <Route path="/reportes" element={<Reportes />} />
-        <Route path="/reportes-nacionales" element={<Dashboard />} />
         <Route path="/seguridad-accesos" element={<SeguridadAccesos />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />

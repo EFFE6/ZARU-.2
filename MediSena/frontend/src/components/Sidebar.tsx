@@ -15,7 +15,6 @@ import {
   ExcedentesIcon,
   ConsultasIcon,
   ReportesIcon,
-  ReportesNacionalesIcon,
   SeguridadAccesosIcon,
 } from './SidebarIcons';
 import '../styles/Sidebar/Sidebar.css';
@@ -31,7 +30,6 @@ export const navItems = [
   { id: 'Excedentes', icon: ExcedentesIcon, label: 'Excedentes', path: '/excedentes' },
   { id: 'Consultas', icon: ConsultasIcon, label: 'Consultas', path: '/consultas' },
   { id: 'Reportes', icon: ReportesIcon, label: 'Reportes', path: '/reportes' },
-  { id: 'Reportes nacionales', icon: ReportesNacionalesIcon, label: 'Reportes nacionales', path: '/reportes-nacionales' },
   { id: 'Seguridad y accesos', icon: SeguridadAccesosIcon, label: 'Seguridad y accesos', path: '/seguridad-accesos' },
 ];
 

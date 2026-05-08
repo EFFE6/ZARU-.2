@@ -38,7 +38,7 @@ const GestionAgendas: React.FC = () => {
   const [estadoFilter, setEstadoFilter] = useState('Todos');
   const [data, setData] = useState<AgendaGestion[]>(mockData);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   const filtered = data.filter(a => {
     const q = search.toLowerCase();
@@ -128,8 +128,8 @@ const GestionAgendas: React.FC = () => {
         ) : current.map(a => (
           <tr key={a.id}>
             <td style={{ color: '#0165B0', fontWeight: 600 }}>{a.fecha}</td>
-            <td>{a.medico}</td>
-            <td>{a.especialidad}</td>
+            <td title={a.medico}>{a.medico}</td>
+            <td title={a.especialidad}>{a.especialidad}</td>
             <td>{a.horario}</td>
             <td>
               <span className="gag-cupos-badge">{a.cuposUsados}/{a.cuposTotal}</span>

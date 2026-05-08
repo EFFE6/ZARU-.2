@@ -98,3 +98,34 @@
   color: white;
   flex-shrink: 0;
 }
+
+/* ─── RESPONSIVIDAD PARA TABS ─── */
+@media (max-width: 1440px) {
+  .tg-tab-pill {
+    padding: 8px 12px;
+    font-size: 12.5px;
+    gap: 6px;
+  }
+  .tg-active-tab-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .tg-tabs-scroll-area {
+    gap: 4px;
+  }
+  .tg-tab-pill {
+    padding: 7px 10px;
+    font-size: 12px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tg-tab-pill {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+}
