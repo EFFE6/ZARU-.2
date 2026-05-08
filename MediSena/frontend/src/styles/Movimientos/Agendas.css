@@ -209,20 +209,25 @@
   background: #fff;
 }
 
-.pag-btn-del {
-  width: 28px;
-  height: 28px;
-  border-radius: 7px;
+.pag-btn-del, .oa-btn-delete {
+  background: transparent;
   border: none;
-  background: #fee2e2;
-  color: #991b1b;
+  padding: 0;
+  margin: 0 auto;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.18s;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.pag-btn-del:hover { background: #fecaca; }
+
+.pag-btn-del:hover, .oa-btn-delete:hover {
+  transform: scale(1.05);
+}
+
+.pag-btn-del:active, .oa-btn-delete:active {
+  transform: scale(0.95);
+}
 
 .pag-empty {
   text-align: center;
@@ -332,29 +337,7 @@
   flex-wrap: wrap;
 }
 
-.gag-search-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 8px 12px;
-  flex: 1;
-  min-width: 200px;
-  transition: border-color 0.18s;
-}
-.gag-search-wrap:focus-within { border-color: #0165B0; }
 
-.gag-search-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 0.83rem;
-  color: #334155;
-  width: 100%;
-}
-.gag-search-input::placeholder { color: #94a3b8; }
 
 .gag-filter-group {
   display: flex;

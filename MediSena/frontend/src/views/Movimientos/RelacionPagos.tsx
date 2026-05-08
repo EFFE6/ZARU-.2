@@ -1,17 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import Sidebar from '../../components/Sidebar';
-import MovTabs from './MovTabs';
+import React, { useState, useMemo } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import DataTable from '../../components/DataTable';
-import api from '../../api/api';
-import SearchBar from '../../components/SearchBar';
-import {
-  ChevronRight, ChevronLeft, Home, RefreshCw,
-  Download, Printer, ChevronDown,
-} from 'lucide-react';
-import '../../styles/GestionResoluciones/GestionResoluciones.css';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/RelacionPagos.css';
-import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 interface RelacionPago {
   id: number;
@@ -24,30 +15,19 @@ interface RelacionPago {
   estado: string;
 }
 
+const MOCK_PAGOS: RelacionPago[] = [
+  { id: 1, numero: 201, contratista: 'CLAUDIA BASSIL AMIN', cuentaCobro: 'CC-101', fechaPago: '05/02/2026', valor: '$1.200.000', formaPago: 'Transferencia', estado: 'PAGADO' },
+  { id: 2, numero: 202, contratista: 'Piedad Viana Marzola', cuentaCobro: 'CC-102', fechaPago: '10/02/2026', valor: '$850.000', formaPago: 'Cheque', estado: 'PAGADO' },
+  { id: 3, numero: 203, contratista: 'ABRIL GALEANO GIOVANNI', cuentaCobro: 'CC-103', fechaPago: '15/02/2026', valor: '$2.350.000', formaPago: 'Transferencia', estado: 'PENDIENTE' },
+  { id: 4, numero: 204, contratista: 'CLAUDIA BASSIL AMIN', cuentaCobro: 'CC-104', fechaPago: '20/02/2026', valor: '$970.000', formaPago: 'Efectivo', estado: 'PAGADO' },
+  { id: 5, numero: 205, contratista: 'Piedad Viana Marzola', cuentaCobro: 'CC-105', fechaPago: '25/02/2026', valor: '$1.540.000', formaPago: 'Transferencia', estado: 'PENDIENTE' },
+];
+
 const RelacionPagosView: React.FC = () => {
-  const [pagos, setPagos] = useState<RelacionPago[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [search, setSearch] = useState('');
+  const [pagos] = useState<RelacionPago[]>(MOCK_PAGOS);
+  const { search } = useOutletContext<{ search: string }>();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [firstActive, setFirstActive] = useState(false);
-
-  const fetchPagos = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get('/relacion-pagos');
-      setPagos(res.data);
-    } catch (err: any) {
-      setError(err.response?.data?.message || err.message || 'Error al cargar');
-    } finally {
-      setLoading(false);
-      setCurrentPage(1);
-    }
-  };
-
-  useEffect(() => { fetchPagos(); }, []);
 
   const filtered = useMemo(() => {
     return pagos.filter(p =>
@@ -68,109 +48,50 @@ const RelacionPagosView: React.FC = () => {
     return sum + v;
   }, 0);
 
-  const tableHeaders = (
-    <tr>
-      <th>Número</th>
-      <th>Contratista</th>
-      <th>Cuenta Cobro</th>
-      <th>Fecha Pago</th>
-      <th>Valor</th>
-      <th>Forma Pago</th>
-      <th>Estado</th>
-    </tr>
-  );
-
   return (
     <>
-      <div className="gestion-container">
+      <DataTable
+        headers={
+          <tr>
+            <th>Número</th>
+            <th>Contratista</th>
+            <th>Cuenta Cobro</th>
+            <th>Fecha Pago</th>
+            <th>Valor</th>
+            <th>Forma Pago</th>
+            <th>Estado</th>
+          </tr>
+        }
+        itemsPerPage={itemsPerPage}
+        setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+        visiblePages={visiblePages}
+      >
+        {current.length === 0 ? (
+          <tr><td colSpan={7} className="table-empty">No hay pagos registrados</td></tr>
+        ) : current.map(p => (
+          <tr key={p.id}>
+            <td>{p.numero}</td>
+            <td>{p.contratista}</td>
+            <td>{p.cuentaCobro}</td>
+            <td>{p.fechaPago}</td>
+            <td>{p.valor}</td>
+            <td>{p.formaPago}</td>
+            <td>{p.estado}</td>
+          </tr>
+        ))}
+      </DataTable>
 
-          {/* Header */}
-          <header className="gestion-header">
-            <div className="gestion-header-top">
-              <nav className="breadcrumb">
-                <div className="breadcrumb-item"><Home size={14} /></div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item">Movimientos</div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item active">Relación de Pagos</div>
-              </nav>
-              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
-            </div>
-            <div className="gestion-header-bottom">
-              <h1 className="gestion-title">Relación de Pagos</h1>
-              <SearchBar
-                value={search}
-                onChange={(val) => { setSearch(val); setCurrentPage(1); }}
-                placeholder="Busca por número o contratista"
-              />
-            </div>
-          </header>
-
-          <div className="tabs-card-group">
-            <MovTabs onFirstActive={setFirstActive} />
-            <div className={`gestion-content-card${firstActive ? ' first-tab-active' : ''}`} style={{ marginTop: 0 }}>
-
-              {/* Toolbar búsqueda */}
-              <div className="rp-toolbar">
-                <div className="oa-search-wrap rp-search-wrap">
-                  <svg width="15" height="15" viewBox="0 0 17 17" fill="none">
-                    <circle cx="7" cy="7" r="4.2" stroke="#94a3b8" strokeWidth="2" />
-                    <line x1="10.2" y1="10.5" x2="15.5" y2="15.8" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                  <input
-                    className="oa-search-input"
-                    placeholder="Buscar por número, contratista..."
-                    value={search}
-                    onChange={e => { setSearch(e.target.value); setCurrentPage(1); }}
-                  />
-                </div>
-                <button className="rp-btn-buscar" onClick={() => setCurrentPage(1)}>
-                  Buscar
-                </button>
-              </div>
-
-              {/* Tabla con DataTable */}
-              <DataTable
-                headers={tableHeaders}
-                itemsPerPage={itemsPerPage}
-                setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                totalPages={totalPages}
-                visiblePages={visiblePages}
-              >
-                {loading ? (
-                  <tr><td colSpan={7} className="table-empty">Cargando datos...</td></tr>
-                ) : error ? (
-                  <tr><td colSpan={7} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
-                ) : current.length === 0 ? (
-                  <tr><td colSpan={7} className="table-empty">No hay pagos registrados</td></tr>
-                ) : current.map(p => (
-                  <tr key={p.id}>
-                    <td>{p.numero}</td>
-                    <td>{p.contratista}</td>
-                    <td>{p.cuentaCobro}</td>
-                    <td>{p.fechaPago}</td>
-                    <td>{p.valor}</td>
-                    <td>{p.formaPago}</td>
-                    <td>{p.estado}</td>
-                  </tr>
-                ))}
-              </DataTable>
-
-              {/* Totales */}
-              <div className="rp-totales">
-                <span className="rp-total-badge rp-total-dark">
-                  Total: {filtered.length} pago{filtered.length !== 1 ? 's' : ''}
-                </span>
-                <span className="rp-total-badge rp-total-green">
-                  En esta página: ${paginaValor.toLocaleString('es-CO')}
-                </span>
-              </div>
-
-            </div>
-          </div>
-        </div>
+      <div className="rp-totales">
+        <span className="rp-total-badge rp-total-dark">
+          Total: {filtered.length} pago{filtered.length !== 1 ? 's' : ''}
+        </span>
+        <span className="rp-total-badge rp-total-green">
+          En esta página: ${paginaValor.toLocaleString('es-CO')}
+        </span>
+      </div>
     </>
   );
 };

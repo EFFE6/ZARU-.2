@@ -6,6 +6,7 @@ import GestionResoluciones from './views/GestionResoluciones';
 import DatosBasicos from './views/DatosBasicos';
 import MainLayout from './components/MainLayout';
 import SeguridadAccesos from './views/SeguridadAccesos';
+import MovimientosLayout from './views/Movimientos';
 import OrdenAtencion from './views/Movimientos/OrdenAtencion';
 import CuentaCobro from './views/Movimientos/CuentaCobro';
 import RelacionPagos from './views/Movimientos/RelacionPagos';
@@ -40,14 +41,16 @@ function App() {
         <Route path="/dashboard" element={<Navigate to="/" replace />} />
         <Route path="/gestion" element={<GestionResoluciones />} />
         <Route path="/datos-basicos/*" element={<DatosBasicos />} />
-        <Route path="/movimientos" element={<Navigate to="/movimientos/orden-atencion" replace />} />
-        <Route path="/movimientos/orden-atencion" element={<OrdenAtencion />} />
-        <Route path="/movimientos/cuenta-cobro" element={<CuentaCobro />} />
-        <Route path="/movimientos/relacion-pagos" element={<RelacionPagos />} />
-        <Route path="/movimientos/programar-agenda" element={<ProgramarAgenda />} />
-        <Route path="/movimientos/agendas" element={<Agendas />} />
-        <Route path="/movimientos/cancelar-ordenes" element={<CancelarOrdenes />} />
-        <Route path="/movimientos/consultar-ordenes" element={<ConsultarOrdenes />} />
+        <Route path="/movimientos" element={<MovimientosLayout />}>
+          <Route index element={<Navigate to="orden-atencion" replace />} />
+          <Route path="orden-atencion" element={<OrdenAtencion />} />
+          <Route path="cuenta-cobro" element={<CuentaCobro />} />
+          <Route path="relacion-pagos" element={<RelacionPagos />} />
+          <Route path="programar-agenda" element={<ProgramarAgenda />} />
+          <Route path="agendas" element={<Agendas />} />
+          <Route path="cancelar-ordenes" element={<CancelarOrdenes />} />
+          <Route path="consultar-ordenes" element={<ConsultarOrdenes />} />
+        </Route>
         <Route path="/excedentes" element={<Excedentes />} />
         <Route path="/consultas" element={<Consultas />} />
         <Route path="/reportes" element={<Dashboard />} />

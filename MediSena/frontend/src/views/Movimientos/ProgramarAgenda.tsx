@@ -1,12 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import Sidebar from '../../components/Sidebar';
-import MovTabs from './MovTabs';
 import DataTable from '../../components/DataTable';
-import { Home, ChevronRight, Trash2, RefreshCw } from 'lucide-react';
-import '../../styles/GestionResoluciones/GestionResoluciones.css';
+import { DeleteIcon } from '../../components/Icons';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/Agendas.css';
-import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 interface AgendaProgramada {
   id: number;
@@ -43,7 +39,6 @@ const ProgramarAgendaView: React.FC = () => {
   const [form, setForm] = useState({ medico: '', fecha: '', horaInicio: '', horaFin: '', cupos: '' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [firstActive, setFirstActive] = useState(false);
 
   const change = (field: string, value: string) => setForm(p => ({ ...p, [field]: value }));
 
@@ -80,130 +75,103 @@ const ProgramarAgendaView: React.FC = () => {
       <th>Médico</th>
       <th>Fecha</th>
       <th>Horario</th>
-      <th>Cupos</th>
-      <th>Acciones</th>
+      <th style={{ textAlign: 'center' }}>Cupos</th>
+      <th style={{ textAlign: 'center' }}>Acciones</th>
     </tr>
   );
 
   return (
     <>
-      <div className="gestion-container">
+      <div className="pag-layout">
 
-          {/* Header */}
-          <header className="gestion-header">
-            <div className="gestion-header-top">
-              <nav className="breadcrumb">
-                <div className="breadcrumb-item"><Home size={14} /></div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item">Movimientos</div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item active">Programar Agenda</div>
-              </nav>
-              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
+        {/* Formulario (izquierda) */}
+        <div className="pag-form-panel">
+          <div className="pag-form-title-row">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e3a52" strokeWidth="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            <h2 className="pag-form-title">Nueva Agenda</h2>
+          </div>
+
+          <select className="pag-select" value={form.medico} onChange={e => change('medico', e.target.value)}>
+            <option value="">Médico *</option>
+            {MEDICOS.map(m => <option key={m} value={m}>{m}</option>)}
+          </select>
+
+          <div className="pag-field">
+            <label className="pag-label">Fecha *</label>
+            <input type="date" className="pag-input" value={form.fecha} onChange={e => change('fecha', e.target.value)} />
+          </div>
+
+          <div className="pag-two-col">
+            <div className="pag-field">
+              <label className="pag-label">Hora Inicio *</label>
+              <input type="time" className="pag-input" value={form.horaInicio} onChange={e => change('horaInicio', e.target.value)} />
             </div>
-            <div className="gestion-header-bottom">
-              <h1 className="gestion-title">Programar Agenda</h1>
-            </div>
-          </header>
-
-          {/* Card blanca — layout 2 columnas */}
-          <div className="tabs-card-group">
-            <MovTabs onFirstActive={setFirstActive} />
-            <div className={`gestion-content-card${firstActive ? ' first-tab-active' : ''}`} style={{ marginTop: 0 }}>
-              <div className="pag-layout">
-
-                {/* Formulario (izquierda) */}
-                <div className="pag-form-panel">
-                  <div className="pag-form-title-row">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e3a52" strokeWidth="2">
-                      <rect x="3" y="4" width="18" height="18" rx="2"/>
-                      <line x1="16" y1="2" x2="16" y2="6"/>
-                      <line x1="8" y1="2" x2="8" y2="6"/>
-                      <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                    <h2 className="pag-form-title">Nueva Agenda</h2>
-                  </div>
-
-                  <select className="pag-select" value={form.medico} onChange={e => change('medico', e.target.value)}>
-                    <option value="">Médico *</option>
-                    {MEDICOS.map(m => <option key={m} value={m}>{m}</option>)}
-                  </select>
-
-                  <div className="pag-field">
-                    <label className="pag-label">Fecha *</label>
-                    <input type="date" className="pag-input" value={form.fecha} onChange={e => change('fecha', e.target.value)} />
-                  </div>
-
-                  <div className="pag-two-col">
-                    <div className="pag-field">
-                      <label className="pag-label">Hora Inicio *</label>
-                      <input type="time" className="pag-input" value={form.horaInicio} onChange={e => change('horaInicio', e.target.value)} />
-                    </div>
-                    <div className="pag-field">
-                      <label className="pag-label">Hora Fin *</label>
-                      <input type="time" className="pag-input" value={form.horaFin} onChange={e => change('horaFin', e.target.value)} />
-                    </div>
-                  </div>
-
-                  <div className="pag-field">
-                    <input
-                      type="number" min={1}
-                      className="pag-input"
-                      placeholder="Cupos Disponibles *"
-                      value={form.cupos}
-                      onChange={e => change('cupos', e.target.value)}
-                    />
-                  </div>
-
-                  <button className="pag-btn-save" onClick={handleProgramar}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
-                      <polyline points="17 21 17 13 7 13 7 21"/>
-                      <polyline points="7 3 7 8 15 8"/>
-                    </svg>
-                    Programar Agenda
-                  </button>
-                </div>
-
-                {/* Tabla (derecha) */}
-                <div className="pag-table-panel">
-                  <div className="pag-table-header-row">
-                    <h2 className="pag-table-title">Agendas Programadas</h2>
-                    <span className="pag-count-badge">{agendas.length}</span>
-                  </div>
-
-                  <DataTable
-                    headers={tableHeaders}
-                    itemsPerPage={itemsPerPage}
-                    setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    totalPages={totalPages}
-                    visiblePages={visiblePages}
-                  >
-                    {current.length === 0 ? (
-                      <tr><td colSpan={5} className="table-empty">No hay agendas programadas.</td></tr>
-                    ) : current.map(a => (
-                      <tr key={a.id}>
-                        <td style={{ color: '#0165B0', fontWeight: 600 }}>{a.medico}</td>
-                        <td>{a.fecha}</td>
-                        <td>{a.horarioInicio} - {a.horarioFin}</td>
-                        <td><span className="pag-cupos-badge">{a.cupos}/{a.cupos}</span></td>
-                        <td>
-                          <button className="oa-btn-delete" onClick={() => handleEliminar(a.id)} title="Eliminar">
-                            <Trash2 size={14} />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </DataTable>
-                </div>
-
-              </div>
+            <div className="pag-field">
+              <label className="pag-label">Hora Fin *</label>
+              <input type="time" className="pag-input" value={form.horaFin} onChange={e => change('horaFin', e.target.value)} />
             </div>
           </div>
 
+          <div className="pag-field">
+            <input
+              type="number" min={1}
+              className="pag-input"
+              placeholder="Cupos Disponibles *"
+              value={form.cupos}
+              onChange={e => change('cupos', e.target.value)}
+            />
+          </div>
+
+          <button className="pag-btn-save" onClick={handleProgramar}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
+              <polyline points="17 21 17 13 7 13 7 21" />
+              <polyline points="7 3 7 8 15 8" />
+            </svg>
+            Programar Agenda
+          </button>
         </div>
+
+        {/* Tabla (derecha) */}
+        <div className="pag-table-panel">
+          <div className="pag-table-header-row">
+            <h2 className="pag-table-title">Agendas Programadas</h2>
+            <span className="pag-count-badge">{agendas.length}</span>
+          </div>
+
+          <DataTable
+            headers={tableHeaders}
+            itemsPerPage={itemsPerPage}
+            setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={totalPages}
+            visiblePages={visiblePages}
+          >
+            {current.length === 0 ? (
+              <tr><td colSpan={5} className="table-empty">No hay agendas programadas.</td></tr>
+            ) : current.map(a => (
+              <tr key={a.id}>
+                <td style={{ color: '#0165B0', fontWeight: 600 }}>{a.medico}</td>
+                <td>{a.fecha}</td>
+                <td>{a.horarioInicio} - {a.horarioFin}</td>
+                <td style={{ textAlign: 'center' }}><span className="pag-cupos-badge">{a.cupos}/{a.cupos}</span></td>
+                <td style={{ textAlign: 'center' }}>
+                  <button className="oa-btn-delete" onClick={() => handleEliminar(a.id)} title="Eliminar">
+                    <DeleteIcon size={26} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </DataTable>
+        </div>
+
+      </div>
     </>
   );
 };

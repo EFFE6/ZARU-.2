@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import Sidebar from '../../components/Sidebar';
-import MovTabs from './MovTabs';
+import { useOutletContext } from 'react-router-dom';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
-import api from '../../api/api';
-import SearchBar from '../../components/SearchBar';
-import {
-  ChevronRight, ChevronLeft, Home, Eye, Printer, Pencil,
-  RefreshCw, ChevronDown, X,
-} from 'lucide-react';
-import '../../styles/GestionResoluciones/GestionResoluciones.css';
+import { Eye, Printer, Pencil, ChevronDown, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import '../../styles/Movimientos/OrdenAtencion.css';
-import CampanaSvg from '../../assets/img/icons/campana.svg';
+import logoPrint from '../../assets/img/Sidebar/Sidebar.svg';
 
 /* ─── Tipos ─────────────────────────────────────────────── */
 interface OrdenAtencion {
@@ -34,6 +27,16 @@ interface OrdenAtencion {
 const TIPOS_ATENCION = ['Consulta General', 'Control', 'Urgencia', 'Especializada'];
 const VIGENCIAS = ['Todas las vigencias', '2026', '2025', '2024'];
 const ESTADOS_FILTER = ['Todos', 'A', 'I', 'P'];
+
+const MOCK_ORDENES: OrdenAtencion[] = [
+  { id: 1, numero: 668, vigencia: 2026, beneficiario: 'ROSALINA PALMA SANDOVAL', contratista: 'CLAUDIA BASSIL AMIN', especialidad: 'Consulta General', fecha: '21/02/2026', estado: 'A' },
+  { id: 2, numero: 667, vigencia: 2026, beneficiario: 'CARLOS MENDEZ RUIZ', contratista: 'Piedad Viana Marzola', especialidad: 'Especializada', fecha: '21/02/2026', estado: 'A' },
+  { id: 3, numero: 666, vigencia: 2026, beneficiario: 'MARIA GARCIA LOPEZ', contratista: 'ABRIL GALEANO GIOVANNI', especialidad: 'Urgencia', fecha: '20/02/2026', estado: 'I' },
+  { id: 4, numero: 665, vigencia: 2025, beneficiario: 'JUAN PEREZ MONTOYA', contratista: 'CLAUDIA BASSIL AMIN', especialidad: 'Control', fecha: '15/02/2026', estado: 'P' },
+  { id: 5, numero: 664, vigencia: 2025, beneficiario: 'ANA RODRIGUEZ SILVA', contratista: 'Piedad Viana Marzola', especialidad: 'Consulta General', fecha: '14/02/2026', estado: 'A' },
+  { id: 6, numero: 663, vigencia: 2026, beneficiario: 'PEDRO HERRERA ZULUAGA', contratista: 'ABRIL GALEANO GIOVANNI', especialidad: 'Especializada', fecha: '13/02/2026', estado: 'A' },
+  { id: 7, numero: 662, vigencia: 2026, beneficiario: 'LUCIA MARTINEZ VEGA', contratista: 'CLAUDIA BASSIL AMIN', especialidad: 'Urgencia', fecha: '12/02/2026', estado: 'I' },
+];
 
 /* ─── Badge estado ───────────────────────────────────────── */
 const EstadoBadge: React.FC<{ estado: string }> = ({ estado }) => (
@@ -62,10 +65,10 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ value, options, placeholder
   }, []);
 
   return (
-    <div className="oa-custom-select" ref={ref}>
-      {label && <span className="oa-custom-select-label">{label}</span>}
+    <fieldset className={`oa-fieldset oa-custom-select ${open ? 'open' : ''}`} ref={ref}>
+      {label && <legend className="oa-legend">{label}</legend>}
       <div
-        className={`oa-custom-select-trigger ${open ? 'open' : ''}`}
+        className="oa-custom-select-trigger"
         onClick={() => setOpen(o => !o)}
       >
         <span className={value ? '' : 'placeholder'}>{value || placeholder}</span>
@@ -84,7 +87,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ value, options, placeholder
           ))}
         </ul>
       )}
-    </div>
+    </fieldset>
   );
 };
 
@@ -203,10 +206,6 @@ const EditarOrdenModal: React.FC<{
     <Modal isOpen={true} onClose={onClose} hideHeader className="oa-modal-edit">
       {/* ── Header con steps ── */}
       <div className="oa-modal-edit-header">
-        <div className="oa-edit-title-row">
-          <Pencil size={14} color="#fff" />
-          <span className="oa-modal-edit-title">Editar Orden de Atención</span>
-        </div>
         <div className="oa-steps-row">
           {STEPS.map((s, i) => (
             <React.Fragment key={s}>
@@ -230,7 +229,7 @@ const EditarOrdenModal: React.FC<{
         {/* Paso 0 */}
         {step === 0 && (
           <div className="oa-form-grid">
-            <div className="oa-form-field oa-field-full">
+            <div className="oa-field-full">
               <CustomSelect
                 label="Tipo de Atención *"
                 value={form.tipoAtencion}
@@ -239,70 +238,78 @@ const EditarOrdenModal: React.FC<{
                 onChange={v => change('tipoAtencion', v)}
               />
             </div>
-            <div className="oa-form-field">
-              <label className="oa-form-label">Fecha de la Orden *</label>
+            <fieldset className="oa-fieldset">
+              <legend className="oa-legend">Fecha de la Orden *</legend>
               <input
                 type="date"
                 className="oa-input"
                 value={toInputDate(form.fecha)}
                 onChange={e => change('fecha', fromInputDate(e.target.value))}
               />
-            </div>
-            <div className="oa-form-field oa-field-full">
-              <label className="oa-form-label">Observaciones</label>
+            </fieldset>
+            <fieldset className="oa-fieldset oa-field-full">
+              <legend className="oa-legend">Observaciones</legend>
               <textarea
                 className="oa-textarea"
-                rows={4}
+                rows={3}
                 value={form.observaciones}
                 onChange={e => change('observaciones', e.target.value)}
               />
-            </div>
+            </fieldset>
           </div>
         )}
 
         {/* Paso 1 */}
         {step === 1 && (
           <div className="oa-form-grid">
-            <div className="oa-form-field oa-field-full">
-              <label className="oa-form-label">Beneficiario *</label>
-              <input className="oa-input" value={form.beneficiario} onChange={e => change('beneficiario', e.target.value)} />
-            </div>
-            <div className="oa-form-field oa-field-full">
-              <label className="oa-form-label">Funcionario Solicitante *</label>
-              <input className="oa-input" placeholder="Funcionario Solicitante" value={form.funcionarioSolicitante} onChange={e => change('funcionarioSolicitante', e.target.value)} />
-            </div>
+            <fieldset className="oa-fieldset oa-field-full">
+              <legend className="oa-legend">Beneficiario *</legend>
+              <input
+                className="oa-input"
+                value={form.beneficiario}
+                onChange={e => change('beneficiario', e.target.value)}
+              />
+            </fieldset>
+            <fieldset className="oa-fieldset oa-field-full">
+              <legend className="oa-legend">Funcionario Solicitante</legend>
+              <input
+                className="oa-input"
+                value={form.funcionarioSolicitante}
+                onChange={e => change('funcionarioSolicitante', e.target.value)}
+              />
+            </fieldset>
           </div>
         )}
 
         {/* Paso 2 */}
         {step === 2 && (
           <div className="oa-form-grid">
-            <div className="oa-form-field oa-field-full">
-              <label className="oa-form-label">Médico Tratante *</label>
+            <fieldset className="oa-fieldset oa-field-full">
+              <legend className="oa-legend">Médico Tratante *</legend>
               <input className="oa-input" placeholder="Médico Tratante" value={form.medicoTratante} onChange={e => change('medicoTratante', e.target.value)} />
-            </div>
-            <div className="oa-form-field oa-field-full">
-              <label className="oa-form-label">Especialidad *</label>
+            </fieldset>
+            <fieldset className="oa-fieldset oa-field-full">
+              <legend className="oa-legend">Especialidad *</legend>
               <input className="oa-input" value={form.especialidad} onChange={e => change('especialidad', e.target.value)} />
-            </div>
-            <div className="oa-form-field oa-field-full">
-              <label className="oa-form-label">Diagnóstico (Opcional)</label>
+            </fieldset>
+            <fieldset className="oa-fieldset oa-field-full">
+              <legend className="oa-legend">Diagnóstico (Opcional)</legend>
               <input className="oa-input" value={form.diagnostico} onChange={e => change('diagnostico', e.target.value)} />
-            </div>
-            <div className="oa-form-field">
-              <label className="oa-form-label">Valor Total Estimado</label>
+            </fieldset>
+            <fieldset className="oa-fieldset">
+              <legend className="oa-legend">Valor Total Estimado</legend>
               <input className="oa-input" placeholder="$" value={form.valorEstimado} onChange={e => change('valorEstimado', e.target.value)} />
-            </div>
+            </fieldset>
           </div>
         )}
       </div>
 
       {/* ── Footer ── */}
-      <div className="oa-modal-edit-footer">
+      <div className="oa-modal-edit-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button className="oa-btn-cancel-edit" onClick={onClose}>
-          <X size={14} /> Cancelar
+          <X size={16} color="#0165B0" /> <span style={{ color: '#0165B0', fontWeight: 600 }}>Cancelar</span>
         </button>
-        <div className="oa-footer-nav">
+        <div className="oa-footer-nav" style={{ display: 'flex', gap: '8px' }}>
           {step > 0 && (
             <button className="oa-btn-prev" onClick={() => setStep(s => (s - 1) as EditStep)}>
               <ChevronLeft size={14} /> Anterior
@@ -313,8 +320,8 @@ const EditarOrdenModal: React.FC<{
               Siguiente <ChevronRight size={14} />
             </button>
           ) : (
-            <button className="oa-btn-save" onClick={handleSave}>
-              Actualizar Orden
+            <button className="oa-btn-next" onClick={handleSave}>
+              Actualizar
             </button>
           )}
         </div>
@@ -327,34 +334,14 @@ const EditarOrdenModal: React.FC<{
    COMPONENTE PRINCIPAL
    ═══════════════════════════════════════════════════════════ */
 const OrdenAtencionView: React.FC = () => {
-  const [ordenes, setOrdenes] = useState<OrdenAtencion[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [search, setSearch] = useState('');
+  const [ordenes] = useState<OrdenAtencion[]>(MOCK_ORDENES);
+  const { search, setSearch } = useOutletContext<{ search: string; setSearch: (v: string) => void }>();
   const [estadoFilter, setEstadoFilter] = useState('Todos');
   const [vigenciaFilter, setVigenciaFilter] = useState('Todas las vigencias');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [detallesOrden, setDetallesOrden] = useState<OrdenAtencion | null>(null);
   const [editOrden, setEditOrden] = useState<OrdenAtencion | null>(null);
-  const [firstActive, setFirstActive] = useState(true); // Orden de Atención es el primer tab
-
-  /* ── Fetch desde backend ── */
-  const fetchOrdenes = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get('/ordenes-atencion');
-      setOrdenes(res.data);
-    } catch (err: any) {
-      setError(err.response?.data?.message || err.message || 'Error al cargar órdenes');
-    } finally {
-      setLoading(false);
-      setCurrentPage(1);
-    }
-  };
-
-  useEffect(() => { fetchOrdenes(); }, []);
 
   /* ── Filtrado ── */
   const filtered = useMemo(() => {
@@ -380,6 +367,58 @@ const OrdenAtencionView: React.FC = () => {
     setOrdenes(p => p.map(o => o.id === updated.id ? updated : o));
   };
 
+  const handleImprimir = (o: OrdenAtencion) => {
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+    if (!printWindow) return;
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Orden de Atención #${o.numero}</title>
+          <style>
+            body { font-family: 'Segoe UI', Arial, sans-serif; padding: 40px; color: #333; line-height: 1.6; }
+            .header-container { display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #0165B0; padding-bottom: 20px; margin-bottom: 30px; }
+            .header-text h1 { margin: 0; color: #0165B0; font-size: 26px; }
+            .header-text p { margin: 5px 0 0 0; color: #64748b; font-size: 14px; }
+            .logo { height: 48px; object-fit: contain; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; margin-bottom: 30px; }
+            .field { display: flex; flex-direction: column; background: #f8fafc; padding: 12px 16px; border-radius: 8px; border-left: 4px solid #0165B0; }
+            .label { font-weight: bold; font-size: 11px; color: #64748b; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+            .value { font-size: 16px; color: #0f172a; font-weight: 500; }
+            .full-width { grid-column: 1 / -1; }
+            .footer { margin-top: 50px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 20px; }
+          </style>
+        </head>
+        <body>
+          <div class="header-container">
+            <div class="header-text">
+              <h1>Orden de Atención</h1>
+              <p>Comprobante de registro - ZARU / MediSENA</p>
+            </div>
+            <img src="${window.location.origin}${logoPrint}" class="logo" alt="Logo" />
+          </div>
+          <div class="grid">
+            <div class="field"><div class="label">Número de Orden</div><div class="value">#${o.numero}</div></div>
+            <div class="field"><div class="label">Vigencia</div><div class="value">${o.vigencia}</div></div>
+            <div class="field"><div class="label">Fecha</div><div class="value">${o.fecha}</div></div>
+            <div class="field"><div class="label">Estado</div><div class="value">${o.estado === 'A' ? 'Activo' : o.estado === 'I' ? 'Inactivo' : o.estado}</div></div>
+            <div class="field full-width"><div class="label">Beneficiario</div><div class="value">${o.beneficiario}</div></div>
+            <div class="field full-width"><div class="label">Contratista / Médico</div><div class="value">${o.contratista || o.medicoTratante || 'N/A'}</div></div>
+            <div class="field full-width"><div class="label">Especialidad / Tipo de Atención</div><div class="value">${o.especialidad} ${o.tipoAtencion ? '(' + o.tipoAtencion + ')' : ''}</div></div>
+            ${o.diagnostico ? `<div class="field full-width"><div class="label">Diagnóstico</div><div class="value">${o.diagnostico}</div></div>` : ''}
+            ${o.observaciones ? `<div class="field full-width"><div class="label">Observaciones</div><div class="value">${o.observaciones}</div></div>` : ''}
+          </div>
+          <div class="footer">
+            Documento generado el ${new Date().toLocaleDateString()} a las ${new Date().toLocaleTimeString()}
+          </div>
+          <script>
+            window.onload = () => { window.print(); window.close(); };
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
+
   /* ── Headers de la tabla ── */
   const tableHeaders = (
     <tr>
@@ -396,34 +435,6 @@ const OrdenAtencionView: React.FC = () => {
 
   return (
     <>
-      <div className="gestion-container">
-
-          {/* ── Header ── */}
-          <header className="gestion-header">
-            <div className="gestion-header-top">
-              <nav className="breadcrumb">
-                <div className="breadcrumb-item"><Home size={14} /></div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item">Movimientos</div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item active">Orden de Atención</div>
-              </nav>
-              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
-            </div>
-            <div className="gestion-header-bottom">
-              <h1 className="gestion-title">Orden de Atención</h1>
-              <SearchBar
-                value={search}
-                onChange={(val) => { setSearch(val); setCurrentPage(1); }}
-                placeholder="Busca por número, beneficiario o contratista"
-              />
-            </div>
-          </header>
-
-          {/* ── Tabs + Card ── */}
-          <div className="tabs-card-group">
-            <MovTabs onFirstActive={setFirstActive} />
-            <div className={`gestion-content-card${firstActive ? ' first-tab-active' : ''}`} style={{ marginTop: 0 }}>
 
               {/* Barra de advertencia — siempre visible */}
               <div className="oa-warning-bar">
@@ -432,18 +443,6 @@ const OrdenAtencionView: React.FC = () => {
 
               {/* Toolbar */}
               <div className="oa-toolbar">
-                <div className="oa-search-wrap">
-                  <svg width="15" height="15" viewBox="0 0 17 17" fill="none">
-                    <circle cx="7" cy="7" r="4.2" stroke="#94a3b8" strokeWidth="2" />
-                    <line x1="10.2" y1="10.5" x2="15.5" y2="15.8" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                  <input
-                    className="oa-search-input"
-                    placeholder="Buscar por orden, beneficio..."
-                    value={search}
-                    onChange={e => { setSearch(e.target.value); setCurrentPage(1); }}
-                  />
-                </div>
 
                 <div className="oa-filter-group">
                   <span className="oa-filter-label">Estado</span>
@@ -485,11 +484,7 @@ const OrdenAtencionView: React.FC = () => {
                 totalPages={totalPages}
                 visiblePages={visiblePages}
               >
-                {loading ? (
-                  <tr><td colSpan={8} className="table-empty">Cargando datos...</td></tr>
-                ) : error ? (
-                  <tr><td colSpan={8} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
-                ) : current.length === 0 ? (
+                {current.length === 0 ? (
                   <tr><td colSpan={8} className="table-empty">No se encontraron resultados.</td></tr>
                 ) : current.map(o => (
                   <tr key={o.id}>
@@ -510,7 +505,7 @@ const OrdenAtencionView: React.FC = () => {
                         <button className="oa-action-btn oa-action-eye" title="Ver" onClick={() => setDetallesOrden(o)}>
                           <Eye size={15} />
                         </button>
-                        <button className="oa-action-btn oa-action-print" title="Imprimir" onClick={() => window.print()}>
+                        <button className="oa-action-btn oa-action-print" title="Imprimir" onClick={() => handleImprimir(o)}>
                           <Printer size={15} />
                         </button>
                         <button className="oa-action-btn oa-action-edit" title="Editar" onClick={() => setEditOrden(o)}>
@@ -522,9 +517,6 @@ const OrdenAtencionView: React.FC = () => {
                 ))}
               </DataTable>
 
-            </div>
-          </div>
-        </div>
       {detallesOrden && <DetallesModal orden={detallesOrden} onClose={() => setDetallesOrden(null)} />}
       {editOrden && <EditarOrdenModal orden={editOrden} onClose={() => setEditOrden(null)} onSave={handleSaveEdit} />}
     </>

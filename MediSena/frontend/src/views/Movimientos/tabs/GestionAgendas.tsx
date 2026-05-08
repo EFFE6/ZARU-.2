@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Eye, Pencil, RefreshCw, ChevronDown } from 'lucide-react';
+import { useOutletContext } from 'react-router-dom';
 import DataTable from '../../../components/DataTable';
 
 interface AgendaGestion {
@@ -32,7 +33,7 @@ const estadoBadgeStyle: Record<string, { background: string; color: string }> = 
 };
 
 const GestionAgendas: React.FC = () => {
-  const [search, setSearch] = useState('');
+  const { search } = useOutletContext<{ search: string }>();
   const [fecha, setFecha] = useState('');
   const [estadoFilter, setEstadoFilter] = useState('Todos');
   const [data, setData] = useState<AgendaGestion[]>(mockData);
@@ -90,18 +91,6 @@ const GestionAgendas: React.FC = () => {
 
       {/* Filtros */}
       <div className="gag-toolbar">
-        <div className="gag-search-wrap">
-          <svg width="14" height="14" viewBox="0 0 17 17" fill="none">
-            <circle cx="7" cy="7" r="4.2" stroke="#94a3b8" strokeWidth="2"/>
-            <line x1="10.2" y1="10.5" x2="15.5" y2="15.8" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-          <input
-            className="gag-search-input"
-            placeholder="Buscar médico o especialidad..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-        </div>
 
         <div className="gag-filter-group">
           <label className="gag-filter-label">Filtrar por Fecha</label>
