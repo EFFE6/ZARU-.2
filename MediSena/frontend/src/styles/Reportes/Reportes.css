@@ -23,38 +23,43 @@
   overflow: hidden;
 }
 
-/* ── Scroll con scrollbar azul visible ── */
+/* ── Scroll con scrollbar nativo escondido (usando custom en TSX) ── */
 .reportes-sidebar-scroll {
   flex: 1;
   overflow-y: scroll;
-  padding: 10px 6px 10px 12px;
+  padding: 12px 24px 12px 12px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-
-  /* Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: #0165B0 transparent;
+  gap: 4px;
 }
 
-/* Webkit (Chrome / Edge / Safari) */
-.reportes-sidebar-scroll::-webkit-scrollbar {
-  width: 8px;
+.reportes-sidebar-scroll.no-native-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
-.reportes-sidebar-scroll::-webkit-scrollbar-track {
+.reportes-sidebar-scroll.no-native-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Custom Scrollbar desde TSX ── */
+.custom-ts-scrollbar-track {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  right: 6px;
+  width: 6px;
   background: transparent;
-  margin: 12px 0;
+  border-radius: 20px;
 }
 
-.reportes-sidebar-scroll::-webkit-scrollbar-thumb {
-  background: #0165B0;
-  border-radius: 100px;
-  min-height: 50px;
-}
-
-.reportes-sidebar-scroll::-webkit-scrollbar-thumb:hover {
-  background: #014a8a;
+.custom-ts-scrollbar-thumb {
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
+  border-radius: 20px;
+  transition: top 0.1s ease;
+  min-height: 40px;
 }
 
 /* ─── OPCION REPORTE (Card individual) ───────────────────── */
@@ -236,18 +241,18 @@
 }
 
 .reporte-filtro-select {
-  padding: 10px 38px 10px 14px;
-  border-radius: 10px;
-  border: 1.5px solid #0165B0;
-  background: #ffffff;
+  padding: 9px 38px 9px 14px;
+  border-radius: 6px;
+  border: 1px solid #004b87;
+  background: #eef5fc;
   font-size: 13.5px;
-  color: #1e3a52;
+  color: #004b87;
   font-weight: 600;
   outline: none;
   min-width: 180px;
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230165B0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23004b87' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 14px;
@@ -263,7 +268,8 @@
   border-color: #dde8f0;
   color: #5c7a90;
   font-weight: 500;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%235c7a90' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%235c7a90' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 
 /* ── Input con label flotante ── */
@@ -286,9 +292,9 @@
 }
 
 .reporte-filtro-input {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1.5px solid #dde8f0;
+  padding: 9px 14px;
+  border-radius: 6px;
+  border: 1px solid #dde8f0;
   background: #ffffff;
   font-size: 13.5px;
   color: #1e3a52;
@@ -304,22 +310,21 @@
 }
 
 .reporte-btn-consultar {
-  background: linear-gradient(135deg, #0165B0, #013156);
+  background: #004b87;
   color: white;
   border: none;
-  border-radius: 10px;
-  padding: 10px 28px;
+  border-radius: 6px;
+  padding: 9px 24px;
   font-size: 13.5px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(30, 58, 82, 0.28);
   transition: all 0.18s ease;
   white-space: nowrap;
   margin-left: auto;
 }
 
 .reporte-btn-consultar:hover {
-  background: linear-gradient(135deg, #013156, #011d33);
+  background: #003666;
   transform: translateY(-1px);
 }
 

@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { ChevronRight, Home, Info, Eye, Download, Calendar } from 'lucide-react';
 import SearchBar from '../../components/SearchBar';
 import OpcionReportes, { type ReporteOpcion } from '../../components/OpcionReportes';
@@ -61,6 +61,32 @@ const Reportes = () => {
   const historial  = selectedId ? (HISTORIAL_DUMMY[selectedId] ?? []) : [];
   const hasFiltros = !!(selectedReporte?.filtros?.length);
 
+  // Custom Scrollbar Logic
+  const sidebarScrollRef = useRef<HTMLDivElement>(null);
+  const [thumbHeight, setThumbHeight] = useState(0);
+  const [thumbTop, setThumbTop] = useState(0);
+
+  const updateScrollbar = useCallback(() => {
+    const el = sidebarScrollRef.current;
+    if (!el) return;
+    const { scrollTop, scrollHeight, clientHeight } = el;
+    if (scrollHeight <= clientHeight) {
+      setThumbHeight(0);
+      return;
+    }
+    const tHeight = Math.max((clientHeight / scrollHeight) * clientHeight, 40);
+    const maxScrollTop = scrollHeight - clientHeight;
+    const tTop = (scrollTop / maxScrollTop) * (clientHeight - tHeight);
+    setThumbHeight(tHeight);
+    setThumbTop(tTop);
+  }, []);
+
+  useEffect(() => {
+    updateScrollbar();
+    window.addEventListener('resize', updateScrollbar);
+    return () => window.removeEventListener('resize', updateScrollbar);
+  }, [updateScrollbar, filteredReportes]);
+
   // Handlers
   const handleSelect = useCallback((id: string) => {
     setSelectedId(id);
@@ -97,8 +123,8 @@ const Reportes = () => {
       {/* Cuerpo */}
       <div className="reportes-body">
         {/* ── Sidebar ── */}
-        <div className="reportes-sidebar">
-          <div className="reportes-sidebar-scroll">
+        <div className="reportes-sidebar" style={{ position: 'relative' }}>
+          <div className="reportes-sidebar-scroll no-native-scroll" ref={sidebarScrollRef} onScroll={updateScrollbar}>
             {filteredReportes.map(r => (
               <OpcionReportes key={r.id} reporte={r} isActive={selectedId === r.id} onClick={() => handleSelect(r.id)} />
             ))}
@@ -106,6 +132,15 @@ const Reportes = () => {
               <p className="reportes-sidebar-empty">No se encontraron reportes</p>
             )}
           </div>
+          {/* Custom Native Scrollbar in TSX */}
+          {thumbHeight > 0 && (
+            <div className="custom-ts-scrollbar-track">
+              <div 
+                className="custom-ts-scrollbar-thumb" 
+                style={{ height: thumbHeight, top: thumbTop }} 
+              />
+            </div>
+          )}
         </div>
 
         {/* ── Contenido ── */}
