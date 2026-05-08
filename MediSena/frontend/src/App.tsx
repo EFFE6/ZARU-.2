@@ -15,6 +15,7 @@ import CancelarOrdenes from './views/Movimientos/CancelarOrdenes';
 import ConsultarOrdenes from './views/Movimientos/ConsultarOrdenes';
 import Consultas from './views/Consultas/Consultas';
 import Excedentes from './views/Excedentes/Excedentes';
+import Reportes from './views/Reportes/Reportes';
 import './App.css';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -50,7 +51,7 @@ function App() {
         <Route path="/movimientos/consultar-ordenes" element={<ConsultarOrdenes />} />
         <Route path="/excedentes" element={<Excedentes />} />
         <Route path="/consultas" element={<Consultas />} />
-        <Route path="/reportes" element={<Dashboard />} />
+        <Route path="/reportes" element={<Reportes />} />
         <Route path="/reportes-nacionales" element={<Dashboard />} />
         <Route path="/seguridad-accesos" element={<SeguridadAccesos />} />
       </Route>
