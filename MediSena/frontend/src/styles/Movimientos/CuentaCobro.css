@@ -33,11 +33,6 @@
   flex-wrap: wrap;
 }
 
-.cc-search-large {
-  flex: 1;
-  min-width: 200px;
-}
-
 .cc-btn-limpiar {
   background: #fff;
   border: 1.5px solid #cbd5e1;

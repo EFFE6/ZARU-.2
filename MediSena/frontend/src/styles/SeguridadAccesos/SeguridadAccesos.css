@@ -537,7 +537,7 @@ body .sa-container .sa-permisos-scroll::-webkit-scrollbar-thumb {
 }
 
 /* Also for Firefox visibility */
-.sa-permisos-scroll {
+html body .sa-container .sa-permisos-scroll {
   scrollbar-width: thin !important;
   scrollbar-color: #0165B0 rgba(1, 101, 176, 0.08) !important;
 }
@@ -933,29 +933,29 @@ body .sa-container .sa-permisos-scroll::-webkit-scrollbar-thumb {
 }
 
 /* High visibility scrollbar - Extremely specific to override global styles */
-body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar {
+html body div.sa-modal .sa-permissions-scroll-area::-webkit-scrollbar {
   display: block !important;
   width: 8px !important;
   /* Thinner as per close-up */
 }
 
-body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-track {
+html body div.sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-track {
   background: rgba(1, 101, 176, 0.1) !important;
   border-radius: 4px !important;
 }
 
-body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb {
+html body div.sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #0165B0 0%, #013156 100%) !important;
   border-radius: 4px !important;
   min-height: 40px !important;
 }
 
-body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb:hover {
+html body div.sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb:hover {
   background: #014d87 !important;
 }
 
 /* Also for Firefox */
-.sa-permissions-scroll-area {
+html body div.sa-modal .sa-permissions-scroll-area {
   scrollbar-width: thin !important;
   scrollbar-color: #0165B0 rgba(1, 101, 176, 0.1) !important;
 }
@@ -1000,21 +1000,21 @@ body .sa-modal .sa-permissions-scroll-area::-webkit-scrollbar-thumb:hover {
 }
 
 .sa-modal-footer .sa-btn-danger {
-  width: 178px;
-  height: 48px;
-  border-radius: 10px !important;
+  min-width: 150px;
+  height: 40px;
+  border-radius: 8px !important;
   justify-content: center;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 600 !important;
   white-space: nowrap;
 }
 
 .sa-modal-footer .sa-btn-primary {
-  min-width: 178px;
-  height: 48px;
-  border-radius: 10px !important;
+  min-width: 150px;
+  height: 40px;
+  border-radius: 8px !important;
   justify-content: center;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 600 !important;
   white-space: nowrap;
 }

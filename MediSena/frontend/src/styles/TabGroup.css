@@ -37,6 +37,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
   margin-bottom: 6px;
   font-family: var(--sans);
+  text-decoration: none;
 }
 
 .tg-tab-pill:hover:not(.active) {

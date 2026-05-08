@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import Sidebar from '../../components/Sidebar';
-import MovTabs from './MovTabs';
+import React, { useState, useMemo } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import DataTable from '../../components/DataTable';
-import api from '../../api/api';
-import SearchBar from '../../components/SearchBar';
-import { Home, ChevronRight, Clock, Download, RefreshCw, Search } from 'lucide-react';
-import '../../styles/GestionResoluciones/GestionResoluciones.css';
+import { Search } from 'lucide-react';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/ConsultarOrdenes.css';
-import CampanaSvg from '../../assets/img/icons/campana.svg';
+
 
 interface OrdenConsulta {
   id: number;
@@ -24,37 +20,23 @@ interface OrdenConsulta {
 const AÑOS = ['2024', '2025', '2026'];
 const ESTADOS = ['Todos', 'Completada', 'Pendiente', 'Cancelada'];
 
+const MOCK_CONSULTAS: OrdenConsulta[] = [
+  { id: 1, numero: 668, fecha: '21/02/2026', paciente: 'ROSALINA PALMA SANDOVAL', servicio: 'Consulta General', contratista: 'ABRIL GALEANO GIOVANNI', valor: 120000, estado: 'A' },
+  { id: 2, numero: 667, fecha: '21/02/2026', paciente: 'CARLOS MESA RIOS', servicio: 'Especializada', contratista: 'CLAUDIA BASSIL AMIN', valor: 250000, estado: 'A' },
+  { id: 3, numero: 666, fecha: '20/02/2026', paciente: 'MARIA GARCIA LOPEZ', servicio: 'Urgencia', contratista: 'DURANGO LARIOS MARIA B.', valor: 380000, estado: 'C' },
+  { id: 4, numero: 665, fecha: '19/02/2026', paciente: 'ANA LUCIA TORRES', servicio: 'Control', contratista: 'CLAUDIA BASSIL AMIN', valor: 80000, estado: 'P' },
+  { id: 5, numero: 664, fecha: '18/02/2026', paciente: 'JUAN PEREZ MONTOYA', servicio: 'Consulta General', contratista: 'Piedad Viana Marzola', valor: 120000, estado: 'C' },
+  { id: 6, numero: 663, fecha: '17/02/2026', paciente: 'PEDRO HERRERA ZULUAGA', servicio: 'Especializada', contratista: 'ABRIL GALEANO GIOVANNI', valor: 310000, estado: 'A' },
+  { id: 7, numero: 662, fecha: '16/02/2026', paciente: 'LUCIA MARTINEZ VEGA', servicio: 'Urgencia', contratista: 'CLAUDIA BASSIL AMIN', valor: 450000, estado: 'X' },
+];
+
 const ConsultarOrdenes: React.FC = () => {
-  const [data, setData] = useState<OrdenConsulta[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [data] = useState<OrdenConsulta[]>(MOCK_CONSULTAS);
+  const { search } = useOutletContext<{ search: string }>();
   const [año, setAño] = useState('2026');
   const [estado, setEstado] = useState('Todos');
-  const [search, setSearch] = useState('');
-  const [firstActive, setFirstActive] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const res = await api.get('/ordenes');
-      setData(res.data);
-    } catch {
-      setData([
-        { id: 1, numero: 668, fecha: '21/2/2026', paciente: 'ROSALINA PALMA SANDOVAL', servicio: 0, contratista: 'ABRIL GALEANO GIOVANNI', valor: 0, estado: 'A' },
-        { id: 2, numero: 668, fecha: '21/2/2026', paciente: 'ROSALINA PALMA SANDOVAL', servicio: 0, contratista: 'ABRIL GALEANO GIOVANNI', valor: 0, estado: 'A' },
-        { id: 3, numero: 668, fecha: '21/2/2026', paciente: 'ROSALINA PALMA SANDOVAL', servicio: 0, contratista: 'CLAUDIA BASSIL AMIN', valor: 0, estado: 'A' },
-        { id: 4, numero: 667, fecha: '21/2/2026', paciente: 'ROSALINA PALMA SANDOVAL', servicio: 0, contratista: 'DURANGO LARIOS MARIA BERNARDA', valor: 0, estado: 'A' },
-        { id: 5, numero: 666, fecha: '20/2/2026', paciente: 'CARLOS MESA RIOS', servicio: 0, contratista: 'ABRIL GALEANO GIOVANNI', valor: 0, estado: 'C' },
-        { id: 6, numero: 665, fecha: '19/2/2026', paciente: 'ANA LUCIA TORRES', servicio: 0, contratista: 'CLAUDIA BASSIL AMIN', valor: 0, estado: 'P' },
-      ]);
-    } finally {
-      setLoading(false);
-      setCurrentPage(1);
-    }
-  };
-
-  useEffect(() => { fetchData(); }, [año]);
 
   const filtered = useMemo(() => {
     return data.filter(o => {
@@ -102,34 +84,6 @@ const ConsultarOrdenes: React.FC = () => {
 
   return (
     <>
-      <div className="gestion-container">
-
-          {/* Header */}
-          <header className="gestion-header">
-            <div className="gestion-header-top">
-              <nav className="breadcrumb">
-                <div className="breadcrumb-item"><Home size={14} /></div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item">Movimientos</div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item active">Consultar Órdenes</div>
-              </nav>
-              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
-            </div>
-            <div className="gestion-header-bottom">
-              <h1 className="gestion-title">Consultar Órdenes</h1>
-              <SearchBar
-                value={search}
-                onChange={(val) => { setSearch(val); setCurrentPage(1); }}
-                placeholder="Busca por número de orden, paciente o servicio"
-              />
-            </div>
-          </header>
-
-          {/* Card blanca */}
-          <div className="tabs-card-group">
-            <MovTabs onFirstActive={setFirstActive} />
-            <div className={`gestion-content-card${firstActive ? ' first-tab-active' : ''}`} style={{ marginTop: 0 }}>
 
               {/* Filtros */}
               <div className="co-filters-box">
@@ -150,18 +104,9 @@ const ConsultarOrdenes: React.FC = () => {
                       {ESTADOS.map(e => <option key={e} value={e}>{e}</option>)}
                     </select>
                   </div>
-                  <div className="co-search-wrapper">
-                    <Search size={15} color="#94a3b8" className="co-search-icon" />
-                    <input
-                      type="text"
-                      className="co-search-input"
-                      placeholder="Buscar por número de orden, paciente o servicio..."
-                      value={search}
-                      onChange={e => setSearch(e.target.value)}
-                    />
-                  </div>
                 </div>
               </div>
+
 
               {/* Stats */}
               <div className="co-stats-row">
@@ -181,9 +126,7 @@ const ConsultarOrdenes: React.FC = () => {
                 totalPages={totalPages}
                 visiblePages={visiblePages}
               >
-                {loading ? (
-                  <tr><td colSpan={7} className="table-empty">Cargando...</td></tr>
-                ) : current.length === 0 ? (
+                {current.length === 0 ? (
                   <tr>
                     <td colSpan={7} className="table-empty">
                       No hay órdenes para el año {año} con los filtros seleccionados
@@ -208,10 +151,6 @@ const ConsultarOrdenes: React.FC = () => {
                 )}
               </DataTable>
 
-            </div>
-          </div>
-
-        </div>
     </>
   );
 };

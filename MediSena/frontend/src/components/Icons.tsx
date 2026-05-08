@@ -250,6 +250,32 @@ export const EditarDetallesIcon: React.FC<IconProps> = ({ size = 16, className }
 
 
 // ==========================================
+// ICONO DE BUSCADOR GLOBAL
+// ==========================================
+export const SearchIcon: React.FC<IconProps> = ({ size = 28, className }) => (
+  <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_765_3041)" strokeWidth="1.4"/>
+    <path d="M15.28 10.2565C16.6402 11.6167 16.6402 13.8221 15.28 15.1823C13.9198 16.5426 11.7144 16.5426 10.3542 15.1823C8.99393 13.8221 8.99393 11.6167 10.3542 10.2565C11.7144 8.89627 13.9198 8.89627 15.28 10.2565" stroke="url(#paint1_linear_765_3041)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M15.2539 15.2012L18.6664 18.6603" stroke="url(#paint2_linear_765_3041)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <defs>
+      <linearGradient id="paint0_linear_765_3041" x1="57.75" y1="-31.7916" x2="-26.9069" y2="-27.3651" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0"/>
+        <stop offset="1" stopColor="#013156"/>
+      </linearGradient>
+      <linearGradient id="paint1_linear_765_3041" x1="23.7017" y1="1.32683" x2="2.63977" y2="2.42811" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0"/>
+        <stop offset="1" stopColor="#013156"/>
+      </linearGradient>
+      <linearGradient id="paint2_linear_765_3041" x1="22.2922" y1="11.2736" x2="11.9739" y2="11.8058" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#0165B0"/>
+        <stop offset="1" stopColor="#013156"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+
+// ==========================================
 // MODAL DE CONFIRMACIÓN ELIMINAR
 // ==========================================
 

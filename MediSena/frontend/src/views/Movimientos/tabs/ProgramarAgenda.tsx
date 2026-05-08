@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Trash2, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
+import { DeleteIcon } from '../../../components/Icons';
 import DataTable from '../../../components/DataTable';
 
 interface AgendaProgramada {
@@ -68,8 +69,8 @@ const ProgramarAgenda: React.FC = () => {
       <th>Médico</th>
       <th>Fecha</th>
       <th>Horario</th>
-      <th>Cupos</th>
-      <th>Acciones</th>
+      <th style={{ textAlign: 'center' }}>Cupos</th>
+      <th style={{ textAlign: 'center' }}>Acciones</th>
     </tr>
   );
 
@@ -156,12 +157,12 @@ const ProgramarAgenda: React.FC = () => {
               <td className="pag-td-medico">{a.medico}</td>
               <td>{a.fecha}</td>
               <td className="pag-td-horario">{a.horarioInicio} - {a.horarioFin}</td>
-              <td>
+              <td style={{ textAlign: 'center' }}>
                 <span className="pag-cupos-badge">{a.cupos}/{a.cupos}</span>
               </td>
-              <td>
+              <td style={{ textAlign: 'center' }}>
                 <button className="pag-btn-del" onClick={() => handleEliminar(a.id)} title="Eliminar">
-                  <Trash2 size={14} />
+                  <DeleteIcon size={26} />
                 </button>
               </td>
             </tr>

@@ -28,7 +28,7 @@ export interface DataTableProps {
 const DataTable: React.FC<DataTableProps> = ({
   headers,
   children,
-  itemsPerPage = 10,
+  itemsPerPage = 5,
   setItemsPerPage,
   currentPage,
   setCurrentPage,

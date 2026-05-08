@@ -36,48 +36,7 @@
   margin: 2px 0 0 0;
 }
 
-/* ── Buscador (va PRIMERO) ── */
-.cancel-search-section {
-  padding: 20px 28px 0;
-}
 
-.cancel-search-row {
-  display: flex;
-  gap: 10px;
-}
-
-.cancel-search-input {
-  flex: 1;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 0.85rem;
-  color: #1e293b;
-  outline: none;
-  background: #f8fafc;
-  transition: border-color 0.18s;
-  font-family: inherit;
-}
-.cancel-search-input:focus { border-color: #0165B0; background: #fff; }
-
-/* Botón GRIS claro (como en el diseño) */
-.cancel-search-btn {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: #e2e8f0;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 8px;
-  padding: 10px 22px;
-  font-size: 0.83rem;
-  font-weight: 600;
-  color: #475569;
-  cursor: pointer;
-  transition: background 0.18s;
-  white-space: nowrap;
-}
-.cancel-search-btn:hover { background: #cbd5e1; }
-.cancel-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* ── Advertencia (va DESPUÉS del buscador) ── */
 .cancel-warning-banner {

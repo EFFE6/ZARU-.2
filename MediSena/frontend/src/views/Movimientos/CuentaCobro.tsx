@@ -1,17 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import Sidebar from '../../components/Sidebar';
-import MovTabs from './MovTabs';
+import React, { useState, useMemo } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import DataTable from '../../components/DataTable';
-import api from '../../api/api';
-import SearchBar from '../../components/SearchBar';
-import {
-  ChevronRight, ChevronLeft, Home, Eye, RefreshCw,
-  Plus, ChevronDown, Check,
-} from 'lucide-react';
-import '../../styles/GestionResoluciones/GestionResoluciones.css';
+import { Eye, Plus, ChevronDown, Check } from 'lucide-react';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/CuentaCobro.css';
-import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 interface CuentaCobro {
   id: number;
@@ -25,7 +17,14 @@ interface CuentaCobro {
 
 const ESTADOS_CC = ['Todos', 'PENDIENTE', 'APROBADA', 'RECHAZADA'];
 
-/* ── Badge Estado ── */
+const MOCK_CUENTAS: CuentaCobro[] = [
+  { id: 1, numero: 101, contratista: 'CLAUDIA BASSIL AMIN', periodo: '2026-01-31', fecha: '01/02/2026', valor: '$1.200.000', estado: 'APROBADA' },
+  { id: 2, numero: 102, contratista: 'Piedad Viana Marzola', periodo: '2026-01-31', fecha: '05/02/2026', valor: '$850.000', estado: 'PENDIENTE' },
+  { id: 3, numero: 103, contratista: 'ABRIL GALEANO GIOVANNI', periodo: '2026-02-28', fecha: '10/02/2026', valor: '$2.350.000', estado: 'PENDIENTE' },
+  { id: 4, numero: 104, contratista: 'CLAUDIA BASSIL AMIN', periodo: '2026-02-28', fecha: '15/02/2026', valor: '$970.000', estado: 'RECHAZADA' },
+  { id: 5, numero: 105, contratista: 'Piedad Viana Marzola', periodo: '2026-03-31', fecha: '20/02/2026', valor: '$1.540.000', estado: 'APROBADA' },
+];
+
 const EstadoCCBadge: React.FC<{ estado: string }> = ({ estado }) => {
   const map: Record<string, string> = {
     PENDIENTE: 'cc-badge-pendiente',
@@ -35,7 +34,6 @@ const EstadoCCBadge: React.FC<{ estado: string }> = ({ estado }) => {
   return <span className={`cc-estado-badge ${map[estado] ?? 'cc-badge-pendiente'}`}>{estado}</span>;
 };
 
-/* ── Formatear periodo ISO ── */
 const formatPeriodo = (iso: string) => {
   try {
     const d = new Date(iso);
@@ -44,32 +42,13 @@ const formatPeriodo = (iso: string) => {
 };
 
 const CuentaCobroView: React.FC = () => {
-  const [cuentas, setCuentas] = useState<CuentaCobro[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [search, setSearch] = useState('');
+  const [cuentas] = useState<CuentaCobro[]>(MOCK_CUENTAS);
+  const { search } = useOutletContext<{ search: string }>();
   const [estadoFilter, setEstadoFilter] = useState('Todos');
   const [fechaInicio, setFechaInicio] = useState('');
   const [fechaFin, setFechaFin] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [firstActive, setFirstActive] = useState(false);
-
-  const fetchCuentas = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await api.get('/cuentas-cobro');
-      setCuentas(res.data);
-    } catch (err: any) {
-      setError(err.response?.data?.message || err.message || 'Error al cargar');
-    } finally {
-      setLoading(false);
-      setCurrentPage(1);
-    }
-  };
-
-  useEffect(() => { fetchCuentas(); }, []);
 
   const filtered = useMemo(() => {
     return cuentas.filter(c => {
@@ -88,143 +67,85 @@ const CuentaCobroView: React.FC = () => {
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   }, [currentPage, totalPages]);
 
-  const tableHeaders = (
-    <tr>
-      <th>Número</th>
-      <th>Contratista</th>
-      <th>Período</th>
-      <th>Fecha</th>
-      <th>Valor</th>
-      <th>Estado</th>
-      <th>Acciones</th>
-    </tr>
-  );
-
   return (
     <>
-        <div className="gestion-container">
-
-          {/* Header */}
-          <header className="gestion-header">
-            <div className="gestion-header-top">
-              <nav className="breadcrumb">
-                <div className="breadcrumb-item"><Home size={14} /></div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item">Movimientos</div>
-                <div className="breadcrumb-sep"><ChevronRight size={13} /></div>
-                <div className="breadcrumb-item active">Cuenta de Cobro</div>
-              </nav>
-              <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
-            </div>
-            <div className="gestion-header-bottom">
-              <h1 className="gestion-title">Cuenta de Cobro</h1>
-              <SearchBar
-                value={search}
-                onChange={(val) => { setSearch(val); setCurrentPage(1); }}
-                placeholder="Busca por número o contratista"
-              />
-            </div>
-          </header>
-
-          <div className="tabs-card-group">
-            <MovTabs onFirstActive={setFirstActive} />
-            <div className={`gestion-content-card${firstActive ? ' first-tab-active' : ''}`} style={{ marginTop: 0 }}>
-
-              {/* Toolbar */}
-              <div className="cc-toolbar">
-                {/* Búsqueda */}
-                <div className="cc-search-row">
-                  <div className="oa-search-wrap cc-search-large">
-                    <svg width="15" height="15" viewBox="0 0 17 17" fill="none">
-                      <circle cx="7" cy="7" r="4.2" stroke="#94a3b8" strokeWidth="2" />
-                      <line x1="10.2" y1="10.5" x2="15.5" y2="15.8" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                    <input
-                      className="oa-search-input"
-                      placeholder="Buscar..."
-                      value={search}
-                      onChange={e => { setSearch(e.target.value); setCurrentPage(1); }}
-                    />
-                  </div>
-
-                  <div className="oa-filter-group">
-                    <span className="oa-filter-label">Estado</span>
-                    <div className="oa-select-wrap oa-filter-select-wrap">
-                      <select className="oa-filter-select" value={estadoFilter}
-                        onChange={e => { setEstadoFilter(e.target.value); setCurrentPage(1); }}>
-                        {ESTADOS_CC.map(e => <option key={e}>{e}</option>)}
-                      </select>
-                      <ChevronDown size={12} className="oa-select-icon" />
-                    </div>
-                  </div>
-
-                  <button className="cc-btn-limpiar" onClick={() => {
-                    setSearch(''); setEstadoFilter('Todos');
-                    setFechaInicio(''); setFechaFin('');
-                  }}>
-                    Limpiar Filtros
-                  </button>
-                </div>
-
-                {/* Fechas */}
-                <div className="cc-fechas-row">
-                  <div className="oa-filter-group">
-                    <span className="oa-filter-label">Fecha Inicio</span>
-                    <input type="date" className="oa-input cc-date-input" value={fechaInicio}
-                      onChange={e => setFechaInicio(e.target.value)} />
-                  </div>
-                  <div className="oa-filter-group">
-                    <span className="oa-filter-label">Fecha Fin</span>
-                    <input type="date" className="oa-input cc-date-input" value={fechaFin}
-                      onChange={e => setFechaFin(e.target.value)} />
-                  </div>
-                  {(!fechaInicio && !fechaFin) && (
-                    <span className="cc-no-fecha">Sin filtro de fecha</span>
-                  )}
-                </div>
-              </div>
-
-              {/* Tabla con DataTable */}
-              <DataTable
-                headers={tableHeaders}
-                itemsPerPage={itemsPerPage}
-                setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                totalPages={totalPages}
-                visiblePages={visiblePages}
-              >
-                {loading ? (
-                  <tr><td colSpan={7} className="table-empty">Cargando datos...</td></tr>
-                ) : error ? (
-                  <tr><td colSpan={7} className="table-empty" style={{ color: '#e11d48' }}>⚠️ {error}</td></tr>
-                ) : current.length === 0 ? (
-                  <tr><td colSpan={7} className="table-empty">No se encontraron cuentas.</td></tr>
-                ) : current.map(c => (
-                  <tr key={c.id}>
-                    <td><strong>{c.numero}</strong></td>
-                    <td>{c.contratista}</td>
-                    <td>{formatPeriodo(c.periodo)}</td>
-                    <td>{c.fecha}</td>
-                    <td>{c.valor}</td>
-                    <td><EstadoCCBadge estado={c.estado} /></td>
-                    <td>
-                      <div className="oa-actions-cell">
-                        <button className="oa-action-btn oa-action-eye" title="Ver">
-                          <Eye size={15} />
-                        </button>
-                        <button className="oa-action-btn cc-action-approve" title="Aprobar">
-                          <Check size={15} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </DataTable>
-
+      {/* Toolbar */}
+      <div className="cc-toolbar">
+        <div className="cc-search-row">
+          <div className="oa-filter-group">
+            <span className="oa-filter-label">Estado</span>
+            <div className="oa-select-wrap oa-filter-select-wrap">
+              <select className="oa-filter-select" value={estadoFilter}
+                onChange={e => { setEstadoFilter(e.target.value); setCurrentPage(1); }}>
+                {ESTADOS_CC.map(e => <option key={e}>{e}</option>)}
+              </select>
+              <ChevronDown size={12} className="oa-select-icon" />
             </div>
           </div>
+
+          <button className="cc-btn-limpiar" onClick={() => {
+            setSearch(''); setEstadoFilter('Todos');
+            setFechaInicio(''); setFechaFin('');
+          }}>
+            Limpiar Filtros
+          </button>
         </div>
+
+        <div className="cc-fechas-row">
+          <div className="oa-filter-group">
+            <span className="oa-filter-label">Fecha Inicio</span>
+            <input type="date" className="oa-input cc-date-input" value={fechaInicio}
+              onChange={e => setFechaInicio(e.target.value)} />
+          </div>
+          <div className="oa-filter-group">
+            <span className="oa-filter-label">Fecha Fin</span>
+            <input type="date" className="oa-input cc-date-input" value={fechaFin}
+              onChange={e => setFechaFin(e.target.value)} />
+          </div>
+          {(!fechaInicio && !fechaFin) && (
+            <span className="cc-no-fecha">Sin filtro de fecha</span>
+          )}
+        </div>
+      </div>
+
+      <DataTable
+        headers={
+          <tr>
+            <th>Número</th>
+            <th>Contratista</th>
+            <th>Período</th>
+            <th>Fecha</th>
+            <th>Valor</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        }
+        itemsPerPage={itemsPerPage}
+        setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+        visiblePages={visiblePages}
+      >
+        {current.length === 0 ? (
+          <tr><td colSpan={7} className="table-empty">No se encontraron cuentas.</td></tr>
+        ) : current.map(c => (
+          <tr key={c.id}>
+            <td><strong>{c.numero}</strong></td>
+            <td>{c.contratista}</td>
+            <td>{formatPeriodo(c.periodo)}</td>
+            <td>{c.fecha}</td>
+            <td>{c.valor}</td>
+            <td><EstadoCCBadge estado={c.estado} /></td>
+            <td>
+              <div className="oa-actions-cell">
+                <button className="oa-action-btn oa-action-eye" title="Ver"><Eye size={15} /></button>
+                <button className="oa-action-btn cc-action-approve" title="Aprobar"><Check size={15} /></button>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </DataTable>
     </>
   );
 };
