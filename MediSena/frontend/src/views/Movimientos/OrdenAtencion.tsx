@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import DataTable from '../../components/DataTable';
 import Modal from '../../components/Modal';
-import { Printer, ChevronDown, ChevronLeft, ChevronRight, X, ArrowDownUp, RefreshCcw, Plus, Check } from 'lucide-react';
+import { Printer, ChevronDown, ChevronLeft, ChevronRight, X, ArrowDownUp, RefreshCcw, Plus, Check, Pencil } from 'lucide-react';
 import { ExcedentesEstado, OJOIcon, EditIcon, EditarDetallesIcon } from '../../components/Icons';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import logoPrint from '../../assets/img/Sidebar/Sidebar.svg';
@@ -155,22 +155,13 @@ const DetallesModal: React.FC<{ orden: OrdenAtencion; onClose: () => void; onEdi
           <button className="oa-det-btn-print-sq" title="Imprimir" onClick={() => window.print()}>
             <Printer size={18} color="#0165B0" />
           </button>
-          <button className="oa-det-btn-print-sq" title="Editar Orden" onClick={() => { onClose(); onEdit(orden); }}>
-            <EditarDetallesIcon size={18} className="oa-edit-icon-blue" />
-          </button>
         </div>
         
         <div className="oa-det-footer-actions">
           <button className="oa-det-btn-cancel-flat" onClick={onClose}>Cancelar</button>
-          {step < 2 ? (
-            <button className="oa-det-btn-edit-blue" onClick={() => setStep(s => s + 1)}>
-              Siguiente
-            </button>
-          ) : (
-            <button className="oa-det-btn-edit-blue" onClick={onClose}>
-              Finalizar
-            </button>
-          )}
+          <button className="oa-det-btn-edit-blue" onClick={() => { onClose(); onEdit(orden); }}>
+            <Pencil size={18} color="#ffffff" /> Editar
+          </button>
         </div>
       </div>
     </Modal>
