@@ -1,0 +1,122 @@
+/* ─── REDISEÑO FUNCIONARIOS ───────────────────────────────── */
+.db-avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.db-avatar-circle {
+  width: 32px;
+  height: 32px;
+  background: #002c4d;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.db-name-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e3a52;
+  text-transform: uppercase;
+}
+
+.db-cargo-text {
+  color: #f97316;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+
+
+.db-icon-eye {
+  color: #3b82f6;
+}
+
+.db-icon-pencil {
+  color: #1e3a52;
+}
+
+.db-icon-ban {
+  color: #e11d48;
+}
+
+.db-toolbar-filters {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.db-filter-group {
+  position: relative;
+  min-width: 180px;
+}
+
+.db-filter-label {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: white;
+  padding: 0 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  z-index: 5;
+  text-transform: uppercase;
+}
+
+.db-filter-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.5px solid #dde8f0;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e3a52;
+  background: white;
+  outline: none;
+}
+
+.db-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ─── MODAL EDITAR FULL (FUNCIONARIOS W1112 H556) ────────── */
+.db-modal-editar-full {
+  background: white;
+  border-radius: 20px;
+  width: 1112px;
+  height: 556px;
+  max-width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+  animation: dbSlideUp 0.3s ease;
+  overflow: hidden;
+}
+
+/* ─── MODAL DETALLES FUNCIONARIO (W840 H632) ─────────────── */
+.db-modal-detalles-funcionario {
+  background: white;
+  border-radius: 20px;
+  width: 840px;
+  height: 632px;
+  max-width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+  animation: dbSlideUp 0.3s ease;
+  overflow: hidden;
+}

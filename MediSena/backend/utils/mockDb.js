@@ -108,6 +108,20 @@ const mockSubEspecialidades = [
   }
 ];
 
+const mockRecibos = Array(6).fill({
+  ID_RECIBO: 62,
+  NUMERO_RECIBO: '62',
+  FUNCIONARIO: 'FERNANDEZ VALENZUELA EFRAIN',
+  BENEFICIARIO: 'AGUIRRE CAMACHO LUIS ALEJANDRO',
+  FECHA_PAGO: '2025-02-19',
+  VALOR_TOTAL: 43500,
+  TIPO_PAGO: 'PARTICULAR',
+  ESTADO: 'PENDIENTE',
+  METODO_PAGO: 'TRANSFERENCIA',
+  CONCEPTO: 'EXCEDENTES',
+  REGIONAL: '001'
+});
+
 module.exports = {
   getMockConnection: () => {
     return {
@@ -137,6 +151,8 @@ module.exports = {
           if (query.includes('COUNT(*)')) rows = [{ TOTAL: mockSubEspecialidades.length }];
           else if (query.includes('DISTINCT COD_REGI_ADSC_SUBESP')) rows = [{ REGIONAL: '01' }];
           else rows = mockSubEspecialidades;
+        } else if (query.includes('SMA_RECIBOS_PAGO')) {
+          rows = mockRecibos;
         } else {
           rows = [];
         }

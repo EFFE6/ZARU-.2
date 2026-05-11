@@ -1,0 +1,27 @@
+INSTRUCCIONES PARA MIGRAR EL MÓDULO DE EXCEDENTES
+
+Este módulo ha sido refactorizado para funcionar SIN backend (usando datos de prueba locales).
+
+1. ESTRUCTURA DE ARCHIVOS:
+   - Copia la carpeta 'views/Excedentes' a 'src/views/' de tu nuevo proyecto.
+   - Copia 'styles/Excedentes.css' a 'src/styles/Excedentes/'.
+   - Copia los componentes en 'components/' a 'src/components/'.
+   - Copia los assets de 'assets/icons/' a 'src/assets/img/icons/'.
+   - Se han incluido 'App.tsx', 'main.tsx' e 'index.css' en la raíz de esta carpeta como referencia de la estructura global.
+
+2. RUTAS (App.tsx):
+   En el archivo 'App.tsx' que te pasé, busca la línea donde se importa Excedentes y la ruta:
+   import Excedentes from './views/Excedentes/Excedentes';
+   ...
+   <Route path="/excedentes" element={<Excedentes />} />
+
+3. ESTILOS GLOBALES:
+   Asegúrate de que 'index.css' tenga los estilos base necesarios para que los componentes se vean correctamente.
+
+4. DEPENDENCIAS:
+   Asegúrate de tener instaladas las siguientes librerías:
+   - lucide-react
+   - react-router-dom
+
+5. NOTA SOBRE DATOS:
+   Los datos se encuentran en 'views/Excedentes/types.ts'. Puedes modificarlos directamente allí para cambiar los nombres, números de recibo, etc.

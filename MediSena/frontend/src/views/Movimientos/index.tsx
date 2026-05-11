@@ -11,13 +11,12 @@ import '../../styles/Movimientos/OrdenAtencion.css';
 import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 const MOV_TABS = [
-  { id: 'orden-atencion',    label: 'Orden de Atención',  path: '/movimientos/orden-atencion',   Icon: ClipboardList },
-  { id: 'cuenta-cobro',      label: 'Cuenta de Cobro',    path: '/movimientos/cuenta-cobro',      Icon: Receipt       },
-  { id: 'relacion-pagos',    label: 'Relación de Pagos',  path: '/movimientos/relacion-pagos',    Icon: CreditCard    },
-  { id: 'programar-agenda',  label: 'Programar Agenda',   path: '/movimientos/programar-agenda',  Icon: CalendarPlus  },
-  { id: 'agendas',           label: 'Agendas',            path: '/movimientos/agendas',           Icon: CalendarCheck },
-  { id: 'cancelar-ordenes',  label: 'Cancelar Órdenes',   path: '/movimientos/cancelar-ordenes',  Icon: XCircle       },
-  { id: 'consultar-ordenes', label: 'Consultar Órdenes',  path: '/movimientos/consultar-ordenes', Icon: Search        },
+  { id: 'orden-atencion',    label: 'Órdenes de Atención',  path: '/movimientos/orden-atencion',   Icon: ClipboardList },
+  { id: 'cuenta-cobro',      label: 'Cuenta de cobro',      path: '/movimientos/cuenta-cobro',      Icon: Receipt       },
+  { id: 'relacion-pagos',    label: 'Relación de pagos',    path: '/movimientos/relacion-pagos',    Icon: CreditCard    },
+  { id: 'programar-agenda',  label: 'Programar agenda',     path: '/movimientos/programar-agenda',  Icon: CalendarPlus  },
+  { id: 'agendas',           label: 'Agenda',               path: '/movimientos/agendas',           Icon: CalendarCheck },
+  { id: 'cancelar-ordenes',  label: 'Cancelar órdenes',     path: '/movimientos/cancelar-ordenes',  Icon: XCircle       },
 ];
 
 const MovimientosLayout: React.FC = () => {

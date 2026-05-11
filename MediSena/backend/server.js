@@ -101,6 +101,7 @@ app.use('/api/sub-especialidades', require('./routes/subEspecialidades.routes'))
 // Rutas - Sistema
 app.use('/api/dashboard', require('./routes/dashboard.routes'));
 app.use('/api/stats', require('./routes/dashboard.routes')); // Alias para /api/stats
+app.use('/api/excedentes', require('./routes/excedentes.routes'));
 
 
 

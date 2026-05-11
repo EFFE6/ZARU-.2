@@ -1,23 +1,12 @@
-import React, { useState } from 'react';
-import TabGroup from '../../components/TabGroup';
-import SearchBar from '../../components/SearchBar';
-import ProgramarAgenda from './tabs/ProgramarAgenda';
-import GestionAgendas from './tabs/GestionAgendas';
-import '../../styles/Movimientos/Agendas.css';
+import React from 'react';
 
 const Agendas: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('Programar Agenda');
-  const [searchQuery, setSearchQuery] = useState('');
-  const tabs = ['Programar Agenda', 'Gestión de Agendas'];
-
   return (
-    <div className="tabs-card-group">
-      <TabGroup tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
-      {activeTab === 'Programar Agenda' && <ProgramarAgenda />}
-      {activeTab === 'Gestión de Agendas' && <GestionAgendas />}
+    <div style={{ padding: '40px', textAlign: 'center', color: '#64748b' }}>
+      <h2>Vista de Agenda</h2>
+      <p>Esta vista está siendo rediseñada.</p>
     </div>
   );
 };
 
 export default Agendas;
-

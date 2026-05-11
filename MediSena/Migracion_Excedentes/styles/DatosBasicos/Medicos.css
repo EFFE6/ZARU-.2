@@ -1,0 +1,29 @@
+/* ─── MODAL EDITAR MÉDICO (W900 H556) ────────────────────── */
+.db-modal-editar-medico {
+  background: white;
+  border-radius: 20px;
+  width: 900px;
+  height: 556px;
+  max-width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+  animation: dbSlideUp 0.3s ease;
+  overflow: hidden;
+}
+
+/* ─── MODAL DETALLES MÉDICO (W840 H464) ──────────────────── */
+.db-modal-detalles-medico {
+  background: white;
+  border-radius: 20px;
+  width: 840px;
+  height: 464px;
+  max-width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+  animation: dbSlideUp 0.3s ease;
+  overflow: hidden;
+}

@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --sidebar-bg: #EBEFF8;
+  --sidebar-active: #2D6A9F;
+  --sidebar-text: #3D4E68;
+  --sidebar-active-text: #FFFFFF;
+  --sidebar-user-bg: #CCD9F1;
+  --bg-app: #F0F4FA;
+  --primary-blue: #1a365d;
+  
+  --sans: 'Work Sans', system-ui, -apple-system, sans-serif;
+  --heading: 'Work Sans', sans-serif;
+  --mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  font-family: var(--sans);
+  /* background-color eliminado para que cada vista controle su propio fondo */
+  color: var(--sidebar-text);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  overflow: hidden; /* Modern app feel */
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.main-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+  overflow-y: auto;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
