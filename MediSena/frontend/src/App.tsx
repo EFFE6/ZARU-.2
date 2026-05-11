@@ -15,7 +15,7 @@ import Agendas from './views/Movimientos/Agendas';
 import CancelarOrdenes from './views/Movimientos/CancelarOrdenes';
 import ConsultarOrdenes from './views/Movimientos/ConsultarOrdenes';
 import Consultas from './views/Consultas/Consultas';
-import Excedentes from './views/Excedentes/Excedentes';
+import Excedentes from './views/Excedentes';
 import Reportes from './views/Reportes/Reportes';
 import './App.css';
 

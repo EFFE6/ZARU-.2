@@ -261,21 +261,21 @@ export const PrintIcon: React.FC<IconProps> = ({ size = 28, className }) => (
 );
 export const OJOIcon: React.FC<IconProps> = ({ size = 28, className }) => (
   <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_811_42689)" stroke-width="1.4" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.81869 14.2698C8.7271 14.1001 8.7271 13.8941 8.81869 13.7244C9.92235 11.6833 11.9611 9.91406 13.9999 9.91406C16.0386 9.91406 18.0774 11.6833 19.181 13.725C19.2726 13.8947 19.2726 14.1006 19.181 14.2704C18.0774 16.3115 16.0386 18.0807 13.9999 18.0807C11.9611 18.0807 9.92235 16.3115 8.81869 14.2698Z" stroke="url(#paint1_linear_811_42689)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M15.2374 12.7626C15.9209 13.446 15.9209 14.554 15.2374 15.2374C14.554 15.9209 13.446 15.9209 12.7626 15.2374C12.0791 14.554 12.0791 13.446 12.7626 12.7626C13.446 12.0791 14.554 12.0791 15.2374 12.7626" stroke="url(#paint2_linear_811_42689)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_811_42689)" strokeWidth="1.4" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M8.81869 14.2698C8.7271 14.1001 8.7271 13.8941 8.81869 13.7244C9.92235 11.6833 11.9611 9.91406 13.9999 9.91406C16.0386 9.91406 18.0774 11.6833 19.181 13.725C19.2726 13.8947 19.2726 14.1006 19.181 14.2704C18.0774 16.3115 16.0386 18.0807 13.9999 18.0807C11.9611 18.0807 9.92235 16.3115 8.81869 14.2698Z" stroke="url(#paint1_linear_811_42689)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M15.2374 12.7626C15.9209 13.446 15.9209 14.554 15.2374 15.2374C14.554 15.9209 13.446 15.9209 12.7626 15.2374C12.0791 14.554 12.0791 13.446 12.7626 12.7626C13.446 12.0791 14.554 12.0791 15.2374 12.7626" stroke="url(#paint2_linear_811_42689)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
     <defs>
       <linearGradient id="paint0_linear_811_42689" x1="57.75" y1="-31.7916" x2="-26.9069" y2="-27.3651" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#0165B0" />
-        <stop offset="1" stop-color="#013156" />
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
       </linearGradient>
       <linearGradient id="paint1_linear_811_42689" x1="30.4056" y1="0.641502" x2="-1.28339" y2="2.7718" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#0165B0" />
-        <stop offset="1" stop-color="#013156" />
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
       </linearGradient>
       <linearGradient id="paint2_linear_811_42689" x1="19.4687" y1="8.27605" x2="8.88664" y2="8.82936" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#0165B0" />
-        <stop offset="1" stop-color="#013156" />
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
       </linearGradient>
     </defs>
   </svg>
@@ -293,11 +293,11 @@ export const OJOIcon: React.FC<IconProps> = ({ size = 28, className }) => (
 export const EditarDetallesIcon: React.FC<IconProps> = ({ size = 16, className }) => (
 
   <svg width={size} height={size} viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.38041 19.0538H1.05273V15.7261C1.05273 15.4548 1.16021 15.1938 1.35264 15.0024L15.0011 1.3529C15.4013 0.952679 16.0493 0.952679 16.4485 1.3529L18.7526 3.65699C19.1528 4.05721 19.1528 4.70514 18.7526 5.10434L5.10408 18.7538C4.91267 18.9463 4.65166 19.0538 4.38041 19.0538V19.0538Z" stroke="url(#paint0_linear_713_4820)" stroke-width="2.10566" stroke-linecap="round" stroke-linejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M4.38041 19.0538H1.05273V15.7261C1.05273 15.4548 1.16021 15.1938 1.35264 15.0024L15.0011 1.3529C15.4013 0.952679 16.0493 0.952679 16.4485 1.3529L18.7526 3.65699C19.1528 4.05721 19.1528 4.70514 18.7526 5.10434L5.10408 18.7538C4.91267 18.9463 4.65166 19.0538 4.38041 19.0538V19.0538Z" stroke="url(#paint0_linear_713_4820)" strokeWidth="2.10566" strokeLinecap="round" strokeLinejoin="round" />
     <defs>
       <linearGradient id="paint0_linear_713_4820" x1="38.1777" y1="-19.3859" x2="-16.2446" y2="-16.5405" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#0165B0" />
-        <stop offset="1" stop-color="#013156" />
+        <stop stopColor="#0165B0" />
+        <stop offset="1" stopColor="#013156" />
       </linearGradient>
     </defs>
   </svg>
@@ -824,10 +824,10 @@ export const Filtrar: React.FC<IconProps> = ({ size = 40, className }) => (
 //ESTADO
 export const ExcedentesEstado: React.FC<IconProps> = ({ size = 16, className }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9.33073 3.33594H11.9974C12.7341 3.33594 13.3307 3.9326 13.3307 4.66927V13.3359C13.3307 14.0726 12.7341 14.6693 11.9974 14.6693H3.9974C3.26073 14.6693 2.66406 14.0726 2.66406 13.3359V4.66927C2.66406 3.9326 3.26073 3.33594 3.9974 3.33594H6.66406" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M9.06066 7.1034C9.64645 7.68919 9.64645 8.63894 9.06066 9.22472C8.47487 9.81051 7.52513 9.81051 6.93934 9.22472C6.35355 8.63894 6.35355 7.68919 6.93934 7.1034C7.52513 6.51762 8.47487 6.51762 9.06066 7.1034" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M10.3949 12.6693C10.2782 12.3766 10.0982 12.1139 9.8669 11.8999V11.8999C9.47556 11.5373 8.96223 11.3359 8.4289 11.3359H7.56756C7.03423 11.3359 6.5209 11.5373 6.12956 11.8999V11.8999C5.89823 12.1139 5.71823 12.3766 5.60156 12.6693" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.66406 4.66927H7.33073C6.96273 4.66927 6.66406 4.3706 6.66406 4.0026V2.0026C6.66406 1.6346 6.96273 1.33594 7.33073 1.33594H8.66406C9.03206 1.33594 9.33073 1.6346 9.33073 2.0026V4.0026C9.33073 4.3706 9.03206 4.66927 8.66406 4.66927Z" stroke="#5535A0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M9.33073 3.33594H11.9974C12.7341 3.33594 13.3307 3.9326 13.3307 4.66927V13.3359C13.3307 14.0726 12.7341 14.6693 11.9974 14.6693H3.9974C3.26073 14.6693 2.66406 14.0726 2.66406 13.3359V4.66927C2.66406 3.9326 3.26073 3.33594 3.9974 3.33594H6.66406" stroke="#5535A0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9.06066 7.1034C9.64645 7.68919 9.64645 8.63894 9.06066 9.22472C8.47487 9.81051 7.52513 9.81051 6.93934 9.22472C6.35355 8.63894 6.35355 7.68919 6.93934 7.1034C7.52513 6.51762 8.47487 6.51762 9.06066 7.1034" stroke="#5535A0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M10.3949 12.6693C10.2782 12.3766 10.0982 12.1139 9.8669 11.8999V11.8999C9.47556 11.5373 8.96223 11.3359 8.4289 11.3359H7.56756C7.03423 11.3359 6.5209 11.5373 6.12956 11.8999V11.8999C5.89823 12.1139 5.71823 12.3766 5.60156 12.6693" stroke="#5535A0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M8.66406 4.66927H7.33073C6.96273 4.66927 6.66406 4.3706 6.66406 4.0026V2.0026C6.66406 1.6346 6.96273 1.33594 7.33073 1.33594H8.66406C9.03206 1.33594 9.33073 1.6346 9.33073 2.0026V4.0026C9.33073 4.3706 9.03206 4.66927 8.66406 4.66927Z" stroke="#5535A0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 

@@ -36,49 +36,50 @@
   margin: 2px 0 0 0;
 }
 
+/* ── Buscador (va PRIMERO) ── */
+.cancel-search-section {
+  padding: 20px 28px 0;
+}
 
+.cancel-search-row {
+  display: flex;
+  gap: 10px;
+}
+
+.cancel-search-input {
+  flex: 1;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: #1e293b;
+  outline: none;
+  background: #f8fafc;
+  transition: border-color 0.18s;
+  font-family: inherit;
+}
+.cancel-search-input:focus { border-color: #0165B0; background: #fff; }
+
+/* Botón GRIS claro (como en el diseño) */
+.cancel-search-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #e2e8f0;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: background 0.18s;
+  white-space: nowrap;
+}
+.cancel-search-btn:hover { background: #cbd5e1; }
+.cancel-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* ── Advertencia (va DESPUÉS del buscador) ── */
-.cancel-warning-banner-premium {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: #fffbeb;
-  border: 1.5px solid #fde68a;
-  border-radius: 12px;
-  margin: 14px 28px 0;
-  padding: 20px 24px;
-}
-
-.cancel-warning-icon-box {
-  width: 44px;
-  height: 44px;
-  background: #fef3c7;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.cancel-warning-content {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.cancel-warning-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #92400e;
-}
-
-.cancel-warning-text {
-  font-size: 0.85rem;
-  color: #b45309;
-  line-height: 1.5;
-}
-
 .cancel-warning-banner {
   display: flex;
   align-items: flex-start;
