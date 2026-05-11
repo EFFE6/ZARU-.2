@@ -3,7 +3,6 @@ import { useOutletContext } from 'react-router-dom';
 import DataTable from '../../components/DataTable';
 import { Eye, ChevronDown, Check, List, RotateCw, Plus, Search } from 'lucide-react';
 import { OJOIcon } from '../../components/Icons';
-import SearchBar from '../../components/SearchBar';
 import '../../styles/Movimientos/OrdenAtencion.css';
 import '../../styles/Movimientos/CuentaCobro.css';
 
@@ -20,11 +19,10 @@ interface CuentaCobro {
 const ESTADOS_CC = ['Todos', 'PENDIENTE', 'APROBADA', 'RECHAZADA'];
 
 const MOCK_CUENTAS: CuentaCobro[] = [
-  { id: 1, numero: 101, contratista: 'CLAUDIA BASSIL AMIN', periodo: '2026-01-31', fecha: '01/02/2026', valor: '$1.200.000', estado: 'APROBADA' },
-  { id: 2, numero: 102, contratista: 'Piedad Viana Marzola', periodo: '2026-01-31', fecha: '05/02/2026', valor: '$850.000', estado: 'PENDIENTE' },
-  { id: 3, numero: 103, contratista: 'ABRIL GALEANO GIOVANNI', periodo: '2026-02-28', fecha: '10/02/2026', valor: '$2.350.000', estado: 'PENDIENTE' },
-  { id: 4, numero: 104, contratista: 'CLAUDIA BASSIL AMIN', periodo: '2026-02-28', fecha: '15/02/2026', valor: '$970.000', estado: 'RECHAZADA' },
-  { id: 5, numero: 105, contratista: 'Piedad Viana Marzola', periodo: '2026-03-31', fecha: '20/02/2026', valor: '$1.540.000', estado: 'APROBADA' },
+  { id: 1, numero: 4623, contratista: '176041', periodo: '2015-10-01T00:00:00.000Z', fecha: '14/9/2015', valor: '$70000', estado: 'PENDIENTE' },
+  { id: 2, numero: 4626, contratista: '176041', periodo: '2015-10-01T00:00:00.000Z', fecha: '2/9/2015', valor: '$120737', estado: 'PENDIENTE' },
+  { id: 3, numero: 4627, contratista: '176041', periodo: '2015-10-01T00:00:00.000Z', fecha: '2/9/2015', valor: '$70000', estado: 'PENDIENTE' },
+  { id: 4, numero: 4630, contratista: '176041', periodo: '2015-10-01T00:00:00.000Z', fecha: '9/9/2015', valor: '$70000', estado: 'PENDIENTE' },
 ];
 
 const EstadoCCBadge: React.FC<{ estado: string }> = ({ estado }) => {
@@ -34,13 +32,6 @@ const EstadoCCBadge: React.FC<{ estado: string }> = ({ estado }) => {
     RECHAZADA: 'cc-badge-rechazada',
   };
   return <span className={`cc-estado-badge ${map[estado] ?? 'cc-badge-pendiente'}`}>{estado}</span>;
-};
-
-const formatPeriodo = (iso: string) => {
-  try {
-    const d = new Date(iso);
-    return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
-  } catch { return iso; }
 };
 
 const CuentaCobroView: React.FC = () => {
@@ -71,25 +62,6 @@ const CuentaCobroView: React.FC = () => {
 
   return (
     <div className="cc-view-container">
-      {/* Figma Header */}
-      <div className="cc-header-figma">
-        <div className="cc-header-left">
-          <div className="cc-title-row">
-            <List className="cc-title-icon" size={24} />
-            <h1 className="cc-main-title">Cuentas de Cobro</h1>
-          </div>
-          <p className="cc-main-subtitle">Gestione las cuentas de cobro de contratistas</p>
-        </div>
-        <div className="cc-header-right">
-          <button className="cc-btn-actualizar">
-            <RotateCw size={16} /> Actualizar
-          </button>
-          <button className="cc-btn-nueva">
-            <Plus size={18} /> Nueva Cuenta
-          </button>
-        </div>
-      </div>
-
       {/* Figma Filters */}
       <div className="cc-toolbar-figma">
         <div className="cc-filters-top">
@@ -154,13 +126,13 @@ const CuentaCobroView: React.FC = () => {
       <DataTable
         headers={
           <tr>
-            <th>Número</th>
-            <th>Contratista</th>
-            <th>Período</th>
-            <th>Fecha</th>
-            <th>Valor</th>
-            <th>Estado</th>
-            <th>Acciones</th>
+            <th>NÚMERO</th>
+            <th>CONTRATISTA</th>
+            <th>PERÍODO</th>
+            <th>FECHA</th>
+            <th>VALOR</th>
+            <th>ESTADO</th>
+            <th>ACCIONES</th>
           </tr>
         }
         itemsPerPage={itemsPerPage}
@@ -176,7 +148,7 @@ const CuentaCobroView: React.FC = () => {
           <tr key={c.id}>
             <td className="cc-table-num">{c.numero}</td>
             <td>{c.contratista}</td>
-            <td>{formatPeriodo(c.periodo)}</td>
+            <td>{c.periodo}</td>
             <td>{c.fecha}</td>
             <td>{c.valor}</td>
             <td><EstadoCCBadge estado={c.estado} /></td>
