@@ -40,71 +40,12 @@ const MovimientosLayout: React.FC = () => {
           <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
         </div>
         <div className="gestion-header-bottom">
-          {active.id === 'cuenta-cobro' ? (
-            <>
-              <div>
-                <h1 className="gestion-title" style={{ margin: 0 }}>Cuentas de Cobro</h1>
-              </div>
-              <div style={{ display: 'flex', gap: 10 }}>
-                <button className="oa-btn-refresh">
-                  <RefreshCw size={14} /> Actualizar
-                </button>
-                <button className="cc-btn-nueva" style={{ background: '#0165B0', color: '#fff', border: 'none', borderRadius: 8, padding: '8px 18px', display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}>
-                  <Plus size={14} /> Nueva Cuenta
-                </button>
-              </div>
-            </>
-          ) : active.id === 'relacion-pagos' ? (
-            <>
-              <h1 className="gestion-title" style={{ margin: 0 }}>Relación de Pagos</h1>
-              <div style={{ display: 'flex', gap: 10 }}>
-                <button className="oa-btn-refresh">
-                  <Download size={14} style={{ opacity: 0.6 }} /> Exportar
-                </button>
-                <button className="oa-btn-refresh" onClick={() => window.print()}>
-                  <Printer size={14} style={{ opacity: 0.6 }} /> Imprimir
-                </button>
-                <button className="oa-btn-refresh">
-                  <RefreshCw size={14} /> Actualizar
-                </button>
-              </div>
-            </>
-          ) : active.id === 'consultar-ordenes' ? (
-            <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <Clock size={24} color="#1e3a52" />
-                <h1 className="gestion-title" style={{ margin: 0 }}>Consultar Órdenes de Atención</h1>
-              </div>
-              <div style={{ display: 'flex', gap: 10 }}>
-                <button className="oa-btn-refresh">
-                  <Download size={14} style={{ opacity: 0.6 }} /> Exportar
-                </button>
-                <button className="oa-btn-refresh">
-                  <RefreshCw size={14} /> Actualizar
-                </button>
-              </div>
-            </>
-          ) : active.id === 'programar-agenda' ? (
-            <>
-              <h1 className="gestion-title" style={{ margin: 0 }}>Programar Agenda</h1>
-              <button className="oa-btn-refresh">
-                <RefreshCw size={14} /> Actualizar
-              </button>
-            </>
-          ) : active.id === 'agendas' ? (
-            <>
-              <h1 className="gestion-title" style={{ margin: 0 }}>{active.label}</h1>
-            </>
-          ) : (
-            <>
-              <h1 className="gestion-title">{active.label}</h1>
-              <SearchBar
-                value={search}
-                onChange={(val) => { setSearch(val); }}
-                placeholder={`Buscar en ${active.label}...`}
-              />
-            </>
-          )}
+          <h1 className="gestion-title">{active.label}</h1>
+          <SearchBar
+            value={search}
+            onChange={(val) => { setSearch(val); }}
+            placeholder={`Buscar en ${active.label}...`}
+          />
         </div>
         
         {/* Subtitles for specific views */}
