@@ -45,6 +45,23 @@ const RelacionPagosView: React.FC = () => {
 
   return (
     <div style={{ padding: '0 4px' }}>
+      <div className="oa-table-toolbar" style={{ marginBottom: 20 }}>
+        <span className="oa-table-toolbar-text">
+          Listado de pagos registrados en el sistema
+        </span>
+        <div className="oa-table-toolbar-actions">
+          <button className="oa-btn-refresh">
+            <Download size={14} style={{ opacity: 0.6 }} /> Exportar
+          </button>
+          <button className="oa-btn-refresh" onClick={() => window.print()}>
+            <Printer size={14} style={{ opacity: 0.6 }} /> Imprimir
+          </button>
+          <button className="oa-btn-refresh">
+            <RefreshCw size={14} /> Actualizar
+          </button>
+        </div>
+      </div>
+
       <DataTable
         headers={
           <tr>

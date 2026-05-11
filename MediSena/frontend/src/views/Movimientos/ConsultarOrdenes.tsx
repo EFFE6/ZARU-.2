@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { Search } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 import '../../styles/Movimientos/ConsultarOrdenes.css';
 
 interface OrdenConsulta {
@@ -27,7 +27,7 @@ const MOCK_DATA = [
 ];
 
 const ConsultarOrdenes: React.FC = () => {
-  const [data, setData] = useState<OrdenConsulta[]>(MOCK_DATA);
+  const [data] = useState<OrdenConsulta[]>(MOCK_DATA);
   const [año, setAño] = useState('2026');
   const [estado, setEstado] = useState('Todos');
   const { search, setSearch } = useOutletContext<{ search: string, setSearch: (v: string) => void }>();
@@ -59,27 +59,39 @@ const ConsultarOrdenes: React.FC = () => {
 
   return (
     <div style={{ padding: '0 4px' }}>
-      {/* Filtros */}
-      <div className="co-filters-box">
+      <div className="co-main-card">
+        {/* Titulo Filtros */}
         <div className="co-filters-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+          </svg>
           Filtros de Búsqueda
         </div>
+
+        {/* Inputs de Filtro */}
         <div className="co-filters-row">
-          <div className="co-filter-group">
-            <label className="co-filter-label">AÑO</label>
-            <select className="co-filter-select" value={año} onChange={e => setAño(e.target.value)}>
-              {AÑOS.map(a => <option key={a} value={a}>{a}</option>)}
-            </select>
-          </div>
-          <div className="co-filter-group">
-            <label className="co-filter-label">ESTADO</label>
-            <select className="co-filter-select" value={estado} onChange={e => setEstado(e.target.value)}>
-              {ESTADOS.map(e => <option key={e} value={e}>{e}</option>)}
-            </select>
-          </div>
+          <fieldset className="co-fieldset">
+            <legend className="co-legend">Año</legend>
+            <div className="co-select-wrap">
+              <select className="co-select" value={año} onChange={e => setAño(e.target.value)}>
+                {AÑOS.map(a => <option key={a} value={a}>{a}</option>)}
+              </select>
+              <ChevronDown size={14} className="co-select-icon" />
+            </div>
+          </fieldset>
+
+          <fieldset className="co-fieldset">
+            <legend className="co-legend">Estado</legend>
+            <div className="co-select-wrap">
+              <select className="co-select" value={estado} onChange={e => setEstado(e.target.value)}>
+                {ESTADOS.map(e => <option key={e} value={e}>{e}</option>)}
+              </select>
+              <ChevronDown size={14} className="co-select-icon" />
+            </div>
+          </fieldset>
+
           <div className="co-search-wrapper">
-            <Search size={15} color="#94a3b8" className="co-search-icon" />
+            <Search size={16} color="#94a3b8" />
             <input
               type="text"
               className="co-search-input"
@@ -89,56 +101,59 @@ const ConsultarOrdenes: React.FC = () => {
             />
           </div>
         </div>
-      </div>
 
-      {/* Stats */}
-      <div className="co-stats-row">
-        <span className="co-stat-pill blue">Total: {total} órdenes</span>
-        <span className="co-stat-pill green">Completadas: {completadas}</span>
-        <span className="co-stat-pill orange">Pendientes: {pendientes}</span>
-        <span className="co-stat-pill teal">Valor Total: ${valorTotal.toLocaleString()}</span>
-      </div>
+        {/* Estadísticas (Pills) */}
+        <div className="co-pills-row">
+          <span className="co-pill dark-blue">Total: {total} órdenes</span>
+          <span className="co-pill green">Completadas: {completadas}</span>
+          <span className="co-pill orange">Pendientes: {pendientes}</span>
+          <span className="co-pill light-blue">Valor Total: ${valorTotal.toLocaleString()}</span>
+        </div>
 
-      {/* Tabla */}
-      <div className="co-table-wrapper">
-        <table className="co-table">
-          <thead>
-            <tr>
-              <th>NÚMERO ORDEN</th>
-              <th>FECHA</th>
-              <th>PACIENTE</th>
-              <th>SERVICIO</th>
-              <th>CONTRATISTA</th>
-              <th>VALOR</th>
-              <th>ESTADO</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.length === 0 ? (
+        {/* Tabla */}
+        <div className="co-table-wrapper">
+          <table className="co-table">
+            <thead>
               <tr>
-                <td colSpan={7} className="co-table-empty">
-                  No hay órdenes para el año {año} con los filtros seleccionados
-                </td>
+                <th>Número<br/>Orden</th>
+                <th>Fecha</th>
+                <th>Paciente</th>
+                <th>Servicio</th>
+                <th>Contratista</th>
+                <th>Valor</th>
+                <th>Estado</th>
               </tr>
-            ) : (
-              filtered.map((o, idx) => (
-                <tr key={`${o.id}-${idx}`}>
-                  <td className="co-col-num">{o.numero}</td>
-                  <td>{o.fecha}</td>
-                  <td className="co-col-paciente">{o.paciente}</td>
-                  <td>{o.servicio}</td>
-                  <td>{o.contratista}</td>
-                  <td>${o.valor.toLocaleString()}</td>
-                  <td>
-                    <span className={`co-estado-pill ${o.estado === 'C' ? 'green' : o.estado === 'P' ? 'orange' : o.estado === 'X' ? 'red' : 'gray'}`}>
-                      {estadoLabel[o.estado] || o.estado}
-                    </span>
+            </thead>
+            <tbody>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={7} style={{ textAlign: 'center', padding: '24px', color: '#64748b' }}>
+                    No hay órdenes para el año {año} con los filtros seleccionados
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                filtered.map((o, idx) => (
+                  <tr key={`${o.id}-${idx}`}>
+                    <td className="co-col-num">{o.numero}</td>
+                    <td>{o.fecha}</td>
+                    <td className="co-col-paciente">
+                      {o.paciente.split(' ').slice(0, 2).join(' ')}<br/>
+                      {o.paciente.split(' ').slice(2).join(' ')}
+                    </td>
+                    <td>{o.servicio}</td>
+                    <td>{o.contratista}</td>
+                    <td>${o.valor.toLocaleString()}</td>
+                    <td>
+                      <span className={`co-circle-badge ${o.estado === 'C' ? 'green' : o.estado === 'P' ? 'orange' : o.estado === 'X' ? 'red' : 'gray'}`}>
+                        {estadoLabel[o.estado] || o.estado}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

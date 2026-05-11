@@ -62,20 +62,21 @@ const CuentaCobroView: React.FC = () => {
 
   return (
     <div className="cc-view-container">
+      <div className="oa-table-toolbar" style={{ marginBottom: 20 }}>
+        <span className="oa-table-toolbar-text">Gestione las cuentas de cobro de contratistas</span>
+        <div className="oa-table-toolbar-actions">
+          <button className="oa-btn-refresh">
+            <RotateCw size={15} /> Actualizar
+          </button>
+          <button className="cc-btn-nueva" style={{ background: '#0165B0', color: '#fff', border: 'none', borderRadius: 8, padding: '8px 18px', display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}>
+            <Plus size={15} /> Nueva Cuenta
+          </button>
+        </div>
+      </div>
+
       {/* Figma Filters */}
       <div className="cc-toolbar-figma">
         <div className="cc-filters-top">
-          <div className="cc-search-wrap-figma">
-            <Search size={18} className="cc-search-icon-figma" />
-            <input 
-              type="text" 
-              placeholder="Buscar..." 
-              className="cc-search-input-figma"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-            />
-          </div>
-
           <fieldset className="cc-fieldset cc-field-estado">
             <legend>Estado</legend>
             <div className="cc-select-wrap-figma">
