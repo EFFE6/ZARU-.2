@@ -137,8 +137,8 @@ export const RecibosTabla: React.FC<TablaProps> = ({ items, loading, onView, onE
           </td>
           <td style={{ color: '#64748b' }}>{r.fechaPago}</td>
           <td className="bold">
-            {typeof r.valorTotal === 'string' && r.valorTotal.startsWith('$') 
-              ? r.valorTotal 
+            {typeof r.valorTotal === 'string' && r.valorTotal.startsWith('$')
+              ? r.valorTotal
               : `$ ${Number(r.valorTotal).toLocaleString('es-CO')}`}
           </td>
           <td>
@@ -268,7 +268,7 @@ export const ReciboEditModal: React.FC<EditProps> = ({ isEdit, form, onFormChang
         <div className="exc-field">
           <label className="exc-label-premium">Beneficiario<span className="exc-req">*</span></label>
           <select className="exc-input-premium" value={form.beneficiario} onChange={e => onFormChange('beneficiario', e.target.value)}>
-             <option value="">0</option>
+            <option value="">0</option>
           </select>
         </div>
 
@@ -306,12 +306,12 @@ export const ReciboEditModal: React.FC<EditProps> = ({ isEdit, form, onFormChang
 
         <div className="exc-field-full">
           <label className="exc-label-premium">Observaciones</label>
-          <textarea 
-            className="exc-textarea-premium" 
-            rows={3} 
-            placeholder="Escribe acá comentarios adicionales sobre este recibo" 
-            value={form.observaciones} 
-            onChange={e => onFormChange('observaciones', e.target.value)} 
+          <textarea
+            className="exc-textarea-premium"
+            rows={3}
+            placeholder="Escribe acá comentarios adicionales sobre este recibo"
+            value={form.observaciones}
+            onChange={e => onFormChange('observaciones', e.target.value)}
           />
         </div>
       </div>
