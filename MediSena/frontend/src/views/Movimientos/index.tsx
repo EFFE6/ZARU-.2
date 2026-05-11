@@ -84,13 +84,6 @@ const MovimientosLayout: React.FC = () => {
                 </button>
               </div>
             </>
-          ) : active.id === 'cancelar-ordenes' ? (
-            <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <ClipboardList size={24} color="#1e3a52" />
-                <h1 className="gestion-title" style={{ margin: 0 }}>Cancelar Órdenes</h1>
-              </div>
-            </>
           ) : active.id === 'programar-agenda' ? (
             <>
               <h1 className="gestion-title" style={{ margin: 0 }}>Programar Agenda</h1>

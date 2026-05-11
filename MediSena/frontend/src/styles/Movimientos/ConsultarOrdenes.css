@@ -2,12 +2,11 @@
    CONSULTAR ÓRDENES — MediSENA
    ============================================================= */
 
-.co-filters-box {
+.co-main-card {
   background: #ffffff;
-  border: 1.5px solid #E2E8F0;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 20px 24px;
-  margin-bottom: 24px;
+  padding: 24px;
   box-shadow: 0 4px 12px rgba(28, 62, 87, 0.04);
 }
 
@@ -15,97 +14,185 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.82rem;
+  font-size: 1rem;
   font-weight: 800;
-  color: #1E293B;
+  color: #1e3a52;
   margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
 }
 
 .co-filters-row {
   display: flex;
-  align-items: flex-end;
-  gap: 20px;
+  align-items: center;
+  gap: 16px;
   flex-wrap: wrap;
-}
-
-/* Reusing oa-filter styles from OrdenAtencion.css */
-
-/* ── Stats Row ── */
-.co-stats-row {
-  display: flex;
-  gap: 12px;
   margin-bottom: 24px;
-  flex-wrap: wrap;
 }
 
-.co-stat-card {
-  flex: 1;
-  min-width: 180px;
-  background: #ffffff;
-  border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 16px 20px;
+/* Fieldset Styles (matching Figma CuentaCobro) */
+.co-fieldset {
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0 12px;
+  margin: 0;
+  position: relative;
+  height: 48px;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  transition: all 0.2s;
+  align-items: center;
+  min-width: 140px;
+  flex: 1;
+  max-width: 250px;
+  transition: border-color 0.2s;
 }
 
-.co-stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(28, 62, 87, 0.06);
+.co-fieldset:focus-within {
+  border-color: #0165b0;
 }
 
-.co-stat-label {
+.co-legend {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #64748B;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: #64748b;
+  padding: 0 4px;
+  margin-bottom: 0;
+  margin-left: 4px;
+  transition: color 0.2s;
 }
 
-.co-stat-value {
-  font-size: 1.25rem;
+.co-fieldset:focus-within .co-legend {
+  color: #0165b0;
+}
+
+.co-select-wrap {
+  width: 100%;
+  position: relative;
+}
+
+.co-select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  padding-right: 20px;
+}
+
+.co-select-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+}
+
+.co-search-wrapper {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0 16px;
+  height: 48px;
+  transition: border-color 0.2s;
+}
+
+.co-search-wrapper:focus-within {
+  border-color: #0165b0;
+}
+
+.co-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  color: #334155;
+  margin-left: 10px;
+}
+
+.co-search-input::placeholder {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Pills Row */
+.co-pills-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.co-pill {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.co-pill.dark-blue  { background: #1e3a52; }
+.co-pill.green      { background: #16a34a; }
+.co-pill.orange     { background: #f97316; }
+.co-pill.light-blue { background: #0ea5e9; }
+
+/* Tabla */
+.co-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.co-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.co-table th {
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.8rem;
   font-weight: 800;
-  color: #1E293B;
+  color: #1e3a52;
+  border-bottom: 2px solid #e2e8f0;
 }
 
-.co-stat-card.blue   { border-left: 4px solid #3B82F6; }
-.co-stat-card.green  { border-left: 4px solid #10B981; }
-.co-stat-card.orange { border-left: 4px solid #F59E0B; }
-.co-stat-card.teal   { border-left: 4px solid #06B6D4; }
-
-.co-stat-card.blue   .co-stat-value { color: #1D4ED8; }
-.co-stat-card.green  .co-stat-value { color: #059669; }
-.co-stat-card.orange .co-stat-value { color: #D97706; }
-.co-stat-card.teal   .co-stat-value { color: #0891B2; }
-
-/* ── Table Columns ── */
-.co-col-num { 
-  font-weight: 800 !important; 
-  color: #1E3A52 !important; 
+.co-table td {
+  padding: 16px;
+  font-size: 0.85rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-.co-col-paciente { 
-  font-weight: 700 !important; 
-  color: #334155 !important;
+.co-table tr:hover td {
+  background: #f8fafc;
 }
 
-.co-estado-pill {
+.co-col-num {
+  font-weight: 700;
+}
+
+.co-col-paciente {
+  font-weight: 600;
+  color: #64748b !important;
+  max-width: 180px;
+}
+
+.co-circle-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.75rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.8rem;
   font-weight: 800;
-  min-width: 100px;
-  text-align: center;
 }
 
-.co-estado-pill.gray   { background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0; }
-.co-estado-pill.green  { background: #F0FDF4; color: #16A34A; border: 1px solid #DCFCE7; }
-.co-estado-pill.orange { background: #FFF7ED; color: #EA580C; border: 1px solid #FFEDD5; }
-.co-estado-pill.red    { background: #FEF2F2; color: #DC2626; border: 1px solid #FEE2E2; }
+.co-circle-badge.gray { background: #f1f5f9; color: #64748b; }
+.co-circle-badge.green { background: #dcfce7; color: #16a34a; }
+.co-circle-badge.red { background: #fee2e2; color: #dc2626; }
+.co-circle-badge.orange { background: #ffedd5; color: #ea580c; }
