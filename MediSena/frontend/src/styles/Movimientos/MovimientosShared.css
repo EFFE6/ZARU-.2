@@ -458,7 +458,7 @@
 .oa-modal-detalles-footer-final {
   padding: 20px 40px 32px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
