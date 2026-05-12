@@ -5,14 +5,6 @@
    vista de Órdenes de Atención
    ============================================= */
 
-/* Centrar modales en pantalla */
-.modal-overlay {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 20px !important;
-}
-
 /* ── Tabla con scroll ── */
 .oa-table-scroll {
   width: 100%;
@@ -373,140 +365,12 @@
   background: #f1f5f9;
 }
 
-/* ── MODAL: Editar Orden (multi-paso) ── */
-.oa-modal-edit {
-  background: #fff;
-  border-radius: 16px;
-  width: 95%;
-  max-width: 865px;
-  height: 360px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  animation: modalIn 0.22s ease;
-}
-
 /* Anchos específicos para botones de edición */
 .oa-edit-btn-save {
   width: 128px !important;
 }
 .oa-edit-btn-cancel {
   width: 142px !important;
-}
-
-@media (max-width: 880px) {
-  .oa-modal-edit {
-    height: auto;
-    max-height: 90vh;
-  }
-}
-
-.oa-modal-edit-header {
-  background: #ffffff;
-  padding: 36px 32px 20px;
-  border-bottom: none;
-}
-
-/* Steps */
-.oa-steps-row {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  width: 100%;
-}
-
-.oa-step {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.oa-step-circle {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #ffffff;
-  color: #0165b0;
-  font-size: 0.9rem;
-  font-weight: 800;
-  font-family: var(--sans);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.oa-step.active .oa-step-circle {
-  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
-  color: #fff;
-  border: none;
-}
-
-.oa-step.done .oa-step-circle {
-  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
-  color: #fff;
-  border: none;
-}
-
-.oa-step-label {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.oa-step.active .oa-step-label {
-  color: #1e293b;
-  font-weight: 600;
-}
-
-.oa-step-line {
-  flex: 1;
-  height: 1px;
-  background: #cbd5e1;
-  margin: 0 16px;
-  min-width: 20px;
-}
-
-.oa-step-line.done {
-  background: #cbd5e1;
-}
-
-/* Body */
-.oa-modal-edit-body {
-  padding: 24px 32px;
-  flex: 1;
-  overflow-y: auto;
-}
-
-.oa-form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px 24px;
-}
-
-.oa-fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.oa-legend {
-  font-size: 0.95rem;
-  color: #303030;
-  padding: 0;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.oa-field-full {
-  grid-column: 1 / -1;
 }
 
 /* ── Base styles for inputs outside fieldsets (Standardized) ── */
@@ -554,83 +418,3 @@
   font-family: inherit;
   resize: vertical;
 }
-
-.oa-modal-edit-footer {
-  padding: 20px 32px;
-  border-top: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.oa-btn-cancel-edit {
-  background: transparent;
-  color: #0165B0;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0;
-  font-size: 0.85rem;
-}
-
-.oa-btn-cancel-edit:hover {
-  text-decoration: underline;
-}
-
-.oa-footer-nav {
-  display: flex;
-  gap: 12px;
-}
-
-.oa-btn-prev {
-  background: transparent;
-  color: #94a3b8;
-  border: none;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  padding: 8px 12px;
-}
-
-.oa-btn-prev:hover {
-  color: #64748b;
-}
-
-.oa-btn-next, .oa-btn-save {
-  background: #e2e8f0;
-  color: #94a3b8;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  padding: 8px 16px;
-  transition: all 0.2s;
-}
-
-.oa-btn-next:hover, .oa-btn-save:hover {
-  background: #cbd5e1;
-  color: #64748b;
-}
-
-.oa-btn-save {
-  background: linear-gradient(135deg, #0165B0, #013156);
-  border: none;
-  border-radius: 8px;
-  padding: 8px 20px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
-  transition: opacity 0.15s;
-}
-.oa-btn-save:hover { opacity: 0.9; }
