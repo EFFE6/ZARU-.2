@@ -147,9 +147,10 @@ const ProgramarAgenda: React.FC = () => {
                     <span className="pag-cupos-badge">{a.cupos}/{a.cupos}</span>
                   </td>
                   <td>
-                    <button className="pag-btn-del" onClick={() => handleEliminar(a.id)} title="Eliminar">
+                    <button onClick={() => handleEliminar(a.id)} title="Eliminar" style={{ background: '#FFFFFF', color: 'red', width: '28px', height: '28px', borderRadius: '8px', border: '2px solid red', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                       <Trash2 size={14} />
                     </button>
+                    
                   </td>
                 </tr>
               ))}
