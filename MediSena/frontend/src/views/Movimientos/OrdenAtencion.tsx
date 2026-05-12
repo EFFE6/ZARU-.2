@@ -95,33 +95,46 @@ const DetallesModal: React.FC<{ orden: OrdenAtencion; onClose: () => void; onEdi
 
       <div className="oa-modal-detalles-body-final">
         {step === 0 && (
-          <div className="oa-det-content-step1" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '8px 20px', margin: 0, minHeight: '50px' }}>
-              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '2px' }}>
-                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Tipo de Atención</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.tipoAtencion || '0'}</span>
+          <div className="oa-det-content-step1" style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '16px 0' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Tipo de Atención</span>
+                <select 
+                  className="oa-det-input-clean" 
+                  style={{ height: '44px', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0 12px', color: '#525252', fontSize: '0.95rem', outline: 'none', backgroundColor: '#fff' }} 
+                  defaultValue={orden.tipoAtencion || '0'}
+                >
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                </select>
               </div>
-              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '2px' }}>
-                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Detalles de la orden</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{orden.diagnostico || 'REMISIÓN A CONSULTA ESPECIALIZADA...'}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Detalles de la orden</span>
+                <input 
+                  className="oa-det-input-clean" 
+                  style={{ height: '44px', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0 12px', color: '#525252', fontSize: '0.95rem', outline: 'none' }} 
+                  defaultValue={orden.diagnostico || 'Remisión a consulta especializada por dermat...'} 
+                />
               </div>
             </div>
-            <div className="oa-det-card full" style={{ padding: '8px 20px', margin: 0, minHeight: '82px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div className="oa-det-info-field full" style={{ marginBottom: 0, gap: '4px' }}>
-                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Observaciones</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030', lineHeight: '1.4' }}>{orden.observaciones || 'SE AUTORIZA CONSULTA ESPECIALIZADA POR DERMATOLOGÍA. TARIFA PACTADA.'}</span>
-              </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Detalles de la orden</span>
+              <input 
+                className="oa-det-input-clean" 
+                style={{ height: '44px', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0 12px', color: '#525252', fontSize: '0.95rem', outline: 'none' }} 
+                defaultValue={orden.observaciones || 'Se autoriza consulta especializada por dermatología. Tarifa pactada.'} 
+              />
             </div>
           </div>
         )}
 
         {step === 1 && (
-          <div className="oa-det-content-step2">
-            <div className="oa-det-info-field full">
-              <span className="oa-det-info-label">Beneficiario</span>
-              <div className="oa-det-ben-card">
-                <span className="oa-det-ben-name">{orden.beneficiario.replace('\n', ' ')}</span>
-                <div className="oa-det-ben-badges">
+          <div className="oa-det-content-step2" style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '16px 0' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Beneficiario</span>
+              <div style={{ border: '1px solid #cbd5e1', borderRadius: '8px', padding: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontWeight: 600, color: '#303030' }}>{orden.beneficiario.replace('\n', ' ')}</span>
+                <div style={{ display: 'flex', gap: '8px' }}>
                   <span className="oa-det-badge-cc">C.C. {orden.documentoBeneficiario || '9526609'}</span>
                   <span className="oa-det-badge-status">
                     <Check size={14} style={{ marginRight: 4 }} /> 
@@ -130,37 +143,53 @@ const DetallesModal: React.FC<{ orden: OrdenAtencion; onClose: () => void; onEdi
                 </div>
               </div>
             </div>
-            <div className="oa-det-card full" style={{ padding: '8px 20px', margin: 0, minHeight: '82px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div className="oa-det-info-field full" style={{ marginBottom: 0, gap: '4px' }}>
-                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Funcionario solicitante</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>
-                  {orden.funcionarioSolicitante || 'MÉDICO TRATANTE'}
-                </span>
-              </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Funcionario solicitante</span>
+              <input 
+                className="oa-det-input-clean" 
+                style={{ height: '44px', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0 12px', color: '#525252', fontSize: '0.95rem', outline: 'none' }} 
+                defaultValue={orden.funcionarioSolicitante || 'MÉDICO TRATANTE'} 
+              />
             </div>
           </div>
         )}
 
         {step === 2 && (
-          <div className="oa-det-content-step3" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '8px 20px', margin: 0, minHeight: '82px', alignItems: 'center' }}>
-              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
-                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Médico tratante</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.medicoTratante || 'NO ESPECIFICADO'}</span>
+          <div className="oa-det-content-step3" style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '16px 0' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Médico tratante</span>
+                <input 
+                  className="oa-det-input-clean" 
+                  style={{ height: '44px', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0 12px', color: '#525252', fontSize: '0.95rem', outline: 'none' }} 
+                  defaultValue={orden.medicoTratante || 'NO ESPECIFICADO'} 
+                />
               </div>
-              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
-                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Especialidad</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.especialidad || 'NO ESPECIFICADO'}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Especialidad</span>
+                <input 
+                  className="oa-det-input-clean" 
+                  style={{ height: '44px', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0 12px', color: '#525252', fontSize: '0.95rem', outline: 'none' }} 
+                  defaultValue={orden.especialidad || 'NO ESPECIFICADO'} 
+                />
               </div>
             </div>
-            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '8px 20px', margin: 0, minHeight: '82px', alignItems: 'center' }}>
-              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
-                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Valor total estimado</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.valorEstimado || 'NO ESPECIFICADO'}</span>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Valor total estimado</span>
+                <input 
+                  className="oa-det-input-clean" 
+                  style={{ height: '44px', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0 12px', color: '#525252', fontSize: '0.95rem', outline: 'none' }} 
+                  defaultValue={orden.valorEstimado || 'NO ESPECIFICADO'} 
+                />
               </div>
-              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
-                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Diagnóstico (Opcional)</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.diagnostico || 'N/A'}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#303030' }}>Diagnóstico (Opcional)</span>
+                <input 
+                  className="oa-det-input-clean" 
+                  style={{ height: '44px', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0 12px', color: '#525252', fontSize: '0.95rem', outline: 'none' }} 
+                  defaultValue={orden.diagnostico || 'N/A'} 
+                />
               </div>
             </div>
           </div>
@@ -169,12 +198,6 @@ const DetallesModal: React.FC<{ orden: OrdenAtencion; onClose: () => void; onEdi
 
       <div className="oa-modal-detalles-footer-final">
         <div className="oa-det-footer-left">
-          <button className="oa-det-btn-print-sq" title="Imprimir">
-            <PrintIcon size={48} />
-          </button>
-          <button className="oa-det-btn-print-sq" title="Editar" onClick={() => onEdit(orden)}>
-            <EditIcon size={48} />
-          </button>
         </div>
         
         <div className="oa-det-footer-right">
