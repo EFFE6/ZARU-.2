@@ -85,7 +85,7 @@
 
 /* ── Stat Card ── */
 .stat-card {
-  background-color: white;
+  background-color: #EDF0F9;
   border-radius: 20px;
   display: flex;
   overflow: hidden;
