@@ -282,6 +282,7 @@
   width: 95%;
   max-width: 865px;
   height: auto;
+  margin: auto;
   box-shadow: 0 12px 40px rgba(0,0,0,0.15);
   overflow: hidden;
   display: flex;
@@ -302,6 +303,7 @@
   width: 95%;
   max-width: 865px;
   height: auto;
+  margin: auto;
   box-shadow: 0 12px 40px rgba(0,0,0,0.15);
   overflow: hidden;
   display: flex;
