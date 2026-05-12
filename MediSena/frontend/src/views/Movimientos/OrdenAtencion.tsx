@@ -95,18 +95,22 @@ const DetallesModal: React.FC<{ orden: OrdenAtencion; onClose: () => void; onEdi
 
       <div className="oa-modal-detalles-body-final">
         {step === 0 && (
-          <div className="oa-det-content-grid">
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Tipo de Atención</span>
-              <input className="oa-det-input-clean" readOnly value={orden.tipoAtencion || '0'} />
+          <div className="oa-det-content-step1" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '8px 20px', margin: 0, minHeight: '50px' }}>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '2px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Tipo de Atención</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.tipoAtencion || '0'}</span>
+              </div>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '2px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Detalles de la orden</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{orden.diagnostico || 'REMISIÓN A CONSULTA ESPECIALIZADA...'}</span>
+              </div>
             </div>
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Detalles de la orden</span>
-              <input className="oa-det-input-clean" readOnly value={orden.diagnostico || 'REMISIÓN A CONSULTA ESPECIALIZADA...'} />
-            </div>
-            <div className="oa-det-info-field full">
-              <span className="oa-det-info-label">Detalles de la orden</span>
-              <input className="oa-det-input-clean" readOnly value={orden.observaciones || 'SE AUTORIZA CONSULTA ESPECIALIZADA POR DERMATOLOGÍA. TARIFA PACTADA.'} />
+            <div className="oa-det-card full" style={{ padding: '8px 20px', margin: 0, minHeight: '82px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div className="oa-det-info-field full" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Observaciones</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030', lineHeight: '1.4' }}>{orden.observaciones || 'SE AUTORIZA CONSULTA ESPECIALIZADA POR DERMATOLOGÍA. TARIFA PACTADA.'}</span>
+              </div>
             </div>
           </div>
         )}
@@ -115,38 +119,63 @@ const DetallesModal: React.FC<{ orden: OrdenAtencion; onClose: () => void; onEdi
           <div className="oa-det-content-step2">
             <div className="oa-det-info-field full">
               <span className="oa-det-info-label">Beneficiario</span>
-              <input className="oa-det-input-clean" readOnly value={orden.beneficiario.replace('\n', ' ')} />
+              <div className="oa-det-ben-card">
+                <span className="oa-det-ben-name">{orden.beneficiario.replace('\n', ' ')}</span>
+                <div className="oa-det-ben-badges">
+                  <span className="oa-det-badge-cc">C.C. {orden.documentoBeneficiario || '9526609'}</span>
+                  <span className="oa-det-badge-status">
+                    <Check size={14} style={{ marginRight: 4 }} /> 
+                    {orden.estadoBeneficiario || 'Activo'}
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="oa-det-info-field full">
-              <span className="oa-det-info-label">Funcionario solicitante</span>
-              <input className="oa-det-input-clean" readOnly value={orden.funcionarioSolicitante || 'MÉDICO TRATANTE'} />
+            <div className="oa-det-card full" style={{ padding: '8px 20px', margin: 0, minHeight: '82px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div className="oa-det-info-field full" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Funcionario solicitante</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>
+                  {orden.funcionarioSolicitante || 'MÉDICO TRATANTE'}
+                </span>
+              </div>
             </div>
           </div>
         )}
 
         {step === 2 && (
-          <div className="oa-det-content-grid">
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Médico tratante</span>
-              <input className="oa-det-input-clean" readOnly value={orden.medicoTratante || 'NO ESPECIFICADO'} />
+          <div className="oa-det-content-step3" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '8px 20px', margin: 0, minHeight: '82px', alignItems: 'center' }}>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Médico tratante</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.medicoTratante || 'NO ESPECIFICADO'}</span>
+              </div>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Especialidad</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.especialidad || 'NO ESPECIFICADO'}</span>
+              </div>
             </div>
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Especialidad</span>
-              <input className="oa-det-input-clean" readOnly value={orden.especialidad || 'NO ESPECIFICADO'} />
-            </div>
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Valor total estimado</span>
-              <input className="oa-det-input-clean" readOnly value={orden.valorEstimado || 'NO ESPECIFICADO'} />
-            </div>
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Diagnóstico (Opcional)</span>
-              <input className="oa-det-input-clean" readOnly value={orden.diagnostico || 'N/A'} />
+            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '8px 20px', margin: 0, minHeight: '82px', alignItems: 'center' }}>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Valor total estimado</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.valorEstimado || 'NO ESPECIFICADO'}</span>
+              </div>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Diagnóstico (Opcional)</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#303030' }}>{orden.diagnostico || 'N/A'}</span>
+              </div>
             </div>
           </div>
         )}
       </div>
 
       <div className="oa-modal-detalles-footer-final">
+        <div className="oa-det-footer-left">
+          <button className="oa-det-btn-print-sq" title="Imprimir">
+            <PrintIcon size={48} />
+          </button>
+          <button className="oa-det-btn-print-sq" title="Editar" onClick={() => onEdit(orden)}>
+            <EditIcon size={48} />
+          </button>
+        </div>
         
         <div className="oa-det-footer-right">
           <button className="oa-det-btn-cancel" onClick={onClose}>Cancelar</button>
@@ -216,31 +245,37 @@ const EditarOrdenModal: React.FC<{
 
       <div className="oa-modal-detalles-body-final">
         {step === 0 && (
-          <div className="oa-det-content-grid">
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Tipo de Atención</span>
-              <input 
-                className="oa-det-input-clean" 
-                value={form.tipoAtencion}
-                onChange={e => change('tipoAtencion', e.target.value)}
-              />
+          <div className="oa-det-content-step1" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '6px 20px', margin: 0, minHeight: '50px' }}>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '2px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Tipo de Atención</span>
+                <input 
+                  className="oa-det-input-clean" 
+                  value={form.tipoAtencion} 
+                  onChange={e => change('tipoAtencion', e.target.value)} 
+                  style={{ height: '24px', border: 'none', fontSize: '0.95rem', padding: 0 }}
+                />
+              </div>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '2px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Detalles de la orden</span>
+                <input 
+                  className="oa-det-input-clean" 
+                  value={form.diagnostico} 
+                  onChange={e => change('diagnostico', e.target.value)} 
+                  style={{ height: '24px', border: 'none', fontSize: '0.95rem', padding: 0 }}
+                />
+              </div>
             </div>
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Detalles de la orden</span>
-              <input 
-                className="oa-det-input-clean" 
-                placeholder="Diagnóstico / Motivo"
-                value={form.diagnostico} 
-                onChange={e => change('diagnostico', e.target.value)} 
-              />
-            </div>
-            <div className="oa-det-info-field full">
-              <span className="oa-det-info-label">Detalles de la orden</span>
-              <input 
-                className="oa-det-input-clean" 
-                value={form.observaciones} 
-                onChange={e => change('observaciones', e.target.value)} 
-              />
+            <div className="oa-det-card full" style={{ padding: '8px 20px', margin: 0, minHeight: '82px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div className="oa-det-info-field full" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Observaciones</span>
+                <textarea 
+                  className="oa-det-input-clean" 
+                  value={form.observaciones} 
+                  onChange={e => change('observaciones', e.target.value)} 
+                  style={{ height: '44px', border: 'none', fontSize: '0.95rem', padding: 0, resize: 'none' }}
+                />
+              </div>
             </div>
           </div>
         )}
@@ -249,66 +284,70 @@ const EditarOrdenModal: React.FC<{
           <div className="oa-det-content-step2">
             <div className="oa-det-info-field full">
               <span className="oa-det-info-label">Beneficiario</span>
-              <input 
-                className="oa-det-input-clean" 
-                value={form.beneficiario} 
-                onChange={e => change('beneficiario', e.target.value)} 
-              />
+              <div className="oa-det-ben-card">
+                <span className="oa-det-ben-name">{form.beneficiario}</span>
+                <div className="oa-det-ben-badges">
+                  <span className="oa-det-badge-cc">C.C. {orden.documentoBeneficiario || '9526609'}</span>
+                  <span className="oa-det-badge-status">
+                    <Check size={14} style={{ marginRight: 4 }} /> 
+                    {orden.estadoBeneficiario || 'Activo'}
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="oa-det-info-field full">
-              <span className="oa-det-info-label">Funcionario solicitante</span>
-              <input 
-                className="oa-det-input-clean" 
-                placeholder="Médico tratante"
-                value={form.funcionarioSolicitante} 
-                onChange={e => change('funcionarioSolicitante', e.target.value)} 
-              />
+            <div className="oa-det-card full" style={{ padding: '8px 20px', margin: 0, minHeight: '82px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div className="oa-det-info-field full" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Funcionario solicitante</span>
+                <input 
+                  className="oa-det-input-clean" 
+                  value={form.funcionarioSolicitante} 
+                  onChange={e => change('funcionarioSolicitante', e.target.value)} 
+                  style={{ height: '36px', border: 'none', fontSize: '0.95rem', padding: 0 }}
+                />
+              </div>
             </div>
           </div>
         )}
 
         {step === 2 && (
-          <div className="oa-det-content-grid">
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Médico tratante</span>
-              <input 
-                className="oa-det-input-clean" 
-                value={form.medicoTratante} 
-                onChange={e => change('medicoTratante', e.target.value)} 
-              />
+          <div className="oa-det-content-step3" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '6px 20px', margin: 0, minHeight: '82px', alignItems: 'center' }}>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Médico tratante</span>
+                <input className="oa-det-input-clean" value={form.medicoTratante} onChange={e => change('medicoTratante', e.target.value)} style={{ height: '36px', border: 'none', fontSize: '0.95rem', padding: 0 }} />
+              </div>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Especialidad</span>
+                <input className="oa-det-input-clean" value={form.especialidad} onChange={e => change('especialidad', e.target.value)} style={{ height: '36px', border: 'none', fontSize: '0.95rem', padding: 0 }} />
+              </div>
             </div>
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Especialidad</span>
-              <input 
-                className="oa-det-input-clean" 
-                value={form.especialidad} 
-                onChange={e => change('especialidad', e.target.value)} 
-              />
-            </div>
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Valor total estimado</span>
-              <input 
-                className="oa-det-input-clean" 
-                value={form.valorEstimado} 
-                onChange={e => change('valorEstimado', e.target.value)} 
-              />
-            </div>
-            <div className="oa-det-info-field">
-              <span className="oa-det-info-label">Diagnóstico (Opcional)</span>
-              <input 
-                className="oa-det-input-clean" 
-                value={form.diagnostico} 
-                onChange={e => change('diagnostico', e.target.value)} 
-              />
+            <div className="oa-det-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', padding: '6px 20px', margin: 0, minHeight: '82px', alignItems: 'center' }}>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Valor total estimado</span>
+                <input className="oa-det-input-clean" value={form.valorEstimado} onChange={e => change('valorEstimado', e.target.value)} style={{ height: '36px', border: 'none', fontSize: '0.95rem', padding: 0 }} />
+              </div>
+              <div className="oa-det-info-field" style={{ marginBottom: 0, gap: '4px' }}>
+                <span className="oa-det-info-label" style={{ fontSize: '0.75rem' }}>Diagnóstico (Opcional)</span>
+                <input className="oa-det-input-clean" value={form.diagnostico} onChange={e => change('diagnostico', e.target.value)} style={{ height: '36px', border: 'none', fontSize: '0.95rem', padding: 0 }} />
+              </div>
             </div>
           </div>
         )}
       </div>
 
       <div className="oa-modal-detalles-footer-final">
-        <div className="oa-det-footer-right" style={{ marginLeft: 'auto' }}>
-          <button className="oa-det-btn-cancel" onClick={onClose}>Cancelar</button>
-          <button className="oa-det-btn-next" onClick={step === 2 ? handleSave : nextStep}>
+        <div className="oa-det-footer-left">
+          <button className="oa-det-btn-print-sq" title="Imprimir" type="button">
+            <PrintIcon size={48} />
+          </button>
+          <button className="oa-det-btn-print-sq" title="Editar" type="button">
+            <EditIcon size={48} />
+          </button>
+        </div>
+
+        <div className="oa-det-footer-right">
+          <button className="oa-det-btn-cancel" onClick={onClose} type="button">Cancelar</button>
+          <button className="oa-det-btn-next" onClick={step === 2 ? handleSave : nextStep} type="button">
             {step === 2 ? <><Save size={20} style={{ marginRight: 8 }} /> Guardar</> : 'Siguiente'}
           </button>
         </div>

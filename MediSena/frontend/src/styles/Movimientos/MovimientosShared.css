@@ -106,7 +106,7 @@
   border-radius: 16px;
   width: 95%;
   max-width: 865px;
-  height: 360px;
+  height: auto;
   box-shadow: 0 20px 60px rgba(0,0,0,0.18);
   overflow: hidden;
   display: flex;
@@ -281,7 +281,7 @@
   border-radius: 12px;
   width: 95%;
   max-width: 865px;
-  height: 350px;
+  height: auto;
   box-shadow: 0 12px 40px rgba(0,0,0,0.15);
   overflow: hidden;
   display: flex;
@@ -301,7 +301,7 @@
   border-radius: 12px;
   width: 95%;
   max-width: 865px;
-  min-height: 440px;
+  height: auto;
   box-shadow: 0 12px 40px rgba(0,0,0,0.15);
   overflow: hidden;
   display: flex;
@@ -312,28 +312,55 @@
 .oa-modal-detalles-header-tabs {
   display: flex;
   height: 64px;
-  background: #e9f2ff; /* Inactive background */
+  background: #E6EFFA;
   position: relative;
+  padding: 0px;
+  gap: 0px;
 }
 
 .oa-det-tab {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 32px;
+  justify-content: center;
   gap: 12px;
   cursor: pointer;
   transition: all 0.2s;
-  border-right: 1.5px solid #fff;
+  border-radius: 16px 16px 0 0;
+  color: #303030;
+  position: relative;
+  z-index: 1;
 }
 
 .oa-det-tab:last-of-type {
-  border-right: none;
 }
 
 .oa-det-tab.active {
-  background: #ffffff; /* Active tab is white */
+  background: #FFFFFF;
+  color: #303030;
+  z-index: 2;
+}
+
+.oa-det-tab.active::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -16px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 0 0, transparent 16px, #ffffff 16.5px);
+  pointer-events: none;
+}
+
+.oa-det-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -16px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 100% 0, transparent 16px, #ffffff 16.5px);
+  pointer-events: none;
 }
 
 .oa-det-tab-circle {
@@ -352,20 +379,16 @@
 }
 
 .oa-det-tab.active .oa-det-tab-circle {
-  background: linear-gradient(180deg, #0165B0 0%, #013156 100%);
+  background: #014B88;
   color: #ffffff;
 }
 
 .oa-det-tab-label {
   font-size: 0.72rem;
   font-weight: 700;
-  color: #525252;
+  color: inherit;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-}
-
-.oa-det-tab.active .oa-det-tab-label {
-  color: #303030;
 }
 
 .oa-modal-detalles-close {
@@ -387,7 +410,7 @@
 
 /* Body */
 .oa-modal-detalles-body-final {
-  padding: 20px 32px;
+  padding: 14px 24px;
   background: #fff;
   flex: 1;
   overflow-y: auto;
@@ -397,7 +420,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 32px;
-  row-gap: 20px;
+  row-gap: 12px;
 }
 
 .oa-det-info-field {
@@ -413,7 +436,7 @@
 .oa-det-info-label {
   font-size: 0.8rem;
   color: #94a3b8;
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .oa-det-info-value {
@@ -427,14 +450,14 @@
 
 /* Espaciado independiente para el modo edición */
 .oa-modal-edit-final .oa-det-info-field {
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 
 .oa-modal-edit-final .oa-det-info-label,
 .oa-modal-detalles-final .oa-det-info-label {
-  color: #303030;
-  font-weight: 700;
+  color: #737373;
+  font-weight: 500;
   font-size: 0.9rem;
 }
 
@@ -444,8 +467,8 @@
   border-radius: 10px;
   padding: 10px 14px;
   background: #fff;
-  font-weight: 500;
-  color: #525252;
+  font-weight: 600;
+  color: #303030;
   transition: border-color 0.2s;
 }
 
@@ -456,23 +479,22 @@
 
 /* Footer */
 .oa-modal-detalles-footer-final {
-  padding: 20px 40px 32px;
+  padding: 10px 24px 16px;  
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid #f1f5f9;
 }
 
 .oa-det-btn-print-sq {
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 8px;
-  border: 2px solid #0165B0;
-  background: #fff;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
 .oa-det-btn-print-sq:hover {
@@ -527,7 +549,7 @@
 .oa-det-content-step2 {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .oa-det-ben-card {
@@ -537,8 +559,8 @@
   background: #ffffff;
   border: 1.5px solid #e2e8f0;
   border-radius: 12px;
-  padding: 18px 14px;
-  margin-top: 4px;
+  padding: 12px 14px;
+  margin-top: 2px;
 }
 
 .oa-det-ben-name {
