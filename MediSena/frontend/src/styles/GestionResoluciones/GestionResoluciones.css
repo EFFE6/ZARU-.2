@@ -114,7 +114,7 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .gestion-content-card.first-tab-active {
