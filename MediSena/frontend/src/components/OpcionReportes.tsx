@@ -1,4 +1,4 @@
-import { Calendar, FileText } from 'lucide-react';
+import { DashboardIcon } from './SidebarIcons';
 
 /* ── Tipos ── */
 export interface ReporteOpcion {
@@ -27,14 +27,10 @@ const OpcionReportes = ({ reporte, isActive, onClick }: Props) => (
     id={`opcion-reporte-${reporte.id}`}
   >
     <div className="opcion-reporte-icon">
-      <FileText size={16} strokeWidth={2.4} />
+      <DashboardIcon size={18} strokeWidth={2.4} />
     </div>
     <div className="opcion-reporte-info">
       <span className="opcion-reporte-nombre" title={reporte.nombre}>{reporte.nombre}</span>
-      <span className="opcion-reporte-fecha">
-        <Calendar size={11} strokeWidth={2} />
-        {reporte.fecha}
-      </span>
     </div>
   </div>
 );
