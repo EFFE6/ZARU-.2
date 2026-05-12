@@ -12,9 +12,6 @@
   grid-template-columns: 320px 1fr;
   gap: 20px;
   align-items: start;
-  height: 100%;
-  overflow-y: auto;
-  min-height: 0;
 }
 
 /* ── Panel izquierdo (formulario) — dentro de gestion-content-card ── */
