@@ -3,7 +3,7 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar';
 import {
   ClipboardList, Receipt, CreditCard,
-  CalendarPlus, CalendarCheck, XCircle, Search,
+  CalendarPlus, CalendarCheck, XCircle, Search, FileSearch,
   Home, ChevronRight, Download, Printer, RefreshCw, Plus, Clock
 } from 'lucide-react';
 import '../../styles/GestionResoluciones/GestionResoluciones.css';
@@ -11,12 +11,13 @@ import '../../styles/Movimientos/OrdenAtencion.css';
 import CampanaSvg from '../../assets/img/icons/campana.svg';
 
 const MOV_TABS = [
-  { id: 'orden-atencion',    label: 'Órdenes de Atención',  path: '/movimientos/orden-atencion',   Icon: ClipboardList },
-  { id: 'cuenta-cobro',      label: 'Cuenta de cobro',      path: '/movimientos/cuenta-cobro',      Icon: Receipt       },
-  { id: 'relacion-pagos',    label: 'Relación de pagos',    path: '/movimientos/relacion-pagos',    Icon: CreditCard    },
-  { id: 'programar-agenda',  label: 'Programar agenda',     path: '/movimientos/programar-agenda',  Icon: CalendarPlus  },
-  { id: 'agendas',           label: 'Agenda',               path: '/movimientos/agendas',           Icon: CalendarCheck },
-  { id: 'cancelar-ordenes',  label: 'Cancelar órdenes',     path: '/movimientos/cancelar-ordenes',  Icon: XCircle       },
+  { id: 'orden-atencion', label: 'Órdenes de Atención', path: '/movimientos/orden-atencion', Icon: ClipboardList },
+  { id: 'cuenta-cobro', label: 'Cuenta de cobro', path: '/movimientos/cuenta-cobro', Icon: Receipt },
+  { id: 'relacion-pagos', label: 'Relación de pagos', path: '/movimientos/relacion-pagos', Icon: CreditCard },
+  { id: 'programar-agenda', label: 'Programar agenda', path: '/movimientos/programar-agenda', Icon: CalendarPlus },
+  { id: 'agendas', label: 'Agenda', path: '/movimientos/agendas', Icon: CalendarCheck },
+  { id: 'cancelar-ordenes', label: 'Cancelar órdenes', path: '/movimientos/cancelar-ordenes', Icon: XCircle },
+  { id: 'consultar-ordenes', label: 'Consultar órdenes de atención', path: '/movimientos/consultar-ordenes', Icon: FileSearch }
 ];
 
 const MovimientosLayout: React.FC = () => {
@@ -41,20 +42,15 @@ const MovimientosLayout: React.FC = () => {
         </div>
         <div className="gestion-header-bottom">
           <h1 className="gestion-title">{active.label}</h1>
-          <SearchBar
-            value={search}
-            onChange={(val) => { setSearch(val); }}
-            placeholder={`Buscar en ${active.label}...`}
-          />
+          {active.id !== 'consultar-ordenes' && (
+            <SearchBar
+              value={search}
+              onChange={(val) => { setSearch(val); }}
+              placeholder={`Buscar en ${active.label}...`}
+            />
+          )}
         </div>
-        
-        {/* Subtitles for specific views */}
-        {active.id === 'cuenta-cobro' && (
-          <p className="oa-subtitle" style={{ color: '#64748b', margin: '4px 0 0 0', fontSize: '0.9rem' }}>Gestione las cuentas de cobro de contratistas</p>
-        )}
-        {active.id === 'agendas' && (
-          <p className="oa-subtitle" style={{ color: '#64748b', margin: '4px 0 0 0', fontSize: '0.9rem' }}>Visualice y administre las agendas médicas programadas</p>
-        )}
+
       </header>
 
       <div className="tabs-card-group">

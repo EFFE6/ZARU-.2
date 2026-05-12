@@ -45,10 +45,6 @@ const Consultas: React.FC = () => {
   /* ── Loading ── */
   const [loading, setLoading] = useState(false);
 
-  /* ── Paginación ── */
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-
   /* ── Órdenes ── */
   const [ordenFilter, setOrdenFilter] = useState({ ...EMPTY_ORDEN_FILTER });
   const [ordenResults, setOrdenResults] = useState<OrdenConsulta[]>([]);
@@ -80,10 +76,7 @@ const Consultas: React.FC = () => {
     'Buscar Beneficiario',
   ];
 
-  /* ── Reset paginación al cambiar tab ── */
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeTab]);
+  /* ── Reset state ── */
 
   /* ─── Handlers Órdenes ──────────────────────────── */
   const handleOrdenConsultar = async () => {
@@ -92,7 +85,6 @@ const Consultas: React.FC = () => {
       const res = await api.get('/consultas/ordenes', { params: ordenFilter });
       setOrdenResults(res.data);
       setOrdenConsulted(true);
-      setCurrentPage(1);
     } catch (e) {
       console.error(e);
       setOrdenResults([]);
@@ -114,7 +106,6 @@ const Consultas: React.FC = () => {
       const res = await api.get('/consultas/cuentas-cobro', { params: cuentaFilter });
       setCuentaResults(res.data);
       setCuentaConsulted(true);
-      setCurrentPage(1);
     } catch (e) {
       console.error(e);
       setCuentaResults([]);
@@ -136,7 +127,6 @@ const Consultas: React.FC = () => {
       const res = await api.get('/consultas/contratistas', { params: contratistaFilter });
       setContratistaResults(res.data);
       setContratistaConsulted(true);
-      setCurrentPage(1);
     } catch (e) {
       console.error(e);
       setContratistaResults([]);
@@ -211,23 +201,7 @@ const Consultas: React.FC = () => {
     );
   }, [contratistaResults, searchQuery]);
 
-  /* ─── Paginación genérica ─────────────────────────── */
-  const getCurrentItems = <T,>(arr: T[]) => arr.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-  const getTotalPages = (arr: any[]) => Math.ceil(arr.length / itemsPerPage) || 1;
 
-  const totalPages = useMemo(() => {
-    if (activeTab === 'Orden de Atención consulta') return getTotalPages(filteredOrdenes);
-    if (activeTab === 'Cuentas Cobro consulta') return getTotalPages(filteredCuentas);
-    if (activeTab === 'Consulta Contratistas') return getTotalPages(filteredContratistas);
-    return 1;
-  }, [activeTab, filteredOrdenes, filteredCuentas, filteredContratistas, itemsPerPage]);
-
-  const visiblePages = useMemo(() => {
-    const delta = 2;
-    const start = Math.max(1, currentPage - delta);
-    const end = Math.min(totalPages, currentPage + delta);
-    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-  }, [currentPage, totalPages]);
 
   /* ════════════════════════════════════════════════ RENDER ═══ */
   const showPagination =
@@ -266,7 +240,7 @@ const Consultas: React.FC = () => {
             <TabGroup 
               tabs={tabs}
               activeTab={activeTab}
-              onTabChange={(id) => { setActiveTab(id); setSearchQuery(''); setCurrentPage(1); }}
+              onTabChange={(id) => { setActiveTab(id); setSearchQuery(''); }}
               defaultIcon={() => <img src={ResolucionesIcon} alt="Icon" width={14} height={14} />}
             />
 
@@ -290,20 +264,8 @@ const Consultas: React.FC = () => {
                         total={filteredOrdenes.length}
                         onPrint={() => window.print()}
                       />
-                      <DataTable
-                        headers={<OrdenConsultaHead />}
-                        itemsPerPage={itemsPerPage}
-                        setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}
-                        totalPages={totalPages}
-                        visiblePages={visiblePages}
-                      >
-                        <OrdenConsultaTabla
-                          items={getCurrentItems(filteredOrdenes)}
-                          loading={loading}
-                          onView={setSelectedOrden}
-                        />
+                      <DataTable headers={<OrdenConsultaHead />} data={filteredOrdenes}>
+                        <OrdenConsultaTabla items={[]} loading={loading} onView={setSelectedOrden} />
                       </DataTable>
                     </>
                   )}
@@ -328,20 +290,8 @@ const Consultas: React.FC = () => {
                         total={filteredCuentas.length}
                         onPrint={() => window.print()}
                       />
-                      <DataTable
-                        headers={<CuentaConsultaHead />}
-                        itemsPerPage={itemsPerPage}
-                        setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}
-                        totalPages={totalPages}
-                        visiblePages={visiblePages}
-                      >
-                        <CuentaConsultaTabla
-                          items={getCurrentItems(filteredCuentas)}
-                          loading={loading}
-                          onView={setSelectedCuenta}
-                        />
+                      <DataTable headers={<CuentaConsultaHead />} data={filteredCuentas}>
+                        <CuentaConsultaTabla items={[]} loading={loading} onView={setSelectedCuenta} />
                       </DataTable>
                     </>
                   )}
@@ -366,20 +316,8 @@ const Consultas: React.FC = () => {
                         total={filteredContratistas.length}
                         onPrint={() => window.print()}
                       />
-                      <DataTable
-                        headers={<ContratistasHead />}
-                        itemsPerPage={itemsPerPage}
-                        setItemsPerPage={(val) => { setItemsPerPage(val); setCurrentPage(1); }}
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}
-                        totalPages={totalPages}
-                        visiblePages={visiblePages}
-                      >
-                        <ContratistasTabla
-                          items={getCurrentItems(filteredContratistas)}
-                          loading={loading}
-                          onView={setSelectedContratista}
-                        />
+                      <DataTable headers={<ContratistasHead />} data={filteredContratistas}>
+                        <ContratistasTabla items={[]} loading={loading} onView={setSelectedContratista} />
                       </DataTable>
                     </>
                   )}

@@ -49,8 +49,6 @@ const TABS = [
 
 const ExcedentesLayout: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Recibos de Pago');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
 
   /* ── Data State ── */
@@ -161,14 +159,6 @@ const ExcedentesLayout: React.FC = () => {
     }
   };
 
-  const slicePage = <T,>(arr: T[]) => arr.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-  const totalPages = (len: number) => Math.ceil(len / itemsPerPage) || 1;
-  const commonPaginationProps = (len: number) => ({
-    itemsPerPage, setItemsPerPage: (v: number) => { setItemsPerPage(v); setCurrentPage(1); },
-    currentPage, setCurrentPage, totalPages: totalPages(len),
-    visiblePages: Array.from({ length: Math.min(5, totalPages(len)) }, (_, i) => i + 1)
-  });
-
   return (
     <div className="gestion-container">
       <header className="gestion-header">
@@ -192,7 +182,7 @@ const ExcedentesLayout: React.FC = () => {
         <TabGroup 
           tabs={TABS} 
           activeTab={activeTab} 
-          onTabChange={(t) => { setActiveTab(t); setCurrentPage(1); setSearchQuery(''); }} 
+          onTabChange={(t) => { setActiveTab(t); setSearchQuery(''); }} 
           defaultIcon={() => <img src={ResolucionesIcon} alt="icon" width={14} height={14} />} 
         />
         <div className={`gestion-content-card ${activeTab === TABS[0].id ? 'first-tab-active' : ''}`}>
@@ -209,8 +199,8 @@ const ExcedentesLayout: React.FC = () => {
                 onRefresh={() => {}}
                 onNew={openNewRecibo}
               />
-              <DataTable headers={<RecibosHead />} {...commonPaginationProps(filteredRecibos.length)}>
-                <RecibosTabla items={slicePage(filteredRecibos)} loading={false} onView={openViewRecibo} onEdit={openEditRecibo} onPrint={() => {}} onAnular={handleAnularRecibo} />
+              <DataTable headers={<RecibosHead />} data={filteredRecibos}>
+                <RecibosTabla items={[]} loading={false} onView={openViewRecibo} onEdit={openEditRecibo} onPrint={() => {}} onAnular={handleAnularRecibo} />
               </DataTable>
             </>
           )}
@@ -220,11 +210,11 @@ const ExcedentesLayout: React.FC = () => {
               <ImprimirExcedentesTab 
                 periodo={imprimirPeriodo} regional={imprimirRegional} 
                 onPeriodoChange={setImprimirPeriodo} onRegionalChange={setImprimirRegional} 
-                onBuscar={() => {}} items={slicePage(imprimirItems)} loading={false}
+                onBuscar={() => {}} items={[]} loading={false}
                 selected={imprimirSelected} onToggle={() => {}} onToggleAll={() => {}}
               />
-              <DataTable headers={<ImprimirHead allSelected={imprimirSelected.size === imprimirItems.length} onToggleAll={() => {}} />} {...commonPaginationProps(imprimirItems.length)}>
-                <ImprimirTabla items={slicePage(imprimirItems)} loading={false} selected={imprimirSelected} onToggle={() => {}} onToggleAll={() => {}} />
+              <DataTable headers={<ImprimirHead allSelected={imprimirSelected.size === imprimirItems.length} onToggleAll={() => {}} />} data={imprimirItems}>
+                <ImprimirTabla items={[]} loading={false} selected={imprimirSelected} onToggle={() => {}} onToggleAll={() => {}} />
               </DataTable>
             </>
           )}
@@ -232,8 +222,8 @@ const ExcedentesLayout: React.FC = () => {
           {activeTab === 'Excedentes mayor a 30 días' && (
             <>
               <Mayor30DiasTab totalCount={mayor30.length} onRefresh={() => {}} />
-              <DataTable headers={<Mayor30Head />} {...commonPaginationProps(filteredMayor30.length)}>
-                <Mayor30Tabla items={slicePage(filteredMayor30)} loading={false} />
+              <DataTable headers={<Mayor30Head />} data={filteredMayor30}>
+                <Mayor30Tabla items={[]} loading={false} />
               </DataTable>
             </>
           )}
@@ -241,8 +231,8 @@ const ExcedentesLayout: React.FC = () => {
           {activeTab === 'Relación recibos de pago' && (
             <>
               <RelacionRecibosTab periodo={relacionPeriodo} onPeriodoChange={setRelacionPeriodo} onGenerar={() => {}} onPrint={() => {}} onExport={() => {}} />
-              <DataTable headers={<RelacionHead />} {...commonPaginationProps(relacionItems.length)}>
-                <RelacionTabla items={slicePage(relacionItems)} loading={false} />
+              <DataTable headers={<RelacionHead />} data={relacionItems}>
+                <RelacionTabla items={[]} loading={false} />
               </DataTable>
             </>
           )}
@@ -254,8 +244,8 @@ const ExcedentesLayout: React.FC = () => {
           {activeTab === 'Formato Salarios' && (
             <>
               <FormatoSalariosTab periodo={salariosPeriodo} onPeriodoChange={setSalariosPeriodo} onGenerar={() => {}} onPrint={() => {}} hasData={true} />
-              <DataTable headers={<SalariosHead />} {...commonPaginationProps(salariosItems.length)}>
-                <SalariosTabla items={slicePage(salariosItems)} loading={false} />
+              <DataTable headers={<SalariosHead />} data={salariosItems}>
+                <SalariosTabla items={[]} loading={false} />
               </DataTable>
             </>
           )}
@@ -267,8 +257,8 @@ const ExcedentesLayout: React.FC = () => {
           {activeTab === 'Excedentes sin cancelar' && (
             <>
               <SinCancelarTab totalCount={sinCancelar.length} onRefresh={() => {}} />
-              <DataTable headers={<SinCancelarHead />} {...commonPaginationProps(filteredSinCancelar.length)}>
-                <SinCancelarTabla items={slicePage(filteredSinCancelar)} loading={false} />
+              <DataTable headers={<SinCancelarHead />} data={filteredSinCancelar}>
+                <SinCancelarTabla items={[]} loading={false} />
               </DataTable>
             </>
           )}

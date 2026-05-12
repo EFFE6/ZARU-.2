@@ -1,4 +1,4 @@
-﻿/* =============================================================
+/* =============================================================
    GESTION DE RESOLUCIONES â€” MediSENA
    ============================================================= */
 
@@ -246,6 +246,12 @@
   border-radius: 0 20px 20px 20px;
 }
 
+@media (max-width: 1024px) {
+  .gestion-content-card.first-tab-active {
+    border-radius: 20px;
+  }
+}
+
 .content-toolbar {
   display: flex;
   justify-content: space-between;
@@ -321,7 +327,8 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 800px;
+  min-width: 0;
+  width: 100%;
   /* Force scroll on small screens */
 }
 
@@ -331,7 +338,7 @@
 
 .resoluciones-table th {
   text-align: left;
-  padding: 18px 24px;
+  padding: 14px 12px;
   font-size: 11.5px;
   font-weight: 800;
   color: #1a3c5a;
@@ -375,7 +382,7 @@
 }
 
 .resoluciones-table td {
-  padding: 20px 24px;
+  padding: 14px 12px;
   font-size: 14px;
   color: #4a6f8a;
   vertical-align: middle;
@@ -1190,7 +1197,7 @@
   color: #1e3a52;
   font-size: 14px;
   font-weight: 600;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   cursor: pointer;
   transition: all 0.15s;
 }
@@ -1210,7 +1217,7 @@
   color: white;
   font-size: 13px;
   font-weight: 600;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .filter-tag button {
@@ -1264,7 +1271,7 @@
   font-weight: 700;
   color: #1e3a52;
   white-space: nowrap;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .user-email {
@@ -1272,7 +1279,7 @@
   color: #7a9ab0;
   font-weight: 400;
   white-space: nowrap;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* Rol badges */
@@ -1284,7 +1291,7 @@
   border-radius: 6px;
   font-size: 12.5px;
   font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   white-space: nowrap;
 }
 
@@ -1310,7 +1317,7 @@
   font-size: 12px;
   font-weight: 600;
   color: #0165B0;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   cursor: default;
   max-width: 220px;
   position: relative;
@@ -1451,7 +1458,7 @@
   padding: 13px 14px;
   border-radius: 10px;
   font-size: 13px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   line-height: 1.5;
 }
 
@@ -1487,7 +1494,7 @@
   text-decoration: underline;
   cursor: pointer;
   font-size: 13px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   font-weight: 600;
   padding: 0;
 }
@@ -1516,14 +1523,14 @@
   outline: none;
   font-size: 13px;
   color: #5c7a90;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   cursor: pointer;
 }
 
 .um-error-msg {
   color: #e11d48;
   font-size: 13px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   margin: 4px 0 0;
 }
 
@@ -1560,7 +1567,7 @@
   font-size: 15px;
   font-weight: 800;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .vm-email-row {
@@ -1572,7 +1579,7 @@
 .vm-email {
   font-size: 13px;
   color: #7a9ab0;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .vm-grid {
@@ -1592,7 +1599,7 @@
   font-size: 12px;
   font-weight: 600;
   color: #94a3b8;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   text-transform: none;
 }
 
@@ -1600,7 +1607,7 @@
   font-size: 13px;
   font-weight: 600;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .vm-tipo-badge {
@@ -1614,7 +1621,7 @@
   color: #e11d48;
   font-size: 13px;
   font-weight: 800;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   margin-top: 2px;
 }
 
@@ -1755,7 +1762,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .rm-help {
@@ -1772,7 +1779,7 @@
   font-size: 13px;
   font-weight: 600;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   outline: none;
   cursor: pointer;
   appearance: none;
@@ -1816,7 +1823,7 @@
   font-size: 13px;
   font-weight: 600;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   width: 100%;
 }
 
@@ -1860,7 +1867,7 @@
   font-size: 13px;
   font-weight: 600;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   width: 100%;
   cursor: pointer;
 }
@@ -1906,7 +1913,7 @@
   outline: none;
   font-size: 13px;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* Regional list */
@@ -1985,7 +1992,7 @@
   font-size: 13px;
   font-weight: 500;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .rm-regional-item.checked .rm-regional-name {
@@ -2001,7 +2008,7 @@
   padding: 12px 14px;
   font-size: 13px;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   outline: none;
   line-height: 1.6;
   transition: border-color 0.14s;
@@ -2064,7 +2071,7 @@
   color: #5c7a90;
   font-size: 13px;
   font-weight: 600;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   cursor: pointer;
   transition: all 0.14s;
   white-space: nowrap;
@@ -2088,7 +2095,7 @@
   color: #ffffff;
   font-size: 13px;
   font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   cursor: pointer;
   transition: all 0.16s;
   box-shadow: 0 4px 14px rgba(1, 101, 176, 0.30);
@@ -2153,7 +2160,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* Input rectangular */
@@ -2166,7 +2173,7 @@
   font-size: 13.5px;
   font-weight: 400;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   outline: none;
   background: #ffffff;
   transition: border-color 0.14s;
@@ -2202,7 +2209,7 @@
   outline: none;
   font-size: 13px;
   color: #9ab0c4;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   cursor: pointer;
   width: 100%;
 }
@@ -2236,7 +2243,7 @@
   color: #1e3a52;
   font-size: 12.5px;
   font-weight: 600;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   max-width: 100%;
 }
 
@@ -2297,7 +2304,7 @@
   font-size: 15px;
   font-weight: 800;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .vm-email-row {
@@ -2309,7 +2316,7 @@
 .vm-email {
   font-size: 13px;
   color: #7a9ab0;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* SecciÃ³n de campos en 3 columnas */
@@ -2341,7 +2348,7 @@
   font-size: 13px;
   font-weight: 700;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* Valor en gris */
@@ -2349,7 +2356,7 @@
   font-size: 13px;
   font-weight: 400;
   color: #5c7a90;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* Badge tipo usuario */
@@ -2364,7 +2371,7 @@
   color: #e11d48;
   font-size: 13px;
   font-weight: 800;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 @media (max-width: 640px) {
@@ -2391,7 +2398,7 @@
 .tab-description {
   font-size: 13px;
   color: #5c7a90;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   font-weight: 400;
   margin: 0;
   flex: 1;
@@ -2404,7 +2411,7 @@
   gap: 6px;
   font-size: 13px;
   font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .nivel-dot {
@@ -2419,7 +2426,7 @@
   color: #f97316;
   font-weight: 700;
   font-size: 13px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* ResoluciÃ³n en morado (Topes) */
@@ -2427,27 +2434,27 @@
   color: #7c3aed;
   font-size: 13px;
   font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* Columnas especÃ­ficas Niveles */
 .col-tipo-benef {
   font-size: 13px;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .col-tope {
   font-size: 13px;
   font-weight: 600;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .col-desc-nivel {
   font-size: 13px;
   color: #5c7a90;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   max-width: 220px;
   white-space: nowrap;
   overflow: hidden;
@@ -2457,7 +2464,7 @@
 .col-periodo {
   font-size: 13px;
   color: #5c7a90;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   white-space: nowrap;
 }
 
@@ -2466,13 +2473,13 @@
   font-size: 13px;
   font-weight: 700;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .col-grupo {
   font-size: 13px;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* Textarea en modal Nivel */
@@ -2483,7 +2490,7 @@
   border-radius: 8px;
   font-size: 13.5px;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   outline: none;
   resize: vertical;
   min-height: 100px;
@@ -2559,7 +2566,7 @@
   margin: 0 0 4px 0;
   font-size: 14px;
   color: #451a03;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   font-weight: 700;
 }
 
@@ -2568,7 +2575,7 @@
   font-size: 13px;
   color: #78350f;
   line-height: 1.5;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .tope-info-box {
@@ -2590,14 +2597,14 @@
 .ti-label {
   font-size: 12px;
   color: #64748b;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .ti-val {
   font-size: 14px;
   color: #1e293b;
   font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .ti-n4 {
@@ -2625,7 +2632,7 @@
   padding: 12px 16px;
   font-size: 13px;
   font-weight: 700;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .ts-blue {
@@ -2658,13 +2665,13 @@
 .ts-row span {
   font-size: 13px;
   color: #64748b;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .ts-row strong {
   font-size: 14px;
   color: #0165B0;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   text-align: right;
   min-width: 80px;
 }
@@ -2705,14 +2712,14 @@
   background: #f1f5f9;
   padding: 4px 8px;
   border-radius: 6px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .par-name {
   font-size: 14px;
   font-weight: 700;
   color: #1e293b;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .par-right {
@@ -2731,7 +2738,7 @@
   background: #fef3c7;
   padding: 6px 12px;
   border-radius: 20px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 .par-pill-activo {
@@ -2744,7 +2751,7 @@
   background: #d1fae5;
   padding: 6px 12px;
   border-radius: 20px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -5355,3 +5362,43 @@
   text-transform: uppercase;
 }
 
+/* ──────────────── Responsive Table Adaptations ──────────────── */
+@media (max-width: 1200px) {
+  .resoluciones-table th, 
+  .resoluciones-table td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+  
+  .exc-multiline-text {
+    font-size: 0.75rem;
+  }
+  
+  .exc-pill-badge {
+    min-width: 80px;
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Ocultar Método y Tipo de Pago para ahorrar espacio */
+  .resoluciones-table th:nth-child(6),
+  .resoluciones-table td:nth-child(6),
+  .resoluciones-table th:nth-child(8),
+  .resoluciones-table td:nth-child(8) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ocultar Fecha Pago en móviles muy pequeños */
+  .resoluciones-table th:nth-child(4),
+  .resoluciones-table td:nth-child(4) {
+    display: none;
+  }
+  
+  .gestion-content-card {
+    padding: 16px;
+  }
+}

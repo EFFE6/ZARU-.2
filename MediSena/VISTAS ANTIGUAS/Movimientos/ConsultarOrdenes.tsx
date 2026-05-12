@@ -70,8 +70,8 @@ const ConsultarOrdenes: React.FC = () => {
 
   const total = filtered.length;
   const completadas = filtered.filter(o => o.estado === 'C').length;
-  const pendientes  = filtered.filter(o => o.estado === 'P').length;
-  const valorTotal  = filtered.reduce((acc, o) => acc + (o.valor || 0), 0);
+  const pendientes = filtered.filter(o => o.estado === 'P').length;
+  const valorTotal = filtered.reduce((acc, o) => acc + (o.valor || 0), 0);
 
   const estadoLabel: Record<string, string> = { A: 'A', C: 'C', P: 'P', X: 'X' };
 
@@ -116,7 +116,7 @@ const ConsultarOrdenes: React.FC = () => {
               {/* Filtros */}
               <div className="co-filters-box">
                 <div className="co-filters-label">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" /></svg>
                   Filtros de Búsqueda
                 </div>
                 <div className="co-filters-row">

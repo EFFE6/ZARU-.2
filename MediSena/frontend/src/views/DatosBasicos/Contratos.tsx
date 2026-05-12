@@ -53,8 +53,6 @@ interface ContratosProps {
 }
 
 const Contratos: React.FC<ContratosProps> = ({ searchQuery }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [estadoFilter, setEstadoFilter] = useState('');
   const [vigenciaFilter, setVigenciaFilter] = useState('');
   const [data, setData] = useState(MOCK_CONTRATOS);
@@ -76,9 +74,6 @@ const Contratos: React.FC<ContratosProps> = ({ searchQuery }) => {
     const matchVigencia = vigenciaFilter ? item.vigencia === vigenciaFilter : true;
     return matchSearch && matchEstado && matchVigencia;
   });
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
-  const currentItems = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <>
@@ -144,14 +139,8 @@ const Contratos: React.FC<ContratosProps> = ({ searchQuery }) => {
             <th></th>
           </tr>
         }
-        itemsPerPage={itemsPerPage}
-        setItemsPerPage={setItemsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-        visiblePages={Array.from({ length: totalPages }, (_, i) => i + 1)}
       >
-        {currentItems.map((item, idx) => (
+        {filteredData.map((item, idx) => (
           <tr key={idx}>
             <td className="db-col-id">{item.numero}</td>
             <td>{item.crp}</td>

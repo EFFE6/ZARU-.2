@@ -172,10 +172,6 @@ const GestionResoluciones: React.FC = () => {
   const [statusFilter, setStatusFilter] = useState('');
   const [activeFilterTag, setActiveFilterTag] = useState('');
 
-  /* ── Paginación ── */
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-
   /* ── Modales de Eliminación ── */
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<any>(null);
@@ -304,7 +300,7 @@ const GestionResoluciones: React.FC = () => {
         console.error('Error fetching data:', err);
         setErrorStatus(err.response?.data?.message || err.message || 'Error al cargar los datos');
       } finally {
-        setLoading(false); setCurrentPage(1);
+        setLoading(false);
       }
     };
     fetchData();
@@ -366,17 +362,7 @@ const GestionResoluciones: React.FC = () => {
       );
     }
     return [];
-  }, [activeTab, resoluciones, usuarios, niveles, topes, parentescos, vigencias, parametros, subEspecialidades, parametros, searchQuery, statusFilter, activeFilterTag]);
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
-  const currentItems = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-
-  const visiblePages = useMemo(() => {
-    const delta = 2;
-    const start = Math.max(1, currentPage - delta);
-    const end = Math.min(totalPages, currentPage + delta);
-    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-  }, [currentPage, totalPages]);
+  }, [activeTab, resoluciones, usuarios, niveles, topes, parentescos, vigencias, parametros, subEspecialidades, searchQuery, statusFilter, activeFilterTag]);
 
   /* ─── Handlers eliminar ──────────────────────────── */
   const handleDeleteClick = (item: any) => { setItemToDelete(item); setIsDeleteModalOpen(true); };
@@ -698,10 +684,10 @@ const GestionResoluciones: React.FC = () => {
       </td></tr>
     );
 
-    if (currentItems.length === 0) return <tr><td colSpan={8} className="table-empty">No se encontraron resultados.</td></tr>;
+    if (filteredData.length === 0) return <tr><td colSpan={8} className="table-empty">No se encontraron resultados.</td></tr>;
 
-    if (activeTab === 'Resoluciones') {
-      return (currentItems as Resolucion[]).map(res => (
+  if (activeTab === 'Resoluciones') {
+    return (filteredData as Resolucion[]).map(res => (
         <tr key={res.id}>
           <td className="col-numero">{res.numero}</td>
           <td className="col-fecha">{res.fecha}</td>
@@ -724,7 +710,7 @@ const GestionResoluciones: React.FC = () => {
     }
     if (activeTab === 'Usuarios') return (
       <UsuariosTabla
-        items={currentItems as UsuarioExtended[]}
+        items={[]}
         loading={loading}
         tooltip={tooltip}
         onTooltip={setTooltip}
@@ -736,7 +722,7 @@ const GestionResoluciones: React.FC = () => {
     );
     if (activeTab === 'Niveles') return (
       <NivelesTabla
-        items={currentItems as Nivel[]}
+        items={[]}
         loading={loading}
         onEdit={openEditNivel}
         onDelete={handleDeleteClick}
@@ -744,7 +730,7 @@ const GestionResoluciones: React.FC = () => {
     );
     if (activeTab === 'Topes') return (
       <TopesTabla
-        items={currentItems as Tope[]}
+        items={[]}
         loading={loading}
         onView={t => { setSelectedTope(t); setIsViewTopeOpen(true); }}
         onDelete={handleDeleteClick}
@@ -752,7 +738,7 @@ const GestionResoluciones: React.FC = () => {
     );
     if (activeTab === 'Parámetros') return (
       <ParametrosTabla
-        items={currentItems as ParametroGestionRow[]}
+        items={[]}
         loading={loading}
         tooltip={tooltip}
         onTooltip={setTooltip}
@@ -760,7 +746,7 @@ const GestionResoluciones: React.FC = () => {
     );
     if (activeTab === 'Sub-especialidades') return (
       <SubEspecialidadesTabla
-        items={currentItems as SubEspecialidad[]}
+        items={[]}
         loading={loading}
         onView={s => { setSelectedSubTarget(s); setIsViewSubOpen(true); }}
         onEdit={openEditSub}
@@ -801,7 +787,7 @@ const GestionResoluciones: React.FC = () => {
           <TabGroup
             tabs={tabs}
             activeTab={activeTab}
-            onTabChange={(tab) => { setActiveTab(tab); setSearchQuery(''); setStatusFilter(''); setCurrentPage(1); }}
+            onTabChange={(tab) => { setActiveTab(tab); setSearchQuery(''); setStatusFilter(''); }}
             defaultIcon={GestionIcon}
             iconSize={18}
           />
@@ -876,22 +862,37 @@ const GestionResoluciones: React.FC = () => {
                 </div>
               </div>
             ) : activeTab === 'Parentescos' ? (
-              <ParentescosLista
-                items={currentItems as Parentesco[]}
-                loading={loading}
-                onEdit={openEditParentesco}
-                onDelete={handleDeleteClick}
-              />
+              <DataTable headers={renderTableHead()} data={filteredData}>
+                <ParentescosLista
+                  items={[]}
+                  loading={loading}
+                  onEdit={openEditParentesco}
+                  onDelete={handleDeleteClick}
+                />
+              </DataTable>
+            ) : activeTab === 'Resoluciones' ? (
+              <DataTable headers={renderTableHead()} data={filteredData} renderRow={res => (
+                <tr key={res.id}>
+                  <td className="col-numero">{res.numero}</td>
+                  <td className="col-fecha">{res.fecha}</td>
+                  <td><div className="desc-with-icon">{res.descripcion}<Copy size={15} className="copy-icon" /></div></td>
+                  <td>
+                    <span className={`status-badge ${res.estado.toLowerCase()}`}>
+                      <div className={`status-dot ${res.estado.toLowerCase()}`}></div>
+                      {res.estado}
+                    </span>
+                  </td>
+                  <td className="col-vigencia">{res.vigencia}</td>
+                  <td>
+                    <div className="row-actions">
+                      <button className="icon-btn edit" onClick={() => openEditRes(res)}><Edit2 size={16} /></button>
+                      <button className="icon-btn delete" onClick={() => handleDeleteClick(res)}><Trash2 size={16} /></button>
+                    </div>
+                  </td>
+                </tr>
+              )} />
             ) : (
-              <DataTable
-                headers={renderTableHead()}
-                itemsPerPage={itemsPerPage}
-                setItemsPerPage={setItemsPerPage}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                totalPages={totalPages}
-                visiblePages={visiblePages}
-              >
+              <DataTable headers={renderTableHead()} data={filteredData}>
                 {renderTableBody()}
               </DataTable>
             )}

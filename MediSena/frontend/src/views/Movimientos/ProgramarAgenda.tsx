@@ -35,7 +35,7 @@ const ProgramarAgenda: React.FC = () => {
   const [agendas, setAgendas] = useState<AgendaProgramada[]>(mockAgendas);
   const [form, setForm] = useState({ medico: '', fecha: '', horaInicio: '', horaFin: '', cupos: '' });
   const [page, setPage] = useState(1);
-  const PER_PAGE = 10;
+  const PER_PAGE = 5;
 
   const change = (field: string, value: string) => setForm(p => ({ ...p, [field]: value }));
 

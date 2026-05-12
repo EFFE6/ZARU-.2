@@ -55,8 +55,6 @@ interface MedicosProps {
 }
 
 const Medicos: React.FC<MedicosProps> = ({ searchQuery }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [estadoFilter, setEstadoFilter] = useState('');
   const [especialidadFilter, setEspecialidadFilter] = useState('');
   const [data, setData] = useState(MOCK_MEDICOS);
@@ -78,9 +76,6 @@ const Medicos: React.FC<MedicosProps> = ({ searchQuery }) => {
     const matchEspecialidad = especialidadFilter ? item.especialidad === especialidadFilter : true;
     return matchSearch && matchEstado && matchEspecialidad;
   });
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
-  const currentItems = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <>
@@ -140,14 +135,8 @@ const Medicos: React.FC<MedicosProps> = ({ searchQuery }) => {
             <th></th>
           </tr>
         }
-        itemsPerPage={itemsPerPage}
-        setItemsPerPage={setItemsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-        visiblePages={Array.from({ length: totalPages }, (_, i) => i + 1)}
       >
-        {currentItems.map((item, idx) => (
+        {filteredData.map((item, idx) => (
           <tr key={idx}>
             <td className="db-col-id">{item.registro}</td>
             <td>

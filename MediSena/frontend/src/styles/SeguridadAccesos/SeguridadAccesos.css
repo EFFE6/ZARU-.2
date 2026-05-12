@@ -843,7 +843,7 @@ html body .sa-container .sa-permisos-scroll {
   outline: none;
   box-sizing: border-box;
   transition: border-color 0.2s;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   background: #ffffff;
 }
 

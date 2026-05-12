@@ -42,8 +42,25 @@ const Sidebar = () => {
 
 
   useEffect(() => {
-    const currentItem = navItems.find(item => item.path === location.pathname);
-    if (currentItem) setActiveItem(currentItem.id);
+    // Buscar el item que mejor coincida con la URL actual
+    // Priorizamos coincidencias más largas o exactas
+    const currentPath = location.pathname;
+    
+    let currentItem = navItems.find(item => item.path === currentPath);
+    
+    if (!currentItem && currentPath !== '/') {
+      // Si no hay coincidencia exacta, buscamos por prefijo (para sub-rutas como /movimientos/...)
+      currentItem = navItems.find(item => 
+        item.path !== '/' && currentPath.startsWith(item.path.split('/')[1] ? `/${item.path.split('/')[1]}` : item.path)
+      );
+    }
+
+    if (currentItem) {
+      setActiveItem(currentItem.id);
+    } else if (currentPath === '/') {
+      setActiveItem('Dashboard');
+    }
+    
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 

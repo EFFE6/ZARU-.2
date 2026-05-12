@@ -34,7 +34,7 @@
   width: 100%;
   font-size: 14px;
   color: #1e3a52;
-  font-family: 'Work Sans', sans-serif;
+  font-family: var(--sans);
   font-weight: 500;
 }
 

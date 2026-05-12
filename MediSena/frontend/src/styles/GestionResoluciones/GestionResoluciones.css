@@ -114,11 +114,20 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .gestion-content-card.first-tab-active {
   border-radius: 0 20px 20px 20px;
+}
+
+/* Utilidad para que el contenido del Outlet llene el card y permita scroll interno */
+.mov-view-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
 }
 
 .content-toolbar {

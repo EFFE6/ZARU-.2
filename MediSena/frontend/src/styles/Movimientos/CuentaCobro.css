@@ -1,250 +1,134 @@
+@import './MovimientosShared.css';
+
 /* =============================================
    CuentaCobro.css
    ============================================= */
 
 .cc-view-container {
-  padding: 8px;
-}
-
-/* ── Header Figma ── */
-.cc-header-figma {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.cc-title-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 4px;
-}
-
-.cc-title-icon {
-  color: #1e293b;
-}
-
-.cc-main-title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #1e293b;
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.cc-main-subtitle {
-  font-size: 1rem;
-  color: #64748b;
-  margin: 0;
-}
-
-.cc-header-right {
-  display: flex;
-  gap: 12px;
-}
-
-.cc-btn-actualizar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #fff;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 10px;
-  padding: 10px 20px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #475569;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.cc-btn-actualizar:hover {
-  background: #f8fafc;
-  border-color: #94a3b8;
-}
-
-.cc-btn-nueva {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #4A6772; /* Slate/Teal color from figma */
-  border: none;
-  border-radius: 10px;
-  padding: 10px 24px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 4px 12px rgba(74, 103, 114, 0.2);
-}
-
-.cc-btn-nueva:hover {
-  background: #3d555e;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(74, 103, 114, 0.3);
-}
-
-/* ── Toolbar Figma ── */
-.cc-toolbar-figma {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 32px;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
 }
 
-.cc-filters-top, .cc-filters-bottom {
+/* ── Filtros en línea ── */
+.cc-filters-row {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  align-items: flex-end;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
-.cc-search-wrap-figma {
-  position: relative;
-  flex: 1;
-  min-width: 300px;
-}
-
-.cc-search-icon-figma {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #94a3b8;
-}
-
-.cc-search-input-figma {
-  width: 100%;
-  height: 52px;
-  background: #fff;
-  border: 1.5px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 0 16px 0 48px;
-  font-size: 1rem;
-  color: #1e293b;
-  outline: none;
-  transition: all 0.2s;
-}
-
-.cc-search-input-figma:focus {
-  border-color: #cbd5e1;
-}
-
-/* ── Fieldsets Figma ── */
-.cc-fieldset {
-  border: 1.5px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 0 12px 0 12px;
-  margin: 0;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.cc-fieldset legend {
-  font-size: 0.75rem;
+.cc-field-label {
+  display: block;
+  font-size: 0.7rem;
   font-weight: 700;
   color: #94a3b8;
-  padding: 0 6px;
-  margin-left: -4px;
+  margin-bottom: 4px;
+  letter-spacing: 0.03em;
 }
 
-.cc-field-estado { width: 220px; }
-.cc-field-fecha { width: 240px; }
+.cc-select-field {
+  display: flex;
+  flex-direction: column;
+}
 
-.cc-select-wrap-figma {
+.cc-select-wrap {
+  position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
-  position: relative;
 }
 
-.cc-select-wrap-figma select {
+.cc-select-wrap select {
   appearance: none;
-  background: transparent;
-  border: none;
-  width: 100%;
-  height: 32px;
-  font-size: 1rem;
+  height: 34px;
+  padding: 0 30px 0 10px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #1e293b;
+  background: #fff;
   cursor: pointer;
   outline: none;
+  transition: border-color 0.18s;
+  min-width: 130px;
 }
 
-.cc-select-icon-figma {
+.cc-select-wrap select:focus {
+  border-color: #0165B0;
+}
+
+.cc-select-chevron {
   position: absolute;
-  right: 0;
+  right: 8px;
   color: #94a3b8;
   pointer-events: none;
 }
 
-.cc-fieldset input[type="date"] {
-  border: none;
-  background: transparent;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e293b;
-  outline: none;
-  height: 32px;
+.cc-date-field {
+  display: flex;
+  flex-direction: column;
 }
 
-.cc-btn-limpiar-figma {
-  height: 52px;
-  padding: 0 40px;
+.cc-date-input {
+  height: 34px;
+  padding: 0 10px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #1e293b;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.18s;
+  width: 148px;
+}
+
+.cc-date-input:focus {
+  border-color: #0165B0;
+}
+
+.cc-btn-limpiar {
+  height: 34px;
+  padding: 0 16px;
   background: #fff;
   border: 1.5px solid #cbd5e1;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
   color: #475569;
   cursor: pointer;
-  transition: all 0.2s;
-  min-width: 200px;
+  transition: all 0.18s;
+  align-self: flex-end;
+  white-space: nowrap;
 }
 
-.cc-btn-limpiar-figma:hover {
+.cc-btn-limpiar:hover {
   background: #f8fafc;
   border-color: #94a3b8;
 }
 
-.cc-no-fecha-text {
-  font-size: 0.9rem;
-  color: #94a3b8;
-}
-
-/* ── Badges Figma ── */
+/* ── Badges ── */
 .cc-estado-badge {
   display: inline-flex;
-  padding: 4px 16px;
+  padding: 3px 12px;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.cc-badge-pendiente {
-  background: #FF8A00;
-  color: #fff;
-}
+.cc-badge-pendiente { background: #FF8A00; color: #fff; }
+.cc-badge-aprobada  { background: #10B981; color: #fff; }
+.cc-badge-rechazada { background: #EF4444; color: #fff; }
 
-.cc-badge-aprobada {
-  background: #10B981;
-  color: #fff;
+/* ── Tabla ── */
+.cc-table-num {
+  font-weight: 700;
+  color: #1e293b;
 }
-
-.cc-badge-rechazada {
-  background: #EF4444;
-  color: #fff;
-}
-
-/* ── Tabla Figma ── */
-.bold { font-weight: 700; }
 
 .cc-action-btn {
   width: 28px;
@@ -258,33 +142,8 @@
   transition: all 0.2s;
 }
 
-.cc-btn-view {
-  background: #E0F2FE;
-  color: #0369A1;
-}
+.cc-btn-view { background: #E0F2FE; color: #0369A1; }
+.cc-btn-view:hover { background: #BAE6FD; transform: scale(1.1); }
 
-.cc-btn-view:hover {
-  background: #BAE6FD;
-  transform: scale(1.1);
-}
-
-.cc-btn-approve {
-  background: #DCFCE7;
-  color: #15803D;
-}
-
-.cc-btn-approve:hover {
-  background: #BBF7D0;
-  transform: scale(1.1);
-}
-
-.oa-actions-cell {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-
-.cc-table-num {
-  font-weight: 700;
-  color: #1e293b;
-}
+.cc-btn-approve { background: #DCFCE7; color: #15803D; }
+.cc-btn-approve:hover { background: #BBF7D0; transform: scale(1.1); }

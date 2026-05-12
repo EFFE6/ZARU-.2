@@ -1,3 +1,5 @@
+@import './MovimientosShared.css';
+
 /* =============================================
    Agendas.css — Tabs: ProgramarAgenda + GestionAgendas
    ============================================= */
@@ -270,92 +272,6 @@
 /* ══════════════════════════════════════
    GESTIÓN DE AGENDAS
    ══════════════════════════════════════ */
-.gag-card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(16, 47, 75, 0.08);
-  padding: 20px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 4px;
-}
-
-.gag-header-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.gag-title-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.gag-title {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #102F4B;
-  margin: 0;
-}
-
-.gag-subtitle {
-  font-size: 0.80rem;
-  color: #64748b;
-  margin: 4px 0 0 0;
-}
-
-.gag-btn-refresh {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: #fff;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 0.80rem;
-  font-weight: 600;
-  color: #334155;
-  cursor: pointer;
-  transition: all 0.18s;
-  white-space: nowrap;
-}
-.gag-btn-refresh:hover { background: #f1f5f9; border-color: #94a3b8; }
-
-.gag-toolbar {
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.gag-search-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 8px 12px;
-  flex: 1;
-  min-width: 200px;
-  transition: border-color 0.18s;
-}
-.gag-search-wrap:focus-within { border-color: #0165B0; }
-
-.gag-search-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 0.83rem;
-  color: #334155;
-  width: 100%;
-}
-.gag-search-input::placeholder { color: #94a3b8; }
-
 .gag-filter-group {
   display: flex;
   flex-direction: column;
@@ -410,41 +326,6 @@
   pointer-events: none;
 }
 
-.gag-table-scroll {
-  width: 100%;
-  overflow-x: auto;
-  border-radius: 0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.gag-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.82rem;
-  color: #334155;
-  min-width: 680px;
-}
-
-.gag-table thead tr { background: transparent; }
-
-.gag-table th {
-  padding: 10px 14px;
-  text-align: left;
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: #475569;
-  border-bottom: 1.5px solid #e2e8f0;
-  white-space: nowrap;
-}
-
-.gag-table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid #f1f5f9;
-  vertical-align: middle;
-}
-
-.gag-table tbody tr:hover { background: #f8fafc; }
-
 .gag-cupos-badge {
   display: inline-flex;
   align-items: center;
@@ -468,35 +349,6 @@
   white-space: nowrap;
 }
 
-.gag-empty {
-  text-align: center;
-  padding: 40px 14px;
-  color: #94a3b8;
-  font-size: 0.85rem;
-}
-
-.gag-actions { display: flex; gap: 6px; }
-
-.gag-btn-eye,
-.gag-btn-edit {
-  width: 28px;
-  height: 28px;
-  border-radius: 7px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.18s;
-}
-
-.gag-btn-eye  { background: #dbeafe; color: #1d4ed8; }
-.gag-btn-edit { background: #f1f5f9; color: #334155; }
-.gag-btn-eye:hover  { background: #bfdbfe; }
-.gag-btn-edit:hover { background: #e2e8f0; }
-
-.gag-footer { display: flex; justify-content: flex-end; }
-.gag-count { font-size: 0.78rem; color: #64748b; }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {

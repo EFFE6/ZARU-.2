@@ -203,24 +203,24 @@ export const DeleteIcon: React.FC<IconProps> = ({ size = 28, className }) => (
   </svg>
 );
 
-// Icono unificado de EDITAR - reemplaza:
-//   - EditarBeneficiariosIcon
-//   - EditarTablaContratoIcon
-export const EditIcon: React.FC<IconProps> = ({ size = 28, className }) => (
-  <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_edit_icon)" strokeWidth="1.4" />
-    <path d="M17.3528 12.7831L15.2178 10.6481" stroke="url(#paint1_linear_edit_icon)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path fillRule="evenodd" clipRule="evenodd" d="M10.7675 19.1294H8.87109V17.233C8.87109 17.0784 8.93234 16.9296 9.04201 16.8205L16.8202 9.04179C17.0483 8.81371 17.4175 8.81371 17.645 9.04179L18.9581 10.3549C19.1862 10.583 19.1862 10.9522 18.9581 11.1797L11.1799 18.9585C11.0708 19.0681 10.9221 19.1294 10.7675 19.1294V19.1294Z" stroke="url(#paint2_linear_edit_icon)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+// Icono unificado de EDITAR
+export const EditIcon: React.FC<IconProps> = ({ size = 48, className }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M12 1H36C42.0751 1 47 5.92487 47 12V36C47 42.0751 42.0751 47 36 47H12C5.92487 47 1 42.0751 1 36V12C1 5.92487 5.92487 1 12 1Z" stroke="url(#paint0_edit_new)" strokeWidth="2" />
+    <g transform="translate(4, 4) scale(1.4)">
+      <path d="M17.3528 12.7831L15.2178 10.6481" stroke="url(#paint1_edit_new)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M10.7675 19.1294H8.87109V17.233C8.87109 17.0784 8.93234 16.9296 9.04201 16.8205L16.8202 9.04179C17.0483 8.81371 17.4175 8.81371 17.645 9.04179L18.9581 10.3549C19.1862 10.583 19.1862 10.9522 18.9581 11.1797L11.1799 18.9585C11.0708 19.0681 10.9221 19.1294 10.7675 19.1294V19.1294Z" stroke="url(#paint2_edit_new)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </g>
     <defs>
-      <linearGradient id="paint0_linear_edit_icon" x1="57.75" y1="-31.7916" x2="-26.9069" y2="-27.3651" gradientUnits="userSpaceOnUse">
+      <linearGradient id="paint0_edit_new" x1="99" y1="-54.4999" x2="-46.1261" y2="-46.9116" gradientUnits="userSpaceOnUse">
         <stop stopColor="#0165B0" />
         <stop offset="1" stopColor="#013156" />
       </linearGradient>
-      <linearGradient id="paint1_linear_edit_icon" x1="19.6212" y1="8.22396" x2="13.1661" y2="8.56148" gradientUnits="userSpaceOnUse">
+      <linearGradient id="paint1_edit_new" x1="19.6212" y1="8.22396" x2="13.1661" y2="8.56148" gradientUnits="userSpaceOnUse">
         <stop stopColor="#0165B0" />
         <stop offset="1" stopColor="#013156" />
       </linearGradient>
-      <linearGradient id="paint2_linear_edit_icon" x1="30.0283" y1="-2.7771" x2="-0.986509" y2="-1.1555" gradientUnits="userSpaceOnUse">
+      <linearGradient id="paint2_edit_new" x1="30.0283" y1="-2.7771" x2="-0.986509" y2="-1.1555" gradientUnits="userSpaceOnUse">
         <stop stopColor="#0165B0" />
         <stop offset="1" stopColor="#013156" />
       </linearGradient>
@@ -228,37 +228,38 @@ export const EditIcon: React.FC<IconProps> = ({ size = 28, className }) => (
   </svg>
 );
 
-export const PrintIcon: React.FC<IconProps> = ({ size = 28, className }) => (
-  <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_print_icon)" strokeWidth="1.4" />
-    <path d="M19 11.5V9C19 8.17157 18.3284 7.5 17.5 7.5H10.5C9.67157 7.5 9 8.17157 9 9V11.5" stroke="url(#paint1_linear_print_icon)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M19 15.5H21.5C22.0523 15.5 22.5 15.0523 22.5 14.5V11.5C22.5 10.9477 22.0523 10.5 21.5 10.5H6.5C5.94772 10.5 5.5 10.9477 5.5 11.5V14.5C5.5 15.0523 5.94772 15.5 6.5 15.5H9" stroke="url(#paint2_linear_print_icon)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M17.5 13.5H18.5" stroke="url(#paint3_linear_print_icon)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M17.5 19.5H10.5V14.5H17.5V19.5Z" stroke="url(#paint4_linear_print_icon)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+export const PrintIcon: React.FC<IconProps> = ({ size = 48, className }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path d="M12 1H36C42.0751 1 47 5.92487 47 12V36C47 42.0751 42.0751 47 36 47H12C5.92487 47 1 42.0751 1 36V12C1 5.92487 5.92487 1 12 1Z" stroke="url(#paint0_print_new)" strokeWidth="2" />
+    <path d="M19 20V16C19 15.448 19.448 15 20 15H28C28.552 15 29 15.448 29 16V20" stroke="url(#paint1_print_new)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M19 29H17C15.895 29 15 28.105 15 27V22C15 20.895 15.448 20 17 20H31C32.105 20 33 20.895 33 22V27C33 28.105 32.105 29 31 29H29" stroke="url(#paint2_print_new)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M19 25.7969H29V31.9969C29 32.5489 28.552 32.9969 28 32.9969H20C19.448 32.9969 19 32.5489 19 31.9969V25.7969Z" stroke="url(#paint3_print_new)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M19 23H20" stroke="url(#paint4_print_new)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     <defs>
-      <linearGradient id="paint0_linear_print_icon" x1="14" y1="0" x2="14" y2="28" gradientUnits="userSpaceOnUse">
+      <linearGradient id="paint0_print_new" x1="99" y1="-54.4999" x2="-46.1261" y2="-46.9116" gradientUnits="userSpaceOnUse">
         <stop stopColor="#0165B0" />
         <stop offset="1" stopColor="#013156" />
       </linearGradient>
-      <linearGradient id="paint1_linear_print_icon" x1="14" y1="7.5" x2="14" y2="11.5" gradientUnits="userSpaceOnUse">
+      <linearGradient id="paint1_print_new" x1="39.625" y1="9.32292" x2="9.6357" y2="12.4591" gradientUnits="userSpaceOnUse">
         <stop stopColor="#0165B0" />
         <stop offset="1" stopColor="#013156" />
       </linearGradient>
-      <linearGradient id="paint2_linear_print_icon" x1="14" y1="10.5" x2="14" y2="15.5" gradientUnits="userSpaceOnUse">
+      <linearGradient id="paint2_print_new" x1="52.125" y1="9.78126" x2="-1.85575" y2="15.4263" gradientUnits="userSpaceOnUse">
         <stop stopColor="#0165B0" />
         <stop offset="1" stopColor="#013156" />
       </linearGradient>
-      <linearGradient id="paint3_linear_print_icon" x1="18" y1="13.5" x2="18" y2="14.5" gradientUnits="userSpaceOnUse">
+      <linearGradient id="paint3_print_new" x1="39.625" y1="17.6219" x2="9.46679" y2="19.812" gradientUnits="userSpaceOnUse">
         <stop stopColor="#0165B0" />
         <stop offset="1" stopColor="#013156" />
       </linearGradient>
-      <linearGradient id="paint4_linear_print_icon" x1="14" y1="14.5" x2="14" y2="19.5" gradientUnits="userSpaceOnUse">
+      <linearGradient id="paint4_print_new" x1="21.0625" y1="21.3646" x2="18.039" y2="21.5227" gradientUnits="userSpaceOnUse">
         <stop stopColor="#0165B0" />
         <stop offset="1" stopColor="#013156" />
       </linearGradient>
     </defs>
   </svg>
 );
+
 export const OJOIcon: React.FC<IconProps> = ({ size = 28, className }) => (
   <svg width={size} height={size} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="0.7" y="0.7" width="26.6" height="26.6" rx="7.3" stroke="url(#paint0_linear_811_42689)" strokeWidth="1.4" />

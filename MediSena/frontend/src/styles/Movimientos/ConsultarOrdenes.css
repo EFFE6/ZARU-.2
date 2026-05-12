@@ -1,198 +1,152 @@
 /* =============================================================
-   CONSULTAR ÓRDENES — MediSENA
+   CONSULTAR ÓRDENES — Diseño Simplificado v2
    ============================================================= */
 
-.co-main-card {
+.co-filters-panel-new {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 4px 12px rgba(28, 62, 87, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
 }
 
-.co-filters-label {
+.co-filters-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 1rem;
-  font-weight: 800;
-  color: #1e3a52;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
   margin-bottom: 20px;
 }
 
-.co-filters-row {
+.co-filters-row-new {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
 }
 
-/* Fieldset Styles (matching Figma CuentaCobro) */
-.co-fieldset {
+/* Fieldset con Label en el borde */
+.co-fieldset-new {
+  position: relative;
   border: 1.5px solid #cbd5e1;
   border-radius: 8px;
   padding: 0 12px;
-  margin: 0;
-  position: relative;
-  height: 48px;
+  height: 52px;
   display: flex;
   align-items: center;
-  min-width: 140px;
+  min-width: 160px;
   flex: 1;
-  max-width: 250px;
+  background: #ffffff;
   transition: border-color 0.2s;
 }
 
-.co-fieldset:focus-within {
-  border-color: #0165b0;
+.co-fieldset-new:focus-within {
+  border-color: #0165B0;
 }
 
-.co-legend {
+.co-legend-new {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #ffffff;
+  padding: 0 6px;
   font-size: 0.75rem;
   font-weight: 700;
   color: #64748b;
-  padding: 0 4px;
-  margin-bottom: 0;
-  margin-left: 4px;
   transition: color 0.2s;
 }
 
-.co-fieldset:focus-within .co-legend {
-  color: #0165b0;
+.co-fieldset-new:focus-within .co-legend-new {
+  color: #0165B0;
 }
 
-.co-select-wrap {
+.co-select-wrap-new {
   width: 100%;
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
-.co-select {
+.co-select-new {
   width: 100%;
   border: none;
   background: transparent;
-  font-size: 0.9rem;
+  outline: none;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #334155;
-  outline: none;
   appearance: none;
   cursor: pointer;
   padding-right: 20px;
 }
 
-.co-select-icon {
+.co-select-icon-new {
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #64748b;
+  color: #94a3b8;
   pointer-events: none;
 }
 
-.co-search-wrapper {
+/* Search Bar unificado */
+.co-search-wrapper-new {
   flex: 3;
-  display: flex;
-  align-items: center;
+  min-width: 300px;
+  height: 52px;
   border: 1.5px solid #cbd5e1;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
   padding: 0 16px;
-  height: 48px;
-  transition: border-color 0.2s;
+  background: #ffffff;
+  transition: all 0.2s;
 }
 
-.co-search-wrapper:focus-within {
-  border-color: #0165b0;
+.co-search-wrapper-new:focus-within {
+  border-color: #0165B0;
+  box-shadow: 0 0 0 4px rgba(1, 101, 176, 0.05);
 }
 
-.co-search-input {
+.co-search-icon-new {
+  color: #94a3b8;
+  margin-right: 12px;
+}
+
+.co-search-input-new {
   flex: 1;
   border: none;
   background: transparent;
   outline: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #334155;
-  margin-left: 10px;
 }
 
-.co-search-input::placeholder {
+.co-search-input-new::placeholder {
   color: #94a3b8;
   font-weight: 500;
 }
 
-/* Pills Row */
-.co-pills-row {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
+/* Animaciones */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
-.co-pill {
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #fff;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.co-pill.dark-blue  { background: #1e3a52; }
-.co-pill.green      { background: #16a34a; }
-.co-pill.orange     { background: #f97316; }
-.co-pill.light-blue { background: #0ea5e9; }
-
-/* Tabla */
-.co-table-wrapper {
-  width: 100%;
-  overflow-x: auto;
+/* Responsividad */
+@media (max-width: 900px) {
+  .co-filters-row-new {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .co-fieldset-new, 
+  .co-search-wrapper-new {
+    width: 100%;
+    flex: none;
+  }
 }
-
-.co-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.co-table th {
-  text-align: left;
-  padding: 14px 16px;
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: #1e3a52;
-  border-bottom: 2px solid #e2e8f0;
-}
-
-.co-table td {
-  padding: 16px;
-  font-size: 0.85rem;
-  color: #334155;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.co-table tr:hover td {
-  background: #f8fafc;
-}
-
-.co-col-num {
-  font-weight: 700;
-}
-
-.co-col-paciente {
-  font-weight: 600;
-  color: #64748b !important;
-  max-width: 180px;
-}
-
-.co-circle-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  font-size: 0.8rem;
-  font-weight: 800;
-}
-
-.co-circle-badge.gray { background: #f1f5f9; color: #64748b; }
-.co-circle-badge.green { background: #dcfce7; color: #16a34a; }
-.co-circle-badge.red { background: #fee2e2; color: #dc2626; }
-.co-circle-badge.orange { background: #ffedd5; color: #ea580c; }

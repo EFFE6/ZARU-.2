@@ -71,8 +71,6 @@ interface ContratistasProps {
 }
 
 const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [estadoFilter, setEstadoFilter] = useState('');
   const [tipoDocFilter, setTipoDocFilter] = useState('');
   const [data, setData] = useState(MOCK_CONTRATISTAS);
@@ -96,9 +94,6 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
     const matchTipoDoc = tipoDocFilter ? item.tipoDoc === tipoDocFilter : true;
     return matchSearch && matchEstado && matchTipoDoc;
   });
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
-  const currentItems = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <>
@@ -151,14 +146,8 @@ const Contratistas: React.FC<ContratistasProps> = ({ searchQuery }) => {
             <th></th>
           </tr>
         }
-        itemsPerPage={itemsPerPage}
-        setItemsPerPage={setItemsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-        visiblePages={Array.from({ length: totalPages }, (_, i) => i + 1)}
       >
-        {currentItems.map((item, idx) => (
+        {filteredData.map((item, idx) => (
           <tr key={idx}>
             <td className="db-col-id">{item.id}</td>
             <td>
