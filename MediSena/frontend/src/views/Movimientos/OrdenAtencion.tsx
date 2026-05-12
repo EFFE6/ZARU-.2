@@ -306,7 +306,7 @@ const EditarOrdenModal: React.FC<{
       </div>
 
       <div className="oa-modal-detalles-footer-final">
-        <div className="oa-det-footer-right">
+        <div className="oa-det-footer-right" style={{ marginLeft: 'auto' }}>
           <button className="oa-det-btn-cancel" onClick={onClose}>Cancelar</button>
           <button className="oa-det-btn-next" onClick={step === 2 ? handleSave : nextStep}>
             {step === 2 ? <><Save size={20} style={{ marginRight: 8 }} /> Guardar</> : 'Siguiente'}
