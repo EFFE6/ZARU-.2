@@ -1,74 +1,155 @@
-@import './MovimientosShared.css';
-
 /* =============================================
-   CancelarOrdenes.css
+   CancelarOrdenes.css - Optimized & Clean
    ============================================= */
 
-/* Contenedor principal de la vista */
-.cancel-view-container {
+.co-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  height: 100%;
 }
 
-/* Banner de éxito al cancelar */
-.cancel-success-banner {
+/* ── Header ── */
+.co-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.co-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e3a52;
+  margin: 0;
+}
+
+.co-subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ── Search Section ── */
+.co-search-section {
+  display: flex;
+  width: 100%;
+}
+
+.co-search-box {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.co-search-input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+  max-width: 600px;
+}
+
+.co-search-input:focus {
+  border-color: #0165b0;
+}
+
+.co-btn-buscar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #e2e8f0;
+  color: #64748b;
+  border: none;
+  border-radius: 10px;
+  padding: 0 32px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 160px;
+}
+
+.co-btn-buscar:hover {
+  background: #cbd5e1;
+}
+
+/* ── Alert Warning ── */
+.co-alert-warning {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 0.88rem;
-  color: #166534;
+  background: #fff8eb;
+  border: 1px solid #fee2e2; /* Subtle reddish border as seen in some designs, or just light orange */
+  border-radius: 10px;
+  padding: 12px 16px;
+  border-color: #fef3c7;
 }
 
-/* Banner de advertencia */
-.cancel-warning-banner {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #fffbeb;
-  border: 1.5px solid #fde68a;
-  border-radius: 12px;
-  padding: 16px 20px;
-  font-size: 0.88rem;
+.co-alert-icon {
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+.co-alert-text {
+  font-size: 14px;
   color: #92400e;
   line-height: 1.5;
 }
 
-/* Badges de estado en la tabla */
-.cancel-estado-badge {
-  display: inline-flex;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
+.co-alert-text strong {
   font-weight: 700;
-  text-transform: uppercase;
 }
 
-.cancel-estado-badge.activo {
-  background: #dcfce7;
-  color: #166534;
+/* ── Results ── */
+.co-results-section {
+  flex: 1;
+  min-height: 0;
 }
 
-.cancel-estado-badge.inactivo {
+.co-btn-delete {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
   background: #fee2e2;
-  color: #991b1b;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s;
 }
 
-/* Botón de acción (eliminar/cancelar) */
-.cancel-btn-del {
-  transition: all 0.2s ease;
-}
-
-.cancel-btn-del:hover {
-  background: #fecaca !important;
+.co-btn-delete:hover {
   transform: scale(1.05);
+  background: #fecaca;
 }
 
-.cancel-btn-del:active {
-  transform: scale(0.95);
+/* ── Success Toast ── */
+.co-success-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  padding: 12px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(22, 101, 52, 0.1);
+  z-index: 1000;
+  animation: coSlideIn 0.3s ease-out;
+  color: #166534;
+  font-weight: 600;
+  font-size: 14px;
 }
 
+@keyframes coSlideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

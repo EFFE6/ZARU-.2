@@ -41,14 +41,18 @@ const MovimientosLayout: React.FC = () => {
           <img src={CampanaSvg} alt="Notificaciones" style={{ width: 28, height: 28, cursor: 'pointer', flexShrink: 0 }} className="notification-bell" />
         </div>
         <div className="gestion-header-bottom">
-          <h1 className="gestion-title">{active.label}</h1>
-          {active.id !== 'consultar-ordenes' && (
-            <SearchBar
-              value={search}
-              onChange={(val) => { setSearch(val); }}
-              placeholder={`Buscar en ${active.label}...`}
-            />
-          )}
+          <h1 className="gestion-title">
+            {active.label}
+          </h1>
+          <div style={{ minHeight: '40px', display: 'flex', alignItems: 'center' }}>
+            {(active.id !== 'consultar-ordenes' && active.id !== 'relacion-pagos' && active.id !== 'cancelar-ordenes') && (
+              <SearchBar
+                value={search}
+                onChange={(val) => { setSearch(val); }}
+                placeholder={`Buscar en ${active.label}...`}
+              />
+            )}
+          </div>
         </div>
 
       </header>

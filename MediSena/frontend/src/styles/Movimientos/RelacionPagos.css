@@ -1,68 +1,230 @@
-@import './MovimientosShared.css';
-
 /* =============================================
-   RelacionPagos.css
+   RelacionPagos.css - Optimized & Clean
    ============================================= */
 
-/* ── Footer info (filas por página + nav) ── */
-.rp-footer-info {
+.rp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+/* ── Toolbar (Search + Actions) ── */
+.rp-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+
+.rp-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.rp-action-btn {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 8px;
-  padding: 10px 4px;
-  font-size: 0.80rem;
-  color: #64748b;
-  border-top: 1px solid #f1f5f9;
-}
-
-.rp-info-label { font-weight: 500; }
-
-.rp-page-select {
-  padding: 4px 24px 4px 8px;
-  font-size: 0.80rem;
-  min-width: 60px;
-}
-
-.rp-info-count {
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 600;
-  color: #334155;
-  min-width: 70px;
-  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1.5px solid transparent;
 }
 
-.rp-nav-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+.rp-action-btn.grey {
+  background: #f1f5f9;
+  color: #64748b;
+  border-color: #e2e8f0;
+}
+
+.rp-action-btn.grey:hover {
+  background: #e2e8f0;
+}
+
+.rp-action-btn.outline {
+  background: #ffffff;
+  color: #1e3a52;
+  border-color: #1e3a52;
+}
+
+.rp-action-btn.outline:hover {
+  background: #f8fafc;
+}
+
+/* ── Search Section ── */
+.rp-search-section {
+  display: flex;
+  width: auto;
+}
+
+.rp-search-box {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.rp-search-input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rp-search-icon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+}
+
+.rp-search-input-wrapper input {
+  width: 100%;
+  padding: 10px 12px 10px 40px;
+  border-radius: 10px;
   border: 1.5px solid #e2e8f0;
-  background: #fff;
-  color: #334155;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.rp-search-input-wrapper input:focus {
+  border-color: #0165b0;
+}
+
+.rp-btn-buscar {
+  background: linear-gradient(135deg, #0165B0, #013156);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.rp-btn-buscar:hover {
+  opacity: 0.9;
+}
+
+/* ── Table Section ── */
+.rp-table-container {
+  flex: 1;
+  min-height: 0;
+}
+
+.rp-table-empty {
+  text-align: center;
+  padding: 40px !important;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* ── Footer ── */
+.rp-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.rp-footer-pills {
+  display: flex;
+  gap: 12px;
+}
+
+.rp-pill {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.rp-pill.dark {
+  background: #002c4d;
+  color: white;
+}
+
+.rp-pill.green {
+  background: #166534;
+  color: white;
+}
+
+.rp-pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.rp-pag-label {
+  font-weight: 500;
+}
+
+.rp-pag-select {
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  color: #1e3a52;
+  cursor: pointer;
+  outline: none;
+}
+
+.rp-pag-info {
+  font-weight: 500;
+}
+
+.rp-pag-arrows {
+  display: flex;
+  gap: 4px;
+}
+
+.rp-pag-arrows button {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s;
-}
-.rp-nav-btn:hover:not(:disabled) { background: #f1f5f9; }
-.rp-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-
-/* ── Totales ── */
-.rp-totales {
-  display: flex;
-  gap: 10px;
-  padding: 10px 4px 4px;
-  flex-wrap: wrap;
+  padding: 4px;
+  transition: color 0.2s;
 }
 
-.rp-total-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 16px;
+.rp-pag-arrows button:not(:disabled):hover {
+  color: #1e3a52;
+}
+
+.rp-pag-arrows button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Status Badges */
+.rp-status-badge {
+  padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.80rem;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
-.rp-total-dark  { background: #1e3a5f; color: #fff; }
-.rp-total-green { background: #166534; color: #fff; }
+.rp-status-badge.pagado {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.rp-status-badge.pendiente {
+  background: #fef3c7;
+  color: #92400e;
+}
