@@ -5095,7 +5095,6 @@
 .exc-action-circle-btn:hover {
   background: #E0F2FE;
 }
- / *   P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%P%
 
 /* ═══════════════════════════════════════════
    MODALES EXCEDENTES PREMIUM
@@ -5209,9 +5208,20 @@
   text-transform: uppercase;
 }
 
-.exc-badge-pendiente { background: #f1f5f9; color: #64748b; }
-.exc-badge-particular { background: #fee2e2; color: #ef4444; }
-.exc-badge-transferencia { background: #dcfce7; color: #22c55e; }
+.exc-badge-pendiente {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.exc-badge-particular {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.exc-badge-transferencia {
+  background: #dcfce7;
+  color: #22c55e;
+}
 
 /* Buttons */
 .exc-btn-save-premium {
@@ -5307,9 +5317,20 @@
   width: fit-content;
 }
 
-.exc-badge-particular-final { background: #fee2e2; color: #b91c1c; }
-.exc-badge-pendiente-final { background: #f5f3ff; color: #7c3aed; }
-.exc-badge-transferencia-final { background: #dcfce7; color: #15803d; }
+.exc-badge-particular-final {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.exc-badge-pendiente-final {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.exc-badge-transferencia-final {
+  background: #dcfce7;
+  color: #15803d;
+}
 
 .exc-btn-update-final {
   background: #013a63;
@@ -5364,16 +5385,17 @@
 
 /* ──────────────── Responsive Table Adaptations ──────────────── */
 @media (max-width: 1200px) {
-  .resoluciones-table th, 
+
+  .resoluciones-table th,
   .resoluciones-table td {
     padding: 10px 8px;
     font-size: 13px;
   }
-  
+
   .exc-multiline-text {
     font-size: 0.75rem;
   }
-  
+
   .exc-pill-badge {
     min-width: 80px;
     padding: 4px 8px;
@@ -5382,6 +5404,7 @@
 }
 
 @media (max-width: 1024px) {
+
   /* Ocultar Método y Tipo de Pago para ahorrar espacio */
   .resoluciones-table th:nth-child(6),
   .resoluciones-table td:nth-child(6),
@@ -5392,12 +5415,13 @@
 }
 
 @media (max-width: 768px) {
+
   /* Ocultar Fecha Pago en móviles muy pequeños */
   .resoluciones-table th:nth-child(4),
   .resoluciones-table td:nth-child(4) {
     display: none;
   }
-  
+
   .gestion-content-card {
     padding: 16px;
   }
