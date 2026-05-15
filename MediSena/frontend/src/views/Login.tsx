@@ -8,8 +8,6 @@ import { User, Lock, Eye, EyeOff } from 'lucide-react';
 // Images
 import logoMedisena from '../assets/img/login/logo-medisena-login.svg';
 import senaLogo from '../assets/img/login/sena-logo.svg';
-import azulBg from '../assets/img/login/azul.svg';
-import marcaAgua from '../assets/img/login/medicina-marca-agua.svg';
 import docImg from '../assets/img/login/doc.svg';
 import medImg from '../assets/img/login/med.svg';
 import linea1 from '../assets/img/login/linea1.svg';
@@ -160,8 +158,7 @@ const Login = () => {
 
         {/* Right Side: Images */}
         <div className="login-right">
-          <img src={azulBg} alt="" className="login-bg-shape" />
-          <img src={marcaAgua} alt="" className="login-watermark" />
+
 
           {/* Imagen alternante: doc y med con crossfade CSS */}
           <img
@@ -172,7 +169,7 @@ const Login = () => {
           <img
             src={medImg}
             alt="Médico"
-            className={`login-doc login-slide ${activeSlide === 1 ? 'login-slide--active' : ''}`}
+            className={`login-doc login-med login-slide ${activeSlide === 1 ? 'login-slide--active' : ''}`}
           />
         </div>
 

@@ -295,43 +295,25 @@
   position: relative;
   /* z-index inferior al sidebar para no tapar el menú */
   z-index: 2;
-  /* Recorta la imagen para que no desborde sobre el formulario */
-  overflow: hidden;
 }
 
-.login-bg-shape {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  width: 32vw;
-  max-width: 550px;
-  object-fit: cover;
-  object-position: top right;
-  z-index: 1;
-}
-
-.login-watermark {
-  position: absolute;
-  top: 15%;
-  right: -1%;
-  width: 19.79vw;
-  opacity: 2.65;
-  z-index: 2;
-  pointer-events: none;
-}
 
 .login-doc {
   position: absolute;
   bottom: 0;
-  right: 4%;
+  right: 0;
   height: 100%;
   width: auto;
+  max-width: none;
   object-fit: contain;
   object-position: bottom right;
-  z-index: 3;
+  z-index: 0;
   pointer-events: none;
+  top: 0;
+}
+
+.login-med {
+  right: 0; /* Movido más a la derecha como pidió el usuario */
 }
 
 /* ── Media Queries ── */
@@ -349,19 +331,11 @@
     width: clamp(38px, 3.2vw, 60px);
   }
 
-  .login-bg-shape {
-    width: 40vw;
-  }
-
-  .login-watermark {
-    width: 26.67vw;
-    right: 5%;
-  }
 }
 
 @media screen and (max-width: 1024px) {
   .login-left {
-    flex: 0 0 50%;
+    flex: 0 0 45%;
     padding: 1rem 1rem;
     isolation: isolate;
   }
@@ -383,24 +357,16 @@
     height: clamp(62px, 5vw, 72px);
   }
 
-  .login-watermark {
-    width: 24.41vw;
-    top: 20%;
-  }
-
-  .login-bg-shape {
-    width: 50%;
-    right: 0;
-    left: auto;
-  }
 
   .login-doc {
-    height: 80%;
+    height: 100%;
+    top: auto;
   }
 }
 
 @media screen and (max-width: 850px) {
   .login-left {
+    flex: 0 0 40%;
     isolation: isolate;
   }
 
@@ -414,26 +380,25 @@
 
   .login-title-text {
     margin-bottom: 14px;
+    font-size: 1.2rem;
   }
 
   .login-input-wrapper {
-    height: clamp(60px, 5vw, 68px);
+    height: clamp(55px, 5vw, 64px);
+  }
+
+  .login-input {
+    padding: 0 2.5rem;
+    font-size: 0.9rem;
   }
 
   .login-form-container {
-    max-width: 320px;
-  }
-
-  .login-bg-shape {
-    width: 55%;
-    right: 0;
-    left: auto;
-    object-position: top right;
+    max-width: 280px;
   }
 
   .login-doc {
-    height: 70%;
-    right: 0;
+    height: 100%;
+    top: 1.2%;
   }
 }
 
