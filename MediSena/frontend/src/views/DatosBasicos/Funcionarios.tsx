@@ -5,6 +5,7 @@ import Modal from '../../components/Modal';
 import Filters from '../../components/Filters';
 import '../../styles/DatosBasicos/Funcionarios.css';
 import '../../styles/DatosBasicos/Beneficiarios.css';
+import '../../styles/Movimientos/MovimientosShared.css';
 
 import RegionalIcon from '../../assets/img/datosbasicos/icons/funcionarios/regional.svg';
 import { CargosIcon, ViewIcon, EditIcon, DeleteIcon, EditarDetallesIcon } from '../../components/Icons';
@@ -399,17 +400,20 @@ const Funcionarios: React.FC<FuncionariosProps> = ({ searchQuery }) => {
       {/* MODAL EDITAR / NUEVO (TABS) */}
       <Modal isOpen={modalEditar || modalNuevo} onClose={() => { setModalEditar(false); setModalNuevo(false); }} hideHeader className="db-modal-official-full">
         <div>
-          <div className="db-modal-tabs-header">
-            <div className="db-modal-tab active">
-              INFORMACIÓN PERSONAL
+          <div className="oa-modal-detalles-header-tabs">
+            <div className="oa-det-tab active">
+              <div className="oa-det-tab-circle">1</div>
+              <span className="oa-det-tab-label">INFORMACIÓN PERSONAL</span>
             </div>
-            <div className="db-modal-tab">
-              INFORMACIÓN DE CONTACTO
+            <div className="oa-det-tab">
+              <div className="oa-det-tab-circle">2</div>
+              <span className="oa-det-tab-label">INFORMACIÓN DE CONTACTO</span>
             </div>
-            <div className="db-modal-tab">
-              INFORMACIÓN LABORAL
+            <div className="oa-det-tab">
+              <div className="oa-det-tab-circle">3</div>
+              <span className="oa-det-tab-label">INFORMACIÓN LABORAL</span>
             </div>
-            <button className="db-modal-form-close db-ml-auto" onClick={() => { setModalEditar(false); setModalNuevo(false); }}>
+            <button className="oa-modal-detalles-close" onClick={() => { setModalEditar(false); setModalNuevo(false); }}>
               <X size={20} />
             </button>
           </div>
