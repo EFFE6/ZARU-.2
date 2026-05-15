@@ -32,6 +32,44 @@ import {
 } from './BuscarBeneficiario';
 
 /* ════════════════════════════════════════════════════════════
+   DATOS DE PRUEBA (se usan como fallback si la API no responde)
+   ════════════════════════════════════════════════════════════ */
+const MOCK_ORDENES: import('./types').OrdenConsulta[] = Array.from({ length: 15 }, (_, i) => ({
+  id: i + 1,
+  numero: `ORD-2024-${String(i + 1).padStart(6, '0')}`,
+  fecha: `2024-${String((i % 12) + 1).padStart(2, '0')}-${String((i % 28) + 1).padStart(2, '0')}`,
+  beneficiario: ['JUAN CARLOS PÉREZ GÓMEZ', 'MARÍA ELENA RODRÍGUEZ', 'LUIS ALBERTO MARTÍNEZ', 'ANA SOFÍA TORRES', 'CARLOS ANDRÉS RAMÍREZ'][i % 5],
+  medico: ['Dr. Hernández', 'Dra. Lopera', 'Dr. Quintero', 'Dra. Sánchez', 'Dr. Vargas'][i % 5],
+  especialidad: ['Dermatología', 'Cardiología', 'Medicina General', 'Ortopedia', 'Pediatría'][i % 5],
+  estado: ['Aprobada', 'Pendiente', 'Cancelada', 'Aprobada', 'Aprobada'][i % 5],
+  valor: `$${((i + 1) * 85000).toLocaleString('es-CO')}`,
+  funcionarioSolicitante: 'MÉDICO TRATANTE',
+  tipoAtencion: ['Consulta', 'Procedimiento', 'Examen'][i % 3],
+  fechaEmision: `2024-${String((i % 12) + 1).padStart(2, '0')}-${String((i % 28) + 1).padStart(2, '0')}`,
+}));
+
+const MOCK_CUENTAS: import('./types').CuentaCobroConsulta[] = Array.from({ length: 12 }, (_, i) => ({
+  id: i + 1,
+  numeroRecibo: `REC-2024-${String(i + 1).padStart(6, '0')}`,
+  funcionario: ['PEDRO SUÁREZ', 'LAURA DÍAZ', 'JORGE MORENO', 'CLAUDIA JIMÉNEZ'][i % 4],
+  fecha: `2024-${String((i % 12) + 1).padStart(2, '0')}-${String((i % 28) + 1).padStart(2, '0')}`,
+  tipoPago: ['Transferencia', 'Cheque', 'Efectivo'][i % 3],
+  valor: `$${((i + 1) * 120000).toLocaleString('es-CO')}`,
+  estado: ['Aprobada', 'Pendiente', 'Cancelada'][i % 3],
+}));
+
+const MOCK_CONTRATISTAS: import('./types').ContratistaConsulta[] = Array.from({ length: 10 }, (_, i) => ({
+  id: i + 1,
+  nit: `${900100000 + i * 7}-${i % 9}`,
+  nombre: ['CLÍNICA MEDELLÍN S.A.', 'IPS SALUD TOTAL', 'LABORATORIOS NORTE', 'CENTRO MÉDICO SUR', 'DIAGNÓSTICO EXPRESS'][i % 5],
+  especialidad: ['Dermatología', 'Cardiología', 'Medicina General', 'Ortopedia', 'Pediatría'][i % 5],
+  regional: ['Antioquia', 'Cundinamarca', 'Valle del Cauca', 'Atlántico'][i % 4],
+  telefono: `+57 ${310 + i} ${String(4000000 + i * 12345).slice(0, 7)}`,
+  email: `contacto${i + 1}@ips${i + 1}.com.co`,
+  estado: i % 3 === 2 ? 'Inactivo' : 'Activo',
+}));
+
+/* ════════════════════════════════════════════════════════════
    COMPONENTE PRINCIPAL – Consultas
    ════════════════════════════════════════════════════════════ */
 const Consultas: React.FC = () => {
@@ -69,6 +107,12 @@ const Consultas: React.FC = () => {
   const [beneficiarioConsulted, setBeneficiarioConsulted] = useState(false);
   const [beneficiarioNotFound, setBeneficiarioNotFound] = useState(false);
 
+  /* ── Paginación compartida + por tab ── */
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [ordenPage, setOrdenPage] = useState(1);
+  const [cuentaPage, setCuentaPage] = useState(1);
+  const [contratistaPage, setContratistaPage] = useState(1);
+
   const tabs = [
     'Orden de Atención consulta',
     'Cuentas Cobro consulta',
@@ -76,18 +120,17 @@ const Consultas: React.FC = () => {
     'Buscar Beneficiario',
   ];
 
-  /* ── Reset state ── */
-
   /* ─── Handlers Órdenes ──────────────────────────── */
   const handleOrdenConsultar = async () => {
     setLoading(true);
+    setOrdenPage(1);
     try {
       const res = await api.get('/consultas/ordenes', { params: ordenFilter });
       setOrdenResults(res.data);
       setOrdenConsulted(true);
     } catch (e) {
-      console.error(e);
-      setOrdenResults([]);
+      console.warn('API no disponible, usando datos de prueba:', e);
+      setOrdenResults(MOCK_ORDENES);
       setOrdenConsulted(true);
     } finally {
       setLoading(false);
@@ -97,18 +140,20 @@ const Consultas: React.FC = () => {
     setOrdenFilter({ ...EMPTY_ORDEN_FILTER });
     setOrdenResults([]);
     setOrdenConsulted(false);
+    setOrdenPage(1);
   };
 
   /* ─── Handlers Cuentas ──────────────────────────── */
   const handleCuentaConsultar = async () => {
     setLoading(true);
+    setCuentaPage(1);
     try {
       const res = await api.get('/consultas/cuentas-cobro', { params: cuentaFilter });
       setCuentaResults(res.data);
       setCuentaConsulted(true);
     } catch (e) {
-      console.error(e);
-      setCuentaResults([]);
+      console.warn('API no disponible, usando datos de prueba:', e);
+      setCuentaResults(MOCK_CUENTAS);
       setCuentaConsulted(true);
     } finally {
       setLoading(false);
@@ -118,18 +163,20 @@ const Consultas: React.FC = () => {
     setCuentaFilter({ ...EMPTY_CUENTA_FILTER });
     setCuentaResults([]);
     setCuentaConsulted(false);
+    setCuentaPage(1);
   };
 
   /* ─── Handlers Contratistas ─────────────────────── */
   const handleContratistaConsultar = async () => {
     setLoading(true);
+    setContratistaPage(1);
     try {
       const res = await api.get('/consultas/contratistas', { params: contratistaFilter });
       setContratistaResults(res.data);
       setContratistaConsulted(true);
     } catch (e) {
-      console.error(e);
-      setContratistaResults([]);
+      console.warn('API no disponible, usando datos de prueba:', e);
+      setContratistaResults(MOCK_CONTRATISTAS);
       setContratistaConsulted(true);
     } finally {
       setLoading(false);
@@ -139,6 +186,7 @@ const Consultas: React.FC = () => {
     setContratistaFilter({ ...EMPTY_CONTRATISTA_FILTER });
     setContratistaResults([]);
     setContratistaConsulted(false);
+    setContratistaPage(1);
   };
 
   /* ─── Handlers Beneficiario ─────────────────────── */
@@ -201,14 +249,84 @@ const Consultas: React.FC = () => {
     );
   }, [contratistaResults, searchQuery]);
 
+  /* ─── Resetear páginas al cambiar searchQuery ── */
+  useEffect(() => { setOrdenPage(1); }, [searchQuery]);
+  useEffect(() => { setCuentaPage(1); }, [searchQuery]);
+  useEffect(() => { setContratistaPage(1); }, [searchQuery]);
 
+  /* ─── Cálculos de paginación ──────────────────── */
+  const ordenTotalPages       = Math.max(1, Math.ceil(filteredOrdenes.length / itemsPerPage));
+  const cuentaTotalPages      = Math.max(1, Math.ceil(filteredCuentas.length / itemsPerPage));
+  const contratistaTotalPages = Math.max(1, Math.ceil(filteredContratistas.length / itemsPerPage));
+
+  const ordenSlice       = filteredOrdenes.slice((ordenPage - 1) * itemsPerPage, ordenPage * itemsPerPage);
+  const cuentaSlice      = filteredCuentas.slice((cuentaPage - 1) * itemsPerPage, cuentaPage * itemsPerPage);
+  const contratistaSlice = filteredContratistas.slice((contratistaPage - 1) * itemsPerPage, contratistaPage * itemsPerPage);
+
+  /* ─── Helper: páginas visibles ───────────────── */
+  const visiblePages = (current: number, total: number) => {
+    const delta = 2;
+    const start = Math.max(1, current - delta);
+    const end   = Math.min(total, current + delta);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  };
+
+  /* ─── Footer de paginación reutilizable ──────── */
+  const PaginationFooter = ({
+    currentPage, totalPages, onPage, onItems,
+  }: {
+    currentPage: number;
+    totalPages: number;
+    onPage: (p: number) => void;
+    onItems: (n: number) => void;
+  }) => (
+    <div className="pagination-footer">
+      <div className="items-per-page">
+        <span>Elementos por página</span>
+        <div className="items-select-wrapper">
+          <select
+            className="items-select"
+            value={itemsPerPage}
+            onChange={e => { onItems(Number(e.target.value)); onPage(1); }}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+          </select>
+        </div>
+      </div>
+      <div className="page-controls">
+        <button
+          className="page-nav-btn"
+          onClick={() => onPage(Math.max(1, currentPage - 1))}
+          disabled={currentPage <= 1}
+        >
+          <ChevronLeft size={18} />
+        </button>
+        {visiblePages(currentPage, totalPages).map(n => (
+          <button
+            key={n}
+            className={`page-num-btn ${currentPage === n ? 'active' : ''}`}
+            onClick={() => onPage(n)}
+          >
+            {n}
+          </button>
+        ))}
+        <button
+          className="page-nav-btn"
+          onClick={() => onPage(Math.min(totalPages, currentPage + 1))}
+          disabled={currentPage >= totalPages}
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
+      <div className="page-info-total">
+        {currentPage} - de {totalPages} páginas
+      </div>
+    </div>
+  );
 
   /* ════════════════════════════════════════════════ RENDER ═══ */
-  const showPagination =
-    (activeTab === 'Orden de Atención consulta' && ordenConsulted && ordenResults.length > 0) ||
-    (activeTab === 'Cuentas Cobro consulta' && cuentaConsulted && cuentaResults.length > 0) ||
-    (activeTab === 'Consulta Contratistas' && contratistaConsulted && contratistaResults.length > 0);
-
   return (
     <>
       <div className="gestion-container">
@@ -264,9 +382,17 @@ const Consultas: React.FC = () => {
                         total={filteredOrdenes.length}
                         onPrint={() => window.print()}
                       />
-                      <DataTable headers={<OrdenConsultaHead />} data={filteredOrdenes}>
-                        <OrdenConsultaTabla items={[]} loading={loading} onView={setSelectedOrden} />
+                      <DataTable headers={<OrdenConsultaHead />} hidePagination>
+                        <OrdenConsultaTabla items={ordenSlice} loading={loading} onView={setSelectedOrden} />
                       </DataTable>
+                      {filteredOrdenes.length > 0 && (
+                        <PaginationFooter
+                          currentPage={ordenPage}
+                          totalPages={ordenTotalPages}
+                          onPage={setOrdenPage}
+                          onItems={setItemsPerPage}
+                        />
+                      )}
                     </>
                   )}
                 </>
@@ -290,9 +416,17 @@ const Consultas: React.FC = () => {
                         total={filteredCuentas.length}
                         onPrint={() => window.print()}
                       />
-                      <DataTable headers={<CuentaConsultaHead />} data={filteredCuentas}>
-                        <CuentaConsultaTabla items={[]} loading={loading} onView={setSelectedCuenta} />
+                      <DataTable headers={<CuentaConsultaHead />} hidePagination>
+                        <CuentaConsultaTabla items={cuentaSlice} loading={loading} onView={setSelectedCuenta} />
                       </DataTable>
+                      {filteredCuentas.length > 0 && (
+                        <PaginationFooter
+                          currentPage={cuentaPage}
+                          totalPages={cuentaTotalPages}
+                          onPage={setCuentaPage}
+                          onItems={setItemsPerPage}
+                        />
+                      )}
                     </>
                   )}
                 </>
@@ -316,9 +450,17 @@ const Consultas: React.FC = () => {
                         total={filteredContratistas.length}
                         onPrint={() => window.print()}
                       />
-                      <DataTable headers={<ContratistasHead />} data={filteredContratistas}>
-                        <ContratistasTabla items={[]} loading={loading} onView={setSelectedContratista} />
+                      <DataTable headers={<ContratistasHead />} hidePagination>
+                        <ContratistasTabla items={contratistaSlice} loading={loading} onView={setSelectedContratista} />
                       </DataTable>
+                      {filteredContratistas.length > 0 && (
+                        <PaginationFooter
+                          currentPage={contratistaPage}
+                          totalPages={contratistaTotalPages}
+                          onPage={setContratistaPage}
+                          onItems={setItemsPerPage}
+                        />
+                      )}
                     </>
                   )}
                 </>
@@ -347,7 +489,6 @@ const Consultas: React.FC = () => {
                 </>
               )}
 
-              {/* Paginación removida ya que es manejada por DataTable */}
             </div>
           </div>
 
