@@ -79,11 +79,11 @@
 
 /* Left Side: Form Section */
 .login-left {
-  flex: 0 0 38%;
+  flex: 0 0 420px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   position: relative;
   z-index: 10;
   isolation: isolate;
@@ -289,38 +289,156 @@
   object-fit: contain;
 }
 
-/* Right Side: Images */
+/* ─── Right Side: Images ─────────────────────────────── */
 .login-right {
   flex: 1;
   position: relative;
-  /* z-index inferior al sidebar para no tapar el menú */
   z-index: 2;
 }
 
-
-.login-doc {
+/* ── Slideshow crossfade ── */
+.login-slide {
   position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.login-slide--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Fondo azul diagonal */
+.login-bg-shape {
+  position: absolute;
+  top: 0;
   bottom: 0;
   right: 0;
   height: 100%;
-  width: auto;
-  max-width: none;
+  width: 32vw;
+  max-width: 550px;
+  object-fit: cover;
+  object-position: top right;
+  z-index: 1;
+}
+
+/* Marca de agua */
+.login-watermark {
+  position: absolute;
+  top: 15%;
+  right: -1%;
+  width: 19.79vw;
+  opacity: 0.65;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Imagen del doctor/médico y contenedor aspect-ratio */
+.login-character-container {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  z-index: 12;
+}
+
+.login-character-container-doc {
+  right: 4%;
+  aspect-ratio: 851 / 934;
+}
+
+.login-character-container-med {
+  right: 0;
+  aspect-ratio: 916 / 948;
+}
+
+.login-doc-img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: bottom right;
-  z-index: 0;
   pointer-events: none;
-  top: 0;
 }
 
-.login-med {
-  right: 0; /* Movido más a la derecha como pidió el usuario */
+/* ─── Instrumentos flotantes ─────────────────────────── */
+.login-float {
+  position: absolute;
+  z-index: 15;
+  pointer-events: none;
+  animation: loginFloat 3s ease-in-out infinite;
 }
 
-/* ── Media Queries ── */
+/* ── Doctor (hombre) ── */
+
+/* Estetoscopio: encima del hombro izquierdo, al lado del cabello */
+.login-float-estetoscopio {
+  top: 18%;
+  left: 8%;
+  width: clamp(75px, 10.5vw, 151px);
+  animation-delay: 0s;
+}
+
+/* Termómetro: encima del hombro derecho, sobre la parte azul y marca de agua */
+.login-float-termometro {
+  top: 25%;
+  right: 2%;
+  width: clamp(70px, 10.4vw, 149px);
+  animation-delay: -1s;
+}
+
+/* ADN: por el codo, abajo-izquierda */
+.login-float-adn {
+  bottom: -3%;
+  left: -17.5%;
+  width: clamp(100px, 14.2vw, 205px);
+  animation-delay: -2s;
+}
+
+/* ── Médico (mujer) ── */
+
+/* Microscopio: arriba del hombro, al lado del cabello */
+.login-float-microscopio {
+  top: 20%;
+  left: 8%;
+  width: clamp(80px, 11.5vw, 166px);
+  animation-delay: 0s;
+}
+
+/* Inyección: arriba del hombro, sobre la parte azul y marca de agua */
+.login-float-inyeccion {
+  top: 27%;
+  right: 2%;
+  width: clamp(75px, 11.4vw, 164px);
+  animation-delay: -1s;
+}
+
+/* Botiquín: al lado del codo, abajo-izquierda */
+.login-float-botiquin {
+  bottom: 10%;
+  left: -2%;
+  width: clamp(70px, 10.3vw, 148px);
+  animation-delay: -2s;
+}
+
+/* Animación de flotación sutil */
+@keyframes loginFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* ─── Media Queries ─────────────────────────────────── */
 
 @media screen and (max-width: 1200px) {
   .login-left {
-    flex: 0 0 45%;
+    flex: 0 0 32%;
   }
 
   .login-logo-img {
@@ -331,42 +449,67 @@
     width: clamp(38px, 3.2vw, 60px);
   }
 
+  .login-bg-shape {
+    width: 40vw;
+  }
+
+  .login-watermark {
+    width: 26.67vw;
+    right: 5%;
+  }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1074px) {
+  .login-main-content {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
   .login-left {
-    flex: 0 0 45%;
-    padding: 1rem 1rem;
-    isolation: isolate;
+    width: 100%;
+    order: 2;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background: white;
+    min-height: 100vh;
   }
 
   .login-logo-img {
-    width: clamp(140px, 14vw, 200px);
+    width: clamp(160px, 40vw, 247px);
   }
 
   .sena-logo-img {
-    width: clamp(36px, 3vw, 55px);
+    width: clamp(48px, 8vw, 67px);
   }
 
   .login-title-text {
-    margin-bottom: 16px;
-    /* reduce un poco en tablet */
+    margin-bottom: 20px;
+    /* restaurar 20px en móvil, tiene espacio */
+  }
+
+  .login-form-container {
+    padding-top: 20px;
+    max-width: 409px;
+    /* restaurar máximo Figma en móvil */
   }
 
   .login-input-wrapper {
-    height: clamp(62px, 5vw, 72px);
+    height: clamp(65px, 5.5vw, 76px);
+    /* restaurar altura Figma */
   }
 
+  .login-right {
+    display: none;
+  }
 
-  .login-doc {
-    height: 100%;
-    top: auto;
+  .login-bg-line {
+    display: none;
   }
 }
 
 @media screen and (max-width: 850px) {
   .login-left {
-    flex: 0 0 40%;
     isolation: isolate;
   }
 
@@ -380,25 +523,49 @@
 
   .login-title-text {
     margin-bottom: 14px;
-    font-size: 1.2rem;
   }
 
   .login-input-wrapper {
-    height: clamp(55px, 5vw, 64px);
-  }
-
-  .login-input {
-    padding: 0 2.5rem;
-    font-size: 0.9rem;
+    height: clamp(60px, 5vw, 68px);
   }
 
   .login-form-container {
-    max-width: 280px;
+    max-width: 320px;
   }
 
-  .login-doc {
-    height: 100%;
-    top: 1.2%;
+  .login-bg-shape {
+    width: 55%;
+    right: 0;
+    left: auto;
+    object-position: top right;
+  }
+
+  .login-character-container {
+    height: 70%;
+  }
+
+  .login-float-estetoscopio {
+    width: clamp(45px, 6.5vw, 90px);
+  }
+
+  .login-float-termometro {
+    width: clamp(40px, 6vw, 85px);
+  }
+
+  .login-float-adn {
+    width: clamp(55px, 8vw, 115px);
+  }
+
+  .login-float-microscopio {
+    width: clamp(48px, 7vw, 95px);
+  }
+
+  .login-float-inyeccion {
+    width: clamp(42px, 6.5vw, 90px);
+  }
+
+  .login-float-botiquin {
+    width: clamp(40px, 6vw, 80px);
   }
 }
 
@@ -409,10 +576,9 @@
   }
 
   .login-left {
-    flex: none;
     width: 100%;
     order: 2;
-    padding: 2rem;
+    padding: 0;
     display: flex;
     justify-content: center;
     background: white;
@@ -493,12 +659,78 @@
   }
 }
 
-/* ── Slideshow crossfade ── */
-.login-slide {
-  opacity: 0;
-  transition: opacity 0.8s ease;
+/* ─── Tema Blanco Dinámico (Traslape detectado) ──────── */
+.login-theme-white .login-left {
+  background-color: #ffffff;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.login-slide--active {
-  opacity: 1;
+.login-theme-white .login-input {
+  background-color: #edf3fc;
+  /* fondo azul muy clarito de la segunda foto */
+  border-color: #000000;
+}
+
+.login-theme-white .login-input:focus {
+  background-color: #ffffff;
+  border-color: #118212;
+}
+
+.login-theme-white .login-button-green {
+  background-color: #179e19;
+}
+
+.login-theme-white .login-button-green:hover:not(:disabled) {
+  background-color: #118212;
+}
+
+/* ─── Soporte para Viewports Bajos (max-height: 600px) ── */
+@media screen and (max-height: 662px) {
+  .login-main-content {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .login-left {
+    width: 100%;
+    order: 2;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background: white;
+    min-height: 100vh;
+  }
+
+  .login-logo-img {
+    width: clamp(160px, 40vw, 247px);
+  }
+
+  .sena-logo-img {
+    width: clamp(48px, 8vw, 67px);
+  }
+
+  .login-title-text {
+    margin-bottom: 20px;
+    /* restaurar 20px en móvil, tiene espacio */
+  }
+
+  .login-form-container {
+    padding-top: 20px;
+    max-width: 409px;
+    /* restaurar máximo Figma en móvil */
+  }
+
+  .login-input-wrapper {
+    height: clamp(65px, 5.5vw, 76px);
+    /* restaurar altura Figma */
+  }
+
+  .login-right {
+    display: none;
+  }
+
+  .login-bg-line {
+    display: none;
+  }
 }

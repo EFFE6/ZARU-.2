@@ -8,12 +8,25 @@ import { User, Lock, Eye, EyeOff } from 'lucide-react';
 // Images
 import logoMedisena from '../assets/img/login/logo-medisena-login.svg';
 import senaLogo from '../assets/img/login/sena-logo.svg';
-import docImg from '../assets/img/login/doc.svg';
-import medImg from '../assets/img/login/med.svg';
 import linea1 from '../assets/img/login/linea1.svg';
 import linea2 from '../assets/img/login/linea2.svg';
 import linea3 from '../assets/img/login/linea3.svg';
 import headerImg from '../assets/img/login/header-login.svg';
+import marcaAgua from '../assets/img/login/medicina-marca-agua.svg';
+
+// Doctor (slide 0) assets
+import azulDoc from '../assets/img/login/azul-hombre-doc.svg';
+import docImg from '../assets/img/login/doc.svg';
+import estetoscopioDoc from '../assets/img/login/estetoscopio-hombre.doc.svg';
+import termometroDoc from '../assets/img/login/termometro-hombre-doc.svg';
+import adnDoc from '../assets/img/login/adn-hombre-doc.svg';
+
+// Médico (slide 1) assets
+import azulMed from '../assets/img/login/azul-mujer-med.svg';
+import medImg from '../assets/img/login/med.svg';
+import microscopioMed from '../assets/img/login/microscopio-mujer-med.svg';
+import inyeccionMed from '../assets/img/login/inyeccion-mujer-med.svg';
+import botiquinMed from '../assets/img/login/botiquin-mujer-med.svg';
 
 import '../styles/Login/Login.css';
 
@@ -159,18 +172,30 @@ const Login = () => {
         {/* Right Side: Images */}
         <div className="login-right">
 
+          {/* ── Slide 0: Doctor (hombre) ── */}
+          <div className={`login-slide login-slide-doc ${activeSlide === 0 ? 'login-slide--active' : ''}`}>
+            <img src={azulDoc} alt="" className="login-bg-shape" />
+            <img src={marcaAgua} alt="" className="login-watermark" />
+            <div className="login-character-container login-character-container-doc">
+              <img src={docImg} alt="Doctor" className="login-doc-img" />
+              <img src={estetoscopioDoc} alt="" className="login-float login-float-estetoscopio" />
+              <img src={termometroDoc} alt="" className="login-float login-float-termometro" />
+              <img src={adnDoc} alt="" className="login-float login-float-adn" />
+            </div>
+          </div>
 
-          {/* Imagen alternante: doc y med con crossfade CSS */}
-          <img
-            src={docImg}
-            alt="Doctor"
-            className={`login-doc login-slide ${activeSlide === 0 ? 'login-slide--active' : ''}`}
-          />
-          <img
-            src={medImg}
-            alt="Médico"
-            className={`login-doc login-med login-slide ${activeSlide === 1 ? 'login-slide--active' : ''}`}
-          />
+          {/* ── Slide 1: Médico (mujer) ── */}
+          <div className={`login-slide login-slide-med ${activeSlide === 1 ? 'login-slide--active' : ''}`}>
+            <img src={azulMed} alt="" className="login-bg-shape" />
+            <img src={marcaAgua} alt="" className="login-watermark" />
+            <div className="login-character-container login-character-container-med">
+              <img src={medImg} alt="Médico" className="login-doc-img" />
+              <img src={microscopioMed} alt="" className="login-float login-float-microscopio" />
+              <img src={inyeccionMed} alt="" className="login-float login-float-inyeccion" />
+              <img src={botiquinMed} alt="" className="login-float login-float-botiquin" />
+            </div>
+          </div>
+
         </div>
 
       </div>
