@@ -21,7 +21,7 @@
 <path d="M854.144 212.915C857.205 212.915 859.686 210.433 859.686 207.372C859.686 204.311 857.205 201.83 854.144 201.83C851.083 201.83 848.602 204.311 848.602 207.372C848.602 210.433 851.083 212.915 854.144 212.915Z" fill="white"/>
 </g>
 </g>
-<rect width="923.47" height="977.514" transform="matrix(-1 -0.000116974 -0.000116974 1 1032.59 25.1074)" fill="url(#pattern0_1076_32299)"/>
+<rect width="811.033" height="1002.18" transform="matrix(-1 -0.000116974 -0.000116974 1 959.602 0.435547)" fill="url(#pattern0_1076_32299)"/>
 <g filter="url(#filter0_d_1076_32299)">
 <rect x="758.211" y="287.125" width="149.399" height="175.098" transform="rotate(1.76748 758.211 287.125)" fill="url(#pattern1_1076_32299)" shape-rendering="crispEdges"/>
 </g>
@@ -32,7 +32,7 @@
 </g>
 <defs>
 <pattern id="pattern0_1076_32299" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_1076_32299" transform="matrix(0.000917594 2.5571e-06 -2.63383e-06 0.000843508 0.0184683 0.00942273)"/>
+<use xlink:href="#image0_1076_32299" transform="matrix(0.0010448 2.49417e-06 -2.99896e-06 0.000822749 -0.0689627 0.0338005)"/>
 </pattern>
 <filter id="filter0_d_1076_32299" x="740.509" y="278.825" width="179.33" height="204.223" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
