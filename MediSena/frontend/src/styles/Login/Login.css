@@ -366,6 +366,9 @@
   position: absolute;
   z-index: 15;
   pointer-events: none;
+  display: block;
+  transform: translateY(0);
+  will-change: transform;
   animation: loginFloat 3s ease-in-out infinite;
 }
 
@@ -423,14 +426,14 @@
 
 /* Animación de flotación sutil */
 @keyframes loginFloat {
-
-  0%,
-  100% {
+  0% {
     transform: translateY(0);
   }
-
   50% {
     transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 

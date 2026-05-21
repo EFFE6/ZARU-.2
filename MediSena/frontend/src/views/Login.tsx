@@ -38,7 +38,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(() => (Math.random() < 0.5 ? 0 : 1));
   const navigate = useNavigate();
 
   // Slideshow: alterna entre doc y med con crossfade CSS
